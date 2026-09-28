@@ -9,12 +9,17 @@ let package = Package(
     ],
     products: [
         .library(name: "KanjiGameCore", targets: ["KanjiGameCore"]),
-        .library(name: "KanjiPersistence", targets: ["KanjiPersistence"])
+        .library(name: "KanjiPersistence", targets: ["KanjiPersistence"]),
+        .executable(name: "KanjiContentCheck", targets: ["KanjiContentCheck"])
     ],
     targets: [
         .target(name: "KanjiGameCore"),
         .target(
             name: "KanjiPersistence",
+            dependencies: ["KanjiGameCore"]
+        ),
+        .executableTarget(
+            name: "KanjiContentCheck",
             dependencies: ["KanjiGameCore"]
         ),
         .testTarget(
