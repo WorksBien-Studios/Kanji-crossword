@@ -22,8 +22,12 @@ from schema_v2 import (
 from vocab3 import DICTIONARY_ATTRIBUTION, READING, WORDS2, WORDS_BY_LEN
 
 TARGET_PUZZLES = 360
-MIN_WORDS = 12
-MAX_WORDS = 24
+STANDARD_PUZZLES = 240
+LARGE_PUZZLES = 120
+STANDARD_MIN_WORDS = 12
+STANDARD_MAX_WORDS = 18
+LARGE_MIN_WORDS = 20
+LARGE_MAX_WORDS = 24
 PARTITION_SEED = 42
 
 
@@ -110,14 +114,33 @@ def _verify_unique(record, slots, cell_to_num, restricted2):
 
 def generate_library():
     started = time.time()
-    puzzles, remaining = partition_all(
+    large, remaining = partition_all(
         WORDS2,
-        min_words=MIN_WORDS,
-        max_words=MAX_WORDS,
+        min_words=LARGE_MIN_WORDS,
+        max_words=LARGE_MAX_WORDS,
         seed=PARTITION_SEED,
-        max_puzzles=TARGET_PUZZLES,
+        max_puzzles=LARGE_PUZZLES,
         max_consecutive_stalls=3000,
     )
+    if len(large) != LARGE_PUZZLES:
+        raise RuntimeError(
+            f"release requires {LARGE_PUZZLES} large puzzles; generated {len(large)}"
+        )
+
+    standard, remaining = partition_all(
+        remaining,
+        min_words=STANDARD_MIN_WORDS,
+        max_words=STANDARD_MAX_WORDS,
+        seed=PARTITION_SEED + 1,
+        max_puzzles=STANDARD_PUZZLES,
+        max_consecutive_stalls=3000,
+    )
+    if len(standard) != STANDARD_PUZZLES:
+        raise RuntimeError(
+            f"release requires {STANDARD_PUZZLES} standard puzzles; generated {len(standard)}"
+        )
+
+    puzzles = standard + large
     if len(puzzles) != TARGET_PUZZLES:
         raise RuntimeError(
             f"release requires exactly {TARGET_PUZZLES} puzzles; generated {len(puzzles)}"
