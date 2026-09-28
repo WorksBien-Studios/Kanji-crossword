@@ -25,6 +25,8 @@ jobs:
         run: swift --version
       - name: Run pure Swift runtime tests
         run: swift test --package-path runtime
+      - name: Decode and validate shipped 360-puzzle library
+        run: swift run --package-path runtime KanjiContentCheck content/puzzles-v2.json
 
   apple-persistence:
     runs-on: macos-latest
