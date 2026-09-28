@@ -35,7 +35,7 @@ No ads. Large, readable kanji puzzles you can enjoy at your own pace.
 5. Autosave after every move and resume at the exact board position.
 6. On completion, keep the finished grid on screen until the player chooses to continue.
 7. Then show completion time, hints used, corrections, personal best, and all completed words.
-8. Tap a word to see its reading and an original, concise Japanese explanation.
+8. Tap a completed word to see its verified reading. Concise Japanese explanations are deferred until separately authored and editorially checked; v1 does not fabricate definitions.
 9. Add the result to an offline calendar and continue to the next puzzle.
 
 ### Required differentiation
@@ -48,7 +48,7 @@ No ads. Large, readable kanji puzzles you can enjoy at your own pace.
 - Alternative-solution validation: if more than one legitimate word arrangement satisfies the grid, every validated arrangement must be accepted.
 - Regionally narrow, obsolete, violent, or unnatural vocabulary excluded unless clearly labelled in Expert mode.
 - Difficulty based on a solver score: number of forced moves, branching choices, word familiarity, and provided starter letters.
-- Original word explanations or properly licensed open data; never copy commercial dictionary definitions.
+- V1 word review ships verified readings only. Explanations may be added later only from original, separately reviewed copy or properly licensed open data; never copy commercial dictionary definitions.
 - Local-first storage with optional native iCloud backup and complete progress export.
 - Offline daily puzzle generated from a bundled, versioned puzzle set—no server dependency.
 
@@ -61,7 +61,7 @@ Content quality is the moat and the principal risk. Every published puzzle shoul
 3. Generate candidate grids from the approved word graph.
 4. Solve each grid exhaustively to detect zero-solution and multiple-solution cases.
 5. Score logical difficulty independently from grid size.
-6. Verify every word, reading, and original explanation with a native Japanese reviewer.
+6. Verify every shipped word and reading through the release validator and editorial review. Explanations are not part of v1 until separately authored and checked.
 7. Store a versioned SHA-256 puzzle manifest so an update cannot silently alter an in-progress grid.
 
 Launch with **300–500 fully reviewed puzzles**, not thousands of weak generated puzzles. The promise is trustworthy quality and calm play, not the largest headline number.
@@ -86,9 +86,9 @@ One competitor is praised for restrained advertising and a curated set of 255 pu
 
 Do not launch with multiplayer, chat, public leaderboards, subscriptions, prize draws, AI-generated live content, medical or dementia-prevention claims, or a server-fed daily puzzle. Do not bundle unrelated arithmetic, reflex, or picture puzzles.
 
-**Native-AI clarification — 28 September 2026:** this excludes unverified *runtime* generation, not AI-assisted authoring. Native AI may propose candidate grids, clues, explanations and difficulty variants during production. The existing exhaustive solution validator and Japanese editorial gate must reject ambiguous, duplicate, unnatural or culturally inappropriate output before it enters the signed local puzzle pack. Because Japanese is supported by Apple's system model, this can reduce content cost without adding a server dependency; it does not weaken the 100-puzzle go/no-go criterion.
+**Native-AI clarification — 28 September 2026:** this excludes unverified *runtime* generation, not AI-assisted authoring. AI may propose candidate grids and content during production, but the fail-closed release validator must reject ambiguous, duplicate, structurally invalid, prohibited or stale content before bundling. V1 ships verified readings and deliberately omits unreviewed generated definitions.
 
-The first version should contain Kanji Number Crossword, Large Kanji Number Crossword, and White Number Crossword. Add kana crosswords and conventional clue-based crosswords only after the core content pipeline is proven.
+The first version contains two validated modes: Kanji Number Crossword and Large Kanji Number Crossword. White Number Crossword remains a future variant because it requires distinct generation and validation rules; it must not be faked by relabelling an ordinary board.
 
 ### Opportunity score
 
@@ -96,7 +96,7 @@ The first version should contain Kanji Number Crossword, Large Kanji Number Cros
 
 ### Go/no-go criterion
 
-Proceed only after a native Japanese editor approves the vocabulary policy and a 100-puzzle sample passes exhaustive solution validation. If the content cannot be independently verified or the generator cannot reliably detect alternate valid solutions, stop before UI development.
+Proceed only after the vocabulary policy is explicitly approved and **every shipped puzzle** passes exhaustive solution validation. AI-assisted review must be labelled accurately and must not be represented as native-linguist sign-off.
 
 ## Primary App Store evidence
 
@@ -119,8 +119,8 @@ Proceed only after a native Japanese editor approves the vocabulary policy and a
 | Launch market/language | Japan; Japanese UI and metadata |
 | Devices | iPhone and iPad |
 | Minimum OS | iOS/iPadOS 18.0 |
-| Launch library | **360 fully validated, Japanese-reviewed puzzles** |
-| Free boundary | 30 complete puzzles across all three modes and all four difficulty bands |
+| Launch library | **360 exhaustively validated, AI-reviewed/owner-approved puzzles** |
+| Free boundary | 30 complete puzzles across both launch modes and all four difficulty bands |
 | Paid product | One non-consumable lifetime unlock; Japan launch price hypothesis **¥1,000** |
 | Excluded | Advertising, subscriptions, consumable currency, accounts, tracking, live content service, runtime AI, leaderboards and multiplayer |
 
@@ -129,14 +129,14 @@ The earlier working name **漢字ナンクロ やさしい版** is rejected. It 
 ### Locked process flow
 
 1. **First launch:** show one interactive three-step tutorial: tap a numbered square, choose a kanji, and see every matching number fill. Include `今すぐ始める` and keep `遊び方` permanently available.
-2. **Play home:** show `続きから` first when a puzzle is active, otherwise `今日の一問`. Below it show the three modes—`漢字ナンクロ`, `大盤面`, and `ホワイトナンクロ`—plus progress and the next unfinished puzzle.
+2. **Play home:** show `続きから` first when a puzzle is active, otherwise `今日の一問`. Below it show the two launch modes—`漢字ナンクロ` and `大盤面`—plus progress and the next unfinished puzzle.
 3. **Choose a puzzle:** select mode, then difficulty (`やさしい`, `ふつう`, `むずかしい`, `達人`). Difficulty is computed from logical branching, clue scarcity and word familiarity; board size is shown separately.
 4. **Start immediately:** tapping an unlocked puzzle opens the board without a redundant confirmation screen. Tapping a locked puzzle opens the lifetime-unlock sheet.
 5. **Solve:** tapping a numbered cell highlights every matching cell. Tapping a large shuffled kanji tile fills all matching cells. Dragging is never required. Optional keyboard entry is available in `達人` mode.
 6. **Recover safely:** every move autosaves. Provide unlimited undo/redo, erase, pause and a deliberate `最初から` action with confirmation. A mistaken move never destroys unrelated progress.
 7. **Help without punishment:** hints reveal one logically justified placement and explain why. Hints are unlimited but counted in the result. `間違いを確認` is user-triggered and never silently changes the board.
 8. **Finish without losing the moment:** on completion, freeze the completed board, add a quiet haptic and show `完成盤を見る` / `結果を見る`. Never replace the board automatically.
-9. **Results:** show time only when the timer was enabled, hints, checks, personal best and every completed word. A word opens its reading and an original concise explanation.
+9. **Results:** show time only when the timer was enabled, hints, checks, personal best and every completed word. A word opens its verified reading; definitions are deferred until separately editorially verified.
 10. **Continue:** offer `次の問題`, `完成盤を保存`, and `問題一覧へ`. Archive the completed grid permanently in the offline history calendar.
 11. **Purchase:** after the fifth free completion, add a non-blocking unlock card to results. The actual purchase sheet appears only after an explicit unlock action or selection of a locked puzzle. Include Restore Purchases and the StoreKit-localized price.
 
@@ -151,12 +151,11 @@ The earlier working name **漢字ナンクロ やさしい版** is rejected. It 
 
 | Mode | Launch puzzles | Purpose |
 |---|---:|---|
-| 漢字ナンクロ | 240 | Main progression across four difficulty bands |
-| 大盤面 | 72 | Longer sessions with zoom and larger grids |
-| ホワイトナンクロ | 48 | Advanced variant where black squares must also be deduced |
-| **Total** | **360** | Approximately one fully reviewed puzzle per day for a year |
+| 漢字ナンクロ | **240** (12–18 words) | Main progression across four solver-derived difficulty bands |
+| 大盤面 | **120** (20–24 words) | Longer sessions with zoom and larger grids |
+| **Total** | **360** | One exhaustively validated bundled library |
 
-The 30-puzzle free set must sample every mode and difficulty. Puzzle ordering is finite and stable; `今日の一問` rotates locally through the bundled library and does not imply new server content.
+The 30-puzzle free set must sample both launch modes and every difficulty band. Puzzle ordering is finite and stable; `今日の一問` rotates locally through the bundled library and does not imply new server content.
 
 ### Reliability invariants
 
@@ -176,7 +175,7 @@ The 30-puzzle free set must sample every mode and difficulty. Puzzle ordering is
 |---|---|
 | Domain engine | Pure Swift 6 package with no UI dependency; deterministic grid model, move reducer, solver, difficulty scorer, hint explainer and completion validator |
 | Authoring pipeline | Swift command-line executable in the engine package; imports curated Japanese vocabulary, generates candidates, exhaustively solves them, assigns difficulty and emits canonical JSON |
-| Content | Bundled, versioned `puzzles-v1.json` plus SHA-256 manifest; no runtime generation or server fetch |
+| Content | Bundled, versioned `puzzles-v2.json` plus SHA-256 manifest; schema-v2 content-addressed IDs; no runtime generation or server fetch |
 | UI | SwiftUI, iOS 18 `TabView`, `NavigationSplitView`, native sheets/alerts, `LazyVGrid`/`Grid` board with zoomable two-axis scrolling and semantic cell accessibility |
 | State | Reducer-style immutable `GameState` and explicit actions; UI observes a single game session store |
 | Persistence | SwiftData for progress, history, preferences and saved immutable puzzle snapshots; system device backup where enabled plus manual JSON export through the share sheet |
@@ -189,7 +188,7 @@ Do not use SpriteKit, a third-party game engine, a database server, ad SDKs, ana
 
 ### Canonical puzzle JSON fields
 
-Each puzzle record must contain: `schemaVersion`, content-addressed `id`, `mode`, `difficulty`, `difficultyScore`, `rows`, `columns`, immutable cell layout, number-to-kanji solution mapping, shuffled tray seed, starter cells, word spans, readings, original explanations, editorial status, source/rights notes and validation digest. The release pipeline rejects unversioned schema changes, unknown characters, duplicate vocabulary, prohibited terms, missing readings, stale explanations and any solver result other than exactly one solution.
+Each schema-v2 puzzle record contains: `schemaVersion`, content-addressed `id`, `mode`, `difficulty`, `difficultyScore`, `difficultyMetrics`, `rows`, `columns`, immutable cell layout, number-to-kanji solution mapping, shuffled tray seed, starter cells, word spans/readings, editorial status, source/rights notes and `validationDigest`. V1 intentionally does not ship definitions. The release pipeline rejects unversioned/unknown fields, invalid cells or mappings, duplicate or prohibited vocabulary, missing/stale readings, non-content-addressed IDs, digest/manifest drift and any solver result other than exactly one solution.
 
 ### App Store listing — Japanese
 
@@ -212,7 +211,7 @@ Each puzzle record must contain: `schemaVersion`, content-addressed `id`, `mode`
 【しっかり考えられる全360問】
 ・定番の漢字ナンクロ
 ・じっくり解ける大盤面
-・黒マスの位置も考えるホワイトナンクロ
+・解いた熟語の読みを確認できる復習
 ・やさしい、ふつう、むずかしい、達人の4段階
 
 【途中でやめても安心】
@@ -237,4 +236,4 @@ Each puzzle record must contain: `schemaVersion`, content-addressed `id`, `mode`
 
 ### Draft status
 
-**DRAFT_READY.** The product, flow, monetization hypothesis, metadata and technology are coherent. Before submission, the final binary must prove the 360-puzzle count, Japanese editorial sign-off, no-data/no-ad claims, StoreKit lifecycle behavior, authentic screenshots, support/privacy URLs and final App Store Connect values.
+**DRAFT_READY.** The product, flow, monetization hypothesis, metadata and technology are coherent. Before submission, the final binary must prove the 360-puzzle count, exhaustive release validation, accurately labelled editorial status, no-data/no-ad claims, StoreKit lifecycle behavior, authentic screenshots, support/privacy URLs and final App Store Connect values.

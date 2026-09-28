@@ -1,41 +1,26 @@
 # -*- coding: utf-8 -*-
-"""
-Build ONE large, genuinely connected nankuro grid by chaining words
-together at shared single kanji (branching tree layout), instead of a
-dense double-checked crossword. This matches how real nankuro grids
-mostly work (most cells are single-checked; true 4-way crossings are the
-exception, not the rule) and needs far less vocabulary density than a
-tight word-square-style grid to become fillable.
-
-After every placement we recompute the ACTUAL across/down runs of the
-grid built so far and require them to exactly match the intended word
-list -- this catches any accidental adjacency/merge bug immediately
-rather than trusting the placement logic blindly.
-"""
+"""Compact connected chain-layout generator for Kanji Nankuro boards."""
 from __future__ import annotations
+
 import random
+
 from vocab2 import WORDS2, READING, MEANING
 
 
 def build_graph(words2):
-    """kanji -> list of (word, junction_position). A word can attach to an
-    existing cell either via its first character OR its second -- using
-    only the first (as before) throws away roughly half of every word's
-    connective value."""
     graph = {}
-    for w, _, _ in words2:
+    for item in words2:
+        w = item[0] if isinstance(item, tuple) else item
         graph.setdefault(w[0], []).append((w, 0))
         graph.setdefault(w[1], []).append((w, 1))
     return graph
 
 
 def runs_in_grid(occupied):
-    """occupied: dict (r,c)->char. Returns list of cell-lists for every
-    maximal run (across then down) of length >= 2."""
     if not occupied:
         return []
-    rows = [r for r, c in occupied]
-    cols = [c for r, c in occupied]
+    rows = [r for r, _ in occupied]
+    cols = [c for _, c in occupied]
     rmin, rmax = min(rows), max(rows)
     cmin, cmax = min(cols), max(cols)
     runs = []
@@ -61,92 +46,124 @@ def runs_in_grid(occupied):
 
 
 def grid_is_consistent(occupied, intended_slot_cellsets):
-    actual = [tuple(cells) for cells in runs_in_grid(occupied)]
-    actual_sets = set(frozenset(cells) for cells in actual)
+    actual_sets = set(frozenset(cells) for cells in runs_in_grid(occupied))
     intended_sets = set(frozenset(cells) for cells in intended_slot_cellsets)
     return actual_sets == intended_sets
 
 
-def grow_chain_grid(start_word, graph, max_words=40, seed=0):
+def _bbox_metrics(occupied):
+    rows = [r for r, _ in occupied]
+    cols = [c for _, c in occupied]
+    height = max(rows) - min(rows) + 1
+    width = max(cols) - min(cols) + 1
+    area = height * width
+    return area, max(height, width), height + width, height, width
+
+
+def _cell_centrality(cell, occupied):
+    rows = [r for r, _ in occupied]
+    cols = [c for _, c in occupied]
+    cr = (min(rows) + max(rows)) / 2.0
+    cc = (min(cols) + max(cols)) / 2.0
+    return abs(cell[0] - cr) + abs(cell[1] - cc)
+
+
+def grow_chain_grid(
+    start_word,
+    graph,
+    max_words=40,
+    seed=0,
+    candidate_cells=14,
+    candidate_words=32,
+):
+    """Grow a deterministic compact board and fall back to a full scan."""
     rng = random.Random(seed)
-    a, b = start_word[0], start_word[1]
-    occupied = {(0, 0): a, (0, 1): b}
+    occupied = {(0, 0): start_word[0], (0, 1): start_word[1]}
     slots = [[(0, 0), (0, 1)]]
     used_words = {start_word}
-    # frontier: list of (cell, direction_of_word_through_it) direction: 'H' or 'V'
-    frontier = [((0, 0), "H"), ((0, 1), "H")]
+    placed_records = [(start_word, [(0, 0), (0, 1)])]
 
-    def try_place(cell, incoming_dir, word, junction_pos):
+    def dirs_for(cell):
+        dirs = set()
+        for slot in slots:
+            if cell in slot and len(slot) > 1:
+                dirs.add("H" if slot[0][0] == slot[1][0] else "V")
+        return dirs
+
+    def placement_options(cell, incoming_dir, word, junction_pos):
         r0, c0 = cell
-        kanji = word[junction_pos]
-        assert occupied.get(cell) == kanji
+        if occupied.get(cell) != word[junction_pos]:
+            return []
         perp = "V" if incoming_dir == "H" else "H"
-        length = len(word)
+        options = []
         for sign in (1, -1):
             if perp == "V":
-                cells = [(r0 + sign * (i - junction_pos), c0) for i in range(length)]
+                cells = [
+                    (r0 + sign * (i - junction_pos), c0)
+                    for i in range(len(word))
+                ]
             else:
-                cells = [(r0, c0 + sign * (i - junction_pos)) for i in range(length)]
+                cells = [
+                    (r0, c0 + sign * (i - junction_pos))
+                    for i in range(len(word))
+                ]
             if cells[junction_pos] != cell:
                 continue
-            ok = True
-            for i, cc in enumerate(cells):
-                if i == junction_pos:
-                    continue
-                if cc in occupied:
-                    ok = False
-                    break
-            if not ok:
+            if any(cc in occupied for i, cc in enumerate(cells) if i != junction_pos):
                 continue
             trial = dict(occupied)
             for i, cc in enumerate(cells):
                 trial[cc] = word[i]
             new_slots = slots + [cells]
-            if grid_is_consistent(trial, new_slots):
-                return cells, trial
-        return None, None
+            if not grid_is_consistent(trial, new_slots):
+                continue
+            area, max_dim, perimeter, height, width = _bbox_metrics(trial)
+            aspect_penalty = abs(height - width)
+            score = (area, max_dim, aspect_penalty, perimeter, rng.random())
+            options.append((score, cells, trial))
+        return options
 
-    frontier_order = list(frontier)
-    rng.shuffle(frontier_order)
-    idx = 0
-    placed_records = [(start_word, [(0, 0), (0, 1)])]
-    attempts_exhausted = set()
+    def candidate_placements(limited=True):
+        cells = list(occupied.keys())
+        cells.sort(key=lambda cell: (_cell_centrality(cell, occupied), rng.random()))
+        if limited:
+            cells = cells[:candidate_cells]
+        for cell in cells:
+            kanji = occupied[cell]
+            dirs = dirs_for(cell)
+            if not dirs:
+                continue
+            candidates = [
+                pair for pair in graph.get(kanji, [])
+                if pair[0] not in used_words
+            ]
+            rng.shuffle(candidates)
+            if limited:
+                candidates = candidates[:candidate_words]
+            for word, jpos in candidates:
+                options = []
+                for direction in dirs:
+                    options.extend(placement_options(cell, direction, word, jpos))
+                if options:
+                    score, new_cells, trial = min(options, key=lambda item: item[0])
+                    return (score, word, new_cells, trial)
+        return None
 
     while len(used_words) < max_words:
-        progressed = False
-        cells_to_try = list(occupied.keys())
-        rng.shuffle(cells_to_try)
-        for cell in cells_to_try:
-            kanji = occupied[cell]
-            # figure out this cell's existing direction(s) by checking slots
-            dirs_here = set()
-            for s in slots:
-                if cell in s:
-                    if len(s) > 1:
-                        dirs_here.add("H" if s[0][0] == s[1][0] else "V")
-            if not dirs_here:
-                continue
-            candidates = [(w, jpos) for (w, jpos) in graph.get(kanji, []) if w not in used_words]
-            rng.shuffle(candidates)
-            placed_here = False
-            for w, jpos in candidates:
-                for d in dirs_here:
-                    cells, trial = try_place(cell, d, w, jpos)
-                    if cells is not None:
-                        occupied.clear()
-                        occupied.update(trial)
-                        slots.append(cells)
-                        used_words.add(w)
-                        placed_records.append((w, cells))
-                        placed_here = True
-                        break
-                if placed_here:
-                    break
-            if placed_here:
-                progressed = True
-                break
-        if not progressed:
+        best = candidate_placements(limited=True)
+        if best is None:
+            best = candidate_placements(limited=False)
+        if best is None:
             break
+        _, word, new_cells, trial = best
+        occupied.clear()
+        occupied.update(trial)
+        slots.append(new_cells)
+        used_words.add(word)
+        placed_records.append((word, new_cells))
+
+    if not grid_is_consistent(occupied, slots):
+        raise AssertionError("final grid contains an unintended run")
     return occupied, slots, placed_records
 
 
@@ -155,15 +172,16 @@ if __name__ == "__main__":
     best = None
     for seed in range(40):
         start = WORDS2[seed % len(WORDS2)][0]
-        occupied, slots, records = grow_chain_grid(start, graph, max_words=60, seed=seed)
+        occupied, slots, records = grow_chain_grid(
+            start, graph, max_words=60, seed=seed
+        )
         if best is None or len(records) > len(best[2]):
             best = (occupied, slots, records)
     occupied, slots, records = best
-    print(f"Largest single connected chain grid found: {len(records)} words, "
-          f"{len(occupied)} cells, bounding box "
-          f"{max(r for r,c in occupied)-min(r for r,c in occupied)+1} x "
-          f"{max(c for r,c in occupied)-min(c for r,c in occupied)+1}")
-    for w, cells in records[:15]:
-        print(" ", w, READING.get(w, "?"))
-    if len(records) > 15:
-        print(f"  ... and {len(records)-15} more")
+    area, _, _, height, width = _bbox_metrics(occupied)
+    print(
+        f"Largest connected grid found: {len(records)} words, "
+        f"{len(occupied)} cells, {height}x{width}, density={len(occupied)/area:.3f}"
+    )
+    for w, _ in records[:15]:
+        print(" ", w, READING.get(w, "?"), MEANING.get(w, ""))
