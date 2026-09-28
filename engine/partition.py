@@ -9,10 +9,10 @@ from vocab3 import WORDS2
 def partition_all(
     words2,
     min_words=12,
-    max_words=30,
+    max_words=24,
     seed=0,
     max_puzzles=360,
-    max_consecutive_stalls=8000,
+    max_consecutive_stalls=3000,
 ):
     rng = random.Random(seed)
     remaining = list(words2)
