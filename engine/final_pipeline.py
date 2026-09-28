@@ -70,8 +70,8 @@ def _base_record(occupied, records, cell_to_num, num_to_kanji, starters, restric
         "columns": ncols,
         "cellLayout": layout,
         "cellNumbers": cell_numbers,
-        "solution": num_to_kanji,
-        "starterCells": starters,
+        "solution": {str(num): kanji for num, kanji in num_to_kanji.items()},
+        "starterCells": {str(num): kanji for num, kanji in starters.items()},
         "wordSpans": word_spans,
         "editorialStatus": "ai_review_passed_owner_approved",
         "editorialNotes": (
@@ -90,8 +90,9 @@ def _base_record(occupied, records, cell_to_num, num_to_kanji, starters, restric
 
 def _verify_unique(record, slots, cell_to_num, restricted2):
     solver = Solver(slots, {2: restricted2})
+    solver_starters = {int(num): kanji for num, kanji in record["starterCells"].items()}
     solutions = solver.count_with_numbering(
-        cell_to_num, record["starterCells"], cap=2, forbid_repeat=False
+        cell_to_num, solver_starters, cap=2, forbid_repeat=False
     )
     if len(solutions) != 1:
         raise RuntimeError(
@@ -99,7 +100,7 @@ def _verify_unique(record, slots, cell_to_num, restricted2):
         )
     solved = solutions[0]
     for cell, number in cell_to_num.items():
-        expected = record["solution"][number]
+        expected = record["solution"][str(number)]
         if solved.get(cell) != expected:
             raise RuntimeError(
                 f"{record['id']} solver mismatch at {cell}: "
