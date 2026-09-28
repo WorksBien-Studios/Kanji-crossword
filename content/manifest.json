@@ -1,0 +1,1206 @@
+[
+ {
+  "id": "nankuro-jmdict-0001",
+  "sha256": "2f05300fb8792323ce94bef945e7ff18c13f4d1ef2509c65e71051318167870c"
+ },
+ {
+  "id": "nankuro-jmdict-0002",
+  "sha256": "4618803495f9a4b8278455eb1447802b492d293c0d76bab11a3f9281ac844f4f"
+ },
+ {
+  "id": "nankuro-jmdict-0003",
+  "sha256": "7a5ccfda9fd64938e7d96791132ec4047e4730bbf02b50ab2b9d13f54eac0761"
+ },
+ {
+  "id": "nankuro-jmdict-0004",
+  "sha256": "da037c3cf9e44e5c57c58c9b34c1956131dbb92a554dea4c9b527f1343d15ea8"
+ },
+ {
+  "id": "nankuro-jmdict-0005",
+  "sha256": "ce6b714011693c54ab23ef0eda16ac44cfa29ae747e5549ed0f559383de60965"
+ },
+ {
+  "id": "nankuro-jmdict-0006",
+  "sha256": "dd75a42e45942eb5ccf980e00df1fa0a80a5db070ce335d8f27add9e4f5edad1"
+ },
+ {
+  "id": "nankuro-jmdict-0007",
+  "sha256": "e4d7daacdf79afff5d2859131bb81523c45f2af383c837175f5d22bc39671247"
+ },
+ {
+  "id": "nankuro-jmdict-0008",
+  "sha256": "ec0010fe43e2c5de6649895580ccd3958353a3d34185db94536738f714f2a3a3"
+ },
+ {
+  "id": "nankuro-jmdict-0009",
+  "sha256": "be651008d389c8caff752784d8abd14c3e7b6a98c26a5bd042bab3c0fe4874a9"
+ },
+ {
+  "id": "nankuro-jmdict-0010",
+  "sha256": "2f3b4b3e5ba5e7969326ca05b9ef4c7803dce2390ab2897f2f4a333daf61e7a1"
+ },
+ {
+  "id": "nankuro-jmdict-0011",
+  "sha256": "60e7743f24d48998b8f4d0a5bb9b7d92ed6909c4807c59e68e2019de08e5a601"
+ },
+ {
+  "id": "nankuro-jmdict-0012",
+  "sha256": "8d474e2be297f378fb0a07e2f201a714139fd6eae5490f60ad01f87b3ddde3ed"
+ },
+ {
+  "id": "nankuro-jmdict-0013",
+  "sha256": "fbfbdf961ac02929ab996446bc4cefe98dbfc79f22c57b4c0c412856080ea8bd"
+ },
+ {
+  "id": "nankuro-jmdict-0014",
+  "sha256": "e18fd1f0cdd2bf9947541e99b403c992f2b1551152326a5c6426e290feab39fa"
+ },
+ {
+  "id": "nankuro-jmdict-0015",
+  "sha256": "8b8c44a6a9b9662e147faccb94ab745090c58cdc2b3e6f8f9bbab35d27751f03"
+ },
+ {
+  "id": "nankuro-jmdict-0016",
+  "sha256": "a26d42b46cf0232df183ab7c2748e88737c43baf26b788aeafd3ff22bd3ac4f6"
+ },
+ {
+  "id": "nankuro-jmdict-0017",
+  "sha256": "928c2f66d380d3697aeeb13acc873ade7b74e99ec76981fd209f3887b6977090"
+ },
+ {
+  "id": "nankuro-jmdict-0018",
+  "sha256": "4d3ab05c7f3d024c4edcbaad7883bc7ce9106c5888d07156abbf98f644c74d50"
+ },
+ {
+  "id": "nankuro-jmdict-0019",
+  "sha256": "5dd82f0cba644fefa75363b3395e8612aecd49298ecf0468aba71da85cd77dca"
+ },
+ {
+  "id": "nankuro-jmdict-0020",
+  "sha256": "d533830fa72669fdc0992fd9e4879f1ad3c26db33f00ee6a0a58489a982e3d85"
+ },
+ {
+  "id": "nankuro-jmdict-0021",
+  "sha256": "7acfbaa82007d5734c6b21beea6d97e210cad7d105fcde50c882f26b801b32e8"
+ },
+ {
+  "id": "nankuro-jmdict-0022",
+  "sha256": "7f0d1cef859129d2269e2a47f9b6505e66b85eab3e441f5f52c61c18de4bdffe"
+ },
+ {
+  "id": "nankuro-jmdict-0023",
+  "sha256": "e1667b7edd4064a4e3828fbbd2a7316293fd1780c43cb0a0e9bd9049dae7bf3d"
+ },
+ {
+  "id": "nankuro-jmdict-0024",
+  "sha256": "2db3b9e8a88b9c2e627ff9f0aeaa57af51d11581320121fd0ebb97acde6a122d"
+ },
+ {
+  "id": "nankuro-jmdict-0025",
+  "sha256": "266e491ef872eee46a8cb87d1da1534414e5f7b08c91aa41f4f7da8abc9f002f"
+ },
+ {
+  "id": "nankuro-jmdict-0026",
+  "sha256": "8bff09d6e33c2e9519e3e398407fb41a846ff6c46ea1e1c9290fcb2d74b29a46"
+ },
+ {
+  "id": "nankuro-jmdict-0027",
+  "sha256": "dc3f9bb4004db4d4766c370769f984d5d3b3fc395e023458b6e2e956c516a491"
+ },
+ {
+  "id": "nankuro-jmdict-0028",
+  "sha256": "6614734d4d95aadf28ca33f3dca5e46c4104721b4b350f189c17c7a6d762b214"
+ },
+ {
+  "id": "nankuro-jmdict-0029",
+  "sha256": "d8f03413699e045c72e914de46135defda6e35dbef1c6ea08a3b5b341ff5ed32"
+ },
+ {
+  "id": "nankuro-jmdict-0030",
+  "sha256": "5cb7c2e2d4bc84d07a8f8b179ee0819a719694bf367e6c0c45166228b3ebcad3"
+ },
+ {
+  "id": "nankuro-jmdict-0031",
+  "sha256": "80408706c4ba7f61a2171840dcfec46c73b1bce78833b82d8aed3bafe359f886"
+ },
+ {
+  "id": "nankuro-jmdict-0032",
+  "sha256": "f81fc58bf1d0e0f19b8a60ff6bb87e6c78a656a736dc78a0c99b24ef560dcac4"
+ },
+ {
+  "id": "nankuro-jmdict-0033",
+  "sha256": "d2da248521cbe49e6b6f6fb1dfec6b3ea24c3b69d059ff9e60c86f15ddf239d2"
+ },
+ {
+  "id": "nankuro-jmdict-0034",
+  "sha256": "76cd7836c266a6d23bc71a561612ef901df5cb21486c47b03d04c20e744356a3"
+ },
+ {
+  "id": "nankuro-jmdict-0035",
+  "sha256": "5cc5042461aa61ef05d8905c6f9b99870cc477b6882bbcaf88229a2cc85b081b"
+ },
+ {
+  "id": "nankuro-jmdict-0036",
+  "sha256": "6af3d48e05091e4a1dd7be0184d3f2be1446f3c69a9a268005d7acffe413d0a5"
+ },
+ {
+  "id": "nankuro-jmdict-0037",
+  "sha256": "65a83d74aa3ecccd9b64a53504e8208f28435e69e1bc2a9def77b46441b8ae44"
+ },
+ {
+  "id": "nankuro-jmdict-0038",
+  "sha256": "a4c271e5aa01408fd4e343c60ae54b9682cd748f0332dcb54edc246d34ef682d"
+ },
+ {
+  "id": "nankuro-jmdict-0039",
+  "sha256": "f68e66577b0331ce24f3addb640169b6b494f21b97baa0b0c7ef30268be0f114"
+ },
+ {
+  "id": "nankuro-jmdict-0040",
+  "sha256": "7a91ec23f68d033c8195a2de3df0b1699582bb49b7d1bbfba6602286b99ef75d"
+ },
+ {
+  "id": "nankuro-jmdict-0041",
+  "sha256": "8d1e1a29181527bdef98e6de98384235ac747f58c381cf7215e4b55ee6db6d99"
+ },
+ {
+  "id": "nankuro-jmdict-0042",
+  "sha256": "40c5492fc4a70d84779df5644c8628f0f9526d6b91d35b7a3c63a4024599bebc"
+ },
+ {
+  "id": "nankuro-jmdict-0043",
+  "sha256": "60987de750fd33c99c9ba8ccc2a36caba978b4967cb719fd71b79a6843bf3913"
+ },
+ {
+  "id": "nankuro-jmdict-0044",
+  "sha256": "b2a2ca8a24da68c29b01127c9e844ffd14640c5d7c8531fe8ddc248884964c64"
+ },
+ {
+  "id": "nankuro-jmdict-0045",
+  "sha256": "55c26e3f1f38b4a3d0854ff26fc8dd863bbb783573e9927b8702e7096717856d"
+ },
+ {
+  "id": "nankuro-jmdict-0046",
+  "sha256": "213e1b738c70597af03682b3b4ba7d4a3b112802ac50ae1fc8d5e50166278eb2"
+ },
+ {
+  "id": "nankuro-jmdict-0047",
+  "sha256": "35be77ec42ced4eb9fecd36f21fadd9bcfcb2e0b9a80febe3bcf8344a38caf48"
+ },
+ {
+  "id": "nankuro-jmdict-0048",
+  "sha256": "a22300de8226fbe760a605fad5b649f3abefd4c9d01bf72601d8f64b913177b8"
+ },
+ {
+  "id": "nankuro-jmdict-0049",
+  "sha256": "33ab2a42d44bfb93d66c0503a0b7302d1ed1ca3e4e69fae40c787057cf4d1943"
+ },
+ {
+  "id": "nankuro-jmdict-0050",
+  "sha256": "763185c0da6cd552333202f8946aee188356e9349a16831a127870ac72259dd3"
+ },
+ {
+  "id": "nankuro-jmdict-0051",
+  "sha256": "cd8e1a5e1db7d1ba2aec32764c04edf6578c1c2b3763f0d97b993c8d15dab211"
+ },
+ {
+  "id": "nankuro-jmdict-0052",
+  "sha256": "ac9428bfbc8d982505ffe8cb6d72dfa0eef4692be68863bf0c0a68bc9b627dc0"
+ },
+ {
+  "id": "nankuro-jmdict-0053",
+  "sha256": "611705d81de4cd4d76ab0a4702f14f34ea0228868c809aad729690004641614e"
+ },
+ {
+  "id": "nankuro-jmdict-0054",
+  "sha256": "c1594ee3b6c3dd18e9f0185416445a93ed2f30c5370219d9f7544b0cf3ce4c14"
+ },
+ {
+  "id": "nankuro-jmdict-0055",
+  "sha256": "488d024d674dc2a2179d8a7fb0c8ce7d065426b9426f4e594d32c0b027eadd81"
+ },
+ {
+  "id": "nankuro-jmdict-0056",
+  "sha256": "cb544d69d9cb5609be631ca2c354222892863718e6f2291682d7d3c27f5d06fe"
+ },
+ {
+  "id": "nankuro-jmdict-0057",
+  "sha256": "ab172a8fdc9963913bfdbf7a22a21bc7570a3711659d8601cba26044c43c8d1b"
+ },
+ {
+  "id": "nankuro-jmdict-0058",
+  "sha256": "8d7764f5623744f089412a6dedbf96403d7782650a8e5fb9a6b52ddbdbe59858"
+ },
+ {
+  "id": "nankuro-jmdict-0059",
+  "sha256": "0744118a672e528fcb17fc4c668312df0b9d203078d142be496bdaca326a866a"
+ },
+ {
+  "id": "nankuro-jmdict-0060",
+  "sha256": "2e6c69d5f619117cfd185b8b108b8804cde6871e8674ac0c3b61c27054931674"
+ },
+ {
+  "id": "nankuro-jmdict-0061",
+  "sha256": "537eb0823fe7ff43f081b267f3916df44e24192343f9d43cf389b57fffc58089"
+ },
+ {
+  "id": "nankuro-jmdict-0062",
+  "sha256": "328e9b4af5074d12c10266fddb164bd583091714f46128f22ed604d54e9f9993"
+ },
+ {
+  "id": "nankuro-jmdict-0063",
+  "sha256": "8e7ea26b4ac7eff5ec11933cfa21c4a4b5a2414d24b194f514d2329440f91cfe"
+ },
+ {
+  "id": "nankuro-jmdict-0064",
+  "sha256": "dc35d1d5cb2f6e0d2e6232c64c05f9f4f8bfea891b37c5a11007fed8d3af7674"
+ },
+ {
+  "id": "nankuro-jmdict-0065",
+  "sha256": "23bca378081f22a13a62c2a32d167f86418676f04a1b9042d77d1714ad1a0c28"
+ },
+ {
+  "id": "nankuro-jmdict-0066",
+  "sha256": "ff34492b4652ef898e26e222e9b43f36632e16dc0721925ace7f40e9debaea7d"
+ },
+ {
+  "id": "nankuro-jmdict-0067",
+  "sha256": "ce80c4781fce5649d7570f5d6430d90cf56b50fe351128423bf00f40dcd020a0"
+ },
+ {
+  "id": "nankuro-jmdict-0068",
+  "sha256": "c999d6aff7b69c30f28d87a7b75ebb6961982b97eae282bbac7848f8a1f56547"
+ },
+ {
+  "id": "nankuro-jmdict-0069",
+  "sha256": "01188feedfbe613d1681ffad6edf8f653918b566bd9b0d3b3cee859d7cdf82d5"
+ },
+ {
+  "id": "nankuro-jmdict-0070",
+  "sha256": "1e012da84da4023951bda6f3c9e5727b44ab7d1e95fed52e6ea2988c73e1457f"
+ },
+ {
+  "id": "nankuro-jmdict-0071",
+  "sha256": "cf10653d27837b24c830daa5bfbffbe1f555fba61f82881b910d9ef5f586d985"
+ },
+ {
+  "id": "nankuro-jmdict-0072",
+  "sha256": "d7dfcafb0b6bb39e6473efb444278ad096ed749c7d6c3276483d361d405b14d2"
+ },
+ {
+  "id": "nankuro-jmdict-0073",
+  "sha256": "1b909fb34e24f49a6d12bfec1ebb252261306549b273a9888c4bce124264cb1e"
+ },
+ {
+  "id": "nankuro-jmdict-0074",
+  "sha256": "0fdb2700645ae704181143e5c3f840be663c865c42699713c6340d6180f084d2"
+ },
+ {
+  "id": "nankuro-jmdict-0075",
+  "sha256": "3265c66d801bc92d2d3a73479f2664dd984f8dc6bcd431b184e6bbdae652092a"
+ },
+ {
+  "id": "nankuro-jmdict-0076",
+  "sha256": "74694c9421dbca7b7c66e7aad469d100a9013e400e75557fbb6280ca82d8ac96"
+ },
+ {
+  "id": "nankuro-jmdict-0077",
+  "sha256": "844bc86871b275e252350139cad57fb1cce52fa940a99a8e15078a47588f3531"
+ },
+ {
+  "id": "nankuro-jmdict-0078",
+  "sha256": "44d0f3c84eadc2cec8e235676b035fd4df18e4662fe40eeaf990b1117a97da51"
+ },
+ {
+  "id": "nankuro-jmdict-0079",
+  "sha256": "e406fe9f5ed2e4d54297d3374585b0d0d8938ff1455ea3a061fb1c4abd1fe739"
+ },
+ {
+  "id": "nankuro-jmdict-0080",
+  "sha256": "da5f466c92076aa8b15d1d055f6b38b7abd1174a0f1dc3364996e6064cf415c1"
+ },
+ {
+  "id": "nankuro-jmdict-0081",
+  "sha256": "f57b4b0038763d8d78bacd433bd4d30ae1665186cc0700d302602abc8d52983a"
+ },
+ {
+  "id": "nankuro-jmdict-0082",
+  "sha256": "d4367abdb69af521c276b38b4ede2ce01c4e9132e155ee57521591a898d54415"
+ },
+ {
+  "id": "nankuro-jmdict-0083",
+  "sha256": "bbde53cfcea901a3b553daa0ca3516883baa7940b8e615200fe29c76ca52c0af"
+ },
+ {
+  "id": "nankuro-jmdict-0084",
+  "sha256": "d338304f20a371933afc27435d825fd3d21a5d6ceae0c9a8f818d118854c1a8a"
+ },
+ {
+  "id": "nankuro-jmdict-0085",
+  "sha256": "ad0c645deef87cd0f0c7b7204c09fd3e97039ed2241baad620e689da82a9a11d"
+ },
+ {
+  "id": "nankuro-jmdict-0086",
+  "sha256": "59c5df4f4b1298af79409978dc826ae820d8afdf2c7a57048614a6567dea3e23"
+ },
+ {
+  "id": "nankuro-jmdict-0087",
+  "sha256": "36b3d4c79e7d9ad3896427693098d2795d68bd91b0c22f6b0f6c7d555cbfba71"
+ },
+ {
+  "id": "nankuro-jmdict-0088",
+  "sha256": "f007d0404e0d447523d56c1ea50c17c1fdf8cb4de849b6d1523cb79c8253f4c3"
+ },
+ {
+  "id": "nankuro-jmdict-0089",
+  "sha256": "8169f2bc5e406b63599b5b8cbff6314b51a8c768069ce5f601a409eada3efe79"
+ },
+ {
+  "id": "nankuro-jmdict-0090",
+  "sha256": "54f4885a10093f0163bec62df1e5519cefc6f9e85a2d1bcbbc4c7b50419e148f"
+ },
+ {
+  "id": "nankuro-jmdict-0091",
+  "sha256": "f3c45ded99efbec5e8f7fea6081bef1fa56a407314ddec9fe34ca5d3de9c642e"
+ },
+ {
+  "id": "nankuro-jmdict-0092",
+  "sha256": "31c8ab665412472c5ded6ec40f76a0a8a1e0c1f39552bcaf237660b2f24fe3ad"
+ },
+ {
+  "id": "nankuro-jmdict-0093",
+  "sha256": "2d602ce2a18dad218e4831f447b6b90061552b8e57ced5615ed633aa61d3a1cf"
+ },
+ {
+  "id": "nankuro-jmdict-0094",
+  "sha256": "5bcbf843678bcb3dfe0c66f193e3da5dd3049c3c7cbafb0e9346fc8ab66df7ef"
+ },
+ {
+  "id": "nankuro-jmdict-0095",
+  "sha256": "b1f15821b92043f7f76f4eb34d5ef6558ebaaa2b0db1431a9725f35aa12c9467"
+ },
+ {
+  "id": "nankuro-jmdict-0096",
+  "sha256": "0901688f4f37338f455355b4f743e65a0c74db9a42ea8fb1fc9336fa8b0f33ce"
+ },
+ {
+  "id": "nankuro-jmdict-0097",
+  "sha256": "8a8c22c11d33d7916496821dc7b35b3fe590f109b6f489ebc2444efba286f138"
+ },
+ {
+  "id": "nankuro-jmdict-0098",
+  "sha256": "f9f8efebd082b390686a8977be83902085db6451b8f8d4280943ae286d0e1e8d"
+ },
+ {
+  "id": "nankuro-jmdict-0099",
+  "sha256": "a00673b3e30a7183397b24057a8e152a544d8ac937263d833414fed4db5e4da3"
+ },
+ {
+  "id": "nankuro-jmdict-0100",
+  "sha256": "eece5ba89c4e76e2c8b08893a7f72bfd0649776001ed2717f387963c5b8867b9"
+ },
+ {
+  "id": "nankuro-jmdict-0101",
+  "sha256": "b7aa6db23a1d4511782cf19fea93b8743f072500c67cfa0e70dd1d348740cde6"
+ },
+ {
+  "id": "nankuro-jmdict-0102",
+  "sha256": "df1e896686253b838239e54f262efa37096939bf13141956198184d7546e513a"
+ },
+ {
+  "id": "nankuro-jmdict-0103",
+  "sha256": "6ea0632bbd50a73b406f33ecb9d8fa8adfcf8640836214a2c85eb9f6c722eb7f"
+ },
+ {
+  "id": "nankuro-jmdict-0104",
+  "sha256": "3c4e43194aa7e1affb8ffabf8a9df1828d0ac8cf8130491aa76f83aec2ad4d7e"
+ },
+ {
+  "id": "nankuro-jmdict-0105",
+  "sha256": "8e12634b6f1f7f87ccf445a6959aafdbbcd62adec952172b68d9aef94f20f29b"
+ },
+ {
+  "id": "nankuro-jmdict-0106",
+  "sha256": "5559120fb8944f4ac3aed4f8558d462c23f2971d20216a2e1b2d51fca3befb03"
+ },
+ {
+  "id": "nankuro-jmdict-0107",
+  "sha256": "71957b14b9e36634e69115d734b90a5b0513fccc3990e0409f64b7a6d277043c"
+ },
+ {
+  "id": "nankuro-jmdict-0108",
+  "sha256": "39414f86aceec0b015e013a5602d44429912a5d6af30dee4b9c58286dc659017"
+ },
+ {
+  "id": "nankuro-jmdict-0109",
+  "sha256": "afbb7721c8fe504996d1f875ccbe5693881631b36bdb229ff62d64e6501a1db1"
+ },
+ {
+  "id": "nankuro-jmdict-0110",
+  "sha256": "e809f8274a5058cea95302aab78de9979b518553540699ab35544e6ec56eda05"
+ },
+ {
+  "id": "nankuro-jmdict-0111",
+  "sha256": "bfea15467ced43608ab70fa4bb1e115b40505538c8678544fa82fb7849f09fe0"
+ },
+ {
+  "id": "nankuro-jmdict-0112",
+  "sha256": "16a058af6df21c98e61525503c38996f9d2519ef650f6005926ac3a148d7cd50"
+ },
+ {
+  "id": "nankuro-jmdict-0113",
+  "sha256": "9a0ec104ab33c17a6a26f4dd6bcd960c7a5ded2f9c900505fb0518227f81dc85"
+ },
+ {
+  "id": "nankuro-jmdict-0114",
+  "sha256": "645e1d20db213616eed1e96e12bc4482848131be491746ff9d01457de534a48e"
+ },
+ {
+  "id": "nankuro-jmdict-0115",
+  "sha256": "05bc4e89c7e5ce62a211c1de038abc309b1e180335eddf629e58a9bc0dc8fcb5"
+ },
+ {
+  "id": "nankuro-jmdict-0116",
+  "sha256": "0dd4a8815cd0086fe48ba113f75637f3d5cfeedfa86f949ed066bbb63a7fb8d8"
+ },
+ {
+  "id": "nankuro-jmdict-0117",
+  "sha256": "9e84cadfa79f474582b1da469b2d665c266943de142d14edeffeb58931cad657"
+ },
+ {
+  "id": "nankuro-jmdict-0118",
+  "sha256": "5770d78313e2c22548a22523766e9fc8205956f9b823d3e50704ed6e266a951f"
+ },
+ {
+  "id": "nankuro-jmdict-0119",
+  "sha256": "3fb7188139519849080fbc23efc0f446f2c16971f284b6f2acaf3aaaa0b46d68"
+ },
+ {
+  "id": "nankuro-jmdict-0120",
+  "sha256": "5bff030cb3477d2c0082515fc5e2b2a516107e20163aad5c121cbe4107d035a2"
+ },
+ {
+  "id": "nankuro-jmdict-0121",
+  "sha256": "f96c8f770623aa9787977c1390f5ca04d83ba050093706c6843f0120f4bb23fb"
+ },
+ {
+  "id": "nankuro-jmdict-0122",
+  "sha256": "2d466376b594e5e1320e92788277a971251d4e467d7046f0e8382cc00fe40a1d"
+ },
+ {
+  "id": "nankuro-jmdict-0123",
+  "sha256": "f24d789b62ddf321c02fdae3568c54c5199adb3d7fa3bfff7c41fddfbd89773a"
+ },
+ {
+  "id": "nankuro-jmdict-0124",
+  "sha256": "4e6e3c614f1ddfef34429cb0b4467beeeba9d9a7405f5a26fe053fe3dadcbceb"
+ },
+ {
+  "id": "nankuro-jmdict-0125",
+  "sha256": "2caa99f7cd6122f243aaf79d2e8c89955fd700cd27b88ca07efa726458fe6497"
+ },
+ {
+  "id": "nankuro-jmdict-0126",
+  "sha256": "b226461e2538b0fe1760e0ca41986b0493126ebb583198658a36f5fc6ac9dae5"
+ },
+ {
+  "id": "nankuro-jmdict-0127",
+  "sha256": "8c293cb5de99bdf3cd34d2fb6f7fca7f1bdcf3ba24a245cf3904f3bf63702056"
+ },
+ {
+  "id": "nankuro-jmdict-0128",
+  "sha256": "dcbbd8fe327ccb14f04660d735ab20ac1e7fb0c56aa60a55df68b771b1750985"
+ },
+ {
+  "id": "nankuro-jmdict-0129",
+  "sha256": "7ee44138b8c1334ef31bc0121959f4412c4fc0b4665180e1b0cb5489bb40c66f"
+ },
+ {
+  "id": "nankuro-jmdict-0130",
+  "sha256": "a9c788d45a2783f78fdd946a9855cb540da577ac2e1b2e9ce52a1380c6de4f1f"
+ },
+ {
+  "id": "nankuro-jmdict-0131",
+  "sha256": "19691b7046e421ac755ab57dab24a4f83b1e968cd8ddecbedb5a5c93b5c0d632"
+ },
+ {
+  "id": "nankuro-jmdict-0132",
+  "sha256": "61b06c906c0ce15bad489ae70dfd36b4ebeaaf5a4a1b99dea417e12eb101bffb"
+ },
+ {
+  "id": "nankuro-jmdict-0133",
+  "sha256": "812b7fb50921d6d47b6c21f883522a6d66a393bee30734416e8e4aa884eae6aa"
+ },
+ {
+  "id": "nankuro-jmdict-0134",
+  "sha256": "f40c44479e4c78248d2645aa3448b55bd938a4e230881d4070a1225ce37ec3e6"
+ },
+ {
+  "id": "nankuro-jmdict-0135",
+  "sha256": "b029cfdef3ead19fbfe608991a27c72afe5537fe23669c324e0b6fe662c173e7"
+ },
+ {
+  "id": "nankuro-jmdict-0136",
+  "sha256": "f84f6b6e75b1355fee0b1772b8c6fd80fd5332360849d558a341b9bec9bee2ad"
+ },
+ {
+  "id": "nankuro-jmdict-0137",
+  "sha256": "fa93f144127f87ddebf69788cec8696909e97aa87f8316fb53a7899912a8fdb0"
+ },
+ {
+  "id": "nankuro-jmdict-0138",
+  "sha256": "d56f69bba8124ab16c5e473925aa3d2a8ea8ee77b1829b0e16a4749aec7c6201"
+ },
+ {
+  "id": "nankuro-jmdict-0139",
+  "sha256": "4e1d87968debb477de818b142c30480b1de0f76146c7dcb69ba425de7609ce41"
+ },
+ {
+  "id": "nankuro-jmdict-0140",
+  "sha256": "da57cb2e02f1e235ad39fc863c34b5ea3b047adda180388721d0fa58c0c90ffa"
+ },
+ {
+  "id": "nankuro-jmdict-0141",
+  "sha256": "805f886414744c911e812b998e468e3874e5e74a64f6fda9adc4e987419d3cf2"
+ },
+ {
+  "id": "nankuro-jmdict-0142",
+  "sha256": "e8b110adc73eccfdea371ff6f8d255b0be9c1a8feec2264dc1f97aa4e52cb1cc"
+ },
+ {
+  "id": "nankuro-jmdict-0143",
+  "sha256": "7af080267d2edcfba371b05605c10e8658c2265babd6b4a844e2f7e51def9012"
+ },
+ {
+  "id": "nankuro-jmdict-0144",
+  "sha256": "5fbe8ea302bf9dba448532fd072715eac6a458e448c0f54e5a4b5d9d12a23b28"
+ },
+ {
+  "id": "nankuro-jmdict-0145",
+  "sha256": "a59311d43710158b93bb6f491d4b8844939b4ea5e2a5bb9763eeeb2798ce4086"
+ },
+ {
+  "id": "nankuro-jmdict-0146",
+  "sha256": "c78d381f44ef21b394b9b32630319381d5a2e3c5d9670e2f327aa4da34edeff2"
+ },
+ {
+  "id": "nankuro-jmdict-0147",
+  "sha256": "819641dd3a754a1b5d2a707d172e2d5abc5f5532f73b333a2b3e16c083a935f0"
+ },
+ {
+  "id": "nankuro-jmdict-0148",
+  "sha256": "0d1330b5e8eacc44721e5e0e54e0b8bbc8f3d7eafe6d4c6c3bc7f86f2691825c"
+ },
+ {
+  "id": "nankuro-jmdict-0149",
+  "sha256": "b01a7b2cdc995d4fbb743d3c415516d3ec3c4bc54ddcfbb543b1f8e6e7f6ba78"
+ },
+ {
+  "id": "nankuro-jmdict-0150",
+  "sha256": "54375070783223dac49026ca6ad37774d01ee8b057c01f932c20b8813c583a43"
+ },
+ {
+  "id": "nankuro-jmdict-0151",
+  "sha256": "6a952e705f3f8bfbad1e554a62f86b00183fd3230a46727fbb7d705b8f1263c4"
+ },
+ {
+  "id": "nankuro-jmdict-0152",
+  "sha256": "95ca7a61d4548e42540ee52ed0662321da97f517c3d658f970047c422a91ae2e"
+ },
+ {
+  "id": "nankuro-jmdict-0153",
+  "sha256": "e7bd9df2477b729594c8ea6fcddd868acb177a0ef22932e8688c08d0691bd0ef"
+ },
+ {
+  "id": "nankuro-jmdict-0154",
+  "sha256": "20149e6174fecd45db14df02816a638ebde254af0edafddb1268b900c0793261"
+ },
+ {
+  "id": "nankuro-jmdict-0155",
+  "sha256": "cae27041d6ef8d2bacf66ae7114b36a206907764278b1943bd06c7a6a5de37d3"
+ },
+ {
+  "id": "nankuro-jmdict-0156",
+  "sha256": "ae227104c9cf5a827583e56ebf04af39a711f8841aead00898ee0c256a42d3b4"
+ },
+ {
+  "id": "nankuro-jmdict-0157",
+  "sha256": "8e5e32b2943647cbdb8c4f698c0906383fd4a579caf2ca2774ff9431ef81288a"
+ },
+ {
+  "id": "nankuro-jmdict-0158",
+  "sha256": "d81cdeaddaa49e49f2039a62d064ca8e4240d5eba4408c9f6741c223d0da5c1c"
+ },
+ {
+  "id": "nankuro-jmdict-0159",
+  "sha256": "18df4d317acd4f89895869a161e3e110e015d44ef985030d41ce15d3743f5011"
+ },
+ {
+  "id": "nankuro-jmdict-0160",
+  "sha256": "4cc20ca9c644734b3e565d40ecba2d557f104d6ce3b1cdf13adfab7d803f051a"
+ },
+ {
+  "id": "nankuro-jmdict-0161",
+  "sha256": "696118734abf63d33f875584bc9665cc4106d073ea91e189f1be2771c6facfec"
+ },
+ {
+  "id": "nankuro-jmdict-0162",
+  "sha256": "d16677f3c858d83b08132ca14dd03c1874f7d56d9783b491851029a464d10917"
+ },
+ {
+  "id": "nankuro-jmdict-0163",
+  "sha256": "88970c5824416e5780481241a35b2e59be09e1b4ad7d22e7b1039009822943b0"
+ },
+ {
+  "id": "nankuro-jmdict-0164",
+  "sha256": "42ec99077aa66862e7fad2f50cfcac01ed8b07f5cd8127ae02f84efa4f7ab8c5"
+ },
+ {
+  "id": "nankuro-jmdict-0165",
+  "sha256": "c7117bbfc9598c41c7f901712e9a7b22aaf1fc5a39fcb5598bf34696b0587066"
+ },
+ {
+  "id": "nankuro-jmdict-0166",
+  "sha256": "fdfb0d52379278bcc88b834bfb4fb5c33648caa3640e9f3ba5fe11207bcfe88a"
+ },
+ {
+  "id": "nankuro-jmdict-0167",
+  "sha256": "b5c5e03db6b5a78fa23d9c598b780be75328ef7995fa7c8d0d2183cb6018394a"
+ },
+ {
+  "id": "nankuro-jmdict-0168",
+  "sha256": "d21550be4d767d141c87587c1ef09d63fa8b082e05d8b7f7933372435ab7fca0"
+ },
+ {
+  "id": "nankuro-jmdict-0169",
+  "sha256": "09ef07d5ad67768883d2562c46c58e29343de7ce7adbbc539a2d25c57589f8e7"
+ },
+ {
+  "id": "nankuro-jmdict-0170",
+  "sha256": "44e8d79db922f528cb9d9e0dcf76b8432a07f63375f3cbcc1606da7169ea0c13"
+ },
+ {
+  "id": "nankuro-jmdict-0171",
+  "sha256": "692cdea20a4f8438109f831df271dd243af35c3fb152468583d4a5cf48a8a743"
+ },
+ {
+  "id": "nankuro-jmdict-0172",
+  "sha256": "3d97b07b81569c8c272cd52c1c54f2cf3f7e26a98598f83c4fd045d9a9c92ed0"
+ },
+ {
+  "id": "nankuro-jmdict-0173",
+  "sha256": "899f0ea0db0122d95accea64c120142013a3e7060fb1aaa0b66e4e5b6c5b3ee8"
+ },
+ {
+  "id": "nankuro-jmdict-0174",
+  "sha256": "df943908ecae7a9a184a58cd36603ee095164b503d4ddd43905d8ace41170835"
+ },
+ {
+  "id": "nankuro-jmdict-0175",
+  "sha256": "53c35dc5654747638abd9c0ddbf769bd4e7ec1529cb2d75e67d15f2f65121464"
+ },
+ {
+  "id": "nankuro-jmdict-0176",
+  "sha256": "11fd9b698fc883a1965c17cc83eaeb5192404b784a014518dc7fbb4414c435f5"
+ },
+ {
+  "id": "nankuro-jmdict-0177",
+  "sha256": "b2f4ad246bd0979337be9318a8ef32ebaaa3bac9a03132b9fe5aa8a98100d6e4"
+ },
+ {
+  "id": "nankuro-jmdict-0178",
+  "sha256": "07e5d4eccabba805f5c18269187f021ab5fcd679de33fa23e704a4ee123116a4"
+ },
+ {
+  "id": "nankuro-jmdict-0179",
+  "sha256": "8d9e497128f6c7a239c63bc4087e327c15e7a6bff50aace4df57da3545499de1"
+ },
+ {
+  "id": "nankuro-jmdict-0180",
+  "sha256": "a6f53a27e6414b3a0846c54e4dbcf82e2f8cfa7270a15eb2d228497e531cffbd"
+ },
+ {
+  "id": "nankuro-jmdict-0181",
+  "sha256": "34718a71a4b52d56ca476602b320d2d32e5c84f45713a895113c9a0565a7c21e"
+ },
+ {
+  "id": "nankuro-jmdict-0182",
+  "sha256": "991e1dd590392a8b0bd00e917ae290b431aa4c8e8dfcba7ea3e4420a84e5cc95"
+ },
+ {
+  "id": "nankuro-jmdict-0183",
+  "sha256": "7426d70ce3daf8a9985c987466e02dcfc48e1424afb42d0a649401cdddc3abbb"
+ },
+ {
+  "id": "nankuro-jmdict-0184",
+  "sha256": "6aa1bf24bc9f765590a61ed32b32967656058f091b87a7afdf91076009ddea58"
+ },
+ {
+  "id": "nankuro-jmdict-0185",
+  "sha256": "c1e3aa5314bea0030ef66f81044577c357bf48a47ff4d1ec5eacc788e455a669"
+ },
+ {
+  "id": "nankuro-jmdict-0186",
+  "sha256": "6f6f76f3e12415fb035b11fbfa57e8d7de924d175df799076434aa5f477d7858"
+ },
+ {
+  "id": "nankuro-jmdict-0187",
+  "sha256": "b24996245de3e1f3a31dc13f66efb3ec7089ebabc00550befca6d5768a102e64"
+ },
+ {
+  "id": "nankuro-jmdict-0188",
+  "sha256": "d8f46571fb66c3dd6da8bcdd4e09c5d140b374b279b53e9eecdc06fadd60fa09"
+ },
+ {
+  "id": "nankuro-jmdict-0189",
+  "sha256": "382f53be729423d6921ad57e2716edc30658507fc5d1b1da2d4f8b4281e3f559"
+ },
+ {
+  "id": "nankuro-jmdict-0190",
+  "sha256": "3c058387a9c79afd0c6f39af6e587919bbb0ebab31f41dd7e129e7209aaee8ca"
+ },
+ {
+  "id": "nankuro-jmdict-0191",
+  "sha256": "7125ea40030cf5a70097892fd61a7911fa246207d9e798ce214f51a8dbe6729b"
+ },
+ {
+  "id": "nankuro-jmdict-0192",
+  "sha256": "d53e3684b59eab4e3f7d1db5ba0e69289c1ebab0cf03bcf944f31c75501d7547"
+ },
+ {
+  "id": "nankuro-jmdict-0193",
+  "sha256": "37100c7acade2dcd06d5f311433eae83d5d26f0cb44b24a2d45ca1857aae5f0f"
+ },
+ {
+  "id": "nankuro-jmdict-0194",
+  "sha256": "84bf8e591577254101cc2089d01fdb3ab55b66a7011d35692d2ab08de4467897"
+ },
+ {
+  "id": "nankuro-jmdict-0195",
+  "sha256": "8e1196c0dc086f8934e67e459f39f3c91408802656979864d80e39c1cbabf52e"
+ },
+ {
+  "id": "nankuro-jmdict-0196",
+  "sha256": "908c662ee01ad7ba168166a1e2c68f857284d22411de2d34cbcd30380f43c85d"
+ },
+ {
+  "id": "nankuro-jmdict-0197",
+  "sha256": "5d3138a9292e74f225da918049e4f94c826e00c251acf27e3a3301eac0b26b1a"
+ },
+ {
+  "id": "nankuro-jmdict-0198",
+  "sha256": "d2e3a000bf63638a7a345d27cf80a1deb69d1d76be9fd393760135147b8f9252"
+ },
+ {
+  "id": "nankuro-jmdict-0199",
+  "sha256": "674ac990f97518b70f44f03ded096f82f5f0808d3fb2fb2ac448e74d6d0e3cf6"
+ },
+ {
+  "id": "nankuro-jmdict-0200",
+  "sha256": "2f605921925c879c9424cbba0d4e72d846866446a677619468f9e3a04d0ea081"
+ },
+ {
+  "id": "nankuro-jmdict-0201",
+  "sha256": "7e9eddc81b03df8a1237fe43f25d63e34d0d6a3757b1c42f81a91558ed86dd48"
+ },
+ {
+  "id": "nankuro-jmdict-0202",
+  "sha256": "352011d75dfb5e68247ee0464b45fb5b4735a7a7acda6c7cb285e5673f879fe0"
+ },
+ {
+  "id": "nankuro-jmdict-0203",
+  "sha256": "a5802a6d36bd8f50560aeb4c7de126fb4dee7fe7bf4ef36a8dd741222aa03f1f"
+ },
+ {
+  "id": "nankuro-jmdict-0204",
+  "sha256": "94d4e432d85a2d306d3ccdac94471736461d485b980bad60b568c9475950471e"
+ },
+ {
+  "id": "nankuro-jmdict-0205",
+  "sha256": "d692ebd0a0da5370a943a737b69e9f6fab4f9f65107c183583693aa415ddcaa2"
+ },
+ {
+  "id": "nankuro-jmdict-0206",
+  "sha256": "492be7d79018a0f4f13ba1cd6c54f85c5c334990aa1ff0206b7794d6e2d9ed66"
+ },
+ {
+  "id": "nankuro-jmdict-0207",
+  "sha256": "933f575e68ad72f400ffa761539a5bf15008df7106b297566d28005a4a552db7"
+ },
+ {
+  "id": "nankuro-jmdict-0208",
+  "sha256": "cc373522591feb2c7fb22ca91109abc25dd40701095aacc6d036a0845e6e5a4d"
+ },
+ {
+  "id": "nankuro-jmdict-0209",
+  "sha256": "11d0a04e42799f711e95acb1d971dc2d66a663e55f01bdce09df5e83761d0d2d"
+ },
+ {
+  "id": "nankuro-jmdict-0210",
+  "sha256": "c45ffa8f38cfa80a3a583f2d8beb3ca1493110889b31fde0a50680159bb2d445"
+ },
+ {
+  "id": "nankuro-jmdict-0211",
+  "sha256": "60ff0c5b17da9540e8aae954918b3a98d130517a9f0e7c6473fed8f91da94c9f"
+ },
+ {
+  "id": "nankuro-jmdict-0212",
+  "sha256": "7a989f2ad1124ed89d700b80feb2e4ae33be1bb5b3752c31037729de86dfccd4"
+ },
+ {
+  "id": "nankuro-jmdict-0213",
+  "sha256": "dfa085d4b28a85f5722d01b04f7947ac91823aa93dc9838be33986d532f8f816"
+ },
+ {
+  "id": "nankuro-jmdict-0214",
+  "sha256": "0808af92726b3e715b6e4f95669f6778486ce127d7a240d1c277097b66250d2b"
+ },
+ {
+  "id": "nankuro-jmdict-0215",
+  "sha256": "859b0887f7c40b31d16b1f4203048f185693eb9bbba38d2cabbd54e959584e86"
+ },
+ {
+  "id": "nankuro-jmdict-0216",
+  "sha256": "b96da9b5e840158e39af72bd9583a251e2d282d4e3049ca16080b20b02937183"
+ },
+ {
+  "id": "nankuro-jmdict-0217",
+  "sha256": "1639fe6bdb0424a404cbc212692032a930a25dc784c04b3e7adcb9dafd3747f2"
+ },
+ {
+  "id": "nankuro-jmdict-0218",
+  "sha256": "a7e0bc1d749aad83b5e3114e7d769cb46b90b877710229fc2c6de6f549b33b9b"
+ },
+ {
+  "id": "nankuro-jmdict-0219",
+  "sha256": "b9968a072a46c3b8a04304fab201fadf8df6f764871e9b0d5ddafba34e6bad1c"
+ },
+ {
+  "id": "nankuro-jmdict-0220",
+  "sha256": "43b59a8df869cdd752ff4f4decd742c7e7c09d35b10a86bd51fe63f52be6b4f9"
+ },
+ {
+  "id": "nankuro-jmdict-0221",
+  "sha256": "cfd218a33c598e1486c3d3f6e1b10e212a578364d13b7ecd0b9a3813b2c0f0a0"
+ },
+ {
+  "id": "nankuro-jmdict-0222",
+  "sha256": "eb22404eb844b5d220662881a680d569710497f968992201e86a28e90b504740"
+ },
+ {
+  "id": "nankuro-jmdict-0223",
+  "sha256": "c344a4c9d6c401f6d60e7ef7ef27e9c6d11011f1c685c0060c57465ed7b97d76"
+ },
+ {
+  "id": "nankuro-jmdict-0224",
+  "sha256": "bb95a2733cc5b33c43b3a441878fa0f6b9ae3644ba634971743a1c2d58b3f3b0"
+ },
+ {
+  "id": "nankuro-jmdict-0225",
+  "sha256": "042ab21d021e4ed248624b829fe236dc19c4e4b1775bcffe5cbc32b98ab8455b"
+ },
+ {
+  "id": "nankuro-jmdict-0226",
+  "sha256": "bc21fa0cc40a06b4f8d5ed894742dde468cbe8b9648744c37778050557f3e8b7"
+ },
+ {
+  "id": "nankuro-jmdict-0227",
+  "sha256": "ca8685e553b038954a511b42e04c914daf73d0895d3fd264a69e06ee642eabff"
+ },
+ {
+  "id": "nankuro-jmdict-0228",
+  "sha256": "0b900fe2e185f402511e2cfed0facf3a1a8bdb133cd3e8291a2f12923b52ce62"
+ },
+ {
+  "id": "nankuro-jmdict-0229",
+  "sha256": "2d3ab086ca5c11957c4fa3b76d3c4681103376a406c5cc717abc180f8ddbe73a"
+ },
+ {
+  "id": "nankuro-jmdict-0230",
+  "sha256": "0075d74cb3fbfb763e3759f06d49b746f25052733972a01981838d99b0d1d023"
+ },
+ {
+  "id": "nankuro-jmdict-0231",
+  "sha256": "92306c05d79b8d9ca5d6141164c3856271b0556dda0fa4c555d5ef03068c6df9"
+ },
+ {
+  "id": "nankuro-jmdict-0232",
+  "sha256": "4e0cc443ee1decb89df755f39d0a6e44efa1936ec7731896c419e0e01f27bd29"
+ },
+ {
+  "id": "nankuro-jmdict-0233",
+  "sha256": "d8129c75586e69b53d7c1ebf0c36f489f862821ed259ecd04032229bfd540e43"
+ },
+ {
+  "id": "nankuro-jmdict-0234",
+  "sha256": "17c3ffb1baca8491a5fc54edcd64409c270e0dd7c83b54ec007e2c806d47eeb4"
+ },
+ {
+  "id": "nankuro-jmdict-0235",
+  "sha256": "7bea95aaa0c487061c290b2f07297c526a0dc8a4c6753df47708094593cdbe54"
+ },
+ {
+  "id": "nankuro-jmdict-0236",
+  "sha256": "610cd96dee1e4ac1fe5ae4c2ad2f0b95405259f123b678f3e3dd4715e8719a0c"
+ },
+ {
+  "id": "nankuro-jmdict-0237",
+  "sha256": "2a408bb9f14322979915a68c2b2d293db7b89cf8a01cf7cc98e6ceec43aa7a6e"
+ },
+ {
+  "id": "nankuro-jmdict-0238",
+  "sha256": "6a73079477eb1de308e5c06ac07e384e2597ae531134048f1cb9a58678c91e16"
+ },
+ {
+  "id": "nankuro-jmdict-0239",
+  "sha256": "85d2f058ccab57ad033881bd7440a894d7a8640ff4ddc93140128dab5b10cee8"
+ },
+ {
+  "id": "nankuro-jmdict-0240",
+  "sha256": "6489970ff4c8708a6175878604c832853b64da0200b36d5946c95af6af424efb"
+ },
+ {
+  "id": "nankuro-jmdict-0241",
+  "sha256": "3b4f7475e296ff8b3a880e4fec55a8b71c69f8c15ad1dec0d8c88df852ad4ce5"
+ },
+ {
+  "id": "nankuro-jmdict-0242",
+  "sha256": "278bad3578d52626ebde7d55fadad29cb8d3968eb42d3a28abe29e7c642b0a13"
+ },
+ {
+  "id": "nankuro-jmdict-0243",
+  "sha256": "f9bd2e3e8e564ff8e42eae884478f2c3ec4370a4fe67445f76975eb59b00df00"
+ },
+ {
+  "id": "nankuro-jmdict-0244",
+  "sha256": "90c13201cbed090494a4e8119be576dcb6ec0d8991a880f9065bf82fdf98324b"
+ },
+ {
+  "id": "nankuro-jmdict-0245",
+  "sha256": "8611ca27d17ffb883df6763e98ea74aa40d353adfb67e2c9711f1cc3a50e0a21"
+ },
+ {
+  "id": "nankuro-jmdict-0246",
+  "sha256": "50b2a754b3fe13917d7e8d06b83b9a5cb8482500682992137887c79eddd88cd4"
+ },
+ {
+  "id": "nankuro-jmdict-0247",
+  "sha256": "064312425e33024ff11a6455d40468792c2a23eeabba9d45873e6c55e4ed7a09"
+ },
+ {
+  "id": "nankuro-jmdict-0248",
+  "sha256": "399b1152fd660c2c3737af8b32cdb0c768be938b90b55612dbec02799350df64"
+ },
+ {
+  "id": "nankuro-jmdict-0249",
+  "sha256": "046351f4f031d25666258a57491fd5d7cbbbdda2aa3223ad7c74d377fef1befc"
+ },
+ {
+  "id": "nankuro-jmdict-0250",
+  "sha256": "8f6559a4a460b9abb9bbe1128703ab9805d2bfc37284948c0afdaa96e6d4108b"
+ },
+ {
+  "id": "nankuro-jmdict-0251",
+  "sha256": "4da1fa73a0842c2dd0876bb507186a4d2a25159a52ff1f90e28268acb528db23"
+ },
+ {
+  "id": "nankuro-jmdict-0252",
+  "sha256": "4732b9f70d9b64bb4d052035219810d2766dd055665d401884b79f8f6518ff68"
+ },
+ {
+  "id": "nankuro-jmdict-0253",
+  "sha256": "deffdfef217593b7b83d5b0d9e4e70830e6de0c7303fc5539eaa2de7ba412523"
+ },
+ {
+  "id": "nankuro-jmdict-0254",
+  "sha256": "d29898996f12ba795cf106fe5530ba69d98f404f26af8c4a41490e23fa54acc0"
+ },
+ {
+  "id": "nankuro-jmdict-0255",
+  "sha256": "5da96fab67218b9da57640286df49da2525ae6f52a94bfcc981cc24daed9667e"
+ },
+ {
+  "id": "nankuro-jmdict-0256",
+  "sha256": "296bf7081d416e552bbc176db3a5a1276c17b0243d83737ae1c40a40b595ff9f"
+ },
+ {
+  "id": "nankuro-jmdict-0257",
+  "sha256": "64a2a406dbb3fbf03b55df922100aac74f76f3e913f319dafdacc590809623c6"
+ },
+ {
+  "id": "nankuro-jmdict-0258",
+  "sha256": "4687f7bb7384a7b06b25014b67e11f67172a3e039d25f84ec40ef8bad7ba9720"
+ },
+ {
+  "id": "nankuro-jmdict-0259",
+  "sha256": "d13eb45e98ef782ead3bdfedeede6e4491909977e2931b485a30ddcb6589c4ba"
+ },
+ {
+  "id": "nankuro-jmdict-0260",
+  "sha256": "49f3e7357f5a89922a3f8700953620b334985106b4964d568b8ac519615e0fe1"
+ },
+ {
+  "id": "nankuro-jmdict-0261",
+  "sha256": "e25cfa5fd26f08ae44e2e863bd60829f2929627c1128bef1cccb14fcfa801c6f"
+ },
+ {
+  "id": "nankuro-jmdict-0262",
+  "sha256": "b649a492266e184a3e0768f9ca18848a3b2bc34da9c28674032e717f8d650ce6"
+ },
+ {
+  "id": "nankuro-jmdict-0263",
+  "sha256": "002e2b2444f775023bb2d8fd406c999da1985e92c58dbe2cf1691ae96fbfdac4"
+ },
+ {
+  "id": "nankuro-jmdict-0264",
+  "sha256": "c35538e812e7a82165aed84db62057121f4545e20802481aaf92c2d4b3d4f83a"
+ },
+ {
+  "id": "nankuro-jmdict-0265",
+  "sha256": "9c3282ed55ce3f5991a7cc7f185d52f1b42f5fc749ae60d92db38a99579c6b6f"
+ },
+ {
+  "id": "nankuro-jmdict-0266",
+  "sha256": "e6479b5ca41b5298a4bb27936de9bd18ad443366ad0ad207a11531702305b53c"
+ },
+ {
+  "id": "nankuro-jmdict-0267",
+  "sha256": "b3d1dcbf9589f6e49658b9e7ffea1a972eb92479fb19528c06aa8b01c34917e1"
+ },
+ {
+  "id": "nankuro-jmdict-0268",
+  "sha256": "17c2669053d3f30f187d1b054b03b026c16a57dbe189fd40ca91cb26814abd04"
+ },
+ {
+  "id": "nankuro-jmdict-0269",
+  "sha256": "a955a36e82e8aef9e8e0c2246c4f6cb21a1137eb08788aeacce3b2218275eeaf"
+ },
+ {
+  "id": "nankuro-jmdict-0270",
+  "sha256": "4d51e85a15ce1168bfea4a96e1184a66134dda8c16c9c731acfa3007bd1863e6"
+ },
+ {
+  "id": "nankuro-jmdict-0271",
+  "sha256": "d0d0359564497880a1ca31e7dbe49fe1ae30ba41a7447df660a666ba8f147729"
+ },
+ {
+  "id": "nankuro-jmdict-0272",
+  "sha256": "f56bb1d265749aa1feb3ef79c37cbf16f45267c3ebbf2765d4e7aebdeea92967"
+ },
+ {
+  "id": "nankuro-jmdict-0273",
+  "sha256": "f6ab4f59f628781fbf4711e3a331e0f484fd7ed9f62bcaf00b92c4998fbc3e65"
+ },
+ {
+  "id": "nankuro-jmdict-0274",
+  "sha256": "d5ae8a7e2aa087b32c57bd6e47bce1956a3cc98739e7223058cab80247304224"
+ },
+ {
+  "id": "nankuro-jmdict-0275",
+  "sha256": "215d385eadc66d51f283c29d3d9b2ae5e6c083f889faddc2d1fe545e6bfb4935"
+ },
+ {
+  "id": "nankuro-jmdict-0276",
+  "sha256": "6abff045ad0b031743de5b0ef60ebd962a2487bd09ae1722f6392748bc23a024"
+ },
+ {
+  "id": "nankuro-jmdict-0277",
+  "sha256": "18f7d91574db3c41675697eed518a8159dcf2fbfcd86f7d4f82c6b95022355f8"
+ },
+ {
+  "id": "nankuro-jmdict-0278",
+  "sha256": "766c174a31a3dd2edb9deb9ca4a8ebb5f91cce9753775c3a1f670a2b250f9053"
+ },
+ {
+  "id": "nankuro-jmdict-0279",
+  "sha256": "5d40567c64d2296d73ce2c6fbde1c173901ded717dd73dda6cf91e521144b62f"
+ },
+ {
+  "id": "nankuro-jmdict-0280",
+  "sha256": "17fa92744406bdd374b344790b46b74b0696d2e54848f7ef77c2ae309d7b1c8d"
+ },
+ {
+  "id": "nankuro-jmdict-0281",
+  "sha256": "2416b5a9fd08e0bc20d0087085de0f4b57e9ca9a217fa5a06337a7a3efac2f97"
+ },
+ {
+  "id": "nankuro-jmdict-0282",
+  "sha256": "1443e4679703bd407d770c7811191017b57d6defde7d66798b6ff852270df6fb"
+ },
+ {
+  "id": "nankuro-jmdict-0283",
+  "sha256": "3e6896ce9ccbbc5f2f78a59b8359148a8569a0260a5c87f85518a1c9ab598cf7"
+ },
+ {
+  "id": "nankuro-jmdict-0284",
+  "sha256": "381e335087a5f3f6867493d2edcc939f2d208faa8c8d0eacc07ecf23a99d5014"
+ },
+ {
+  "id": "nankuro-jmdict-0285",
+  "sha256": "63180c3ba5382a6900ee407166a8b981b6794349405e9a412057b8fdd39081e7"
+ },
+ {
+  "id": "nankuro-jmdict-0286",
+  "sha256": "0d4a816b5d6e326b24873175b010d35b9e53ead824369599234ab51dc3a2ba26"
+ },
+ {
+  "id": "nankuro-jmdict-0287",
+  "sha256": "6a4b0df9120fa46525dd11e06693c007957b1a8931e7dcb995bfc39203278276"
+ },
+ {
+  "id": "nankuro-jmdict-0288",
+  "sha256": "b71aafa9c92df4908682d003e3c938e0c5096436c044d3aa09428a347eb093e6"
+ },
+ {
+  "id": "nankuro-jmdict-0289",
+  "sha256": "28ad524342fc21dda24b0a8e10eb46a5b785a40f927f3e5d83fa446744b137ff"
+ },
+ {
+  "id": "nankuro-jmdict-0290",
+  "sha256": "5d9a4e689bd9746935ac57a25fe75ff857546a2b2651378548f23ac7f7fc93b4"
+ },
+ {
+  "id": "nankuro-jmdict-0291",
+  "sha256": "ca33ef0d39cec2b048f5fd925f78fed140f17d872d532bd66b45b939ce7def9f"
+ },
+ {
+  "id": "nankuro-jmdict-0292",
+  "sha256": "010374e635840aa4320e6aaf796ca77645ff4e5a00876d365e6dde3021a73bca"
+ },
+ {
+  "id": "nankuro-jmdict-0293",
+  "sha256": "fe3092c4a7154a8b3c0bda7a751ffd146c0e110c0f2a426f39f5b1dcd9958d26"
+ },
+ {
+  "id": "nankuro-jmdict-0294",
+  "sha256": "84397ca7923aa4ec3f37cf1f6ae20c7bbf36694089d7c11d5b5e01d19688f56a"
+ },
+ {
+  "id": "nankuro-jmdict-0295",
+  "sha256": "1a4be96abac5b55cee4dc5ade01b45c6bb412d7e9117727694082cfd7fd2f77e"
+ },
+ {
+  "id": "nankuro-jmdict-0296",
+  "sha256": "43c4347bc69a5d8f7a60334296b467fdacc7db761cb5eb0c1164da1022859486"
+ },
+ {
+  "id": "nankuro-jmdict-0297",
+  "sha256": "2c16ab6edd37bf442de1e1e618b24216ff149d8c5da1e831a227515d38bf2aa1"
+ },
+ {
+  "id": "nankuro-jmdict-0298",
+  "sha256": "ccee9fd34080217ee3f0ed5a0a18a31373f8b316cfda44c426870bc37e2bab7d"
+ },
+ {
+  "id": "nankuro-jmdict-0299",
+  "sha256": "94aca53b8dcfe5e90d000745b1239c33180f7306c6479ab8d73848daab41d273"
+ },
+ {
+  "id": "nankuro-jmdict-0300",
+  "sha256": "7033df08c78c23222d36a1a4af7034a00c4666ba80e3fe59e6e03152e3eabd1c"
+ },
+ {
+  "id": "nankuro-jmdict-0301",
+  "sha256": "530ad289cea7b3031f53063d65107daa8a05fdc0cfbb79cbae39194d79d71bd2"
+ }
+]
