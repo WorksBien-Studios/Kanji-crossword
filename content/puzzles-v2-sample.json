@@ -1,0 +1,1770 @@
+[
+  {
+    "schemaVersion": 2,
+    "mode": "kanjiNankuroLarge",
+    "difficulty": "easy",
+    "difficultyScore": 0.4796,
+    "difficultyMetrics": {
+      "clueScarcity": 0.7083,
+      "maxLogicDepth": 4,
+      "averageLogicDepth": 1.3333,
+      "branchingBits": 0.7327
+    },
+    "rows": 13,
+    "columns": 13,
+    "cellLayout": [
+      [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "."
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        ".",
+        "."
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        ".",
+        ".",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        ".",
+        ".",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        ".",
+        ".",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        ".",
+        ".",
+        "#",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        ".",
+        ".",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        ".",
+        ".",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        "#",
+        ".",
+        ".",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        ".",
+        ".",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        ".",
+        ".",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        ".",
+        ".",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        ".",
+        ".",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#"
+      ]
+    ],
+    "cellNumbers": {
+      "0,12": 1,
+      "1,11": 2,
+      "1,12": 3,
+      "2,10": 4,
+      "2,11": 5,
+      "3,9": 6,
+      "3,10": 7,
+      "4,8": 8,
+      "4,9": 9,
+      "5,7": 10,
+      "5,8": 11,
+      "6,6": 12,
+      "6,7": 13,
+      "7,5": 14,
+      "7,6": 15,
+      "8,4": 16,
+      "8,5": 17,
+      "9,3": 18,
+      "9,4": 19,
+      "10,2": 20,
+      "10,3": 21,
+      "11,1": 22,
+      "11,2": 23,
+      "12,0": 24,
+      "12,1": 3
+    },
+    "solution": {
+      "1": "員",
+      "2": "説",
+      "3": "定",
+      "4": "学",
+      "5": "力",
+      "6": "演",
+      "7": "芸",
+      "8": "年",
+      "9": "初",
+      "10": "世",
+      "11": "間",
+      "12": "手",
+      "13": "相",
+      "14": "実",
+      "15": "名",
+      "16": "偶",
+      "17": "像",
+      "18": "音",
+      "19": "発",
+      "20": "反",
+      "21": "響",
+      "22": "価",
+      "23": "米",
+      "24": "評"
+    },
+    "starterCells": {
+      "16": "偶",
+      "17": "像",
+      "9": "初",
+      "7": "芸",
+      "5": "力",
+      "3": "定",
+      "24": "評"
+    },
+    "wordSpans": [
+      {
+        "word": "偶像",
+        "reading": "ぐうぞう",
+        "cells": [
+          "8,4",
+          "8,5"
+        ]
+      },
+      {
+        "word": "偶発",
+        "reading": "ぐうはつ",
+        "cells": [
+          "8,4",
+          "9,4"
+        ]
+      },
+      {
+        "word": "発音",
+        "reading": "はつおん",
+        "cells": [
+          "9,4",
+          "9,3"
+        ]
+      },
+      {
+        "word": "実像",
+        "reading": "じつぞう",
+        "cells": [
+          "7,5",
+          "8,5"
+        ]
+      },
+      {
+        "word": "音響",
+        "reading": "おんきょう",
+        "cells": [
+          "9,3",
+          "10,3"
+        ]
+      },
+      {
+        "word": "反響",
+        "reading": "はんきょう",
+        "cells": [
+          "10,2",
+          "10,3"
+        ]
+      },
+      {
+        "word": "名実",
+        "reading": "めいじつ",
+        "cells": [
+          "7,6",
+          "7,5"
+        ]
+      },
+      {
+        "word": "名手",
+        "reading": "めいしゅ",
+        "cells": [
+          "7,6",
+          "6,6"
+        ]
+      },
+      {
+        "word": "反米",
+        "reading": "はんべい",
+        "cells": [
+          "10,2",
+          "11,2"
+        ]
+      },
+      {
+        "word": "相手",
+        "reading": "あいて",
+        "cells": [
+          "6,7",
+          "6,6"
+        ]
+      },
+      {
+        "word": "世相",
+        "reading": "せそう",
+        "cells": [
+          "5,7",
+          "6,7"
+        ]
+      },
+      {
+        "word": "世間",
+        "reading": "せけん",
+        "cells": [
+          "5,7",
+          "5,8"
+        ]
+      },
+      {
+        "word": "年間",
+        "reading": "ねんかん",
+        "cells": [
+          "4,8",
+          "5,8"
+        ]
+      },
+      {
+        "word": "初年",
+        "reading": "しょねん",
+        "cells": [
+          "4,9",
+          "4,8"
+        ]
+      },
+      {
+        "word": "米価",
+        "reading": "べいか",
+        "cells": [
+          "11,2",
+          "11,1"
+        ]
+      },
+      {
+        "word": "初演",
+        "reading": "しょえん",
+        "cells": [
+          "4,9",
+          "3,9"
+        ]
+      },
+      {
+        "word": "演芸",
+        "reading": "えんげい",
+        "cells": [
+          "3,9",
+          "3,10"
+        ]
+      },
+      {
+        "word": "学芸",
+        "reading": "がくげい",
+        "cells": [
+          "2,10",
+          "3,10"
+        ]
+      },
+      {
+        "word": "学力",
+        "reading": "がくりょく",
+        "cells": [
+          "2,10",
+          "2,11"
+        ]
+      },
+      {
+        "word": "力説",
+        "reading": "りきせつ",
+        "cells": [
+          "2,11",
+          "1,11"
+        ]
+      },
+      {
+        "word": "定価",
+        "reading": "ていか",
+        "cells": [
+          "12,1",
+          "11,1"
+        ]
+      },
+      {
+        "word": "定説",
+        "reading": "ていせつ",
+        "cells": [
+          "1,12",
+          "1,11"
+        ]
+      },
+      {
+        "word": "定評",
+        "reading": "ていひょう",
+        "cells": [
+          "12,1",
+          "12,0"
+        ]
+      },
+      {
+        "word": "定員",
+        "reading": "ていいん",
+        "cells": [
+          "1,12",
+          "0,12"
+        ]
+      }
+    ],
+    "editorialStatus": "ai_review_passed_owner_approved",
+    "editorialNotes": "Automated JMdict common-word/POS filtering plus project review. AI-assisted localisation/content review was performed and approved by the project owner; this field does not claim native-linguist sign-off.",
+    "sourceNotes": "Word list derived from JMdict/EDICT, property of the Electronic Dictionary Research and Development Group, used under CC BY-SA 3.0. http://www.edrdg.org/",
+    "id": "nankuro-v2-342dbebc2b61e1f16afd",
+    "traySeed": [
+      "間",
+      "名",
+      "実",
+      "定",
+      "手",
+      "音",
+      "価",
+      "相",
+      "偶",
+      "学",
+      "評",
+      "説",
+      "響",
+      "年",
+      "発",
+      "世",
+      "員",
+      "像",
+      "初",
+      "反",
+      "米",
+      "演",
+      "芸",
+      "力"
+    ],
+    "validationDigest": "e4320b11922104a7d8fb77020d0e78fc34230025d2d28e2d0b9e9eccfb64ea4a"
+  },
+  {
+    "schemaVersion": 2,
+    "mode": "kanjiNankuroLarge",
+    "difficulty": "standard",
+    "difficultyScore": 0.5857,
+    "difficultyMetrics": {
+      "clueScarcity": 0.72,
+      "maxLogicDepth": 7,
+      "averageLogicDepth": 2.16,
+      "branchingBits": 0.8719
+    },
+    "rows": 13,
+    "columns": 13,
+    "cellLayout": [
+      [
+        ".",
+        ".",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        ".",
+        ".",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        ".",
+        ".",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        ".",
+        ".",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        "#",
+        ".",
+        ".",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        ".",
+        ".",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        ".",
+        ".",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        ".",
+        ".",
+        "#",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        ".",
+        ".",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        ".",
+        ".",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        ".",
+        ".",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        ".",
+        "."
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "."
+      ]
+    ],
+    "cellNumbers": {
+      "0,0": 1,
+      "0,1": 2,
+      "1,1": 3,
+      "1,2": 4,
+      "2,2": 5,
+      "2,3": 6,
+      "3,3": 7,
+      "3,4": 8,
+      "4,4": 9,
+      "4,5": 10,
+      "5,5": 11,
+      "5,6": 12,
+      "6,6": 13,
+      "6,7": 14,
+      "7,7": 15,
+      "7,8": 16,
+      "8,8": 17,
+      "8,9": 18,
+      "9,9": 19,
+      "9,10": 20,
+      "10,10": 21,
+      "10,11": 22,
+      "11,11": 23,
+      "11,12": 24,
+      "12,12": 25
+    },
+    "solution": {
+      "1": "過",
+      "2": "多",
+      "3": "様",
+      "4": "相",
+      "5": "似",
+      "6": "疑",
+      "7": "義",
+      "8": "大",
+      "9": "関",
+      "10": "連",
+      "11": "発",
+      "12": "汗",
+      "13": "冷",
+      "14": "戦",
+      "15": "初",
+      "16": "陣",
+      "17": "先",
+      "18": "住",
+      "19": "専",
+      "20": "売",
+      "21": "転",
+      "22": "居",
+      "23": "皇",
+      "24": "室",
+      "25": "内"
+    },
+    "starterCells": {
+      "15": "初",
+      "16": "陣",
+      "13": "冷",
+      "18": "住",
+      "19": "専",
+      "10": "連",
+      "8": "大"
+    },
+    "wordSpans": [
+      {
+        "word": "初陣",
+        "reading": "ういじん",
+        "cells": [
+          "7,7",
+          "7,8"
+        ]
+      },
+      {
+        "word": "先陣",
+        "reading": "せんじん",
+        "cells": [
+          "8,8",
+          "7,8"
+        ]
+      },
+      {
+        "word": "初戦",
+        "reading": "しょせん",
+        "cells": [
+          "7,7",
+          "6,7"
+        ]
+      },
+      {
+        "word": "冷戦",
+        "reading": "れいせん",
+        "cells": [
+          "6,6",
+          "6,7"
+        ]
+      },
+      {
+        "word": "冷汗",
+        "reading": "ひやあせ",
+        "cells": [
+          "6,6",
+          "5,6"
+        ]
+      },
+      {
+        "word": "先住",
+        "reading": "せんじゅう",
+        "cells": [
+          "8,8",
+          "8,9"
+        ]
+      },
+      {
+        "word": "住専",
+        "reading": "じゅうせん",
+        "cells": [
+          "8,9",
+          "9,9"
+        ]
+      },
+      {
+        "word": "発汗",
+        "reading": "はっかん",
+        "cells": [
+          "5,5",
+          "5,6"
+        ]
+      },
+      {
+        "word": "連発",
+        "reading": "れんぱつ",
+        "cells": [
+          "4,5",
+          "5,5"
+        ]
+      },
+      {
+        "word": "連関",
+        "reading": "れんかん",
+        "cells": [
+          "4,5",
+          "4,4"
+        ]
+      },
+      {
+        "word": "大関",
+        "reading": "おおぜき",
+        "cells": [
+          "3,4",
+          "4,4"
+        ]
+      },
+      {
+        "word": "専売",
+        "reading": "せんばい",
+        "cells": [
+          "9,9",
+          "9,10"
+        ]
+      },
+      {
+        "word": "大義",
+        "reading": "たいぎ",
+        "cells": [
+          "3,4",
+          "3,3"
+        ]
+      },
+      {
+        "word": "疑義",
+        "reading": "ぎぎ",
+        "cells": [
+          "2,3",
+          "3,3"
+        ]
+      },
+      {
+        "word": "転売",
+        "reading": "てんばい",
+        "cells": [
+          "10,10",
+          "9,10"
+        ]
+      },
+      {
+        "word": "疑似",
+        "reading": "ぎじ",
+        "cells": [
+          "2,3",
+          "2,2"
+        ]
+      },
+      {
+        "word": "相似",
+        "reading": "そうじ",
+        "cells": [
+          "1,2",
+          "2,2"
+        ]
+      },
+      {
+        "word": "様相",
+        "reading": "ようそう",
+        "cells": [
+          "1,1",
+          "1,2"
+        ]
+      },
+      {
+        "word": "転居",
+        "reading": "てんきょ",
+        "cells": [
+          "10,10",
+          "10,11"
+        ]
+      },
+      {
+        "word": "皇居",
+        "reading": "こうきょ",
+        "cells": [
+          "11,11",
+          "10,11"
+        ]
+      },
+      {
+        "word": "皇室",
+        "reading": "こうしつ",
+        "cells": [
+          "11,11",
+          "11,12"
+        ]
+      },
+      {
+        "word": "多様",
+        "reading": "たよう",
+        "cells": [
+          "0,1",
+          "1,1"
+        ]
+      },
+      {
+        "word": "室内",
+        "reading": "しつない",
+        "cells": [
+          "11,12",
+          "12,12"
+        ]
+      },
+      {
+        "word": "過多",
+        "reading": "かた",
+        "cells": [
+          "0,0",
+          "0,1"
+        ]
+      }
+    ],
+    "editorialStatus": "ai_review_passed_owner_approved",
+    "editorialNotes": "Automated JMdict common-word/POS filtering plus project review. AI-assisted localisation/content review was performed and approved by the project owner; this field does not claim native-linguist sign-off.",
+    "sourceNotes": "Word list derived from JMdict/EDICT, property of the Electronic Dictionary Research and Development Group, used under CC BY-SA 3.0. http://www.edrdg.org/",
+    "id": "nankuro-v2-daa0679157c1127a5c48",
+    "traySeed": [
+      "転",
+      "先",
+      "戦",
+      "多",
+      "発",
+      "住",
+      "疑",
+      "皇",
+      "陣",
+      "相",
+      "売",
+      "様",
+      "内",
+      "専",
+      "過",
+      "室",
+      "関",
+      "初",
+      "冷",
+      "義",
+      "大",
+      "似",
+      "居",
+      "連",
+      "汗"
+    ],
+    "validationDigest": "17bdda03471e7652f3601217566e1a840c46a6fcfca346b3d5027b308ff8286c"
+  },
+  {
+    "schemaVersion": 2,
+    "mode": "kanjiNankuro",
+    "difficulty": "expert",
+    "difficultyScore": 0.7997,
+    "difficultyMetrics": {
+      "clueScarcity": 0.9286,
+      "maxLogicDepth": 11,
+      "averageLogicDepth": 4.9286,
+      "branchingBits": 0.2308
+    },
+    "rows": 7,
+    "columns": 8,
+    "cellLayout": [
+      [
+        ".",
+        ".",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        ".",
+        ".",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        ".",
+        ".",
+        "#",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        ".",
+        ".",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        "#",
+        ".",
+        ".",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        ".",
+        ".",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        ".",
+        "."
+      ]
+    ],
+    "cellNumbers": {
+      "0,0": 1,
+      "0,1": 2,
+      "1,1": 3,
+      "1,2": 4,
+      "2,2": 5,
+      "2,3": 6,
+      "3,3": 7,
+      "3,4": 8,
+      "4,4": 9,
+      "4,5": 10,
+      "5,5": 11,
+      "5,6": 12,
+      "6,6": 13,
+      "6,7": 14
+    },
+    "solution": {
+      "1": "褒",
+      "2": "賞",
+      "3": "賛",
+      "4": "意",
+      "5": "表",
+      "6": "面",
+      "7": "々",
+      "8": "段",
+      "9": "値",
+      "10": "卸",
+      "11": "売",
+      "12": "商",
+      "13": "魂",
+      "14": "鎮"
+    },
+    "starterCells": {
+      "3": "賛"
+    },
+    "wordSpans": [
+      {
+        "word": "賛意",
+        "reading": "さんい",
+        "cells": [
+          "1,1",
+          "1,2"
+        ]
+      },
+      {
+        "word": "意表",
+        "reading": "いひょう",
+        "cells": [
+          "1,2",
+          "2,2"
+        ]
+      },
+      {
+        "word": "賞賛",
+        "reading": "しょうさん",
+        "cells": [
+          "0,1",
+          "1,1"
+        ]
+      },
+      {
+        "word": "表面",
+        "reading": "ひょうめん",
+        "cells": [
+          "2,2",
+          "2,3"
+        ]
+      },
+      {
+        "word": "褒賞",
+        "reading": "ほうしょう",
+        "cells": [
+          "0,0",
+          "0,1"
+        ]
+      },
+      {
+        "word": "面々",
+        "reading": "めんめん",
+        "cells": [
+          "2,3",
+          "3,3"
+        ]
+      },
+      {
+        "word": "段々",
+        "reading": "だんだん",
+        "cells": [
+          "3,4",
+          "3,3"
+        ]
+      },
+      {
+        "word": "値段",
+        "reading": "ねだん",
+        "cells": [
+          "4,4",
+          "3,4"
+        ]
+      },
+      {
+        "word": "卸値",
+        "reading": "おろしね",
+        "cells": [
+          "4,5",
+          "4,4"
+        ]
+      },
+      {
+        "word": "卸売",
+        "reading": "おろしうり",
+        "cells": [
+          "4,5",
+          "5,5"
+        ]
+      },
+      {
+        "word": "商売",
+        "reading": "しょうばい",
+        "cells": [
+          "5,6",
+          "5,5"
+        ]
+      },
+      {
+        "word": "商魂",
+        "reading": "しょうこん",
+        "cells": [
+          "5,6",
+          "6,6"
+        ]
+      },
+      {
+        "word": "鎮魂",
+        "reading": "ちんこん",
+        "cells": [
+          "6,7",
+          "6,6"
+        ]
+      }
+    ],
+    "editorialStatus": "ai_review_passed_owner_approved",
+    "editorialNotes": "Automated JMdict common-word/POS filtering plus project review. AI-assisted localisation/content review was performed and approved by the project owner; this field does not claim native-linguist sign-off.",
+    "sourceNotes": "Word list derived from JMdict/EDICT, property of the Electronic Dictionary Research and Development Group, used under CC BY-SA 3.0. http://www.edrdg.org/",
+    "id": "nankuro-v2-6091fc6c1c8a4ffec0ce",
+    "traySeed": [
+      "売",
+      "卸",
+      "々",
+      "鎮",
+      "褒",
+      "意",
+      "賛",
+      "面",
+      "段",
+      "値",
+      "商",
+      "賞",
+      "魂",
+      "表"
+    ],
+    "validationDigest": "c1fa7147c0cd23d117b1227da5cf2e0384aa369e565b4034fca2e2eed9190b2b"
+  },
+  {
+    "schemaVersion": 2,
+    "mode": "kanjiNankuro",
+    "difficulty": "hard",
+    "difficultyScore": 0.6093,
+    "difficultyMetrics": {
+      "clueScarcity": 0.8,
+      "maxLogicDepth": 7,
+      "averageLogicDepth": 2.8667,
+      "branchingBits": 0.0714
+    },
+    "rows": 8,
+    "columns": 8,
+    "cellLayout": [
+      [
+        ".",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        ".",
+        ".",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        ".",
+        ".",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        ".",
+        ".",
+        "#",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        ".",
+        ".",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        "#",
+        ".",
+        ".",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        ".",
+        ".",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        ".",
+        "."
+      ]
+    ],
+    "cellNumbers": {
+      "0,0": 1,
+      "1,0": 2,
+      "1,1": 3,
+      "2,1": 4,
+      "2,2": 5,
+      "3,2": 6,
+      "3,3": 7,
+      "4,3": 8,
+      "4,4": 9,
+      "5,4": 10,
+      "5,5": 11,
+      "6,5": 12,
+      "6,6": 13,
+      "7,6": 14,
+      "7,7": 15
+    },
+    "solution": {
+      "1": "福",
+      "2": "至",
+      "3": "急",
+      "4": "務",
+      "5": "職",
+      "6": "就",
+      "7": "航",
+      "8": "渡",
+      "9": "過",
+      "10": "密",
+      "11": "猟",
+      "12": "犬",
+      "13": "子",
+      "14": "君",
+      "15": "諸"
+    },
+    "starterCells": {
+      "6": "就",
+      "7": "航",
+      "8": "渡"
+    },
+    "wordSpans": [
+      {
+        "word": "就航",
+        "reading": "しゅうこう",
+        "cells": [
+          "3,2",
+          "3,3"
+        ]
+      },
+      {
+        "word": "就職",
+        "reading": "しゅうしょく",
+        "cells": [
+          "3,2",
+          "2,2"
+        ]
+      },
+      {
+        "word": "職務",
+        "reading": "しょくむ",
+        "cells": [
+          "2,2",
+          "2,1"
+        ]
+      },
+      {
+        "word": "急務",
+        "reading": "きゅうむ",
+        "cells": [
+          "1,1",
+          "2,1"
+        ]
+      },
+      {
+        "word": "至急",
+        "reading": "しきゅう",
+        "cells": [
+          "1,0",
+          "1,1"
+        ]
+      },
+      {
+        "word": "至福",
+        "reading": "しふく",
+        "cells": [
+          "1,0",
+          "0,0"
+        ]
+      },
+      {
+        "word": "渡航",
+        "reading": "とこう",
+        "cells": [
+          "4,3",
+          "3,3"
+        ]
+      },
+      {
+        "word": "過渡",
+        "reading": "かと",
+        "cells": [
+          "4,4",
+          "4,3"
+        ]
+      },
+      {
+        "word": "過密",
+        "reading": "かみつ",
+        "cells": [
+          "4,4",
+          "5,4"
+        ]
+      },
+      {
+        "word": "密猟",
+        "reading": "みつりょう",
+        "cells": [
+          "5,4",
+          "5,5"
+        ]
+      },
+      {
+        "word": "猟犬",
+        "reading": "りょうけん",
+        "cells": [
+          "5,5",
+          "6,5"
+        ]
+      },
+      {
+        "word": "子犬",
+        "reading": "こいぬ",
+        "cells": [
+          "6,6",
+          "6,5"
+        ]
+      },
+      {
+        "word": "君子",
+        "reading": "くんし",
+        "cells": [
+          "7,6",
+          "6,6"
+        ]
+      },
+      {
+        "word": "諸君",
+        "reading": "しょくん",
+        "cells": [
+          "7,7",
+          "7,6"
+        ]
+      }
+    ],
+    "editorialStatus": "ai_review_passed_owner_approved",
+    "editorialNotes": "Automated JMdict common-word/POS filtering plus project review. AI-assisted localisation/content review was performed and approved by the project owner; this field does not claim native-linguist sign-off.",
+    "sourceNotes": "Word list derived from JMdict/EDICT, property of the Electronic Dictionary Research and Development Group, used under CC BY-SA 3.0. http://www.edrdg.org/",
+    "id": "nankuro-v2-817fca264906cac6acf7",
+    "traySeed": [
+      "務",
+      "君",
+      "職",
+      "子",
+      "過",
+      "航",
+      "渡",
+      "諸",
+      "至",
+      "猟",
+      "就",
+      "福",
+      "密",
+      "犬",
+      "急"
+    ],
+    "validationDigest": "bc3a173917e501edf8cc728a6a9f4545350050e0a9b5f092ea73787a598b5761"
+  },
+  {
+    "schemaVersion": 2,
+    "mode": "kanjiNankuro",
+    "difficulty": "expert",
+    "difficultyScore": 0.7669,
+    "difficultyMetrics": {
+      "clueScarcity": 0.8571,
+      "maxLogicDepth": 11,
+      "averageLogicDepth": 4.7857,
+      "branchingBits": 0.3077
+    },
+    "rows": 8,
+    "columns": 7,
+    "cellLayout": [
+      [
+        ".",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        ".",
+        ".",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        ".",
+        ".",
+        "#",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        ".",
+        ".",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        ".",
+        ".",
+        "#",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        "#",
+        ".",
+        ".",
+        "#"
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        ".",
+        "."
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "."
+      ]
+    ],
+    "cellNumbers": {
+      "0,0": 1,
+      "1,0": 2,
+      "1,1": 3,
+      "2,1": 4,
+      "2,2": 5,
+      "3,2": 6,
+      "3,3": 7,
+      "4,3": 8,
+      "4,4": 9,
+      "5,4": 10,
+      "5,5": 11,
+      "6,5": 12,
+      "6,6": 13,
+      "7,6": 14
+    },
+    "solution": {
+      "1": "洋",
+      "2": "西",
+      "3": "独",
+      "4": "創",
+      "5": "業",
+      "6": "本",
+      "7": "数",
+      "8": "小",
+      "9": "声",
+      "10": "明",
+      "11": "英",
+      "12": "俊",
+      "13": "足",
+      "14": "裸"
+    },
+    "starterCells": {
+      "2": "西",
+      "3": "独"
+    },
+    "wordSpans": [
+      {
+        "word": "西独",
+        "reading": "せいどく",
+        "cells": [
+          "1,0",
+          "1,1"
+        ]
+      },
+      {
+        "word": "独創",
+        "reading": "どくそう",
+        "cells": [
+          "1,1",
+          "2,1"
+        ]
+      },
+      {
+        "word": "西洋",
+        "reading": "せいよう",
+        "cells": [
+          "1,0",
+          "0,0"
+        ]
+      },
+      {
+        "word": "創業",
+        "reading": "そうぎょう",
+        "cells": [
+          "2,1",
+          "2,2"
+        ]
+      },
+      {
+        "word": "本業",
+        "reading": "ほんぎょう",
+        "cells": [
+          "3,2",
+          "2,2"
+        ]
+      },
+      {
+        "word": "本数",
+        "reading": "ほんすう",
+        "cells": [
+          "3,2",
+          "3,3"
+        ]
+      },
+      {
+        "word": "小数",
+        "reading": "しょうすう",
+        "cells": [
+          "4,3",
+          "3,3"
+        ]
+      },
+      {
+        "word": "小声",
+        "reading": "こごえ",
+        "cells": [
+          "4,3",
+          "4,4"
+        ]
+      },
+      {
+        "word": "声明",
+        "reading": "せいめい",
+        "cells": [
+          "4,4",
+          "5,4"
+        ]
+      },
+      {
+        "word": "英明",
+        "reading": "えいめい",
+        "cells": [
+          "5,5",
+          "5,4"
+        ]
+      },
+      {
+        "word": "俊英",
+        "reading": "しゅんえい",
+        "cells": [
+          "6,5",
+          "5,5"
+        ]
+      },
+      {
+        "word": "俊足",
+        "reading": "しゅんそく",
+        "cells": [
+          "6,5",
+          "6,6"
+        ]
+      },
+      {
+        "word": "裸足",
+        "reading": "はだし",
+        "cells": [
+          "7,6",
+          "6,6"
+        ]
+      }
+    ],
+    "editorialStatus": "ai_review_passed_owner_approved",
+    "editorialNotes": "Automated JMdict common-word/POS filtering plus project review. AI-assisted localisation/content review was performed and approved by the project owner; this field does not claim native-linguist sign-off.",
+    "sourceNotes": "Word list derived from JMdict/EDICT, property of the Electronic Dictionary Research and Development Group, used under CC BY-SA 3.0. http://www.edrdg.org/",
+    "id": "nankuro-v2-5e3faa88ecd198e0fbf9",
+    "traySeed": [
+      "足",
+      "裸",
+      "俊",
+      "声",
+      "小",
+      "業",
+      "明",
+      "洋",
+      "英",
+      "本",
+      "西",
+      "数",
+      "独",
+      "創"
+    ],
+    "validationDigest": "80116635b64c6a681edca80b1a0e7baf4a693c3fd1f05b52756b7b5b2cf86630"
+  }
+]
