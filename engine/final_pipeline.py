@@ -23,7 +23,7 @@ from vocab3 import DICTIONARY_ATTRIBUTION, READING, WORDS2, WORDS_BY_LEN
 
 TARGET_PUZZLES = 360
 MIN_WORDS = 12
-MAX_WORDS = 30
+MAX_WORDS = 24
 PARTITION_SEED = 42
 
 
@@ -116,7 +116,7 @@ def generate_library():
         max_words=MAX_WORDS,
         seed=PARTITION_SEED,
         max_puzzles=TARGET_PUZZLES,
-        max_consecutive_stalls=8000,
+        max_consecutive_stalls=3000,
     )
     if len(puzzles) != TARGET_PUZZLES:
         raise RuntimeError(
