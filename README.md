@@ -211,7 +211,7 @@ Each schema-v2 puzzle record contains: `schemaVersion`, content-addressed `id`, 
 【しっかり考えられる全360問】
 ・定番の漢字ナンクロ
 ・じっくり解ける大盤面
-・黒マスの位置も考えるホワイトナンクロ
+・解いた熟語の読みを確認できる復習
 ・やさしい、ふつう、むずかしい、達人の4段階
 
 【途中でやめても安心】
