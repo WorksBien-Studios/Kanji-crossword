@@ -128,7 +128,6 @@ def grow_chain_grid(
         cells.sort(key=lambda cell: (_cell_centrality(cell, occupied), rng.random()))
         if limited:
             cells = cells[:candidate_cells]
-        best = None
         for cell in cells:
             kanji = occupied[cell]
             dirs = dirs_for(cell)
@@ -142,14 +141,13 @@ def grow_chain_grid(
             if limited:
                 candidates = candidates[:candidate_words]
             for word, jpos in candidates:
+                options = []
                 for direction in dirs:
-                    for score, new_cells, trial in placement_options(
-                        cell, direction, word, jpos
-                    ):
-                        item = (score, word, new_cells, trial)
-                        if best is None or item[0] < best[0]:
-                            best = item
-        return best
+                    options.extend(placement_options(cell, direction, word, jpos))
+                if options:
+                    score, new_cells, trial = min(options, key=lambda item: item[0])
+                    return (score, word, new_cells, trial)
+        return None
 
     while len(used_words) < max_words:
         best = candidate_placements(limited=True)
