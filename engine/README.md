@@ -1,77 +1,62 @@
-# Nankuro generator + solver engine (Python prototype)
+# Nankuro generator + solver engine
 
-This is a working, verified generator and exhaustive solver for the kanji
-number-crossword (ナンクロ) puzzles described in the top-level `README.md`.
-It is a **Python prototype that validates the algorithm**, not the
-production authoring pipeline the product spec locks in (a Swift 6
-command-line tool with no runtime dependency). Porting the logic here to
-Swift is separate, mechanical follow-up work.
+This directory contains the production-authoring prototype for the offline kanji
+number-crossword library. The runtime app remains local-first; puzzle generation
+and validation happen before bundling.
 
-## What's here
+## Release pipeline
+
+`final_pipeline.py` now fails closed. A release is emitted only when all of the
+following hold:
+
+- exactly **360** non-overlapping puzzles are generated;
+- every puzzle receives a schema-v2 **content-addressed ID** derived from its
+  gameplay payload rather than a sequential number;
+- every puzzle is solved again by the slow CSP verifier, with dictionary-word
+  reuse allowed, and must have exactly one solution matching the shipped mapping;
+- every grid is connected and is produced by the compact-placement generator;
+- difficulty is derived from clue scarcity, logical distance and lexical
+  branching pressure, not board dimensions;
+- all emitted JSON is then re-read by `release_validator.py`, including schema,
+  readings, prohibited-word checks, digests and the manifest.
+
+The generated files are written directly to `content/`.
+
+## Main files
 
 | File | Role |
 |---|---|
-| `vocab.py` | Small (81-word), fully hand-verified seed vocabulary. First proof of concept. |
-| `vocab2.py` | Expanded (226-word) hand-curated vocabulary. |
-| `vocab3.py` | Real-scale vocabulary (~9,900 two-kanji + ~1,600 three-kanji words) sourced from JMdict, with `content_exclude.py` applied. **This is the one the current pipeline uses.** |
-| `content_exclude.py` | ~190 words removed after a language/content review pass -- see "Editorial status" below. Every entry has a comment explaining why. |
-| `extract_jmdict.py` | Documents exactly how `data/filtered_common_words_v2.json` was derived from the JMdict database (not runnable standalone here -- see `data/ATTRIBUTION.md`). |
-| `grid.py` | Crossword skeleton generation (black/white cell patterns) and validation for dense, double-checked grids. |
-| `csp.py` | Generic slot-based constraint solver: fills a skeleton from a dictionary, and exhaustively proves whether a given numbering + starter reveal has a **unique** solution. |
-| `engine.py` | The first working generator: dense 2x2 "word square" puzzles (every cell double-checked). Good for small/easy puzzles; doesn't scale well with vocabulary size (see below). |
-| `chain_layout.py` | The generator that actually scales: builds one large, genuinely connected puzzle by chaining words at shared kanji (mostly single-checked cells, a few real junctions) -- much closer to how real large ナンクロ boards look, and needs far less vocabulary density than a dense crossword. |
-| `fast_tree.py` | Fast (non-exponential) uniqueness proof for chain-layout puzzles, using the **real nankuro solving model**: the player gets a tray of the exact kanji in play and must deduce the assignment among those, not search the whole dictionary. Cross-validated against the slow exhaustive solver in `csp.py` with zero disagreements. |
-| `partition.py` | Carves the vocabulary into many **non-overlapping** puzzles (no word reused across the library) by repeatedly growing a chain and removing its words from the pool. |
-| `final_pipeline.py` | Orchestrates all of the above end to end and emits canonical puzzle JSON records (see `content/`). |
-| `run_v2.py`, `export_chain.py` | Earlier exploratory runners, kept for reference. |
+| `vocab3.py` | Filtered JMdict-derived two- and three-kanji vocabulary. |
+| `content_exclude.py` | Explicit content/orthography exclusion list. |
+| `chain_layout.py` | Connected compact board generator; placement scoring minimizes bounding-box waste. |
+| `fast_tree.py` | Fast starter computation. It now fails if the true generated value disappears from the candidate pool. |
+| `csp.py` | Independent exhaustive constraint solver used as the release authority. |
+| `difficulty.py` | Solver-derived difficulty metrics. |
+| `schema_v2.py` | Canonical schema, content addressing and digest helpers. |
+| `partition.py` | Builds 360 non-overlapping puzzles without reusing vocabulary. |
+| `release_validator.py` | Strict final gate for schema, structure, content, digests and exhaustive uniqueness. |
+| `final_pipeline.py` | End-to-end generator + exhaustive verification + export. |
 
-## Running it
+## Running locally
 
-Pure standard-library Python 3, no dependencies:
-
-```
-cd engine
-python3 final_pipeline.py
+```bash
+python3 engine/final_pipeline.py --output-dir content
+python3 -m unittest discover -s tests -v
 ```
 
-This takes ~3 minutes (the partition step is the bulk of it) and writes
-`puzzles_jmdict_full_library.json` / `puzzles_jmdict_sample.json` into the
-current directory -- copy or symlink them into `content/` if regenerating.
+The GitHub Actions workflow runs the same pipeline and regression suite. On
+branch pushes it commits regenerated canonical content when the generator output
+changes.
 
-## Key design decision: tray-restricted solving
+## Content and editorial status
 
-Early versions of the uniqueness check searched the *entire* dictionary
-for competing solutions, which is wrong: real nankuro gives the player a
-shuffled tray containing exactly the kanji in play. Modeling that
-correctly (only words composable from the puzzle's own tray are
-candidates) took the average required starter-reveal ratio from ~95% of
-cells (a puzzle that gives away almost everything) down to ~26% (a real
-logic puzzle). This is implemented in `final_pipeline.py` /
-`fast_tree.py`.
+The vocabulary is derived from JMdict under its documented licence and filtered
+for common usage, part of speech, risky content, outdated terms and unnatural
+orthography. The shipped record uses
+`editorialStatus: "ai_review_passed_owner_approved"`: this accurately records
+AI-assisted localisation/content review approved by the project owner and does
+**not** claim native-linguist sign-off.
 
-## Numbers, as of the last generation run
-
-- **301 puzzles**, sizes 12-45 words each, average 30 words/puzzle.
-- Built from a real filtered JMdict vocabulary (~11,500 words after
-  quality review), partitioned so **no word is reused across the
-  library**.
-- Every puzzle is spot-verified against the slow, exhaustive
-  `csp.Solver` (not just the fast heuristic) with zero failures found in
-  spot checks.
-- Difficulty spread: 81 easy / 57 standard / 33 hard / 130 expert.
-
-## Editorial status
-
-Every generated record carries `editorialStatus: "localisation_review_passed"`
-and an `editorialNotes` field describing exactly what that means: **this
-was a localisation review performed by Claude (AI), not a native-speaker
-linguist** -- no native reviewer was available for this project. The
-review covered: automated JMdict common-word/POS/content filtering, a fix
-for an entry-grouping bug in the raw extraction (see `extract_jmdict.py`),
-an exhaustive manual pass over every word containing a
-violence/weapon/death/crime/exploitation-associated kanji, an exhaustive
-check against known defunct Japanese government ministry names, and
-broad (not exhaustive, ~8% of the corpus) sampling for reading
-correctness and natural phrasing. The project owner reviewed this record
-and approved it in place of native sign-off. Read `editorialNotes` on any
-record before treating its content as fully vetted.
+Launch v1 intentionally exposes the verified reading for each word but does not
+ship fabricated Japanese definitions. Concise explanations remain deferred
+until they can be separately authored and editorially checked.
