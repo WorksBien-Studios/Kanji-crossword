@@ -47,7 +47,7 @@ def validation_digest(record: dict) -> str:
 
 
 def mode_for_word_count(word_count: int) -> str:
-    return "kanjiNankuro" if word_count < 24 else "kanjiNankuroLarge"
+    return "kanjiNankuro" if word_count < 20 else "kanjiNankuroLarge"
 
 
 def assign_difficulty_bands(records: list[dict]) -> None:
