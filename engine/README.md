@@ -60,3 +60,11 @@ AI-assisted localisation/content review approved by the project owner and does
 Launch v1 intentionally exposes the verified reading for each word but does not
 ship fabricated Japanese definitions. Concise explanations remain deferred
 until they can be separately authored and editorially checked.
+
+
+## Merge gate
+
+Do not merge generated-content changes unless the Engine validation workflow is
+green on the exact branch head. The workflow regenerates the library, exhaustively
+validates every puzzle and runs the corruption/regression tests before committing
+canonical content.
