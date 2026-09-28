@@ -1,6 +1,1446 @@
 [
   {
     "schemaVersion": 2,
+    "id": "nankuro-v2-fd14b48baf4e838f9000",
+    "mode": "kanjiNankuro",
+    "sha256": "d530147878aed5abf029e4d464b46847fa7a35c2ce04360f7d347a2f500b3e0c"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-e343308d1dc4c0c992a8",
+    "mode": "kanjiNankuro",
+    "sha256": "b8759ea329ff178e4cf21c4b7ce64b3f5efe55aaa712f70e4075ad57f372929c"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-dc558605a1b20621823d",
+    "mode": "kanjiNankuro",
+    "sha256": "00ee2cfc925baebad7fb46b2b83eff42de8018b3479623805be721c3f7eff9dd"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-b44d522eb54bc6b45f96",
+    "mode": "kanjiNankuro",
+    "sha256": "6dfaa625b4d91889e95445904dcbf510b38fa39843548cd2c349a2f3cce7174a"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-2af53d174926c82226f9",
+    "mode": "kanjiNankuro",
+    "sha256": "018b1e0a16542dcb9f4f61e484ab3d532e72acf25c7031d223483ede096322ae"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-6f447e2f3680e464cabb",
+    "mode": "kanjiNankuro",
+    "sha256": "7f59da1808fc9d20422769271b8682c76aa538774b02c24bd8393f554fd8cfd8"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-68b68feed100fd3f84aa",
+    "mode": "kanjiNankuro",
+    "sha256": "d111520bcfb18b01e4a4c09a3746a783d64e2c3952897b5b275e03af503f178d"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-245101acde780630b824",
+    "mode": "kanjiNankuro",
+    "sha256": "6909711b81dacf45efb34dfcf4d008be906038f46d22b14d3c3aa8023c183e67"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-307af857210f5644e630",
+    "mode": "kanjiNankuro",
+    "sha256": "6c15853b8799717bd5946a7891d2fc7e7ae8bbe407143806986f47459ddc38c4"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-1eac8340e1b77d1af4e9",
+    "mode": "kanjiNankuro",
+    "sha256": "07bdfe7c648caf8c91bff74d1eec12df49279517fd7c3d74a97670e9ac03ba70"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-196183530dcc50916b9e",
+    "mode": "kanjiNankuro",
+    "sha256": "89f007fa1559d03949d2bef977528f43f90a2b81472d4fecc2ae8da404ea7c2a"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-1915d2d6bcbf963cef14",
+    "mode": "kanjiNankuro",
+    "sha256": "60c366f62e53de917ea3ac03224ce7e836acfe1a5fb7c14566c72161d6a685eb"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-d51fd0989e130894cd54",
+    "mode": "kanjiNankuro",
+    "sha256": "ce00d069a4109bb407e1e45bf0e6056a9fdede438186ec7d579b0c130a1b6477"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-6c8df15c763d832e86bc",
+    "mode": "kanjiNankuro",
+    "sha256": "1c1f0450594bdbe167f66642fefa0cb46b4779f92ecf1249caece99ec8c84b70"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-805c90bccd18a3db6917",
+    "mode": "kanjiNankuro",
+    "sha256": "9c1736e1f6d2f5aecc06c543b77d562dcba5f18869a89bd3f20b51be213258db"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-1eb0235103b59379bead",
+    "mode": "kanjiNankuro",
+    "sha256": "c9b2ad2f1043b3d2be785639003c7c7ed022f101af96489d08ea9344bdbb8143"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-90fb663fb1ae95dbc2ec",
+    "mode": "kanjiNankuro",
+    "sha256": "5cccb38b69d2cda1930042a12cd6f1ed809bd7a29f9e7acc8250219a72289f26"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-ba998a2ec93f06a008de",
+    "mode": "kanjiNankuro",
+    "sha256": "32b83fe68f5b65bd8905f6cf16985aab245b331a04261a41761adf0997a2e84a"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-7085d4b2485f585b0427",
+    "mode": "kanjiNankuro",
+    "sha256": "cf350b233fa2dcef45a17e2715fe75c20b9c2b8d634f6439047b418acb6cbd41"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-091de59e51494c11763d",
+    "mode": "kanjiNankuro",
+    "sha256": "8b3ca9f6d81cf20e6414bc971ecc6ffa273bdfb4c61a4989d282a2605e647642"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-301f095326113eeaf4fc",
+    "mode": "kanjiNankuro",
+    "sha256": "61f9eac35e520e15d1dbb5c1ba1311a58645ca4c266fedd8e44e8580cc42fa35"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-e52190174854601ec9f0",
+    "mode": "kanjiNankuro",
+    "sha256": "47358cd14c32c49b60e078f4ca11691c2b291d3b289cc08fb26a9a368d880c72"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-2a9f6b1fbae94b2e4d8a",
+    "mode": "kanjiNankuro",
+    "sha256": "065d8be797e723a85c0c6892a0b15311d67ac1e1e4815ce81184a12bd12635e1"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-2b3e4bfed95dcbc28783",
+    "mode": "kanjiNankuro",
+    "sha256": "8a503bbda1d7a06b81babb48d6be20f11a884ae7fbbacb7ee46a0ca76fc519c5"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-95aa28d40050b5770506",
+    "mode": "kanjiNankuro",
+    "sha256": "79b68d99679b2f7e1e8965b82a604708fd0a4122fbcf13d85829b2d011ffad28"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-38671fad19f601ca594e",
+    "mode": "kanjiNankuro",
+    "sha256": "c6e2b5f5b1fa36bc4b4a9b714e1541a80fc9da559be48bd52f8ad7652f40af8f"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-70c8c7804ae28590043d",
+    "mode": "kanjiNankuro",
+    "sha256": "4a4815a8550e6e312efe29eb5707109847f005cf8cafb62c7e64c6bff03a3153"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-c349ba61b9e22c64fe11",
+    "mode": "kanjiNankuro",
+    "sha256": "346124ef3a7d35a906fe9c98cbcba2de273c6cecd1707f351058a13d106e37d3"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-28d3da42828bc6accab9",
+    "mode": "kanjiNankuro",
+    "sha256": "7be01683433a43bfd9da95a8a7690db0afcaa24be917f7612a7918351f0b83d5"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-b031f9297830e66a62d9",
+    "mode": "kanjiNankuro",
+    "sha256": "f79c97ee61e4db30f556f7323cdb5203bbbc377db6a18c75997f499a1d7b5a7d"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-1241fab154b3f1d79822",
+    "mode": "kanjiNankuro",
+    "sha256": "aec880cded9e50ea158b37eb04998cac13aee09dd97d18e26c8d2d32cf7fb2ae"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-3f6e34facf49000f9308",
+    "mode": "kanjiNankuro",
+    "sha256": "d7b7affffcfd065aa28340e53ada8b66f5cdde26154d7d4bf5c9da4cf3c0fd3b"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-c25396e2cf839f77a7d7",
+    "mode": "kanjiNankuro",
+    "sha256": "df84c2f2c0065574f027be38b4534734ac62968fe8781c26c510bed47c837e94"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-4e6d8daf982f0e0f132c",
+    "mode": "kanjiNankuro",
+    "sha256": "0ea76cc5ad1a7faa3fdc6b1a71ff875f9fdbd300388f305324da9085627a7bd5"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-4c9bd3983a9018376a89",
+    "mode": "kanjiNankuro",
+    "sha256": "8640b0422e6f89a33d21d5912a54f42788e3f255b433cc63f1f95f991974bc47"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-1d31c6d02bf264fd39d9",
+    "mode": "kanjiNankuro",
+    "sha256": "30faaac99e110a9c517633822a7a5d783fc3e9875d2ef072b9ee3202c1392359"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-04dd54936c6b761251f3",
+    "mode": "kanjiNankuro",
+    "sha256": "b78dc16e07905220c3113bd9dd45629043d5eb418f5f935d3de2d9202f456631"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-38d7bba4d6e0944d3207",
+    "mode": "kanjiNankuro",
+    "sha256": "5573b84b5a750015e2179e6b2568d823cc839a66a938d6d8827a969a37ea54b7"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-887104f6a027cd3a425b",
+    "mode": "kanjiNankuro",
+    "sha256": "826dd3ade3acb0d965ee4e7a3c4ef0937a573102615962d824811e860b9070ee"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-ecb4a1b860ea2f1426fc",
+    "mode": "kanjiNankuro",
+    "sha256": "d41c126eaf067d774fc00dd5f18786b49ec048e9523fc3411a1791f95efd6920"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-971137fd18870e212604",
+    "mode": "kanjiNankuro",
+    "sha256": "627e9894af3157fd96ca2e8f1443c03f4d37999d5860e2ce4abaf5ed511312e4"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-3dd1811cfb05c0c02f3d",
+    "mode": "kanjiNankuro",
+    "sha256": "cdac188ca61374e980cae0520ba100fe5f2dd3a0457bed50a3402fdc4a308993"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-3dccdb402f9de6ac83ab",
+    "mode": "kanjiNankuro",
+    "sha256": "75920ce3e362edd145a98f3deb51419a9d9074460b8c64295d55b7f8e360dd40"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-5d9b191c61662377b8d6",
+    "mode": "kanjiNankuro",
+    "sha256": "529068c2005075c2696f801d0cd98338447fbb9cc1927a1b8af5cd69fcf87fef"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-3faf566ee0fadd8cda1e",
+    "mode": "kanjiNankuro",
+    "sha256": "366bea1803c3591beb13136389ae0be6b257f0e164ec4fd9677f55e668b3eb08"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-019ae5c73dbde302a367",
+    "mode": "kanjiNankuro",
+    "sha256": "37597ecb5b3c07ce65f8c2edc5b13a282a2aace9259cbe8b33b2ad9da8f811b6"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-3d42232d73a9c410ea1c",
+    "mode": "kanjiNankuro",
+    "sha256": "00a069dc8f7ec7575f0b18eb27d6f53ca4a0984599797cc0f47dda5dc2904f25"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-b41c85ce5ce15951f5df",
+    "mode": "kanjiNankuro",
+    "sha256": "369e698631d637146e3f5c7d1686d413d686a72be7dbf3cddf3d4db606995222"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-1bf564ccc70afa504e47",
+    "mode": "kanjiNankuro",
+    "sha256": "8a38d463b8614417feef3ac96e44e64c314170ca41ed17b208918759c5246d11"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-945b6b9b9b5c2ccf96c9",
+    "mode": "kanjiNankuro",
+    "sha256": "a900a8abd0418b6d174e166d2f7332798f04a50d138aa194e5d7e318ceeaff8f"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-57eb8e95cb365f359caa",
+    "mode": "kanjiNankuro",
+    "sha256": "f2933fd3023c68fdcc2a3fb9a4174c17ac97dff7a2b554ca0c794dc4b45ce77f"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-c8782cf6c439b90c1b12",
+    "mode": "kanjiNankuro",
+    "sha256": "44c43ed8cb25aa90b91c269dace5ecdba5a2dc68ab8c42eedb6e6ec5bbc89573"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-653b9bdfc35d1476c434",
+    "mode": "kanjiNankuro",
+    "sha256": "06471db409a2a4ba781272edea634a642ccd6d401abf50ff9deee55768d9cc01"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-a5ec1b06153bcc7e2c88",
+    "mode": "kanjiNankuro",
+    "sha256": "2c9a49e29071cdb7d67039789d907e3183618259c81bed074ca414a7a009f496"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-daed96435d483eec18c2",
+    "mode": "kanjiNankuro",
+    "sha256": "2fc952c73cb98a5b6ede12bce1c489732ab39e6ff426a8f5e1f15599002aa905"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-5887181c1df9269d2a56",
+    "mode": "kanjiNankuro",
+    "sha256": "a51fe2ecb5729f673fb5146347cc152f7664744f0f6872792457cf96eb6b8477"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-2479ffb428c7d333b064",
+    "mode": "kanjiNankuro",
+    "sha256": "205fede73c8ab5fb9c685bb9f6b8e6578f4727596eccad97e2d59f8f8da86a9d"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-1652dbc132d2fe5944b7",
+    "mode": "kanjiNankuro",
+    "sha256": "1042a48e31b03616ec10c08a31691a4b121a42e4a296228f4bb93cc5a38cc2d9"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-98b2139b96c8f9b9738c",
+    "mode": "kanjiNankuro",
+    "sha256": "badf6be34e751ac083c76e91b878a6e0f7ba93e1b8ee788e9a3d413036587f1c"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-b7ff4f3553f4cc69648c",
+    "mode": "kanjiNankuro",
+    "sha256": "1f4eeab398a00c6f323a73100d3141cd0a13bbf9f23b1728c6d8924a9511c319"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-b2fa6e74ee5a9d8793fb",
+    "mode": "kanjiNankuro",
+    "sha256": "7931afa675f1c72fe5b424b404959f2e655e0efcb8210b0f41bae9b890edd315"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-079e084796e555082f73",
+    "mode": "kanjiNankuro",
+    "sha256": "fa1169b7583f419ea0141d74de8d205279604067cd519e19339ccafc133cedd6"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-fdf5d55697fe1642ac7a",
+    "mode": "kanjiNankuro",
+    "sha256": "4f457bc52e471c524ee32a0d667497fcad015c6479e7694ab257637c7afe5844"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-0983e9f286b856c261f2",
+    "mode": "kanjiNankuro",
+    "sha256": "9a45bba48ea084cd1ea8c501241aec2af3c7ffa3ba882c87a6e20dfb2eb2cb6f"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-15e62ad3db8df6da3e53",
+    "mode": "kanjiNankuro",
+    "sha256": "bcfded4b0c80a508528c2e848aa38d84a38772045f8e7c0af4b28f8362610f5c"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-879711616c393050353c",
+    "mode": "kanjiNankuro",
+    "sha256": "f381572b0028fb388aab39140d280a0e7a35d7e252f0485c36a2653fe7cc6806"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-d8bfa4dce5d760e174d1",
+    "mode": "kanjiNankuro",
+    "sha256": "a154eba8af064efbfb659c3d027e8139c9f1cea51ed401b48897e5d9752d3dc3"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-271884850f3ac90891f0",
+    "mode": "kanjiNankuro",
+    "sha256": "9cd9d50f584942e8d8d6438d4e5092477dcf30f24e827eb07f0a68da0e362701"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-e552236fa7c09b8d456c",
+    "mode": "kanjiNankuro",
+    "sha256": "e61f4d0d2ca0de8fd1c0c0be226fd59daf3e48b6717b04519ec7e7d78675dd17"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-19e6b07b8aa6d7aec143",
+    "mode": "kanjiNankuro",
+    "sha256": "8f710b14ffdb46d0b0bc0ef4df97f7e1e338382cf8149b65608b7bb4eb2c6e2e"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-88fd786759754c821988",
+    "mode": "kanjiNankuro",
+    "sha256": "428d9414a0ef1f24d792513d95191b50f075f33f3337535bbdc0e1c21f4c97e4"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-e85c709d5b7d0882dbc7",
+    "mode": "kanjiNankuro",
+    "sha256": "7e85141f48b741865781c2ea7c528ec90b326847da43fff94f128c36c4255c38"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-352667dc6f46720c24e5",
+    "mode": "kanjiNankuro",
+    "sha256": "d28f80a61428e4c20dd0104362f40fc293f50bbfa93dcf9d084a0de6df542c9b"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-017d511e6c3abb4541b2",
+    "mode": "kanjiNankuro",
+    "sha256": "ecc8c2e605a7a436035dbdc7fd3ffaf8005cbc4fae694d827cb23c553ad2e92a"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-77d94b7459b6623377e8",
+    "mode": "kanjiNankuro",
+    "sha256": "6505cb0d264c067b3eb6e9479a5d670966fc5bf3014a8242d6114b1c2ba4da2e"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-630fedbd8ffbdbe430d3",
+    "mode": "kanjiNankuro",
+    "sha256": "bc7abc32887509e5282fdf4a7a7f1619a83572446a5d70abe3277f0e9b79da0c"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-b666487a48930fd2e85f",
+    "mode": "kanjiNankuro",
+    "sha256": "415213741940b4e5f56d79626ebd2c69e758519afbaef7feb16009345c762610"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-7657f10658c5926fd102",
+    "mode": "kanjiNankuro",
+    "sha256": "b63993f447c78b05477f2340369b5a67da1e7aa04e09fddf625592e19a99179c"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-edf9da5a330a7b1d878c",
+    "mode": "kanjiNankuro",
+    "sha256": "bba17dcdc2fb94b2a7c1531988b8d10ebe883afd7e598c6f1aeccf8657edfd5c"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-3640004998b102ce5ad3",
+    "mode": "kanjiNankuro",
+    "sha256": "3db8d0f9ff72bec5d5fc513d039a35a4eb41a78efcd701a217b9cb04560b5fd8"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-05f1c8ba5186f38cacc6",
+    "mode": "kanjiNankuro",
+    "sha256": "c0f8c4f70c207be39e01fae32f67e5f4f197e4403bfe58764c78568cb4151a17"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-0c9d8df6040780872511",
+    "mode": "kanjiNankuro",
+    "sha256": "71e51ba13933c6cf4b00d189d6a2377e822ee2cb6e6c605d29ff01888926f203"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-500bffb040ea8e08d4d4",
+    "mode": "kanjiNankuro",
+    "sha256": "a016d4a997816c165784bf869256e7bc6a6ce1e9a623090c1111896778230df4"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-ed2d406681590cea99ef",
+    "mode": "kanjiNankuro",
+    "sha256": "1da7f81b91047ab252d0d3f82cee642224b46c100a736e3c36eaa645fc6dc4db"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-7c3cd46fe66e368ca006",
+    "mode": "kanjiNankuro",
+    "sha256": "bef7802b8fb47968622fcd6d5815e289a5799267d5b702dc291202bc13edadb6"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-bd59538a2a2318f54a9a",
+    "mode": "kanjiNankuro",
+    "sha256": "ec3f3a624f84367f51e208d37cb3ef7ff6fd79e1b0cb7b8b9147d6b12081c63a"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-c583a27a57c8a1b2749f",
+    "mode": "kanjiNankuro",
+    "sha256": "20753ab6195fe26830b70a9564ee45a0ae8868ebcd52aaeda174333b96569e22"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-b78ec8efe7394e5a6e1f",
+    "mode": "kanjiNankuro",
+    "sha256": "36725ee52f530707585176e5e6979d01af1a0df3050095c4f7a59f62d87752bb"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-2bcd27d393f8f2a2f94c",
+    "mode": "kanjiNankuro",
+    "sha256": "2f37849b6c109adbd68e269e5ef857905ab8c60d06945477199eabe640c40ff9"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-e8283ff05fe1380ba003",
+    "mode": "kanjiNankuro",
+    "sha256": "33916143206109b23544d025fca29b6988d731eab537ca2e338a7f676a429e1c"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-0d5a6b9f288b025b82f7",
+    "mode": "kanjiNankuro",
+    "sha256": "216e46eb22c278ff25ca3ac83230fba64c6bc0e96ac5b57003689d4c3b51b923"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-f6f6088a6a53b134e168",
+    "mode": "kanjiNankuro",
+    "sha256": "35470165a28512ef14aa330f6076763698d0065db2ec7e02fbc853567b074e91"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-9e81df727a335391665e",
+    "mode": "kanjiNankuro",
+    "sha256": "887115ef33aee3401c95b4808b1aa842c04604da06b43d8c2e9b8b62c32b881d"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-326185d8c24cadddd2a8",
+    "mode": "kanjiNankuro",
+    "sha256": "28c92873639ddc8942492d5db1a94bdb55eec671b3a480277d2bb5e67ef33084"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-04748d9d1034ead1c747",
+    "mode": "kanjiNankuro",
+    "sha256": "65edee59da244cce3810a254b88875f829c139676e471f11ccac7cb8ad7839a8"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-77ddffc49e3e0aa2a4dd",
+    "mode": "kanjiNankuro",
+    "sha256": "5420e267c3d95c0808971c45cf9470a84b43bbc6d6d11be2cb177d1248f0e4e5"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-9174f2989003bdadab5c",
+    "mode": "kanjiNankuro",
+    "sha256": "c1d544bd18754c91de7111677f82df90d32230b58b032d63d5c3b5448a14a67b"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-a658f5957afbe7bc2843",
+    "mode": "kanjiNankuro",
+    "sha256": "b0cff836a8d3bf09fcdc7d636c78601bdf9e62d7eefa7e76ed9c323ddb4750c4"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-3502619cc375d3c18d52",
+    "mode": "kanjiNankuro",
+    "sha256": "cc05c5d800edd8c8c49ceda5fc86ee9609994181dfe14953bf057b3fe9b50dfd"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-c1d0c2d5b82d209181e2",
+    "mode": "kanjiNankuro",
+    "sha256": "4c384c54b72140294a5003868a622deb6b0346b3c2fd9f34a3c825c257b30f52"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-b0d1e2e8d55eac11dba7",
+    "mode": "kanjiNankuro",
+    "sha256": "cc3e0e3efbfa64b50bf74352918af8dec9b5f040a3f735f85cd613f4c14c0bd7"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-28479f8d744ea3e90d57",
+    "mode": "kanjiNankuro",
+    "sha256": "a4fcf34efa97767e6cd500daca4eb554ad1f2ff24641457626c5d937a57f926b"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-e223cbaadf0d2a17684d",
+    "mode": "kanjiNankuro",
+    "sha256": "28c0c2148a737f72d5fdc76b30a6c24ad2d0d55580daec079d723eeeec0d6ac1"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-407de8e8e8b42561757a",
+    "mode": "kanjiNankuro",
+    "sha256": "94d7c5c9d5012b1ef10b914093f949b8e9051e209fbd8d2ce0edff0d992c3618"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-f72c68e3396463854578",
+    "mode": "kanjiNankuro",
+    "sha256": "bb5374dfd97c44c257e1122d28bee381ed237a1c4d0e52cd7a56475e9e2f7135"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-cf26977381a2f0505a08",
+    "mode": "kanjiNankuro",
+    "sha256": "471b238fd18e67f215c84ecc39544cba57e9d20217a50fd47059a01d0837af84"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-b9a8f5b57e69fc600877",
+    "mode": "kanjiNankuro",
+    "sha256": "d9edcf8b8e4aafbad6009d6042906ab6f1a3f0cfe1388444f67ad3cfd63f61d8"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-49bfa68a1c1d8feae185",
+    "mode": "kanjiNankuro",
+    "sha256": "b28ee151a3804d18d06b25ed3ccce6c3ca768bab88d0b11c99dea2bc27d40e5f"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-7e31409baca80ef2d164",
+    "mode": "kanjiNankuro",
+    "sha256": "7c595a355ae518aca70bd47132898c80ff3ced11c3b2188b15d948ff3429e823"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-619e711ddd5fc3851c4a",
+    "mode": "kanjiNankuro",
+    "sha256": "64471270d3fac04f063cdb7a70eab30cd530a2bafa217ffd20513d9dfb7ae9e0"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-7bb7eda93592a1a70b83",
+    "mode": "kanjiNankuro",
+    "sha256": "dd90e3ab4bfb4db5da07e37514e22b413e0a1f846d89112f6d7f6ebf8dc4f9e4"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-6223bb2e1eb485ceebda",
+    "mode": "kanjiNankuro",
+    "sha256": "c4d5d55fbcdc47f4424274ad49556e11b6368d7a3c84d86dba90a6fdc5c288c5"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-5853a92d62f03b8b8320",
+    "mode": "kanjiNankuro",
+    "sha256": "a1966cb82573e7d6ddbecf8a55c2e2f977491f269d4ea55d660e7551f3c19568"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-7e72001abda6cadb902f",
+    "mode": "kanjiNankuro",
+    "sha256": "8256d520560ba6e67fd5956a39dec28a2c1251229d4260dbf85a0aeed29940fe"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-beecfe72a663a96aa867",
+    "mode": "kanjiNankuro",
+    "sha256": "05e1c6d8439f40ef09d9fe66e48ff04fc60c8079a3c656e31b748b2b13fbb73c"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-a94564d17787bb988dcd",
+    "mode": "kanjiNankuro",
+    "sha256": "f011fcdae8aa8a486289f50f3ad580f3a61bc20efbb2be0b5b0f787064b528f2"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-d9e974d76e505f67d59c",
+    "mode": "kanjiNankuro",
+    "sha256": "4b9bf08a64054f95446c03cc6254aaeb4355e2a6b77c762ce30d4d22a8a44ec3"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-560931800e40ea523843",
+    "mode": "kanjiNankuro",
+    "sha256": "aa3d8c04910922d3ae9a34da51eff526c6b9e5bf6130727c49c6b0c01f62afb9"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-f9f85beb4c205af8a667",
+    "mode": "kanjiNankuro",
+    "sha256": "ca69eec878170114b5e5cbab4ceb720e56cd26d4175fe40577a18ac3fec0db64"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-664f5a5ec16ddb72c56c",
+    "mode": "kanjiNankuro",
+    "sha256": "29f4f3c834376f118d1ba8bb1234379020556b120d177910f6d9dd831d576e84"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-4776011ddaf1ed4cd86d",
+    "mode": "kanjiNankuro",
+    "sha256": "67ad703331e1f90b140471de8c14fba6c8c8c551e9adad6444bad79d19b30c7e"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-05906fcbd5d2a5871438",
+    "mode": "kanjiNankuro",
+    "sha256": "1c2b8e00ac65f69f545b3d9fea54816d4f0c0a7f073874769a81d02b6524a6f8"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-ec3e78528adf2574f79a",
+    "mode": "kanjiNankuro",
+    "sha256": "608b3d5c76858c0b72b37eddb8a94c404a36deca92d25ef0e36b0eae9aa6b5de"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-1c822f94950988efc1b1",
+    "mode": "kanjiNankuro",
+    "sha256": "95f44a65745b8ddd4066cf3a762ccebd78f3d045d76981ae2527f2c11c6f1326"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-292d2c1305c1ad97b8fe",
+    "mode": "kanjiNankuro",
+    "sha256": "87e2d64b91bf3482b3b7481de5f3bd94a11cd5ceb906b9de01c629cf4c1a38b8"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-6eb2ddc16f4703d847d0",
+    "mode": "kanjiNankuro",
+    "sha256": "6bc1bd8b97d124d5775eadefce2b52ff9514c23fcd5cc992a7d82204d1cf7aef"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-c1e5e793dc95e0a9fdef",
+    "mode": "kanjiNankuro",
+    "sha256": "29b96892d474e2e73a23e5022479fc0225b42e5369045c6889f6f88716a402a4"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-239a63e40d215dd108f5",
+    "mode": "kanjiNankuro",
+    "sha256": "1462b0d101a607c8e25a29f4235abf0c191a867073d0a17d56e438b861e912e9"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-a221d6081393e1aa1cb2",
+    "mode": "kanjiNankuro",
+    "sha256": "96b42a5bb10ea442584ded7b78e7521ded7571b641adabc7996d88d386d49864"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-b962c1cd975c0a4baf75",
+    "mode": "kanjiNankuro",
+    "sha256": "afaf930a3972f23dfffeda3ffc28ac64c3f224b48c514a3a1c8ed563f5dcdff8"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-3a948611d33cd1a6724c",
+    "mode": "kanjiNankuro",
+    "sha256": "ee5b219909c20ed68d90fac423353d82ac1c557119be40545b182151afd3d708"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-49acb8635c602924fadd",
+    "mode": "kanjiNankuro",
+    "sha256": "bba43e083afe555c3af17773c95240393be2a79656eea59e8be54b140d9a0e2d"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-b0bc9c5b3aeea630cba1",
+    "mode": "kanjiNankuro",
+    "sha256": "6159a7f4f152661dedc022db35b0f07c7482da04a7339a37689be7e27e2fb7f7"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-c8032834b0e914ab6cce",
+    "mode": "kanjiNankuro",
+    "sha256": "0075c919b20630f5cdc07de993f363d859d93422eb669c72b63dbf5ca11532d3"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-efd3afcf7d648a8f8165",
+    "mode": "kanjiNankuro",
+    "sha256": "e1ad8ea7d8279b75ad3e9abeeb50473667a73541c6dbd1220557fe50c581038c"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-29456da72cf622c2ba79",
+    "mode": "kanjiNankuro",
+    "sha256": "e7598c72c55f515a5b500b47c263d02bcfbd11bcad131d4f33b4042905990f2e"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-7d581133e674525cd4fd",
+    "mode": "kanjiNankuro",
+    "sha256": "b4d0c8f65170a57e3a8d9ccfb595f7680644ed920273f327ce3b7561ba27d5a3"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-f17a69953ec8d4e3377a",
+    "mode": "kanjiNankuro",
+    "sha256": "59086338e33ef3164f0c65c2039cf0357d0291301610472503b1933c9041fa23"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-ca71d1b895faf1f4d40a",
+    "mode": "kanjiNankuro",
+    "sha256": "2692292e3ec20047635d12e91f12f1369e32fda2af17ba3667e82d683cd9cb9c"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-da341e31cf7117a60dfb",
+    "mode": "kanjiNankuro",
+    "sha256": "103acf22e1201bb3f5ca2f29f588ad49954ac54ce128b9cff34f0c04394d74c0"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-c3835aa5e1d8a9d37856",
+    "mode": "kanjiNankuro",
+    "sha256": "dead4269a6c6a733c95fdc8d31e425b26c7126f1dd9b87587df825a24a0e8ea7"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-eb8755f341ebb7754b66",
+    "mode": "kanjiNankuro",
+    "sha256": "5f59556491d229a0233c18a173906400ff761e13d4055fd877534af14786ca20"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-9469458d6170ecd7fe4d",
+    "mode": "kanjiNankuro",
+    "sha256": "5b976645a57005df4cb566b56cb0fa263c42bbe89f04bafbe6a824e113334f51"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-4a08d53149e0b9c6a124",
+    "mode": "kanjiNankuro",
+    "sha256": "31ade7e7e1eacdca36f7b6ffdd1f47e756ac1d9f38eb5cd18ac2f3814296c4fa"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-0d30ed56c00292212ae6",
+    "mode": "kanjiNankuro",
+    "sha256": "0a1653b8cdc3ab11b0562eff61fbf9205791fe13d0af10d6cbaedbea5c80f5d1"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-09d948dc73ed1be055f3",
+    "mode": "kanjiNankuro",
+    "sha256": "a8287960c06222c540c19cdacec43885ebd4dae222a56d075c08e76633a59234"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-f999e9a2a47f4506d2bd",
+    "mode": "kanjiNankuro",
+    "sha256": "be1a7c14d6dd51b279320c95eb99c5b3f37ba7b3ba48b47aa5741765b35e4301"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-ed0d75353555cb6ead6d",
+    "mode": "kanjiNankuro",
+    "sha256": "7437e8d4e359de0fddfea7e589d9d3e151c27dbc705a01392a31b62793fef667"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-0b2c1724260ba113296f",
+    "mode": "kanjiNankuro",
+    "sha256": "feb7249998059c7fbf958b4f783cde775d981c13c92e2bf8cc9aa8a8b9c666c2"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-bed4a7722aa4e2f4b3b9",
+    "mode": "kanjiNankuro",
+    "sha256": "463b7dd170ca5f5723c992fb48eae666091ebf2a962afef2dd2a0c7f298e4bd4"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-e1315d8b0b3150139b92",
+    "mode": "kanjiNankuro",
+    "sha256": "42c174ca1f3b79181a6421c53a2520a53e6f1d609fd293507cd9eb2181970429"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-d50087ccf5c3863670f6",
+    "mode": "kanjiNankuro",
+    "sha256": "ceb9a583eff459511c93266d8fafc9e145e59a810cbd71fbfd66f4a2e54fe416"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-813a84a2c3437f17d333",
+    "mode": "kanjiNankuro",
+    "sha256": "6c0d15bac27836176e02511272be5272a0ea3056126ea78320256c75f3051cd1"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-01f6e37864cb0b9ac381",
+    "mode": "kanjiNankuro",
+    "sha256": "e794417233bbd8af480ddb472324d6d0696a6ad36f0c87f31df13be25d41a5de"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-0866aefc6aad96b694aa",
+    "mode": "kanjiNankuro",
+    "sha256": "6e423a299b922447598ad49ec2f20308cace7e432b4f34357820006da758858a"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-3b582ad2b07f62abe140",
+    "mode": "kanjiNankuro",
+    "sha256": "47364caaf805d6e5679d26417206416f0e499eee00674c45aa2c055c43483313"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-854ffbd6231027941738",
+    "mode": "kanjiNankuro",
+    "sha256": "a5eb3bbf67875fe176cdeeea244ffff193dff92d4bf8c74c99cdbb025f8b4ce5"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-28be464c164056217566",
+    "mode": "kanjiNankuro",
+    "sha256": "0403684f3f60ae0575ce21fc4600ef7d641b0b04f5ebe4a1552060facb8264dc"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-a8dc416c9b1564f694cd",
+    "mode": "kanjiNankuro",
+    "sha256": "a17ae3106ef4924222fb439f88482bcf2a349cb5c8eb87f99cc393a71c1f6256"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-7b87c2287bf8f78d45b8",
+    "mode": "kanjiNankuro",
+    "sha256": "4a93f32cec1c1decff80df8a78869f34a30219d925458354b4a97d11a0944ef1"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-59c0805880811875c59b",
+    "mode": "kanjiNankuro",
+    "sha256": "619c1b41ff35d16700e3bc074cfd6953ac5388a77b80e3142f48638b11ecd05b"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-94c48b959703bf041dba",
+    "mode": "kanjiNankuro",
+    "sha256": "38dd231e870f3843832fad2c98bb059b43a686cd9ecf4f1ad3fd544bdaacedd4"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-bd0f864d1f99da33334d",
+    "mode": "kanjiNankuro",
+    "sha256": "970b1753a239a33bf14efef75a88b816004bb69e593e3735f8f8da5461acbaf8"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-c304c0dae697e9aed6e0",
+    "mode": "kanjiNankuro",
+    "sha256": "7ab4874b316824b3f92231b85d0571815dc41372a8045e070c73afa7ceb1a494"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-2d1b700f63fcf18c905b",
+    "mode": "kanjiNankuro",
+    "sha256": "bd5b45c26a81e70b2621592217bb512e484ae0f3854a209480d6a82dd490bdea"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-a720fb069610b7c7198c",
+    "mode": "kanjiNankuro",
+    "sha256": "633e04941b0a8569c5f2be5e3f2cf0d397b29516066906202de5d65558aea8e4"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-e936a019fb3e74c520e2",
+    "mode": "kanjiNankuro",
+    "sha256": "6e2e3cf1810124846321a1a13007b88b0176c2c929c5bbf5397898b39e7abec2"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-5d83eb3797a18e45fc82",
+    "mode": "kanjiNankuro",
+    "sha256": "1fb291f196e597d27827cf4b7028e8bf4f50b4cc4ee1fe2ab263af8e356fc332"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-654a2912357198e60241",
+    "mode": "kanjiNankuro",
+    "sha256": "0d2fb5cece79328123b88da3d41a690c9840ea3e6f83c2fca139b3ef1d726f8b"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-d730d2763792101f3a2f",
+    "mode": "kanjiNankuro",
+    "sha256": "f62dc5c92dd821faa307b6c0bd8418e9736a0ecf277756f1cc075fdf75035a8f"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-60bfa1bf324fb5c6c0f7",
+    "mode": "kanjiNankuro",
+    "sha256": "779ef702b3ec64bca072e489fad75bc20dff93af26fc0a0185456ecfe8174e60"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-447d57e826876fb5398b",
+    "mode": "kanjiNankuro",
+    "sha256": "2162df632cc395bfc1ee9e6c6d6a1360c480a107bae455365be9c9b0942f0e1d"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-f029e371c2d360f71293",
+    "mode": "kanjiNankuro",
+    "sha256": "ac837f749d0a31278567dd2c88d8c3679ce3d912de3c141feb8dd53aac532c9a"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-bdee22d13fae6bc42954",
+    "mode": "kanjiNankuro",
+    "sha256": "586ecad550b8fdf4f6547dfed362b02f5999d30fdae6f5b9daa89717777953c6"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-9f815a39acc89b9f0924",
+    "mode": "kanjiNankuro",
+    "sha256": "0a60c439249d7fa55927b31a585a93373acf5027eaa594a5df5d64b7f18725a9"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-fcfaf59b91b05dc19431",
+    "mode": "kanjiNankuro",
+    "sha256": "6d5971ec97e5cd831f2342d9ce2c037cf95c5a7c5882c620b3b99048b533f58f"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-85848832f7ff8870b76f",
+    "mode": "kanjiNankuro",
+    "sha256": "3366b817137752b9f8eb0ae5c7151d617fe936b2e8f2e0b4dcb91a40a6c54da1"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-ba94b58a9e9265ef2f06",
+    "mode": "kanjiNankuro",
+    "sha256": "3cb65f432e3d65bed8bb83748b163ecdc23dbe196b26291e37e2544bdc9d9a53"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-181f8c1960fcd5d243e2",
+    "mode": "kanjiNankuro",
+    "sha256": "4e7cf77fc155daf2ac434a2a1192481c37a8432c554d5ce351de4dc94fbc0169"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-ef4bfe5a3167aaecf7eb",
+    "mode": "kanjiNankuro",
+    "sha256": "794fc5f1d1cba85e58d07dbb2a72e82b353b0206e42bfdc9a19f41a848722ef2"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-be43b36b53d3f691cba9",
+    "mode": "kanjiNankuro",
+    "sha256": "b49c70026e4ae3b2217f3bad8a3c72821bef82eba455a2fae0eb6fb6abc7c149"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-b980b9a9d4672468040a",
+    "mode": "kanjiNankuro",
+    "sha256": "bfc2015c28de1fd3c126f864e0261194fa346dfda1bd88a140c9da8726a8e0fe"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-edfcc32f94c3a1a44536",
+    "mode": "kanjiNankuro",
+    "sha256": "e5e1f65cef81517e75e0daa32dbd7b5e0e1ff4a4bedb5962edb635886cb1a22f"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-193c9f8f397dba046f09",
+    "mode": "kanjiNankuro",
+    "sha256": "4780fafbb86776076835a2d5f77e415aa8daafa05d2eaeeefa07815acd4f8c9c"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-e98f2ddc3faf62d898fe",
+    "mode": "kanjiNankuro",
+    "sha256": "fdb3a50d0346aba413159b739fc6d1f1d1bc5bad5b379107bca857d0ab69526b"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-f519d01ac6e8b5ce9882",
+    "mode": "kanjiNankuro",
+    "sha256": "3f6affd7a39e4717bb088dd9b6ccabd9b6a061cc72c0c922b9d68ac96d7b510b"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-0ae719f77d31a85ddc14",
+    "mode": "kanjiNankuro",
+    "sha256": "170b681e11fac79425edec97120c7c9e7eb1495665bb2120d49ccb2d56d85325"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-85623583dd8f362315a2",
+    "mode": "kanjiNankuro",
+    "sha256": "0399c75ee28dd47f8a06004ae18de7ce3081b6d111fdce04b6f69847e9ca0218"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-5e5fea346df2992cbe04",
+    "mode": "kanjiNankuro",
+    "sha256": "df3cc98b4d1208032bde75d777c8a66cc038ea8dc1a5a39131bac6390edefe99"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-838c37327966d79de1c4",
+    "mode": "kanjiNankuro",
+    "sha256": "77eaff349e6d771985d596f63d60e805c23251fb30235c696e1f1cb7ea078b92"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-56ae039919ed0134abe0",
+    "mode": "kanjiNankuro",
+    "sha256": "2011215aceab8c6c091df8689fea2ec21f0dfb32750e751896d93d19feb95438"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-94907cf6135a77dc2f02",
+    "mode": "kanjiNankuro",
+    "sha256": "18be6e0a3c13b895c784f2d291488940232aae9afbd36d8c859c476cdacfcd99"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-f3b41d5afa450bfe95e8",
+    "mode": "kanjiNankuro",
+    "sha256": "f5be75d62d98ff207c31d2527935dd387f187098df3e85475dde155f372b749d"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-de53842444d2e6bb9f58",
+    "mode": "kanjiNankuro",
+    "sha256": "826311a5ff1382f33e3a3610c879f8f67b405acb8fc717f38e863d505215c7e1"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-9323e1373fc6842e3ae9",
+    "mode": "kanjiNankuro",
+    "sha256": "f702ad3c215f0785e7aeede5bc8486fa5f9c72780e5c4e878af023855bc9dafb"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-71b22d20249f956c261a",
+    "mode": "kanjiNankuro",
+    "sha256": "339572c05db7e3b468e920aa2502d7d43879d6c631516f761d80000f25ad9a3f"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-34b48abbe224fab3195e",
+    "mode": "kanjiNankuro",
+    "sha256": "da025e1990689702341f8c85bdcd8a75dfb29dd928d53f3d868a4901ebc96b8d"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-956ea4d8751d6715f753",
+    "mode": "kanjiNankuro",
+    "sha256": "4ff0436aae7ccfc304814b44f125622858da0613be7b79949952e213e1241797"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-58cdf050a69386f9cadf",
+    "mode": "kanjiNankuro",
+    "sha256": "36923ca4959e6a9562080bc9db768c31c24e5e8754c4a2d2f4d718706cc03b49"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-c3448292df57b759f47e",
+    "mode": "kanjiNankuro",
+    "sha256": "94cd5bd4ec251696da3473cce03c9cccfdd52996ec51a7f3f2ea3562ab3acef8"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-fc6aae5d01ba0aa31394",
+    "mode": "kanjiNankuro",
+    "sha256": "4d9ff79ed48d3cd526806cec1183738b61d025cc65436a91951721eb368fe3a8"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-177e35737b56ebb783a4",
+    "mode": "kanjiNankuro",
+    "sha256": "d14b5ae7af999a7acb2de18c70641e7c6bdaafd6537a891391509ba60bb190e8"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-1c3f415fa0764427b532",
+    "mode": "kanjiNankuro",
+    "sha256": "3d4fe7f0e9afafbb595ae8636baa663c93bdbfef3e63eac5968a5db5f301e8ee"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-d95312ef5d8c763e8744",
+    "mode": "kanjiNankuro",
+    "sha256": "f461384a2be81a6d504eec384b3e62a4644c211c22d07268f12b330e19d88d6d"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-72ab8a4882f675b453f6",
+    "mode": "kanjiNankuro",
+    "sha256": "01e245874a5ab727650caad8328ca78cd46bb94a1b97f31a15ce20d60f0c5bfd"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-0ae3d1aaf9bb282bd28c",
+    "mode": "kanjiNankuro",
+    "sha256": "91b7025b8825275427acb1d48283b02a7bf499bcc689025b52b721ec66e50bf1"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-4bd145db5044b535fc4a",
+    "mode": "kanjiNankuro",
+    "sha256": "3843831c0a0cea2f1c9981dee7efe51eeac01b844f23328bef43a50f3349d04b"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-9fa4e0e8bb34726751f2",
+    "mode": "kanjiNankuro",
+    "sha256": "52ab33cd71f9bc68c41254ee584a47c8fc4a09e97b31fbff5dacfecece723efd"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-e9b1e2dfa243afb89d66",
+    "mode": "kanjiNankuro",
+    "sha256": "8f4534bddb020eb36c3170d9599e0525fc31e42f06621ed15b4b3c1c24b28c73"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-6b28aecacd78cfbe5b03",
+    "mode": "kanjiNankuro",
+    "sha256": "34e81f332251b9eaeeda1105372d997bb68900d65d22e25dea39dd6193c259e3"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-b77ed7dac80daf10e7ef",
+    "mode": "kanjiNankuro",
+    "sha256": "e3014dcf842f1b5a349bdbbccd110f25b5a41c6eb08faa656e987cfae0b4ab46"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-8a795e0a52faddc152f7",
+    "mode": "kanjiNankuro",
+    "sha256": "d827969a8b8bcba70e117b1364ac3100838529af36d0ca30e1030053aca3314d"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-3337535b77e7d768def8",
+    "mode": "kanjiNankuro",
+    "sha256": "fd49f5e7cef2f413f374894dfc76426526c7f8c8b16a0f170ad1cc884c8e15d4"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-c0a7e0d708296e2d49b8",
+    "mode": "kanjiNankuro",
+    "sha256": "6df94cf0197b8baeb47e6cce3221ec1546724f2f708bab52359965201d7f05ad"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-65380021ea911ee98773",
+    "mode": "kanjiNankuro",
+    "sha256": "a22d2916b8a2807107a45ce1ffc7f0656f1fd13909d6863e3867ec54d7452d7f"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-08dbc9958571f6e765d2",
+    "mode": "kanjiNankuro",
+    "sha256": "55493e17e817b1ecb53b594803306bcd71fef72a4a547b231a0092e719b6f121"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-118947b354c5b67fd75a",
+    "mode": "kanjiNankuro",
+    "sha256": "30a33b9400da20de5c67f271b5fc77abcf6545ad6ac4f211ab2ca1d75dd48aa7"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-3c5afc9ec287caaebf42",
+    "mode": "kanjiNankuro",
+    "sha256": "18dc3d54d78baa85e14715e6d06bfd6f907a6e39f3a6db6171a4645b3ff1ac6b"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-9ee1113722e0e058b1ef",
+    "mode": "kanjiNankuro",
+    "sha256": "6e55ab1baf7d4431108bcbb397da799cc7e264c4bd518047d1cbd4e24c4db643"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-bb5b2719c208c2096c73",
+    "mode": "kanjiNankuro",
+    "sha256": "a240fc2b4c514700e4fd3bdf15352c35e0df9dadbd33873d343f8da41e2b03ac"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-250a6e08acc8eb2be30b",
+    "mode": "kanjiNankuro",
+    "sha256": "b84b62cb0a691b297f42c7edfb444ba3a678d0821c91a7b8c545729a9a94b4bb"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-8396c6213831e4c06cb2",
+    "mode": "kanjiNankuro",
+    "sha256": "1510210edfd19acc13fceee3e52e301e2650eb415ce9e908f831866a1c57f1f7"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-d243728b3af4f050a6cc",
+    "mode": "kanjiNankuro",
+    "sha256": "835e2d439bd01903147e5ed1dee79a2ff265400e030644cde907ebc5077b9d01"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-8b67af1af1d745edaad5",
+    "mode": "kanjiNankuro",
+    "sha256": "edbd4c3c337433b362d279110099ba5619d5d57b86972665b42befe9b4303ec4"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-54fe4bd0fb7d5c5f84d1",
+    "mode": "kanjiNankuro",
+    "sha256": "81f7914f37a59a87d6e73abf8b64949f2d2abf80c5b698ece153a9fc6ea4f232"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-ff9c500cb9d7ce599425",
+    "mode": "kanjiNankuro",
+    "sha256": "7984ebc8de220b0a30a8b7049745802b495b4b247cbc4d8cdc76850525b59f9d"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-6333bfb7642810dc0249",
+    "mode": "kanjiNankuro",
+    "sha256": "9b8da6afc7b9535d4655147e36cc270c65c639e4f029cad612514214653620a9"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-81dbdb7e0f43672a75fa",
+    "mode": "kanjiNankuro",
+    "sha256": "202f18534ea8c4da537f3c506a4bc11462e56bc5fe980e3b02aee4c2b13f34d4"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-23f4342bf09c928065e1",
+    "mode": "kanjiNankuro",
+    "sha256": "4f30f7d69f529067f9ec232fc7707929a638fd83f43e58fa428bc140c5851b5c"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-f79b85e9ecf617a6d8ec",
+    "mode": "kanjiNankuro",
+    "sha256": "a7e2af2fc1cbb99b3b73ac67aee608083bdac0b36061925c8d8513aadbd6c27a"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-016cd27600673e1cab95",
+    "mode": "kanjiNankuro",
+    "sha256": "59e5ee0a451d25dbf6d4f19e08057b18ef6707a8972a9d1a41027843f4f1d571"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-afb3ed11f031a2285dd9",
+    "mode": "kanjiNankuro",
+    "sha256": "f105257aa1ff5c71adb4f63115e2eb1675302fca2007a28822caa929500d8f3b"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-6a9dff7c08a6335052dd",
+    "mode": "kanjiNankuro",
+    "sha256": "5546749857eb0a0200cd93c2d64ccbbe33df29e5687d4db4f509e9d29d26d9f5"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-2b3976e16d3890585b3f",
+    "mode": "kanjiNankuro",
+    "sha256": "2f5bffb7b4499e17de798683a6c956cc7054f52c063b2b40d3181dc6e5acadf4"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-c7c9055e69e1a9245334",
+    "mode": "kanjiNankuro",
+    "sha256": "186bf737cea96c8ccd2c2f6750be2f4e7a57556d343653436fc8e5a11ab4cf83"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-9e8ae158e07559c2dc8e",
+    "mode": "kanjiNankuro",
+    "sha256": "e60a6d14b3ca2a973e73ee104b0b5632a08f48403fcda5df48242d2515455e9b"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-799a161c5bb5e2ac2f88",
+    "mode": "kanjiNankuro",
+    "sha256": "d53ec8aa02589efad751017ad30af33a39d3925932315626d5ff2164ac877391"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-6b31dd9b6e42179b6c56",
+    "mode": "kanjiNankuro",
+    "sha256": "b18a7481f3cdfdb6adcf115a683fb3626abe5ec0363d2856bb773d5f4990166a"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-af1c5e6d9a6831b78429",
+    "mode": "kanjiNankuro",
+    "sha256": "4b2ad3c004c62220341666df33ffe480722b2920bee58d7315fe627940a2330d"
+  },
+  {
+    "schemaVersion": 2,
+    "id": "nankuro-v2-6da8071e5db8a730d0c4",
+    "mode": "kanjiNankuro",
+    "sha256": "f059988cf6aaa5eafbeaaa7f3e8cef0842f52d3261d9717f78e9cc7bec6b366b"
+  },
+  {
+    "schemaVersion": 2,
     "id": "nankuro-v2-342dbebc2b61e1f16afd",
     "mode": "kanjiNankuroLarge",
     "sha256": "e4320b11922104a7d8fb77020d0e78fc34230025d2d28e2d0b9e9eccfb64ea4a"
@@ -355,1808 +1795,368 @@
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-46a62f569bd6889b9670",
-    "mode": "kanjiNankuro",
-    "sha256": "13cb20d99cd72a978633e5bb9231318334551da2a93045ee95687e1f6723b3c5"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-89d473cf22eca82fc08e",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "9ac82588e710a62bf0d554e2717ca480dfed1f54dcd98fe760ea5bf69388494d"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-3f76c76127561c8be20c",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "79255431f95606602d5e0a9029a89f87265b96e9d1eb44b44df7aa54e9d0aa93"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-856abdbdde435786e0c0",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "61c6d5040b943a46226c18fe6f02be091acc2e5ae11dde6eba2ab26a9e06b15f"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-bbdee338aa33133e17d8",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "af119ecc69e655e95f7d10b2436279bad169fc99cc5a7fdbb223068ac5f5c05e"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-c90b3f3f7df398c50539",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "a06ad5fb484ca59ad3554ae7b0516e416c29ed2696c6abfa5a136c67beb56a36"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-f40bc2ef4f7383f06e15",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "5e30a1792aa9b88a5f12a6ce3481e4521deb015b3752919afa913dd35ed298f3"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-e740545fca15c481d287",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "fcc56cb9552f2d15c1c73944c085e9caec37e9bdff082414007773ec2bf72e2e"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-f4b9f3e1282a4f1cab96",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "9b48f2da5bda91d89db11ecfaa78ec38c4e614fb71ec7507b1f9481612968d29"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-cd309caf3af2beaf1d5f",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "e1c4df81c4811d870e47aed3be85b7bd39ce66ee88f7f30f073ca2d97e8a7c10"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-20243e48addb45f4451d",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "fb79b126f5b1dcf0f12ba6a7e560d55a905314c1f14986c126cf7917f051bb17"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-009c04c65ac7c1b67eb9",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "06bd8ef676e0750af3a1ce60076dc21c8202c10f7410a845e41f33880f96dad8"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-12f44304908e9c56e285",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "68d9b4b904562b4761749253b3285d3b795707c48fe47236bbf1c4ba4cce739d"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-c832082badca1a44a063",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "010f26e544a7fbb771fe195873f1c4edd8e8a074b65b891ecae2f8c7da9f416d"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-bc28a7f2e7ba91c1100b",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "4fdf77caafb1fbca632f8d2e7c15f56c91e1f9f2565822b3e4511a29675ee075"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-8676aea50b9a784c078a",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "9347fc0f0a4dfa184b15e4253180423d8a27f66f38cb084a0adb41daf37d3139"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-5296a4974bf23bff721a",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "b18ce88c3134dc22ff7d6a506a00b84d2e11207527d3877c5e4b81c07c2e4dcd"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-04572c0690cd8eacff3f",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "a868947fbbe7fb80b8c2ed6aa662d7cd64c5779180da742c86e9a7448a1dbb52"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-5e6b754d3f0f38078221",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "bfbc24d5dfaa5d2e4dc0fa95ee3fa75814513b5dcf062835aa68a71246808f89"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-87b03696d8d83af5f3f9",
-    "mode": "kanjiNankuro",
-    "sha256": "dcedbdaafbd46dd9a8d588849b63be8c3d5322b89d26be63c891f57bb6d3ece1"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-245297167bf9fca9f416",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "fba9dabf63be41b470c1cad2796e622a95b6923c75ce6e78b03a6dc2d46f9fe2"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-24e79939d06ffc9c6570",
-    "mode": "kanjiNankuro",
-    "sha256": "2071eefb5ae678666324a60392576070c9e1c9d805d0bc42f81301013e4ebae2"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-b6104b359e1d6b091a99",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "9d84b543b3646ae12fad0db73dfe269feff5b77f73d4364e4e1c800b6ce39c27"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-c8044700b71692ffd637",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "9bbe8f9aad16493a9c3a3692c6b782c2d019972e284562cd8467f2494bc8ceb1"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-dfed1451e143261ae6fc",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "2233a7e01bf0926ef7f0c902ecb09f9ccd059889bfd44bffaa57678b90c55cab"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-06eb080422b816a7fba5",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "15d324124425ec9b1d2e412b5b4423d5dbfd23410003f3cf12cec8c7df0ef859"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-2398ef752356d5d5d817",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "bb138dc59920b59ec084a65adf0453d34a40bea75aea41896c070706c51ee0f8"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-e8f5bd4236a74be950d6",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "f040cc399ba01735f9372957c18e3113c1db832fd909e441223c268033dd106d"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-4dcb6055ee66080f1c1c",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "1d4d97c6c8deda2adf551ce3b04ae774fefc6dc885fd181a160a6852397ce37c"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-1cb29134d0eb6f53bda3",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "083c7731d6f83d912eca954dbe1456456aa726481f45f7b16d4e73f30c064344"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-2490f788567ab3c7886b",
-    "mode": "kanjiNankuro",
-    "sha256": "9b2e4cea596d20473f2e14bd5ea1edba3ca7ff66295202c3172f8a369cf2cd22"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-daa0679157c1127a5c48",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "17bdda03471e7652f3601217566e1a840c46a6fcfca346b3d5027b308ff8286c"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-6dc05b220e20e29bb72e",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "788957b7af831922a03787fcda9d1c3444f08f4bde2433c8743de0b0709908dc"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-70bce722ec3c53b1a0a2",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "573b12dc6850b191779255c6232fc887624c69ffe985074d0be9dc6de14a76ad"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-0dfc08198fe10b774bc9",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "fc31094e58d14c4fecc828699e00284088338fff29032a3ee913be9ab55d886d"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-5e4439e44c81115e6e7f",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "48821c0ddf89cd9d2c67c0fc283b95b3ff8f619c9e224232a0a1ac394ad9e434"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-646b2a17f524299b06cc",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "8d8c66d5895871c1381b119aa8db6c2704ffb919f7aa990f65fc4998a49ac2f6"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-8a94d0dcb9f52850be03",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "ae012132a0627a9b0c5da7ac293caa5f7c2d7f7a5017166d47dca40723553ef5"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-27d1bd3c1a23a2a43a98",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "55ba5d1968058ffedf0116f7a67c03f5fd3ed2c2c67c936f676d44ee1c57d1aa"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-74dca294674d1f9165da",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "4aa879eb207db03cf2b8b7a5e6b9ca50fa6010dfd9e8075e5ad2ec2a631b404c"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-46a66b94db351f47d5d1",
-    "mode": "kanjiNankuro",
-    "sha256": "63faa8d9340d14b0a0f7ddd65493d07875ef94a9d40fbdd2eeb1a81d7fd3a295"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-c94f485dc851cf06a859",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "783db37280c79a97bb6b58f05b12fd034ae44b2e31805d58db9ec2634d7eaac7"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-ca3a5ebaabf96d3b34e0",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "47a21dda0aba58bdc946c667e5f9e2a74907db2eef6d1d9b21f90dcf950c1c03"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-303ecb51a29b2a4f1e71",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "c30efac31c2541a20dc3603c41509e02d79be77aa63505730d5f03f9c5f5b64c"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-eeca53ce47a699e5bcbf",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "13f8b1ea063fc06aa63dbc79b0cfccc4418a06fdcc87efc5674ae7c4186a535c"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-8074868589fc145c0384",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "f953604f069ff29c552a1cc496435df2dbbbe4e68c793bff98baa41f88e64a88"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-13272ae1c513c03d93e2",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "7c2f05765dae1c5d7f31cd5e3da70faaf0631a2c9fdde9f3368eec7f01986b75"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-98ad38137797daf342de",
-    "mode": "kanjiNankuro",
-    "sha256": "0878616b595dabbc186eb0d4d17fd8f6953c147350343245184bbb94893783bc"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-cda7718028443d460f52",
-    "mode": "kanjiNankuro",
-    "sha256": "071e77f0543402152a4b1c63d0eb0de9d4d5e351d3083a632dc3779bd9a761db"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-741c9da017a3ec6db8d2",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "18020648584e11a2e228413655a4beaff472c830f81d025d5bfccc8917c3ce0d"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-7f41836d59247987d0c1",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "3b583d87b1dc0b3a975d06fa430b83653ceffeec5efacddff8dae2fe81e0c195"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-43eb43752aeb02709960",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "73aa569c355aa828a65f16c786515738fc25340f5ae28abd0d7ef846b53ae456"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-046fbf6777f0acfdcaff",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "1f58f4f0ddfe5170a25d5c240bd604a8cc40a55ffea84534575d9033ef027957"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-c18b836edeaa3e2a5508",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "bb0c68195298d93789806131515756c46fa83c75edb99282ac39e2eb4a7ed75b"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-6a03ac8fe20a2f69ec39",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "c6aed0cbe1e5cc14429020373f3c9c2e039e0623626b282490cd489fe8b050ba"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-52fbcccbfdc5a77b629d",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "8aec3ab418d9815bb5eb4032c3a555c162a79dac1de7391586ff7a79a05702df"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-ca289f96445637933d98",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "bc17c1f62a84b84dfe21855861b606d4086e32f672db0cafa8689fc29bd23644"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-bfb416e356699f35319e",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "ed02f1d05b9f3ad369faafeaa0c034ca90b0430f4913d7e5745f3c8066e950e5"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-8e5254f130bbdcb509e9",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "6731f81d3e98045ec54b5e01c7ea46566f70cf4afcccda63ec6b61815a9c295e"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-f882beaf9c287040108a",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "9f3113eed1523f7e01bec41fa00cf346f4943fde8baa80a18401d5a466847940"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-1cf708497a9a41cd089d",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "07a235b53ce3d6d8048b2b43ee0eeabcdcfd100ca2b36000e4dfd7ee0d2a1b3b"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-8ed18bb9e2c22b3c4fec",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "801101c5ebe801516d4f12636946ae4ae40c51493ea5f8a52501ea3b2ff8e1ec"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-1b1489cc995d270bc010",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "2347e352755d54366679ded7246cc7a0e4ea757d230c934a4a0a566139ca094e"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-a52c88e108be391a1015",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "153034cce73a0bcaf9d4848bfaf98ce4a88eaaa5d29b8212828cce3c46b403ee"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-50c7aef29ca7d1d12cd0",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "9d6400a1e0499f3494cd2334b496769d1f8615a827e0f664bf04719151b88e6c"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-a910a3031ff8f85828c4",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "d7d22ea64e34f1ebf98a6cbdd529ad47b0b159acd14136f9239aee523c28c7cb"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-bacc53f654c94a901e2d",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "0a3a84fbf96170d4baf74ae093dcecc8bf6b16f72e45d076aaa6bb0b13224a92"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-8fa2f3953f441c3ab626",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "30ba22d61843d22852a3eca052724c5b63915dd8dfeb1d6eb9d31bf8041cd290"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-146e78b6ddb3ee21e4b5",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "27179d3bc4f987608cb75c24cf5ea19370d7101be9914a85ea2ffd9ab9520036"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-c1788c64f25f122942c2",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "8b386fba2828ad8f9d28da22dc10ddfec67f3874c82173383ceb288b02a37b4d"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-719ee16c485a9a1dfd9c",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "a61f67a44ffd54eeefc1fbe2190bc44f4c4a65dd6f05fcd69e2ab5da3a3d0782"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-c6ea07b70416e319c86a",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "6722f8e09e9ce620e3673b818fe5952e76d35df382d452f07407e0dadcebfe3c"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-4f111d1fbbb41499717f",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "6fcc4dffb5ac0f90fef744bb4b1e694d56a71d167b4ff6bbd57670b4e03dcfe2"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-6ccaf7c543f190f6c7e8",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "ad7ac0972a7e161860472fbb4fdd5db547c01b2e02c00aab61a33e79849bb487"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-74f2fc0d9c45913f6ebc",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "9d3b3864fb4645ddc5236a8c1c062f3cfce1a3eea88201637fe1771a77d60945"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-6a80d2bdb7bd5d30bca5",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "b1882baac400b760c494c1d9f797cd9aea3e5e6a2297a3112f42cc465cb7fff3"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-0a582b946a669eaf2e29",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "babf337d1135ec525f74d1d5167837136832994cda447ed506203aa9172f69ff"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-25fc8d53065c6a181792",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "6b8be369f81cd757b146f6aa3b71850dd69a53f3e241251c1da14e0d18080a08"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-17a90f9f2a4545549cd8",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "7928b4ba197f61ea4e025f7d5672969b8b8692e19002248a68afbd9bc8ffa928"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-8672b40af170ea76e0e3",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "7f5416505433a7090592bbaf88af35f5f6eca16aff1cac7a940ec70741302b86"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-0bc92a3dc58306839b01",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "6ba88f58f01ba5c355e4954f76a750f45eac9d208c6df232ce207076c1e60186"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-15595ea5289e4be77056",
-    "mode": "kanjiNankuro",
-    "sha256": "1a84fb17d7c03a733ad1d835c2e4d95f4a15cbbfd1d3b1dedcc4b591332901f0"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-f1b652bc4977f02a1944",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "27a3ad6b64a2540c4aaea199d4c6412558c82d4edb1a043d1ee9571b28849e94"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-0603e70baf64642c98ae",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "7b03a4ded746c7309935a9ea06289700e892ff912c9c1a5e66403003373ae54d"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-38a68e3828de0d087f49",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "0d44501b007b387838770e73920f9222cc8ab9913a32c7a31c4cb89e8314cece"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-3f73db43486830fa9f14",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "e729d32f4948c2ada02abf0fa10fb514a2bde51e7506723522ff7e159346e87b"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-d599e61f395baec62e4e",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "a543e30c9e21164c111f5c0f6b7fcc0b5464846d07056a4b5b1474927086675c"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-937ec6212d2c9675b602",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "2dc3d33a588d3d275779a0e4b86586628fbfd7e8f675193f1cfd0bcc6159cb33"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-e6c84c2703e474353373",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "6a1c4d7e41de80e8b21905d78d9667b3e8696147f24b2192f236fb4e62d6834e"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-a877072eca49222ff845",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "b712f783426e3491bc2278147baf2f225d5f87c32b4aee54ae0b11260e8895bb"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-5659fde282370ae0541f",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "4c685c5311f2a4f22eab82fcd9de0b74e25a1d3f3eff2c135d06030a96c3266c"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-380f900e2d5fb5e0a0cb",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "ce703466677890d1372c7098d2dfd4b64e46d92fb95458f0839cbd0d9c551c3c"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-7b5ba12817c80d7e603a",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "b8593bf893f432bdcccbafdf0102bee43b26089c478a32a3e1cfeaf87997dc74"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-209bf014475d1d36fd80",
-    "mode": "kanjiNankuro",
-    "sha256": "ebdaf4a27bd3ac4a6049456bb46b351fd8eadb9d60617e318d699cad80161bc9"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-ac72a549de00f9722c6e",
-    "mode": "kanjiNankuro",
-    "sha256": "32738b58789a87644ff01f0b0c19705ad8436443cc79e604b7b92558723ef321"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-853e1b1a45e6d7f5aa68",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "0306b7daba6acafc2d739787244eb4073443458d48f6d810d48e3224d54ec56a"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-6eef6ade343d71e540bc",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "705fd205c45b580a00e8138032ef871c3c77cc456048915f71fb9aa0f54448e4"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-76d852ca723201ac9a96",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "7843a59ed12a7efb8a6b19be0ce9b9c28882394684595331c970d0ce31376e7f"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-148111b58d1fdd076596",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "8a6b1dd200669c4bafa43a346258c954ef2c48b687aa624f60bcca47c208435e"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-0d31885d275ec0e60b90",
-    "mode": "kanjiNankuro",
-    "sha256": "3eedd0e374b168c7301476a4eef338c5b18ce472f63400c55962f6ca47870e2c"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-c679eb0d12c7562dee82",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "1d5b727016703da270ce5ce4a6f8c75bcb0471753c3b2aaf0e695a2f21da4dd6"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-a0c6394efbe88de358a4",
-    "mode": "kanjiNankuro",
-    "sha256": "ae353dc2fd98f0cf681f51d31a42b7148ed8984352c0a281380e80fab71545bf"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-b6ef534db7e4535447f5",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "9e7a56d6a5ea0672153ac75deb5848a6d5e65398ecb7f360e756e1313175be11"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-d0410ded8ed57ad07bfa",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "c96c1cc86d34bb451b22dfb4c0eebd7b83f50b7591540235acacc1bf9f625d09"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-ecdc69ec2c4af5d3be48",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "3e234faaed5e5b7a512e5bc7ef53f516b9e0e88564863a052d57c4ef05174520"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-1e0bd957838a0410c7bb",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "aed33dc00cc4bcda6e35bbe217f569a97a3305efc4dd792e970b64721a780c96"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-e9a2983a8058c2abacd5",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "a4242744da07e33a65223c5d5a4f2a247f979ad8e54e4045f37bb2bd2b6e4317"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-5c33d02bea965d15227f",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "8106473657ea0029a39d3d90b78f1092b2e94c0b59e58957a729588850fa5fdd"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-89fc2310d7365da64ca4",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "f6bddc8bcad4d357e12ad2cff1bfaf1f90b2c528bf2d70e30bfbf4acd0829066"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-3f3f46b7ff6e4bb7abd9",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "fffd89a5fd576ad2d53eabb3954a869420d4ced5cbbadc84f1f397cea1f1715d"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-dea5120f693698014e31",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "180a5502a218c349e8122277ad3125d1dc4c5a8c143acf00ec1330b61ea4f75d"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-a22ec2b3e3deab07c77a",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "547e0c39e90f27db03aadc897b32dbff65b8b8e594e31f94d3246173a69865c6"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-9b0470be3e73124ca089",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "b6cc498f8ff9b23d756baae8d1f0c7c0606a14c58aabccd11134bfbc8495934f"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-93833f71df315231893a",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "6b31ab8c7259624a5a8d0dee7a99597b9ef5634a90b4cea33d8090f8fbe997b8"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-49f95c3bec5a84839c69",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "fbdcdd6f179ef935e497355c99f39b24e3467a45eb3048e3f31c751f22901856"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-913ca077f6cd53f165e1",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "2af46562268b83b7de15de0c2601b0f870f27dd643db1600764bf6d522f202a9"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-4bd965d16bdd520adc86",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "4c6ddaf88e72014d57de71117561127bbda5b5ef5dfdf90707a765216b848a34"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-51320d2eeea8d80b57af",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "4165956da9d0514c1244ff5507d5d8b30989a8b13f7c65104792cb2de076d9e7"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-681a83e5852f391bc5e2",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "fec4da4b708dac7f5f7fd4dbe80cc64d57f5a93b1fadadb2cc510065ef9e9059"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-cee4dbcbceebbbdd4023",
-    "mode": "kanjiNankuro",
-    "sha256": "e0a517adb5e6deade3ff9df12e0f7f63ced3dc4d5b28695b650b93e68ab510bc"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-6f89a0ec3b116117271e",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "72de0512355f5a00682a8f590834ac2479e2b8674b7b6852a315e250404374f1"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-6091fc6c1c8a4ffec0ce",
-    "mode": "kanjiNankuro",
-    "sha256": "c1fa7147c0cd23d117b1227da5cf2e0384aa369e565b4034fca2e2eed9190b2b"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-9676f9d8d4ada5cd6d5a",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "f19708edf35af37e24ad18843f88703197736917e488cffc6d61371f7a59df7f"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-ed0b9200e46be19883cb",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "cba4f2573a70b785f94cd2505e40b86b12dfc884f7f42f0563e3d00c148b94c3"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-bd67e44d6629f670616d",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "649d76e5296789b95f8946f96e3083b3810832f2f16a9ec468d61c5e995d3bd4"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-2d20bab7fa3bed0ca8fb",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "92db793065f569d85848ff17c38dbc1eeaafccfed96aaebfff77e56d99027be8"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-f23ddc132bb4d043b71d",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "e1a3b7a43cf70aae5cb1122b91d5f7cb8c2120879dfe5068dc7294f3b75ec55e"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-d1c1286359dfe552a93b",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "a1fb2060adab3015ec7c88684fac705db39e6d22184ba82b8b89614e701e8d90"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-c9f2f8c108cbcef04fc4",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "477999798ae0937342c90596ba6b9f7c27f7fc416504569f0a691bd6182819cf"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-b029c0c84783c84bcbb0",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "ccdf8407efecc6115df613b3744c92d2ebee4e7c47a40eef6c5420f04e888ae5"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-5e05ce917473c0363da0",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "a8818eab1a567f00114825485bec0f37ae0cbd7bd696b0d026d818a8647e1e5f"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-35e304e5747ad27f1188",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "9de8e6bdab8bd26808966d8930d902693c00d5328deb8221d620dcd72c2011e5"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-ef2b28cc1145ffc0aea1",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "868d369acbf6c32957578d0d4ba1675c9aa0a48c38e05caa3f73ef4d90d00be9"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-ad9f8234dc93e78fe026",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "d2557b4071e65cff57814e26e6b6a916528499f03fbe4d209584ac8fa4f00c7a"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-0109c0428584e53e4621",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "a32311ae0ff45079bda7338dc779eeaff2f9cdd05c76009f5ac7dbcb0b6e1912"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-a9f814403466ac19dc33",
-    "mode": "kanjiNankuro",
-    "sha256": "2069fd392b32082008bef4d61a829624ff62a3b8fa36e0be2aa16654410b3888"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-4b3c6671a9403b619bd5",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "abce99d2350f429b7c8307d93fed8a8e104d616daf6a887ab844932355d9300f"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-ab442a6f35f8552c8857",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "5b74cfc052ad72c91aaa8099b5191d46ff159ebe5c6b0a4795b159171b2ad820"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-6cf000a6960a13595f13",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "ea1da8959f7d5b83e1f7daef35264097ebd952d4ae6cafedf1906bb579f95a07"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-5036a6ac1ed0e15f2dcb",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "0e2064ef78759ee2efafa41df12dd0182a0b1247271cb802c90bb70f884c1daf"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-868d2f6c39c773afc5f3",
-    "mode": "kanjiNankuro",
-    "sha256": "bbc5cc9c00ff1b246b87bbbfe79ee140d91ccb5d861102782f7cc35e895ae5eb"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-8d49e644ab7b2687708b",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "34f212226fa1f3c89559a1e56956310544808b501070e90a99474682e3f43af0"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-0d59ea28069794845158",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "0e3a57d6e23a91fc59884d8919e4292103fc8b046d7f3da15a7dd72fce60f7b9"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-9fb4f47e4787166c820a",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "647e150c50c4b8fedf4fe7b47b988019ec4e923b0eb37ff87d28843037cb80b7"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-80140e3e5112be1ac291",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "4a9f0471ad1d63808a702d94eb78a7165dc5679babd590dc43d8410a8754f012"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-94c7a1487b8b6dab9a8e",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "41c0fc74ea2bac4b565fd19fe2b15d935a08c3f4c7ff08065e4894a0fc3c0fe4"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-76465c2b962909824308",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "83e3b90f46c475d7d964f06723ea4e7ad2bab2017a4f03a12cf5d0dbe2bc2343"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-cbf06e6c27adb49d401f",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "cc00fa825e3318e45cbfa4cdf4c8be21e23296199590e1c2f845409d10fbbb2d"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-1664f7be6a61048719a3",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "dc3be1015eb59ced576fc338bf9ce7495c28f8c5c63bd545bf71ff4b14dceb71"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-2cac999f1c7d0907d81d",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "002e6b5bf1d5d31fece15920094d7726c2f257418ad43b409a9f63731d19d555"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-11253feb1d89807ffb65",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "c0b7b0bfbe04d3fcbcf4901a9cc50c0742e9392a51a4dc2c211ba2845e953a20"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-d61aa41a9aef87c3eea6",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "42065de82fce6ecf78fc9eb0a3899adae127d0cea0fb34b0cad4d369ebfd4f1f"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-0f88e793b998987134b2",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "2e8cbf0875a71d15263502377608cd83a86f9634a2b80a3980a799a1b4b52f08"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-530f24200746e991b5bb",
-    "mode": "kanjiNankuro",
-    "sha256": "e95a71f236686aedb28a805a764de891292a411249ca75745fa890a452e59016"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-9761962b50139c35cfc5",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "f3028f0bf0eddf34150df40dfaa46d708eb265f2c013dec007aa394b24da84af"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-de9a231e29315b29746c",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "d46e7ac9cafd47c460bf702f6610e8f6de8b8acf7b1b51abc8ef9a317fedef34"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-ec2eab7f39e93842b24c",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "9ef533cf9e19777e5393543f3cbe3f6daa600430cd6d900002066983ed1d018e"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-2bd23b7debfcbf5c88b4",
-    "mode": "kanjiNankuro",
-    "sha256": "76260455dc7195f6ba517df4519a896158fc7ad21338f1d3c66ee956c023b3cf"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-d8aedb1f7c33c38d7086",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "9e971bfcfc33602f6a5f85edda1ab1574254805bbb4f3d981e49cc92151d4e5b"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-651739a42c3b04ece9ba",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "ce38629445aa0feb95ee8adf8ab9b5ed15e6e2d43be772dfc59a14f42bc6f484"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-bdee1dfbb719acd1612b",
-    "mode": "kanjiNankuro",
-    "sha256": "3a8398adb380cb50574b08f983f34b71bd6c293609ace272e888cc53f7379401"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-2f33aaed530f144f2881",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "26ae2c966231ef041311a5f3df47642e97ec259500bf11db13063be94f8e7ed1"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-7e33a059d6bb34c05efc",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "421d18ef58f639ebc44624c85fb53a4d90a292f2e5532bc714ca7a9e7031eaeb"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-3cb48eb715f2af88ce61",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "0087f47660e88b8d5d9f1c2629e2f3d8b43fea324b7858158a401d9e3f1bd9c0"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-4afabec30ab211e322f6",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "c88f890913e83a31188ba1591acbcc952238229ce62799fd7b7692140827c761"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-4112f6ebb81e18e8c0fb",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "b56b35f5a02c58ee4818f24d2b744fabd11c1ae2fda0fd74011b184e9bac1515"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-b6807dcfdfd81b893fba",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "c74bf623eb433a686d548c877f13143e635b3952344a3ce81f414b8266bbcc96"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-c1c853681d331a5ac64e",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "7894b18990e0f38b9593ecb371d07f4c66c452367f744cb0c92c33d406692fed"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-24a1d5ff156e404a1c1f",
-    "mode": "kanjiNankuro",
-    "sha256": "4e253d442b505a8bdba8b63b636d922ecc9026056befd452d2daf3f0756bf580"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-caf2bf608f30f3caf2b5",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "1d0887c057355a0f171fea30ed4a0b16b9b2c05c35a252bb3541f4a5d87dc914"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-707dcb959eea59c39d23",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "1bfc6c92f480d235cd413b4166fe0543f82ea583725b1c5bfb598bce357fd086"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-c2039bf422a1aaec8ebe",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "e1bd45db5e3fc877c83555bb4a808d3bbff90f3672c46e9f9e3c4ff136a6bb77"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-b695028ec45b99b45d22",
-    "mode": "kanjiNankuro",
-    "sha256": "2623692e3640cec7026db1bc6ed9228be0ea87bdbe073744cb288eb329018bc9"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-82e74cb8482a3afd055d",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "d41ee3a3259c4e161d67a310bac18b81c7649be56b8bb516bbe8ce3c752c83c8"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-dc2f8ce1ca0fe9f276d8",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "2180a1abad7c0af071c7b6363cb356de0d607a7562bd0170ff212392f51850db"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-dd258757604f753e5302",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "a932142f3a84230439769f9736a9c3fa73317a72db922927f4877eb24b39aac2"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-46b099bc91c9851ddc1b",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "717853657832b04ba89fec6f231e63e68f452229731fb39ab1682943e96f619c"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-08c1686008b86996e263",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "d763fa531e3ae389fd25bc7bee0386627388bb8c2f787e987502602f3845e521"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-fc0b68976ee9f1a80c3d",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "794c134e8e4e5520377e2845196c301191bd77da61189db65d3cdf4da1f1dc61"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-73fd23597a0ea8508366",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "c5e545df41eced7d8e505f45731b8688bb7899a3b81ecbcb0a726ecc9e80c193"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-612fefb26b3b4ea9707d",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "e6e2c6342178c75ee16e15cbd1c449be32c74c7dc2f75d8c0238e9a774a19c4e"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-68e23143445e127c6dd1",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "045f45068ebf517550b649e4035cb8e82ca27b7a5a1bbbe3bac0b53747685631"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-613e64ba7cefadef0e2c",
-    "mode": "kanjiNankuro",
-    "sha256": "74fbb7797b06986ee4d1ab9c7483eb527dcd939843921e7a0f69b5fcc834ba08"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-a0b2deb8ae647b9c8455",
-    "mode": "kanjiNankuro",
-    "sha256": "a19f0ced01caf41e397a6ea4736048273d9762daba039453b38b0a10fbe39fc4"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-240acf15439da89cb803",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "09050429d6242a4d85baa4c2b39b50106aa72730aaad01a476b67d06197bfa30"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-856bed340a3a27daf925",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "58b70eafd248b44b0322b720e0eb41295bb20f373bd9376acd1bdc667ac58477"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-8ae790e531a702ba166c",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "911d56f2dfe35aedc0fcdd2c734ee953eeafed96395e35fef058f6b83a1541ae"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-e47761a6a6448c8cb9a0",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "cf88b374bc340c833c8659ec78045425cafb81ede748dbac7dc4b8013bdb03cf"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-eea242cebe21afaef82b",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "31e44a74d38bbd6a406cd40337dbd0aea998da0c5ddfcf2703539aeb46246934"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-8af1dbe39f41404f0eb4",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "259a36cc04fc1c3c6a6fe475d505626f58d28660aac172dd8cf2fe66a5f1e2bb"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-dcc44874bad32272b40f",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "dae766444a5f8274ba98a344a55fea37f8c8f6cf32c10eddcb729dddda2fe8ef"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-65f71783c1b821964d98",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "11b49fb6aca55f1c9eb51180dfec0604bac926cdd8c1c41f0a29e911af43310e"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-86ed28ab0a3188fa11f8",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "655fd267e8da2bccc57aa8216d23fe1717c6858dc54310542dc3fc6875b9b22d"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-0951b50c137134c677f3",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "38553732eb776d3425ab614ac00a220f0a0fd06177676f9c8b9d9abca2e4ec4d"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-a463fab3573f96d7102a",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "258ec4ad407e5b308025d33fc3b96ef9167078e66f704c42f4302647bd9eb703"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-91981eb557f1406cf81d",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "c4433977979a004b389e97986218707acce11673760387f21c2984e87136c0eb"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-e270fd46934cc6d44e47",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "a1867ebada12d448771291a4c1b68c8fce56cd3f66af752a99fb9e053ae0b7b3"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-84ea5f9a5f8326c07eff",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "df86c0e7b61735302586a717dc3b7018f247e5e4e5f08d75e76915e7b310649f"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-8c2386d9a710e8377a25",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "85d95bba4c3b42031fcb94a6b94e958b39846473dc228b3c0923b222e93dd408"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-bc734d48c117e0496a22",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "1e2d32cfe25dbff426c237f407ff25cc695b8a1d8718fc681bd778ac9ff8fc12"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-230e2c29efcfa3cae12d",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "eedf398cccb639e1c3b3fd57cd753ce4a864857d40f071ce1fb7ed4f2a726a6a"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-d798a591e9510f51552a",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "5077a9f81f8da31981f15bbeac4980801ba924be08986fb36118455ee112a0d3"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-f4d0f9e34a8450b47838",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "672862076d4dac32a956930c53073cd088c4769abb056992c26afe938d1108c9"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-3b491972a9bb0f017f7b",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "0437f257014b1f6addf37c07dfeb770399c87e97fdaf94f46d47127be89c462a"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-24b1dd59720005ca5524",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "b24db5a948b6739eb8e7019f3ab1cbfabee75baba49d15d2b2c3e6b75cc85494"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-a81ab3c93dc3e1ac5d97",
-    "mode": "kanjiNankuroLarge",
-    "sha256": "9857dbb35679bf28d44c267f6ab282f85de21fa6bfea240e11f64100b1b1dfa3"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-5fbe59b4e32e8c858c26",
+    "id": "nankuro-v2-ec15df542cb14d911742",
     "mode": "kanjiNankuroLarge",
-    "sha256": "7b3197d7ef0aa1b87404e7a67ce4b42d534364b6ac8289524de62a007cfa7461"
+    "sha256": "a59b8f5a3955b01e5c89447eb47d23d80aba4dfd015a49f08cf99afba10592b8"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-cdcca19c836e2015ece3",
+    "id": "nankuro-v2-974c15c25e4ced6b5618",
     "mode": "kanjiNankuroLarge",
-    "sha256": "1e72da21b03910c257cfdf39ec5e246397a722ca794a02bbeff68028f4fb8822"
+    "sha256": "7d6b54addbbd27374c053ca03fc3753ddd60761ade735299cd21a21fdab6ef8e"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-8b6b3d1058d66247bdf7",
+    "id": "nankuro-v2-e943af73cfcd60dc7210",
     "mode": "kanjiNankuroLarge",
-    "sha256": "a1323507164fd7cc8f6448f9641a7922eeb0768b7d23a8faf97cd60adeb66997"
+    "sha256": "694a617fbdac4d3aa2ed680aad5f377618fa464b784962b679e12530f5ab254e"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-fa078681b0fb5b5c569f",
+    "id": "nankuro-v2-1a7fe7fd4f8a263537f8",
     "mode": "kanjiNankuroLarge",
-    "sha256": "5945c104f4f3772386e87c894eb465609ce67fa6313a29d7073bb47f08445c70"
+    "sha256": "4457d9870d76ae144841a128e1032de98ec255a1f9607c57dcc50e1bfa7df3d2"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-8dcf460e4cef10fbc590",
+    "id": "nankuro-v2-b64bd677fe0c9783786c",
     "mode": "kanjiNankuroLarge",
-    "sha256": "dfaa1f95146ebfb133217174f3c1e45190266f961e0cf38b67404f78b6635d85"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-817fca264906cac6acf7",
-    "mode": "kanjiNankuro",
-    "sha256": "bc3a173917e501edf8cc728a6a9f4545350050e0a9b5f092ea73787a598b5761"
+    "sha256": "6373d072e6834bdc48eb829a9e1429bdcaf7da017089375355ea4bab266bd6c3"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-b578fd17647d70b34a0f",
+    "id": "nankuro-v2-c42975d335dd153671c9",
     "mode": "kanjiNankuroLarge",
-    "sha256": "e153f31bef72573b397df41615c7f5d728254aa8fe8a173fa5faa9031cabdb98"
+    "sha256": "aead5d12b045437b126479243cd0fdf9d3c00677ad467180e750efba1226173d"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-af204fb8802090a60a24",
+    "id": "nankuro-v2-c9529ac81d2cb768c3c9",
     "mode": "kanjiNankuroLarge",
-    "sha256": "1f7aa2a0768afe43c07808dc5066df5e6010b53f9d36e4aec0e7919176b9c144"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-ed308989d4ab793bbd32",
-    "mode": "kanjiNankuro",
-    "sha256": "3c8edbe6e44e24e0705a6fcef1b7200927b739a55faa9a4a9cde556b808a7599"
+    "sha256": "78d5cd1b7b3606bd29a319e23051c561b38df4a2a3f2ab01f2ab36dcf3b29151"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-f73b2328de96fc633961",
+    "id": "nankuro-v2-0e0e799bc9cc34c3a125",
     "mode": "kanjiNankuroLarge",
-    "sha256": "b0f1ac0e0df7da2e6f9cfd23f4046ae8c19ae463c69fb1bf3520e155529aa252"
+    "sha256": "1e83315b46c3e9126766a9a92394992c1f782f2833fabe1537df597dd2289aed"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-4fca4ff7f2493d7d7670",
+    "id": "nankuro-v2-2a2f9697d151170c6a4e",
     "mode": "kanjiNankuroLarge",
-    "sha256": "a6b8e386c9453af9fcd90cea0b3a77c2918d358a4ddd2f0e31fed453f7304e3f"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-dfe37c6157cabc8528a9",
-    "mode": "kanjiNankuro",
-    "sha256": "49309c299b2ff9d17d21f162cbfec1968aa47a6fbec5d63e00fc8e46fd0c0150"
+    "sha256": "dcb48d83a7a1f6728dd2461a76662739a207c415e91037aaaf2639a1de1759e8"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-e5b49bcf2a83e11a9f4e",
+    "id": "nankuro-v2-e91972758efcf4b7ab3b",
     "mode": "kanjiNankuroLarge",
-    "sha256": "98a64b8348dc898a5210806708e3e23045a05de0afa277161a4c295db14dc01a"
+    "sha256": "5633215720fe8e9e0d12c008e1b3ce2dde707c5171448a0812c67afe7eb0ca8d"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-9fdd1a93b9b2584ce49d",
+    "id": "nankuro-v2-6e632291edb4338d7e56",
     "mode": "kanjiNankuroLarge",
-    "sha256": "3f22049a9f881938b717448b6aa12581c14840bb951d75fe2dae616a55d9ee32"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-0d37f52ef0a006a079f5",
-    "mode": "kanjiNankuro",
-    "sha256": "0ce0e617a2762af7cfa2c6ef84085ccf8d8da7f196d76e191d43e80ceda9db6e"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-69a6edc738af8058ffc0",
-    "mode": "kanjiNankuro",
-    "sha256": "7d0bf3a45a4f6f50cba7ef5dc574902a88eea483adc0eda43b57844ba31e63c0"
+    "sha256": "33e3e1149af30f0cde91e52475ba13b25f94614a0036f5ba9c31524d4efb8473"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-22d3593cae87e8c75e2d",
+    "id": "nankuro-v2-b62c07846374d6d04bcc",
     "mode": "kanjiNankuroLarge",
-    "sha256": "f598a6c10acf1fd9816acd12c070e5f1ae8511dcaa43dc32a4f0c8356e96078c"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-f9eca80234b5dd4e890e",
-    "mode": "kanjiNankuro",
-    "sha256": "aa7624c9103af39618950a1b14ce6e3657e9484daa9bf792ac1917933abdc4bc"
+    "sha256": "2e87a2b7c722bec5cafae027c5b49590bdf7f0a868ef10303afb668e3e86ff38"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-2bb2cf6af34b29c81aba",
+    "id": "nankuro-v2-23148a0fc24ba7232930",
     "mode": "kanjiNankuroLarge",
-    "sha256": "99607828bc7bf6e268c76233723f526b54cb21fed1febf44741dccb17e3d76f3"
+    "sha256": "168fb2ffde3adffa9475ea879b269d0b9fc79cc5dd03586ab1f65372ba1596e8"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-c85d56c7a1a03b244281",
+    "id": "nankuro-v2-ec31edc08bd6064f4cd4",
     "mode": "kanjiNankuroLarge",
-    "sha256": "5b71addd4ec311c6e829561af2be84dcf324012074edbc3352028f7fb9a8adb5"
+    "sha256": "97edbc27dae7c5618c70095e648c7bbb3551b43bcd2e30986ccaef2b3e214498"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-8acd2d44bc1a046399ca",
+    "id": "nankuro-v2-c817c1ee8570e0b9d2aa",
     "mode": "kanjiNankuroLarge",
-    "sha256": "9cfe642f82227eebeeaf013a6ad92b87b3372ac83b2e180f3b8cbbce74bc53bd"
+    "sha256": "373c00ddaa0edcb280548194febeaad488a927bd9eec0ac05603ce58de32cfee"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-4ff0120d3dabb38fddd3",
+    "id": "nankuro-v2-b9aa94857a8c19e65427",
     "mode": "kanjiNankuroLarge",
-    "sha256": "eb7c49bf9d3c71c619c26627bf3d57f22df08a3b1585260719b501d5266e1d11"
+    "sha256": "c5c666f57322d4aac2ddda3ac46a749c14c94297b4e65cc17f0db13b0ec30dcd"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-7e84e98f4d1626a6461c",
+    "id": "nankuro-v2-dc98900bf9813a1a1739",
     "mode": "kanjiNankuroLarge",
-    "sha256": "c1cf8b0bb5961d78c2a9fcd1d978d172248e266dd5b938d12fd599a2111742cb"
+    "sha256": "515d6ca21688609ee068d75d2d5c2fc81d23e38c1dead23f891e9a167b1442ae"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-53adc59228f48d00fc5f",
+    "id": "nankuro-v2-255a7e8e322a16289d4e",
     "mode": "kanjiNankuroLarge",
-    "sha256": "7e433017ed63961a7fdc33f813fc627e9dcb4cf4d908fc61638c70d10686c1fd"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-5672cca18e0a4fba56db",
-    "mode": "kanjiNankuro",
-    "sha256": "e604597a62b03ac2d0615a4f344516bf2d83485cc520f818a93252cb91eba071"
+    "sha256": "d8c480d22b8895da09b73c218c5597933863ce886c725a4d09695c03fcc86e6d"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-825f4bd767978a7a0547",
+    "id": "nankuro-v2-63bf728bdd70aee83f06",
     "mode": "kanjiNankuroLarge",
-    "sha256": "e8056ff55eda1ca4e9dfd27e66f5909aefc0df80468ec9b9ccf6bcdbf0a66022"
+    "sha256": "074137bbcbdd22bb0210d3ac0afa55cd5be147db2d80eb93216520c1bf449455"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-7e3b4dc894e0eba5dcba",
+    "id": "nankuro-v2-073879649a57fa1d2c28",
     "mode": "kanjiNankuroLarge",
-    "sha256": "c38c0135dc8cb133393aab4a6701712a0182ff5d8e9d1180b37091ed25fd213a"
+    "sha256": "6c127e8c15ad23059a73fab19699d4448db58ce50f4e664ff1920ed232b5caca"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-c9a81c5c7f4cb2788513",
-    "mode": "kanjiNankuro",
-    "sha256": "69a4a8e343d0f990bfa71b10faa0a944eb59157d89cfa71bf354e8f0b3a86529"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-36f88dd06271aee74060",
+    "id": "nankuro-v2-31698e160f4605222aad",
     "mode": "kanjiNankuroLarge",
-    "sha256": "3068e5f36d31f41108b5270dcc1a0f1e79307940c5cdcfc262a77858938b07c5"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-123616ce33465cb67d05",
-    "mode": "kanjiNankuro",
-    "sha256": "40774547177dff3dadd18a6adc0e1ae6211ecc737f603438a9510938e0c895a6"
+    "sha256": "3b44a39d6368310870df12b982963c0f9d46874e1ac6f351ebfb1396d9138f94"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-d5330522030707f5aca4",
+    "id": "nankuro-v2-82841d0ded181b6d1d9c",
     "mode": "kanjiNankuroLarge",
-    "sha256": "5f03b42aca7b60e950ac50b9dd980d4eb19979f216be3fb1092665df82711134"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-4b30ae7e186d569e6a6a",
-    "mode": "kanjiNankuro",
-    "sha256": "ef7686a7164538b379a7f00b997dd2bf20a67da935d2495956de6443df1fae77"
+    "sha256": "49ff172ef32ffeced7fadd4fe6fff676c5b5f38bb0996f8d250a0bc31a9f3d65"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-1734eeedc521164ed603",
+    "id": "nankuro-v2-497257da69a51afa1ea5",
     "mode": "kanjiNankuroLarge",
-    "sha256": "7168834af1423149c782cf098fc1102c2c374ed597feb10922dfa519e093365b"
+    "sha256": "6a20ba3eeb500ecac032d64cfb0709f5c0b905fb11de7772eee9f1e95fb4fe02"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-fc354af2b5c152cb3205",
+    "id": "nankuro-v2-46d372d240f6807dcbc7",
     "mode": "kanjiNankuroLarge",
-    "sha256": "14535924fd7b607b0d92cf1bbabb18728ff3ac9a72bc07360a5b05cc846fc009"
+    "sha256": "e66a7b546c93aa8c1b4736956da982a1cdf60b46b1d96464fab97764831e3894"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-508f3b626f7954c2df26",
+    "id": "nankuro-v2-547d09a8997e256bebdd",
     "mode": "kanjiNankuroLarge",
-    "sha256": "ff3fd2b91b63220ac2a07acd9ad465c2659066660b3b96fb91eb90a13f7458b6"
+    "sha256": "b0e0dde15fbf20112662ab32b3616df976f1b524dc4626e83342905cd795736b"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-6e19fb71833a97fe0948",
+    "id": "nankuro-v2-f24192a160b13fb6dd50",
     "mode": "kanjiNankuroLarge",
-    "sha256": "5aacdfcf62e583cb941c2d3aae1918c8d488b4a1b5fc3d3abdd1ed45ac6aed43"
+    "sha256": "56c3c157480610c6f68414ed5873a3274ecea72edfd65b083cc309cceb0c6edd"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-36320c3c5688174a0c4d",
+    "id": "nankuro-v2-b349d8283def8e4fcbd1",
     "mode": "kanjiNankuroLarge",
-    "sha256": "c41144182a370b125e6ad082136ae5a7ee1a494ad03eddd965314834a52a06f1"
+    "sha256": "d2c99871a96bdb8c44fbb2ef1c55f5ead93398e1858bed580f867ff6c11efa88"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-ee18e04137536c687144",
+    "id": "nankuro-v2-ce8964ecab8e88baf1c8",
     "mode": "kanjiNankuroLarge",
-    "sha256": "4711cf07d8bbed9bcbcaa04af0bbcfb25b6fbe2dc36bda1e288b0b9d41cd5334"
+    "sha256": "6aef72cca9e2fb7a749cee6d59f34ec75c090190c9c3195d448cb17f689c85ae"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-50f944a3f08c616a7077",
+    "id": "nankuro-v2-8637ef700a0dc7398b4d",
     "mode": "kanjiNankuroLarge",
-    "sha256": "d76645f6a0ae10d958af4f3459f589ed8c52aefc072c82b743c4ca40f4e2577b"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-ecf30dfdc03a50baf192",
-    "mode": "kanjiNankuro",
-    "sha256": "f1a7c8ae20f51704f9064ac34d9b2ddc0def4da6e2d7555a64601ea25cee78f2"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-2abc895de99d359d0613",
-    "mode": "kanjiNankuro",
-    "sha256": "79413de1aece8da4aaae7a64d19977dcf058ce212e36e50026a26085041ded69"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-b5d0b21ed8d22ff34b2b",
-    "mode": "kanjiNankuro",
-    "sha256": "98dc4165a07f6d8a75f5de615159350c3deb6246140cd90e5035141f436cc64a"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-644b8d1fc66864d7dca5",
-    "mode": "kanjiNankuro",
-    "sha256": "70264f55d3d8e3ca30f7f2666364f65b967b33cc3f51431b82bf0d3addba0232"
+    "sha256": "d5d2cf6c190ad47c78098beb40cb350738ce1b189a3aeeb155bfc515aef98fa8"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-5ce0d3cd6f27767c2fba",
+    "id": "nankuro-v2-e38ec0730085c9d56bdc",
     "mode": "kanjiNankuroLarge",
-    "sha256": "4e6a03177fb65d79a4d6a80ac8bb194f666c06a00e3a2db8e35ead44b54be3fb"
+    "sha256": "7cc1ab1f19c736d8f80964c8fdf2a1c08adafc5e0f0f5a2f769f8a9cea9216f5"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-9b0993b43af9f2e10807",
+    "id": "nankuro-v2-03cc64bbb6bf53b0a13b",
     "mode": "kanjiNankuroLarge",
-    "sha256": "09361213cc7d2fdeed9b00df2618f4b3a4fce892c076f624a64db6ea656cdcef"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-9aa0f596bb4ba55bae41",
-    "mode": "kanjiNankuro",
-    "sha256": "916f4ae2ba258a44d2db156fcaf9c0c2454c65e793fd12f392f8bcfbc66f5686"
+    "sha256": "febe67de98799e6eeff6dc08dac65adb0ca82455ef6cf06aec259e103ed81206"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-4eba01e3f4313560087b",
+    "id": "nankuro-v2-9d7338b7eea07de59cdc",
     "mode": "kanjiNankuroLarge",
-    "sha256": "9745509b512f5a1e54324f9749478f3eea377fe6f0a1f9c24148219726e17b2f"
+    "sha256": "ef2f41a942b81a23fb0e0ddda865ff8e0e3dd4d3ac4d4b002d0a458f6d2fb945"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-373d536c88a4aa1e9fcb",
-    "mode": "kanjiNankuro",
-    "sha256": "cf7da6673a775565871a91cf117949f937caec61527265178660f41faf6974ea"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-24a30c8dbea2ece544da",
-    "mode": "kanjiNankuro",
-    "sha256": "8a50e0d114a73228aec35031631590c0a248726b69655ce7d1074651cb3fa142"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-25c38f49f17187f07edd",
+    "id": "nankuro-v2-fa8740105dde71d73743",
     "mode": "kanjiNankuroLarge",
-    "sha256": "5245c63df9faeae25750fc0819ec00904663fc104b082c8e260059fc29b522ae"
+    "sha256": "aff4926a9d3b8aec7c1fa96bfbc2e7a17d2c75b74760bef3eb7db257ece3f89f"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-097208d05b09b81245f4",
+    "id": "nankuro-v2-2c888c03a1cb2d21d942",
     "mode": "kanjiNankuroLarge",
-    "sha256": "b8608d19dde6f792db9d86e13894e5df195dbdcad4862a3fdce669883bccd58a"
+    "sha256": "1ee86b5245553d486ba5b64eb179d5a0c53de0d9eb43a225bd81c061bb3c7bef"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-84ed4a204c16f672078e",
+    "id": "nankuro-v2-52b6a1b369a798e2f089",
     "mode": "kanjiNankuroLarge",
-    "sha256": "6c4f41434c0d346af0445273fadff6bbcab47b33be7f5ddd8514dc846cfee1cb"
+    "sha256": "8a1f580e7fe4655cab6d89b66093ceca9cacdf8f3fbfd70f9da810d608070eb5"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-dd1529f233a29b0085f3",
+    "id": "nankuro-v2-e2ace8b237b9d195b036",
     "mode": "kanjiNankuroLarge",
-    "sha256": "84596bbf64e14e746980c759c6e41fe6fa3b18b4baae649434aefa9a479d46eb"
+    "sha256": "17b6c7c80339b8e7d3d65d6c54743b28ccf4589e517cdd3681d92564129a7eb9"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-ef91cca2932fadbb49d0",
+    "id": "nankuro-v2-c5254b6ba20cbd0ba890",
     "mode": "kanjiNankuroLarge",
-    "sha256": "d2274fdec04533e2c63efe2907756af470426382cc739b2d4ce7d02a9735ac18"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-d8ae5a34b0ab04951a46",
-    "mode": "kanjiNankuro",
-    "sha256": "c47cff50514132a30a579f14fdac881403d9d54ef944026f49fed805f20a2bca"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-2d2b49b20c531f5450b0",
-    "mode": "kanjiNankuro",
-    "sha256": "52929f44a7ed72a315338f072d1db55c10731b6501bc9002cfd25e0085ff2ec0"
+    "sha256": "eb2b912bdb52261b04bbad2fa9de15680ed39708dbb0c76de28409e21199c9da"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-649e4f7a299182ddac48",
+    "id": "nankuro-v2-f67c587d5963e4b5201c",
     "mode": "kanjiNankuroLarge",
-    "sha256": "ea34f28fab9f9198be20575bdbfc6a6b8b649c85a8b5ec1ceff1b0f1d229ea43"
+    "sha256": "cd21a4b460d732913a71c792a36adeb3075f646ad0c255da6ab50b58809ef74e"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-6ab1b6cc5e40aeddbb24",
+    "id": "nankuro-v2-bd6aad1ce7255ae1dae0",
     "mode": "kanjiNankuroLarge",
-    "sha256": "0d51f3890e9b16505a880fb25b5394b19ade286c0f707144e05285fd0da25c12"
+    "sha256": "1f233534f7bc27961d7301c0acc293cb67798de122ee43e50962dba30ce22cd8"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-e36619085cad971cb9a5",
+    "id": "nankuro-v2-b8464444a57b751375df",
     "mode": "kanjiNankuroLarge",
-    "sha256": "c3e1d399d63f6c3bd48fbe849572ae5df6cc4555ab97ee9d018bf0157cc9e66f"
+    "sha256": "b5c72be9a4d11f3ae625e868f87c3522d9f7534ae1d33412572431ccd9555230"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-604f3e9abc8be9491235",
-    "mode": "kanjiNankuro",
-    "sha256": "73e497ace797621029d058cafba8f853a51687bdb384bc1a5b668409d1c87a6a"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-de7e2fdb71a9b5d21921",
+    "id": "nankuro-v2-dfb127c2a6016cc619b7",
     "mode": "kanjiNankuroLarge",
-    "sha256": "0e1f31182fcc01acb18d363bde9771ca576de2476eba384f95bf52fb5a05e4d0"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-18144e8104d606b62353",
-    "mode": "kanjiNankuro",
-    "sha256": "2d20cc912b32560dd78120ca261f3057de5e735ee3f9cb4f62802f0fbb7c81ad"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-fc1dbe4392bb92568ce3",
-    "mode": "kanjiNankuro",
-    "sha256": "a4d16352b3ae99301add8f5ffdf4fe351d88513265bd4307cbb40f0faae0ab96"
+    "sha256": "0e0391ec0d10bf8a6cd888e6eae8cce42db58560b9d0e520fc99262af0f48359"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-46109a6cd1b8c5367a03",
+    "id": "nankuro-v2-3eb6feb9f176d05b3785",
     "mode": "kanjiNankuroLarge",
-    "sha256": "a25bc1773f8bc84c5b6a420f40b3e75a9735bb92b4fc35ea37053a458ca001e7"
+    "sha256": "f9c199ab66f0d5283c062752028f3964c4b9f9c33b77c5b6f1dc13b8707d65da"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-addef0c4c6d160153687",
+    "id": "nankuro-v2-dca18e8efdf02885fb81",
     "mode": "kanjiNankuroLarge",
-    "sha256": "b04de792c4fb33a02a2972b1b33925267ed6f82b0f0f7b7532e4777b270c1727"
+    "sha256": "799b468c34e71a54b8cc87a938d81c9b3d4dd60ccd295a6e2dc3c708bf6e36b1"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-9ab89518fbf4214fd4dd",
+    "id": "nankuro-v2-99420505c46235d74178",
     "mode": "kanjiNankuroLarge",
-    "sha256": "e7d3de801106bc302ec88bed57e3bbd3d5b34a5c86c2a92420167ee5a672aa0c"
+    "sha256": "d001c8b1841d918b944d2c26df8f4b0d7e23f025792db3f8095f46e27924ccbf"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-f74ca528784251bc4ebe",
+    "id": "nankuro-v2-71c3b3de580d1f58ede9",
     "mode": "kanjiNankuroLarge",
-    "sha256": "783ab77d3740a2c6890b44eb5bbf90b00ed141e71ad020c01cb61064ff10a1d9"
+    "sha256": "f2bcb1619c9ed5fb58b01478474c4f9f08113870ca5b1ac44ea12ea6ce9f9757"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-549819f396633ad7bda8",
+    "id": "nankuro-v2-93c6b63cf9de22f542db",
     "mode": "kanjiNankuroLarge",
-    "sha256": "f9cdf7ac25d44b5d87d647fc40b8d00d1a9f0ab1b8e09fb3219d2391afa3374d"
+    "sha256": "044f3752d5162c521f790bd699f682f3178c87df1432eb73b6d997d04e4c2cff"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-2c1c8c1ba0cd3b23359f",
+    "id": "nankuro-v2-af51a0c3ec6e231b0131",
     "mode": "kanjiNankuroLarge",
-    "sha256": "1fba130550a35099951239c611ed7d18fd4e97d3154d03eeed147e6205fe5e14"
+    "sha256": "e7108004b1525412581ed6352c990e740a01db8b342f1b227f69dd328e0b9faa"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-335eb6e04bf46f3391d0",
+    "id": "nankuro-v2-6fdde99c8f4e90b96425",
     "mode": "kanjiNankuroLarge",
-    "sha256": "4cedb46d19b6700ce45aa99732fae152fda528431a10c3e8a5a5eb11d2103d22"
+    "sha256": "1f9713d5e40cd4ec844eb3571d40e57baca50622e93c5ddc06e855ca68dcfdcb"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-11499e3ba2b977f8fbf5",
+    "id": "nankuro-v2-c66705fd34fe55189226",
     "mode": "kanjiNankuroLarge",
-    "sha256": "d2db689ddf69a715f415e8255b15bce95476d4e3bd222998f1fcaf841b4d18e4"
+    "sha256": "37c7d1a95bc65c583bac212a5601362fb9b64042a334ef840a2ba96932d5f71f"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-8ebdf9dcbacdbcb454a8",
+    "id": "nankuro-v2-11597ca75b22a9cbe60a",
     "mode": "kanjiNankuroLarge",
-    "sha256": "608d17a8a86b8d239882249e935cce9987cdbd358aac398773ce81181c858243"
+    "sha256": "b0b73d985023a58d752d56ad525fd1f6d5f156c696355c126825c3507a2b1aa5"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-45976aff6f37aef3d4b0",
+    "id": "nankuro-v2-88c7bbc1227d2d2fe463",
     "mode": "kanjiNankuroLarge",
-    "sha256": "35416f7fced84fb5734b332c2f681b9d11044f7b2c9775b9478542a3304e7f56"
+    "sha256": "e3ae980684dc1de810c278f47b0aff7d84dd72fd2909397e9b18d556772825b3"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-540da3df5393076b8ede",
+    "id": "nankuro-v2-67a467ba7536c764dbf8",
     "mode": "kanjiNankuroLarge",
-    "sha256": "a84e898235a6a8d0a36d3965ca578542c1443ae23a840888232ff1820a8039d4"
+    "sha256": "b2116e04ceda2f00d9f3c927e630cf472665162522c4b263493e39bed0641aa1"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-1418b25efc6f3cab548a",
+    "id": "nankuro-v2-ccf88e130b8e3585aa3b",
     "mode": "kanjiNankuroLarge",
-    "sha256": "75be41acc65dba800c79ce43eafba98dcc9c638401f607ebe5fd56263c32238d"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-b288066e7b4faee5f182",
-    "mode": "kanjiNankuro",
-    "sha256": "864caf1429ed3bd808f54f9a4ea75c4fa81ede28d152e9700caf09dafcd62d1c"
+    "sha256": "d6270ad160405aaccdd933db2f3767c599226bbe4f06dd08dcab16a362c1f26d"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-20ddf37ad938c8667c49",
+    "id": "nankuro-v2-324aa159bff904111bb4",
     "mode": "kanjiNankuroLarge",
-    "sha256": "a8a0d9711c4a1781db6986ed86d414a93d086862b2ef95383042f7d622c98792"
+    "sha256": "946b13092a74fb10d4fc841a0c7a54da27076b4c5df38e0afb76ecf0afd28972"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-31934d84301206de8a15",
-    "mode": "kanjiNankuro",
-    "sha256": "0ddf9dc0a39b2cf417f5444a097e250f3c0b5a0dc731d7b7dc8dfc8d67b95da3"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-291eccba006a7e5d8525",
-    "mode": "kanjiNankuro",
-    "sha256": "e17f2da6b25d5e460103879f7fff3d056f89a7e98d67db364aea1cc1bf42bbf8"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-a1bea48b9f43e274226d",
+    "id": "nankuro-v2-b9ddfb1ffc3590882ed4",
     "mode": "kanjiNankuroLarge",
-    "sha256": "b1eddc66ae465df02e29a7b7d88fb4c8c10d5caf9ff70d87ff298f479eb3b809"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-c023c9cfdb545bcadbd1",
-    "mode": "kanjiNankuro",
-    "sha256": "bfffff98edc81ea84194fab9869fb62f885d42db3f0e3596d4fa4cbaedf6163c"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-803352a8e53066be2219",
-    "mode": "kanjiNankuro",
-    "sha256": "1d298566ded63bb6035767e3c74c85e1ad43dfa9c0de02482c13863a06a21294"
+    "sha256": "9b7f4cbdd0e67d64df52c357ab807af6d2c1c319b56fc25ef8cdb28844d049d2"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-f6c3c915ef27f067da51",
-    "mode": "kanjiNankuro",
-    "sha256": "13ed599b178a73635d4b8ddc7c1ac7016b241d50add56d009dba467b9c6db3bc"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-e118fa35c63b5e7c273e",
+    "id": "nankuro-v2-1d4dcf01b6cb8f1f8ca1",
     "mode": "kanjiNankuroLarge",
-    "sha256": "004e62bbf861b74dde80636ffe911236076e2e401af9e1ca3763d48fecdc0926"
+    "sha256": "3446cde48a4044598a84c6bdec7b20147c1bb393f4b9325b31195f78e4b89de9"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-eef3de52bb0fb73e31c7",
+    "id": "nankuro-v2-2a91090682b1abd0ee1b",
     "mode": "kanjiNankuroLarge",
-    "sha256": "2c6b15f1f0fb077d7212cbeaf2d84ec0f73ef364f9137a6124764aa17039954a"
+    "sha256": "90f76051754e1fdd92b65a5c8ec437516009107dead10a2c720d6dfe482bd0d4"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-9c3b943e62b94987628f",
+    "id": "nankuro-v2-5862a6d51e9e3920e837",
     "mode": "kanjiNankuroLarge",
-    "sha256": "0c6e9fea75771954c61949c77b02d0d468edbee0158ae257a6637c9ae67c62dd"
+    "sha256": "466a15c031fb119898085814f7740f9f0ef133dbbfe06566c13489ac134be9f2"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-86128715ae2ab2cd2b3f",
+    "id": "nankuro-v2-c67b7d38154b3e16d8ae",
     "mode": "kanjiNankuroLarge",
-    "sha256": "8e7f757d20baf9ec88433162699ab39c278aa5294a437d063b9b4805a09d0a30"
+    "sha256": "8cfaf295cc07bb609000991d75cbab9e130a7ca0a4ce0a16098facc347184745"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-bdaa9d80cee85feee923",
+    "id": "nankuro-v2-36b2f34a6bf74936cab8",
     "mode": "kanjiNankuroLarge",
-    "sha256": "4d43ea98bac7604ad3cb623cba3d5f06d0e24df686542c8c58fdd0d0b114a4e7"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-75bf35f4783f0a86ed17",
-    "mode": "kanjiNankuro",
-    "sha256": "aa89ff3db906d32d53a1e687de547f4e9be490afbd6d33f9a9874727d7da8b09"
+    "sha256": "71508e84b96edde1029e4935ed9316ece5d6fc23f3c6700541c03339724e305a"
   },
   {
     "schemaVersion": 2,
-    "id": "nankuro-v2-a98a2d6eb905fea12704",
+    "id": "nankuro-v2-d05f869a05cf3b5dc840",
     "mode": "kanjiNankuroLarge",
-    "sha256": "6beef8a5680785d52c61d58f2dbbe6a0f9635b9c7d99d405c7805fa67ee45707"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-e985f9e6168099295c18",
-    "mode": "kanjiNankuro",
-    "sha256": "49a1c48f2e1f10174a571297e9e3d8a1823a33015d64e84bab5efb52b4e647a2"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-a26232018a48b06dd9e6",
-    "mode": "kanjiNankuro",
-    "sha256": "8edad78f465220fb586a8c9cfd3324ee4b63168511dcb82f0b1b22aea0e1a246"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-02453cdce7524577f50c",
-    "mode": "kanjiNankuro",
-    "sha256": "bcdcfc53d15ad50e790d425f7ba97ce84bcc200adab2a328434dc5272184335e"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-fcba5cbd009bec4ac005",
-    "mode": "kanjiNankuro",
-    "sha256": "799694188d017fd56d1d0f863a73a3deca4f149a48a8d8135954b9a35f41eb38"
-  },
-  {
-    "schemaVersion": 2,
-    "id": "nankuro-v2-5e3faa88ecd198e0fbf9",
-    "mode": "kanjiNankuro",
-    "sha256": "80116635b64c6a681edca80b1a0e7baf4a693c3fd1f05b52756b7b5b2cf86630"
+    "sha256": "f49c18b9a40f05546702e8362a205da573dbde79b1592b839dcdfc9ea4572005"
   }
 ]
