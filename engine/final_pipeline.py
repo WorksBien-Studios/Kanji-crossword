@@ -1,142 +1,218 @@
 # -*- coding: utf-8 -*-
-import json
-import time
-import random
-import hashlib
+"""Generate, verify and emit the canonical offline puzzle library."""
+from __future__ import annotations
 
-from partition import partition_all
-from vocab3 import WORDS2, WORDS_BY_LEN, READING, DICTIONARY_ATTRIBUTION
+import argparse
+import json
+import os
+import random
+import time
+
 from csp import Solver
+from difficulty import compute_difficulty
 from fast_tree import build_pos_index2, fast_starters_for_chain
+from partition import partition_all
+from schema_v2 import (
+    SCHEMA_VERSION,
+    assign_difficulty_bands,
+    content_id,
+    mode_for_word_count,
+    validation_digest,
+)
+from vocab3 import DICTIONARY_ATTRIBUTION, READING, WORDS2, WORDS_BY_LEN
+
+TARGET_PUZZLES = 360
+MIN_WORDS = 12
+MAX_WORDS = 30
+PARTITION_SEED = 42
 
 
 def numbering_for(occupied):
     kanji_to_num = {}
     cell_to_num = {}
     for cell in sorted(occupied.keys()):
-        v = occupied[cell]
-        if v not in kanji_to_num:
-            kanji_to_num[v] = len(kanji_to_num) + 1
-        cell_to_num[cell] = kanji_to_num[v]
-    return cell_to_num, {n: k for k, n in kanji_to_num.items()}
+        value = occupied[cell]
+        if value not in kanji_to_num:
+            kanji_to_num[value] = len(kanji_to_num) + 1
+        cell_to_num[cell] = kanji_to_num[value]
+    return cell_to_num, {num: kanji for kanji, num in kanji_to_num.items()}
 
 
-def to_record(occupied, records, cell_to_num, num_to_kanji, starters, puzzle_id, difficulty):
-    rows = [r for r, c in occupied]
-    cols = [c for r, c in occupied]
+def _base_record(occupied, records, cell_to_num, num_to_kanji, starters, restricted2):
+    rows = [r for r, _ in occupied]
+    cols = [c for _, c in occupied]
     rmin, rmax = min(rows), max(rows)
     cmin, cmax = min(cols), max(cols)
     nrows, ncols = rmax - rmin + 1, cmax - cmin + 1
+
     layout = [["#"] * ncols for _ in range(nrows)]
     cell_numbers = {}
     for (r, c), num in cell_to_num.items():
         rr, cc = r - rmin, c - cmin
         layout[rr][cc] = "."
         cell_numbers[f"{rr},{cc}"] = num
+
     word_spans = []
-    for w, cells in records:
-        shifted = [f"{r - rmin},{c - cmin}" for r, c in cells]
-        word_spans.append({"word": w, "reading": READING[w], "cells": shifted})
-    tray = list(num_to_kanji.values())
-    rnd = random.Random(puzzle_id)
-    rnd.shuffle(tray)
+    for word, cells in records:
+        shifted = [f"{r-rmin},{c-cmin}" for r, c in cells]
+        word_spans.append(
+            {"word": word, "reading": READING[word], "cells": shifted}
+        )
+
+    score, metrics = compute_difficulty(records, cell_to_num, starters, restricted2)
     record = {
-        "schemaVersion": 1,
-        "id": puzzle_id,
-        "mode": "kanjiNankuroLarge",
-        "difficulty": difficulty,
-        "difficultyScore": round(len(starters) / max(1, len(num_to_kanji)), 3),
+        "schemaVersion": SCHEMA_VERSION,
+        "mode": mode_for_word_count(len(records)),
+        "difficulty": "unassigned",
+        "difficultyScore": score,
+        "difficultyMetrics": metrics,
         "rows": nrows,
         "columns": ncols,
         "cellLayout": layout,
         "cellNumbers": cell_numbers,
         "solution": num_to_kanji,
-        "traySeed": tray,
         "starterCells": starters,
         "wordSpans": word_spans,
-        "explanations": {},  # still pending: per-word Japanese explanations have not been authored
-        "editorialStatus": "localisation_review_passed",
+        "editorialStatus": "ai_review_passed_owner_approved",
         "editorialNotes": (
-            "Localisation review performed by AI (Claude), not a native-speaker "
-            "linguist -- no native reviewer was available for this project. "
-            "Review basis: automated JMdict common-word/POS/misc filtering, a fix "
-            "for an entry-grouping bug that mismatched some readings, an "
-            "exhaustive manual pass over every word containing a risk-associated "
-            "kanji (violence/weapons/death/crime/exploitation), an exhaustive "
-            "check against known defunct Japanese government ministry names, and "
-            "broad (~8%, not exhaustive) random sampling for reading correctness "
-            "and natural phrasing. Passed and approved by project owner 2026-09-28."
+            "Automated JMdict common-word/POS filtering plus project review. "
+            "AI-assisted localisation/content review was performed and approved "
+            "by the project owner; this field does not claim native-linguist sign-off."
         ),
         "sourceNotes": DICTIONARY_ATTRIBUTION,
     }
-    digest = hashlib.sha256(json.dumps(record, sort_keys=True, ensure_ascii=False).encode("utf-8")).hexdigest()
-    record["validationDigest"] = digest
+    record["id"] = content_id(record)
+    tray = list(num_to_kanji.values())
+    random.Random(record["id"]).shuffle(tray)
+    record["traySeed"] = tray
     return record
 
 
-def main():
-    t0 = time.time()
-    puzzles, remaining = partition_all(WORDS2, min_words=12, max_words=45, seed=42,
-                                        max_puzzles=3000, max_consecutive_stalls=8000)
-    print(f"partition: {len(puzzles)} puzzles, {time.time()-t0:.1f}s")
+def _verify_unique(record, slots, cell_to_num, restricted2):
+    solver = Solver(slots, {2: restricted2})
+    solutions = solver.count_with_numbering(
+        cell_to_num, record["starterCells"], cap=2, forbid_repeat=False
+    )
+    if len(solutions) != 1:
+        raise RuntimeError(
+            f"{record['id']} is not uniquely solvable: {len(solutions)} solutions"
+        )
+    solved = solutions[0]
+    for cell, number in cell_to_num.items():
+        expected = record["solution"][number]
+        if solved.get(cell) != expected:
+            raise RuntimeError(
+                f"{record['id']} solver mismatch at {cell}: "
+                f"{solved.get(cell)!r} != {expected!r}"
+            )
 
-    t0 = time.time()
-    all_final = []
-    verify_sample_solver_checks = 0
-    fails = 0
-    for i, (occupied, slots, records) in enumerate(puzzles):
+
+def generate_library():
+    started = time.time()
+    puzzles, remaining = partition_all(
+        WORDS2,
+        min_words=MIN_WORDS,
+        max_words=MAX_WORDS,
+        seed=PARTITION_SEED,
+        max_puzzles=TARGET_PUZZLES,
+        max_consecutive_stalls=8000,
+    )
+    if len(puzzles) != TARGET_PUZZLES:
+        raise RuntimeError(
+            f"release requires exactly {TARGET_PUZZLES} puzzles; generated {len(puzzles)}"
+        )
+
+    records = []
+    seen_words = set()
+    for occupied, slots, word_records in puzzles:
+        words_here = [word for word, _ in word_records]
+        overlap = seen_words.intersection(words_here)
+        if overlap:
+            raise RuntimeError(f"cross-puzzle word reuse: {sorted(overlap)[:5]}")
+        seen_words.update(words_here)
+
         cell_to_num, num_to_kanji = numbering_for(occupied)
-        # REAL nankuro mechanic: the player is given a tray with exactly the
-        # kanji in play (shuffled). Solving means deducing the assignment
-        # among THOSE kanji, not searching the whole language dictionary.
-        # So the solver's dictionary must be restricted to words composed
-        # only of this puzzle's own tray kanji.
         tray = set(occupied.values())
-        restricted2 = [w for w in WORDS_BY_LEN[2] if set(w) <= tray]
-        by_pos2_local = build_pos_index2(restricted2)
-        starters, forced, ambiguous = fast_starters_for_chain(records, occupied, cell_to_num, by_pos2_local)
-        n_words = len(records)
-        difficulty = ("easy" if n_words < 18 else "standard" if n_words < 26
-                      else "hard" if n_words < 35 else "expert")
-        rec = to_record(occupied, records, cell_to_num, num_to_kanji, starters,
-                         f"nankuro-jmdict-{i+1:04d}", difficulty)
-        all_final.append((rec, slots, cell_to_num, restricted2))
+        restricted2 = [word for word in WORDS_BY_LEN[2] if set(word) <= tray]
+        by_pos2 = build_pos_index2(restricted2)
+        starters, _, _ = fast_starters_for_chain(
+            word_records, occupied, cell_to_num, by_pos2
+        )
+        record = _base_record(
+            occupied,
+            word_records,
+            cell_to_num,
+            num_to_kanji,
+            starters,
+            restricted2,
+        )
+        _verify_unique(record, slots, cell_to_num, restricted2)
+        records.append(record)
 
-        if i < 25:  # spot-check a sample with the slow, trusted exhaustive verifier
-            solver = Solver(slots, {2: restricted2})
-            sols = solver.count_with_numbering(cell_to_num, starters, cap=2)
-            verify_sample_solver_checks += 1
-            if len(sols) != 1:
-                fails += 1
-                print(f"  ** VERIFICATION FAILURE ** puzzle {i} not unique: {len(sols)} solutions found")
+    if len({record["id"] for record in records}) != len(records):
+        raise RuntimeError("content-addressed ID collision")
 
-    print(f"starter computation + spot verification: {time.time()-t0:.1f}s")
-    print(f"spot-verified {verify_sample_solver_checks} puzzles with the slow exhaustive solver, "
-          f"failures={fails}")
+    assign_difficulty_bands(records)
+    for record in records:
+        record["validationDigest"] = validation_digest(record)
 
-    sizes = [len(r) for _, _, r in puzzles]
-    starter_ratios = [rec["difficultyScore"] for rec, _, _, _ in all_final]
-    print(f"TOTAL PUZZLES: {len(all_final)}")
-    print(f"word count distribution: min={min(sizes)} max={max(sizes)} avg={sum(sizes)/len(sizes):.1f}")
-    print(f"starter/number ratio distribution: min={min(starter_ratios):.2f} "
-          f"max={max(starter_ratios):.2f} avg={sum(starter_ratios)/len(starter_ratios):.2f}")
+    print(
+        f"generated and exhaustively verified {len(records)} puzzles in "
+        f"{time.time()-started:.1f}s; remaining vocabulary={len(remaining)}"
+    )
+    return records
 
-    import collections
-    diff_counts = collections.Counter(rec["difficulty"] for rec, _, _, _ in all_final)
-    print("difficulty breakdown:", dict(diff_counts))
 
-    # export the full library (metadata JSON, no huge explanations) + a small
-    # full-detail sample
-    out_full = [rec for rec, _, _, _ in all_final]
-    with open("puzzles_jmdict_full_library.json", "w", encoding="utf-8") as f:
-        json.dump(out_full, f, ensure_ascii=False, indent=1)
+def write_outputs(records, output_dir):
+    os.makedirs(output_dir, exist_ok=True)
+    full_path = os.path.join(output_dir, "puzzles-v2.json")
+    sample_path = os.path.join(output_dir, "puzzles-v2-sample.json")
+    manifest_path = os.path.join(output_dir, "manifest.json")
 
-    sample_idxs = sorted(set([0, len(out_full)//4, len(out_full)//2, 3*len(out_full)//4, len(out_full)-1]))
-    sample = [out_full[i] for i in sample_idxs]
-    with open("puzzles_jmdict_sample.json", "w", encoding="utf-8") as f:
-        json.dump(sample, f, ensure_ascii=False, indent=2)
-    print(f"wrote {len(out_full)} records to puzzles_jmdict_full_library.json "
-          f"and a {len(sample)}-puzzle sample to puzzles_jmdict_sample.json")
+    with open(full_path, "w", encoding="utf-8") as handle:
+        json.dump(records, handle, ensure_ascii=False, indent=1)
+        handle.write("\n")
+
+    sample_indexes = sorted(
+        {0, len(records) // 4, len(records) // 2, 3 * len(records) // 4, len(records) - 1}
+    )
+    with open(sample_path, "w", encoding="utf-8") as handle:
+        json.dump([records[i] for i in sample_indexes], handle, ensure_ascii=False, indent=2)
+        handle.write("\n")
+
+    manifest = [
+        {
+            "schemaVersion": record["schemaVersion"],
+            "id": record["id"],
+            "mode": record["mode"],
+            "sha256": record["validationDigest"],
+        }
+        for record in records
+    ]
+    with open(manifest_path, "w", encoding="utf-8") as handle:
+        json.dump(manifest, handle, ensure_ascii=False, indent=2)
+        handle.write("\n")
+
+    for old_name in ("puzzles-v1.json", "puzzles-v1-sample.json"):
+        old_path = os.path.join(output_dir, old_name)
+        if os.path.exists(old_path):
+            os.remove(old_path)
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--output-dir",
+        default=os.path.join(os.path.dirname(os.path.dirname(__file__)), "content"),
+    )
+    args = parser.parse_args()
+    records = generate_library()
+    write_outputs(records, args.output_dir)
+
+    from release_validator import validate_release
+
+    validate_release(args.output_dir, exhaustive=True)
+    print("release validation: PASS")
 
 
 if __name__ == "__main__":
