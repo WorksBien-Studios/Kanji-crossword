@@ -1,0 +1,37 @@
+name: Engine validation
+
+on:
+  push:
+    branches:
+      - main
+      - 'fix/**'
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate canonical puzzle library
+        run: python3 engine/final_pipeline.py --output-dir content
+      - name: Run regression tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Commit generated content when needed
+        if: github.event_name == 'push'
+        run: |
+          if ! git diff --quiet -- content; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -A content
+            git commit -m "Regenerate validated puzzle library"
+            git push
+          fi
