@@ -151,8 +151,8 @@ The earlier working name **漢字ナンクロ やさしい版** is rejected. It 
 
 | Mode | Launch puzzles | Purpose |
 |---|---:|---|
-| 漢字ナンクロ | Generated from 12–23-word validated boards | Main progression across four solver-derived difficulty bands |
-| 大盤面 | Generated from 24–30-word validated boards | Longer sessions with zoom and larger grids |
+| 漢字ナンクロ | Generated from 12–19-word validated boards | Main progression across four solver-derived difficulty bands |
+| 大盤面 | Generated from 20–24-word validated boards | Longer sessions with zoom and larger grids |
 | **Total** | **360** | One exhaustively validated bundled library; exact mode mix is generator-derived |
 
 The 30-puzzle free set must sample both launch modes and every difficulty band. Puzzle ordering is finite and stable; `今日の一問` rotates locally through the bundled library and does not imply new server content.
