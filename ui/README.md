@@ -19,12 +19,12 @@ rather than third-party UI libraries.
 | Exact board restore | iOS 18 `ScrollPosition`, `ScrollGeometry`, `onScrollPhaseChange` |
 | Pinch zoom | `MagnifyGesture` |
 | Answer tray | adaptive `LazyVGrid` of native `Button` controls |
-| Undo / redo / check / hint / pause | native `toolbar`, `Button`, and `Menu` |
+| Undo / redo / erase / check / hint / pause | native `toolbar`, `Button`, and `Menu` |
 | Destructive restart | `confirmationDialog` |
 | Completion result | `sheet` + system presentation detents |
 | Stats / readings | `List`, `Form`, `LabeledContent` |
 | Settings | `Form`, `Picker`, `Toggle` |
-| First-launch tutorial | paged native `TabView` |
+| Expert keyboard entry | native `TextField` in a system `Form` sheet |\n| First-launch tutorial | paged `TabView` with native interactive `Grid`/`Button` controls |
 | Success feedback | `sensoryFeedback` |
 | Accessibility | native controls + Dynamic Type/`@ScaledMetric` + explicit VoiceOver labels |
 | App lifecycle timing | `scenePhase` |
