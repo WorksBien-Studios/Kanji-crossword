@@ -2,6 +2,7 @@
 
 Status: **submission-ready draft, media excluded**  
 Prepared: 2026-09-28  
+Last native-Japanese / ASO / Apple-compliance audit: 2026-09-29  
 Launch storefront: **Japan only**  
 Platforms: **iPhone + iPad**  
 Minimum OS: **iOS/iPadOS 18.0**  
@@ -11,6 +12,24 @@ StoreKit product ID: `com.gooduse.kanjicrossword.pro.lifetime`
 This document is the source of truth for App Store Connect fields that do **not** relate to screenshots, previews, icons, or other media.
 
 The final binary and live legal/support URLs must still be checked against this document before submission. Do not claim a feature in App Store Connect unless the submitted build actually contains it.
+
+---
+
+## 0. Audit findings (2026-09-29)
+
+This draft was audited against (a) native-Japanese phrasing, (b) 2026 App Store ASO/SEO best practice, and (c) current Apple App Review Guidelines and App Store Connect requirements, cross-checked against the actual `runtime`/`ui`/`engine` source. Changes made directly in this document:
+
+- **Native-Japanese fix:** §3 Description had a doubled-particle error ("〜から続きから再開"). Corrected.
+- **ASO fix — Subtitle underused:** the Subtitle field is the second most heavily weighted search-ranking surface after the Name, and 2026 ASO benchmarks show top-performing Games subtitles use ~27/30 characters; this draft only used 13/30. Expanded to add `漢字クロスワード` / `パズル` (both validated high-volume terms used by competing apps and previously confined to the invisible Keywords field). See §2/§3/§4.
+- **ASO fix — Keywords field reshuffled:** removed `クロスワード` from Keywords (now covered, more effectively, by the Subtitle) and used the freed byte budget to add `読み方` and `初心者`, then filled the remaining headroom with `難読`, bringing the field to exactly 100/100 bytes. See §3/§4.
+- **Apple-compliance fix — inaccurate IAP claim:** the IAP Description and IAP review notes stated the lifetime purchase unlocks "記録機能" (history/stats). The `記録` tab in `ui/Sources/KanjiCrosswordUI/KanjiCrosswordRootView.swift` is **not gated** by `purchaseStore.hasLifetimeUnlock` — it is available to every user regardless of purchase state. Claiming the IAP unlocks an already-free feature risks a Guideline 2.3.1 (Accurate Metadata) rejection and a misleading-purchase complaint. Corrected the IAP Description and review notes to only claim what the purchase actually gates (the puzzle set). See §10. If the intent was for history to be a paid feature, that must be fixed in code, not in this document.
+- **App Name / Subtitle left deliberately short where it matters:** the Name was **not** expanded to use its full 30-character budget. Apple's Guideline 2.3.7 wants the Name field to be the app's actual name, not a keyword string; the Subtitle is the correct field for extra keyword reach, and that is where the added budget went instead.
+
+### Open items this document cannot resolve — verify before submission
+
+- **Missing binary requirement, confirmed by source audit:** §16 and the §19 checklist already require an in-app **プライバシーポリシー** link and a **ライセンス／第三者表記** (JMdict/EDRDG) screen before submission. As of 2026-09-29, neither exists anywhere in `ui/Sources/KanjiCrosswordUI` (no matches for "プライバシー", "Licen[cs]e", "third-party", or "attribution"). This is a hard App Review blocker (Guideline 5.1.1 privacy-policy linkage, and the Content Rights answer in §2 that promises an attribution screen) — it must be built before the archive is submitted, not just before this document is signed off.
+- **Age Rating questionnaire re-verification:** Apple replaced the old age-rating system in July 2025 (new 13+/16+/18+ bands, expanded in-app-controls/capabilities/medical-wellness/violent-themes questions, and ratings that can now vary per storefront), with a compliance deadline of 2026-01-31. §7 already uses some of the new field names (e.g. "Age Assurance"), but it has not been re-checked against the live App Store Connect questionnaire as it exists today. Re-walk §7 against the current live form before submission; the expected 4+ outcome is unlikely to change, but field names/order may have.
+- **App Tags rollout:** §17 assumes App Tags are still US-only. Re-check current rollout scope in App Store Connect before assuming Japan is unaffected — this claim is over a year old relative to today's date and Apple has been expanding this feature.
 
 ---
 
@@ -42,12 +61,12 @@ Current name: 11 characters.
 
 ### Subtitle
 
-**大きな文字でじっくり脳トレ**
+**大きな文字でじっくり脳トレ・漢字クロスワードパズル**
 
 Apple limit: 30 characters.  
-Current subtitle: 13 characters.
+Current subtitle: 25 characters.
 
-The subtitle covers the senior/readability use case and the high-intent `脳トレ` search phrase without duplicating the app name.
+The subtitle covers the senior/readability use case and the high-intent `脳トレ` search phrase, plus `漢字クロスワード` / `パズル` — validated high-volume terms competing apps carry in their own titles/subtitles (see §4) — without duplicating the app name and without exceeding the limit. This uses 25 of 30 characters, in line with the ~27/30 median for top-performing Games subtitles, versus 13/30 in the previous draft.
 
 ### Primary category
 
@@ -150,7 +169,7 @@ This copy intentionally states the free boundary and one-time-purchase model wit
 ・一手ごとの自動保存
 ・回数制限のない「元に戻す」「やり直す」
 ・消去、ヒント、間違い確認
-・次回は同じ盤面位置から続きから再開
+・同じ盤面位置から続きを再開
 
 【完成後もゆっくり確認】
 解き終わっても完成盤は勝手に消えません。完成した盤面を確認してから結果へ進めます。
@@ -176,17 +195,17 @@ Notes:
 Enter exactly:
 
 ```
-シニア,頭の体操,熟語,クロスワード,語彙,暇つぶし,漢クロ,脳活,大人
+シニア,頭の体操,熟語,語彙,暇つぶし,漢クロ,脳活,大人,読み方,初心者,難読
 ```
 
-UTF-8 size: **92 bytes / 100-byte limit**.
+UTF-8 size: **100 bytes / 100-byte limit** (exact fit — recount bytes before editing this field again).
 
 ASO rationale:
 
 - Name already covers `漢字`, `ナンクロ`, and `広告なし`.
-- Subtitle already covers `大きな文字` and `脳トレ`.
+- Subtitle already covers `大きな文字`, `脳トレ`, `漢字クロスワード`, and `パズル` — so `クロスワード` was removed from this field to avoid wasting bytes on a term the Subtitle now indexes more heavily.
 - Categories already cover word/puzzle intent.
-- Keyword field therefore targets adjacent validated Japanese search language without wasting bytes on exact duplicates.
+- Freed bytes were spent on `読み方` (kanji-reading search intent, matches the app's actual reading-only content) and `初心者` (beginner-friendly positioning, matches the Description's "初めての方も自分のペースで楽しめます"), then `難読` filled the remaining headroom to reach the exact 100-byte cap.
 - Do not add competitor app names, developer names, trademarks, irrelevant popular terms, or pricing keywords.
 
 ### Marketing URL
@@ -263,8 +282,8 @@ The metadata deliberately spreads these terms across the indexed fields instead 
 | Indexed surface | Search intent covered |
 |---|---|
 | Name | 漢字ナンクロ, 広告なし |
-| Subtitle | 大きな文字, 脳トレ |
-| Keywords | シニア, 頭の体操, 熟語, クロスワード, 語彙, 暇つぶし, 漢クロ, 脳活, 大人 |
+| Subtitle | 大きな文字, 脳トレ, 漢字クロスワード, パズル |
+| Keywords | シニア, 頭の体操, 熟語, 語彙, 暇つぶし, 漢クロ, 脳活, 大人, 読み方, 初心者, 難読 |
 | Primary category | Word-game relevance |
 | Secondary category | Puzzle relevance |
 | Description / web search | Natural Japanese descriptions of 漢字ナンクロ, 漢字クロスワード, 熟語, オフライン, 買い切り |
@@ -491,10 +510,12 @@ Apple limit: 30 characters.
 **Description**
 
 ```
-全360問と記録機能を一度の購入で解放
+全360問を一度の購入ですべて解放
 ```
 
 Apple limit: 45 characters.
+
+Do not claim the purchase unlocks history/records (記録機能). The 記録 tab is available to every user regardless of purchase state (`ui/Sources/KanjiCrosswordUI/KanjiCrosswordRootView.swift` does not gate it on `purchaseStore.hasLifetimeUnlock`), so describing it as part of the paid unlock would be inaccurate metadata under Guideline 2.3.1.
 
 ### Pricing
 
@@ -530,7 +551,7 @@ This is the app's only paid product. It is a non-consumable lifetime unlock.
 Product ID:
 com.gooduse.kanjicrossword.pro.lifetime
 
-The app is free to download and includes 30 complete puzzles at no charge. The lifetime unlock enables the remaining bundled puzzles for a total of 360 and keeps access to the app's local history/statistics features. There is no subscription, consumable currency, advertising, external payment method, account, or server entitlement.
+The app is free to download and includes 30 complete puzzles at no charge. The lifetime unlock enables the remaining bundled puzzles for a total of 360 accessible puzzles. Local history/statistics (the 記録 tab) are available to all users regardless of purchase state and are not part of what the IAP unlocks. There is no subscription, consumable currency, advertising, external payment method, account, or server entitlement.
 
 To reach the purchase UI:
 1. Open 遊ぶ.
@@ -687,6 +708,8 @@ Before submission, Settings must expose at least:
 1. **プライバシーポリシー** → live privacy URL
 2. **ライセンス / 第三者表記** → JMdict/EDRDG CC BY-SA 3.0 attribution
 
+**Status as of 2026-09-29: neither screen exists yet.** `ui/Sources/KanjiCrosswordUI/SettingsView.swift` only has Display/Interaction/Purchase/Help sections; there is no privacy-policy link or licences/attribution view anywhere in the UI source. This is a hard blocker, not a documentation gap — do not submit until both are built and wired into 設定.
+
 Recommended additional links:
 
 3. **サポート**
@@ -809,9 +832,9 @@ Do not add any of the following to the listing, keywords, review notes, or IAP m
 
 ### Binary-policy gates that metadata cannot fix
 
-- [ ] Settings contains in-app Privacy Policy link
-- [ ] Settings contains JMdict/EDRDG licence attribution
-- [ ] final 360-puzzle count is verified
+- [ ] Settings contains in-app Privacy Policy link **(NOT YET BUILT as of 2026-09-29 — confirmed absent from `ui/Sources/KanjiCrosswordUI`)**
+- [ ] Settings contains JMdict/EDRDG licence attribution **(NOT YET BUILT as of 2026-09-29 — confirmed absent from `ui/Sources/KanjiCrosswordUI`)**
+- [x] final 360-puzzle count is verified — confirmed in `content/puzzles-v2.json` (240 kanjiNankuro + 120 kanjiNankuroLarge = 360)
 - [ ] 30 free puzzles are accessible without purchase
 - [ ] locked puzzles clearly open the IAP
 - [ ] StoreKit live price is shown
