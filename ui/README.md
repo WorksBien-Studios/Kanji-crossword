@@ -28,6 +28,7 @@ rather than third-party UI libraries.
 | First-launch tutorial | paged `TabView` with native interactive `Grid`/`Button` controls |
 | Lifetime unlock | StoreKit 2 `Product`, native purchase sheet, `Form`, and localized `displayPrice` |
 | Restore Purchases | explicit native Settings `Button` calling `AppStore.sync()` through `KanjiCommerce` |
+| Privacy policy | native `Link` in Settings to `https://worksbienstudios.com/apps/kanji-crossword/privacy/` |
 | Success feedback | `sensoryFeedback` |
 | Accessibility | native controls + Dynamic Type/`@ScaledMetric` + explicit VoiceOver labels |
 | App lifecycle timing | `scenePhase` |
@@ -57,3 +58,12 @@ starter state. Interaction semantics remain a SwiftUI `Button`.
   shows a non-blocking result card; Settings contains explicit restore.
 - Price text always comes from StoreKit's localized `Product.displayPrice`.
   The UI does not hard-code ¥1,000.
+
+
+## Policy links
+
+The canonical privacy policy is:
+
+`https://worksbienstudios.com/apps/kanji-crossword/privacy/`
+
+The URL is defined once in `PolicyLinks.swift` and surfaced in Settings with a native SwiftUI `Link` so the in-app policy and App Store Connect URL cannot drift.
