@@ -105,7 +105,7 @@ public actor GamePersistenceStore {
             )
         }
 
-        try modelContext.save()
+        try commitPendingChanges()
     }
 
     public func loadProgress(puzzleID: String) throws -> SavedGame? {
@@ -139,8 +139,13 @@ public actor GamePersistenceStore {
     }
 
     public func deleteProgress(puzzleID: String) throws {
-        try deleteActiveWithoutSaving(puzzleID: puzzleID)
-        try modelContext.save()
+        do {
+            try deleteActiveWithoutSaving(puzzleID: puzzleID)
+            try commitPendingChanges()
+        } catch {
+            modelContext.rollback()
+            throw error
+        }
     }
 
     public func deleteAllLocalGameData() throws {
@@ -150,7 +155,12 @@ public actor GamePersistenceStore {
         for record in try modelContext.fetch(FetchDescriptor<CompletedGameRecord>()) {
             modelContext.delete(record)
         }
-        try modelContext.save()
+        do {
+            try commitPendingChanges()
+        } catch {
+            modelContext.rollback()
+            throw error
+        }
     }
 
     public func loadPreferences() throws -> AppPreferences {
@@ -194,7 +204,22 @@ public actor GamePersistenceStore {
         record.checkMistakesByDefault = preferences.checkMistakesByDefault
         record.reminderEnabled = preferences.reminderEnabled
         record.updatedAt = now
-        try modelContext.save()
+        do {
+            try commitPendingChanges()
+        } catch {
+            modelContext.rollback()
+            throw error
+        }
+    }
+
+    private func commitPendingChanges() throws {
+        guard modelContext.hasChanges else { return }
+        do {
+            try modelContext.save()
+        } catch {
+            modelContext.rollback()
+            throw error
+        }
     }
 
     private func upsertActive(
