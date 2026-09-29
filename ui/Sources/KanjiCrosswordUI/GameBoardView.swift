@@ -34,11 +34,9 @@ struct GameBoardView: View {
         }
         .onScrollPhaseChange { _, newPhase, context in
             guard newPhase == .idle, didRestoreViewport else { return }
-            persistViewport(
-                visibleRect: context.geometry.visibleRect
-            )
+            persistViewport(visibleRect: context.geometry.visibleRect)
         }
-        .gesture(
+        .simultaneousGesture(
             MagnifyGesture()
                 .updating($gestureMagnification) { value, state, _ in
                     state = value.magnification
@@ -69,6 +67,7 @@ struct GameBoardView: View {
                 entry: model.state.entries[number],
                 isStarter: model.puzzle.startersByNumber[number] != nil,
                 isSelected: model.state.selectedNumber == number,
+                highContrast: model.preferences.highContrast,
                 size: cellDimension
             ) {
                 model.send(.selectNumber(number))
@@ -78,6 +77,7 @@ struct GameBoardView: View {
 
     private var cellDimension: CGFloat {
         baseCellSize
+            * model.preferences.textScale
             * model.state.viewport.zoomScale
             * gestureMagnification
     }
@@ -95,7 +95,10 @@ struct GameBoardView: View {
             return
         }
 
-        let stride = baseCellSize * model.state.viewport.zoomScale + spacing
+        let stride = baseCellSize
+            * model.preferences.textScale
+            * model.state.viewport.zoomScale
+            + spacing
         let centerX = boardPadding
             + CGFloat(model.state.viewport.centerColumn) * stride
             + stride / 2
@@ -128,6 +131,7 @@ private struct PuzzleCellButton: View {
     let entry: String?
     let isStarter: Bool
     let isSelected: Bool
+    let highContrast: Bool
     let size: CGFloat
     let action: () -> Void
 
@@ -135,9 +139,12 @@ private struct PuzzleCellButton: View {
         Button(action: action) {
             ZStack {
                 Rectangle()
-                    .fill(isSelected ? AnyShapeStyle(.tint.opacity(0.22)) : AnyShapeStyle(.background))
+                    .fill(cellFill)
                 Rectangle()
-                    .strokeBorder(isSelected ? AnyShapeStyle(.tint) : AnyShapeStyle(.tertiary), lineWidth: isSelected ? 2 : 1)
+                    .strokeBorder(
+                        isSelected ? Color.accentColor : Color.secondary.opacity(0.45),
+                        lineWidth: borderWidth
+                    )
 
                 Text(String(number))
                     .font(.caption2)
@@ -156,7 +163,23 @@ private struct PuzzleCellButton: View {
         }
         .buttonStyle(.plain)
         .accessibilityLabel(accessibilityText)
+        .accessibilityHint("同じ番号のマスを選択します")
         .accessibilityAddTraits(isSelected ? [.isSelected] : [])
+    }
+
+    private var cellFill: Color {
+        if isSelected {
+            return Color.accentColor.opacity(highContrast ? 0.28 : 0.16)
+        }
+        if isStarter {
+            return Color.secondary.opacity(highContrast ? 0.16 : 0.08)
+        }
+        return .clear
+    }
+
+    private var borderWidth: CGFloat {
+        if highContrast { return isSelected ? 4 : 2 }
+        return isSelected ? 2 : 1
     }
 
     private var accessibilityText: String {
