@@ -9,6 +9,7 @@ struct GameView: View {
     @State private var showResults = false
     @State private var showCompletionActions = true
     @State private var showKeyboardEntry = false
+    @State private var pausedForSceneTransition = false
     @State private var feedbackTitle: String?
     @State private var feedbackMessage: String?
 
@@ -21,6 +22,7 @@ struct GameView: View {
                     Label("一時停止", systemImage: "pause.circle")
                 } actions: {
                     Button("再開") {
+                        pausedForSceneTransition = false
                         model.send(.resume)
                     }
                     .buttonStyle(.borderedProminent)
@@ -37,6 +39,7 @@ struct GameView: View {
             case .paused:
                 HStack {
                     Button("再開", systemImage: "play") {
+                        pausedForSceneTransition = false
                         model.send(.resume)
                     }
                     .buttonStyle(.borderedProminent)
@@ -100,10 +103,12 @@ struct GameView: View {
 
                     if model.state.status == .active {
                         Button("一時停止", systemImage: "pause") {
+                            pausedForSceneTransition = false
                             model.send(.pause)
                         }
                     } else if model.state.status == .paused {
                         Button("再開", systemImage: "play") {
+                            pausedForSceneTransition = false
                             model.send(.resume)
                         }
                     }
@@ -178,11 +183,13 @@ struct GameView: View {
         .onChange(of: scenePhase) { _, phase in
             switch phase {
             case .active:
-                if model.state.status == .paused {
+                if pausedForSceneTransition && model.state.status == .paused {
+                    pausedForSceneTransition = false
                     model.send(.resume)
                 }
             case .inactive, .background:
                 if model.state.status == .active {
+                    pausedForSceneTransition = true
                     model.send(.pause)
                 }
             @unknown default:
