@@ -77,7 +77,10 @@ public struct TutorialView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .controlSize(.large)
-                .disabled(page == 0 && !selectedNumber)
+                .disabled(
+                    (page == 0 && !selectedNumber)
+                    || (page == 1 && sampleKanji == nil)
+                )
                 .padding(.horizontal)
             }
             .padding(.vertical)
