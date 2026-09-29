@@ -9,7 +9,7 @@ public protocol LifetimeEntitlementCaching: Sendable {
 public enum LifetimeEntitlementCacheError: Error, LocalizedError, Sendable {
     case encodingFailed
     case decodingFailed
-    case keychain(OSStatus)
+    case keychain(Int32)
 
     public var errorDescription: String? {
         switch self {
@@ -54,7 +54,7 @@ public final class KeychainLifetimeEntitlementCache: LifetimeEntitlementCaching,
             return nil
         }
         guard status == errSecSuccess else {
-            throw LifetimeEntitlementCacheError.keychain(status)
+            throw LifetimeEntitlementCacheError.keychain(Int32(status))
         }
         guard let data = result as? Data else {
             throw LifetimeEntitlementCacheError.decodingFailed
@@ -80,7 +80,7 @@ public final class KeychainLifetimeEntitlementCache: LifetimeEntitlementCaching,
             attributes[kSecValueData as String] = data
             let addStatus = SecItemAdd(attributes as CFDictionary, nil)
             guard addStatus == errSecSuccess else {
-                throw LifetimeEntitlementCacheError.keychain(addStatus)
+                throw LifetimeEntitlementCacheError.keychain(Int32(addStatus))
             }
             return
         }
@@ -94,7 +94,7 @@ public final class KeychainLifetimeEntitlementCache: LifetimeEntitlementCaching,
             [kSecValueData as String: data] as CFDictionary
         )
         guard updateStatus == errSecSuccess else {
-            throw LifetimeEntitlementCacheError.keychain(updateStatus)
+            throw LifetimeEntitlementCacheError.keychain(Int32(updateStatus))
         }
     }
 
