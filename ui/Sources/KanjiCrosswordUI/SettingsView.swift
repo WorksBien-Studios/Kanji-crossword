@@ -28,6 +28,8 @@ public struct SettingsView: View {
             helpSection
             legalSection
         }
+        .scrollContentBackground(.hidden)
+        .background(KanjiTheme.canvas)
         .navigationTitle("設定")
         .overlay {
             if !loaded {
@@ -77,11 +79,18 @@ public struct SettingsView: View {
 
     private var displaySection: some View {
         Section("表示") {
+            TextSizePreview(
+                scale: preferences.textScale,
+                highContrast: preferences.highContrast
+            )
+
             Picker("文字サイズ", selection: textScaleBinding) {
                 Text("標準").tag(1.0)
                 Text("大きい").tag(1.25)
                 Text("特大").tag(1.5)
             }
+            .pickerStyle(.segmented)
+            .controlSize(.large)
 
             Toggle("高コントラスト", isOn: highContrastBinding)
         }
@@ -243,6 +252,45 @@ public struct SettingsView: View {
                 }
             }
         )
+    }
+}
+
+/// Shows a selected square and a sample sentence at the chosen size, so the
+/// effect of the setting is visible before leaving the screen.
+private struct TextSizePreview: View {
+    let scale: Double
+    let highContrast: Bool
+
+    var body: some View {
+        HStack(spacing: 14) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 7, style: .continuous)
+                    .fill(KanjiTheme.mark)
+                RoundedRectangle(cornerRadius: 7, style: .continuous)
+                    .strokeBorder(KanjiTheme.accent, lineWidth: highContrast ? 5 : 4)
+                Text("7")
+                    .font(.system(size: 12 * scale, weight: .bold))
+                    .foregroundStyle(KanjiTheme.ink)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                    .padding(EdgeInsets(top: 3, leading: 5, bottom: 0, trailing: 0))
+                Text("異")
+                    .font(KanjiTheme.kanjiFont(size: 28 * scale))
+                    .foregroundStyle(KanjiTheme.ink)
+            }
+            .frame(width: 52 * scale, height: 52 * scale)
+            .accessibilityHidden(true)
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text("「特異」")
+                    .font(.system(size: 17 * scale, weight: .bold))
+                Text("この大きさで表示されます。")
+                    .font(.system(size: 15 * scale))
+                    .foregroundStyle(KanjiTheme.inkSecondary)
+            }
+        }
+        .padding(.vertical, 4)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("文字サイズの見本")
     }
 }
 

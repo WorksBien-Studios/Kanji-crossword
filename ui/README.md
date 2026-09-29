@@ -38,6 +38,35 @@ The only custom presentation is the visual composition of a crossword square:
 a rectangular cell with its clue number, entered kanji, selection state, and
 starter state. Interaction semantics remain a SwiftUI `Button`.
 
+## Visual design
+
+The look is a paper puzzle magazine: ink on paper, Mincho kanji, indigo actions,
+a highlighter-yellow selection and vermilion stamps. It is derived from the
+audience analysis in `docs/ui-mock/index.html`, which is also the visual
+reference for these screens.
+
+| File | Role |
+|---|---|
+| `Theme.swift` | Light/dark colour tokens, kanji font, primary/secondary/tile/action button styles, `StampMark`, `KanjiCard` |
+| `BoardInsights.swift` | Pure helpers: words a square belongs to, related squares, month grid, era date |
+| `MiniBoardView.swift` | Non-interactive board picture for thumbnails and word review |
+| `GameView.swift` | Strip (words or inline banner), board, labelled action bar, tray. Side panel layout at 720pt and wider |
+
+Rules that came out of the analysis:
+
+- No icon-only controls. Undo, redo, hint, check and erase are five labelled
+  buttons under the board; the toolbar keeps only 休む and a その他 menu.
+- Hint and check results are an inline banner, never an alert that covers the
+  board. Squares flagged by a check get a dashed border and a "?" so colour is
+  not the only cue.
+- The board fits the pane at zoom 1. Pinch or the text-size setting enlarges it.
+  Empty space is paper; only playable squares are drawn.
+- Selecting a square lights every square that shares its number and softly tints
+  the other squares in its words. Most puzzles never repeat a number, so the
+  connected-words strip is what carries the help.
+- The tab bar is hidden while playing on compact width.
+- The records tab is a stamp calendar. It shows days played, never a streak.
+
 ## Design rules
 
 - No third-party UI dependency is introduced.

@@ -1,43 +1,41 @@
 import SwiftUI
 import KanjiGameCore
 
+/// Large kanji tiles. A tile dims once its kanji is on the board, so the
+/// remaining choices are visible at a glance.
 struct AnswerTrayView: View {
     @ObservedObject var model: GameSessionViewModel
-
-    private var columns: [GridItem] {
-        let minimum = 48 * CGFloat(model.preferences.textScale)
-        let maximum = 72 * CGFloat(model.preferences.textScale)
-        return [
-            GridItem(.adaptive(minimum: minimum, maximum: maximum), spacing: 8)
-        ]
-    }
+    var columnCount = 5
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            if let selected = model.state.selectedNumber {
-                Text("番号 \(selected)")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            } else {
-                Text("マスを選んでください")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
+        let used = Set(model.state.entries.values)
+        let height = 54 * CGFloat(model.preferences.textScale)
 
-            LazyVGrid(columns: columns, spacing: 8) {
-                ForEach(Array(model.puzzle.traySeed.enumerated()), id: \.offset) { _, kanji in
-                    Button(kanji) {
-                        model.send(.enterKanji(kanji))
-                    }
-                    .buttonStyle(.bordered)
-                    .controlSize(.large)
-                    .font(.body.weight(.medium))
-                    .disabled(model.state.selectedNumber == nil)
-                    .accessibilityLabel("漢字 \(kanji) を入力")
+        LazyVGrid(
+            columns: Array(
+                repeating: GridItem(.flexible(), spacing: 8),
+                count: columnCount
+            ),
+            spacing: 8
+        ) {
+            ForEach(Array(model.puzzle.traySeed.enumerated()), id: \.offset) { _, kanji in
+                Button {
+                    model.send(.enterKanji(kanji))
+                } label: {
+                    Text(kanji)
                 }
+                .buttonStyle(
+                    KanjiTileButtonStyle(used: used.contains(kanji), height: height)
+                )
+                .disabled(
+                    model.state.selectedNumber == nil
+                    || model.state.status != .active
+                )
+                .accessibilityLabel("漢字 \(kanji) を入力")
+                .accessibilityValue(used.contains(kanji) ? "盤面に入力済み" : "")
             }
         }
-        .padding()
-        .background(.bar)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 8)
     }
 }

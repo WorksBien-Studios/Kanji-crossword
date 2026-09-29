@@ -10,10 +10,16 @@ public struct PlayRootView: View {
     private let accessPolicy: PuzzleAccessPolicy
     private let onUnlockRequested: (Puzzle) -> Void
 
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+
     @State private var selectedPuzzleID: String?
+    @State private var compactColumn: NavigationSplitViewColumn = .sidebar
     @State private var mode: PuzzleMode = .kanjiNankuro
     @State private var difficulty: PuzzleDifficulty = .easy
     @State private var recentProgress: SavedGame?
+    @State private var completedIDs: Set<String> = []
+    @State private var completionDates: [Date] = []
+    @State private var showTutorial = false
 
     public init(
         catalog: PuzzleCatalog,
@@ -30,114 +36,319 @@ public struct PlayRootView: View {
     }
 
     public var body: some View {
-        NavigationSplitView {
-            List(selection: $selectedPuzzleID) {
-                if let recentProgress {
-                    Section("続きから") {
-                        puzzleRow(
-                            recentProgress.puzzle,
-                            title: "続きから",
-                            subtitle: "途中の問題"
-                        )
-                    }
-                } else if let dailyPuzzle {
-                    Section("今日の一問") {
-                        puzzleRow(
-                            dailyPuzzle,
-                            title: "今日の一問",
-                            subtitle: dailyPuzzle.difficulty.japaneseTitle
-                        )
-                    }
-                }
-
-                Section {
-                    Picker("モード", selection: $mode) {
-                        ForEach(PuzzleMode.allCases, id: \.self) { mode in
-                            Text(mode.japaneseTitle).tag(mode)
+        NavigationSplitView(preferredCompactColumn: $compactColumn) {
+            sidebar
+                .navigationTitle("遊ぶ")
+                .background(KanjiTheme.canvas)
+                .toolbar {
+                    ToolbarItem(placement: .primaryAction) {
+                        Button("遊び方") {
+                            showTutorial = true
                         }
-                    }
-                    .pickerStyle(.segmented)
-
-                    Picker("難易度", selection: $difficulty) {
-                        ForEach(PuzzleDifficulty.allCases, id: \.self) { difficulty in
-                            Text(difficulty.japaneseTitle).tag(difficulty)
-                        }
-                    }
-                    .pickerStyle(.segmented)
-                }
-
-                Section("問題") {
-                    ForEach(Array(filteredPuzzles.enumerated()), id: \.element.id) { index, puzzle in
-                        puzzleRow(
-                            puzzle,
-                            title: "第\(index + 1)問",
-                            subtitle: "\(puzzle.rows)×\(puzzle.columns)"
-                        )
+                        .fontWeight(.bold)
                     }
                 }
-            }
-            .navigationTitle("遊ぶ")
         } detail: {
-            if let selectedPuzzleID,
-               let puzzle = catalog[selectedPuzzleID] ?? recentProgress?.puzzleIfMatching(selectedPuzzleID) {
-                if accessPolicy.isUnlocked(puzzle) {
-                    GameSessionContainerView(
-                        puzzle: puzzle,
-                        persistence: persistence,
-                        purchaseStore: purchaseStore
-                    )
-                    .id(puzzle.id)
-                } else {
-                    ContentUnavailableView {
-                        Label("この問題は買い切り版です", systemImage: "lock")
-                    } description: {
-                        Text("無料の30問を遊んだあとも、全360問を広告なしで楽しめます。")
-                    } actions: {
-                        Button(unlockButtonTitle) {
-                            onUnlockRequested(puzzle)
-                        }
-                        .buttonStyle(.borderedProminent)
-                    }
-                }
-            } else {
-                ContentUnavailableView(
-                    "問題を選んでください",
-                    systemImage: "square.grid.3x3"
-                )
-            }
+            detail
         }
         .task {
-            recentProgress = try? await persistence.loadMostRecentProgress()
-            if selectedPuzzleID == nil {
+            await reload()
+            if selectedPuzzleID == nil, horizontalSizeClass == .regular {
                 selectedPuzzleID = recentProgress?.puzzle.id ?? dailyPuzzle?.id
+            }
+        }
+        .onChange(of: selectedPuzzleID) { _, _ in
+            Task {
+                await reload()
+            }
+        }
+        .sheet(isPresented: $showTutorial) {
+            TutorialView {
+                showTutorial = false
             }
         }
     }
 
+    // MARK: Sidebar
+
+    private var sidebar: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 14) {
+                Text(JapaneseDateText.eraDate(Date()))
+                    .font(.subheadline)
+                    .foregroundStyle(KanjiTheme.inkSecondary)
+
+                if let recentProgress {
+                    resumeCard(recentProgress)
+                }
+                if let dailyPuzzle {
+                    dailyCard(dailyPuzzle)
+                }
+
+                Text("問題を選ぶ")
+                    .font(.subheadline.bold())
+                    .foregroundStyle(KanjiTheme.inkSecondary)
+                    .padding(.top, 4)
+
+                HStack(spacing: 12) {
+                    ForEach(PuzzleMode.allCases, id: \.self) { candidate in
+                        modeTile(candidate)
+                    }
+                }
+
+                Picker("難易度", selection: $difficulty) {
+                    ForEach(PuzzleDifficulty.allCases, id: \.self) { difficulty in
+                        Text(difficulty.japaneseTitle).tag(difficulty)
+                    }
+                }
+                .pickerStyle(.segmented)
+                .controlSize(.large)
+
+                Text("難しさは、ヒントの少なさと推理の深さで決まります。盤の大きさは、各問題に別に表示されます。")
+                    .font(.footnote)
+                    .foregroundStyle(KanjiTheme.inkSecondary)
+
+                LazyVGrid(
+                    columns: [GridItem(.adaptive(minimum: 76), spacing: 10)],
+                    spacing: 10
+                ) {
+                    ForEach(Array(filteredPuzzles.enumerated()), id: \.element.id) { index, puzzle in
+                        puzzleTile(puzzle, number: index + 1)
+                    }
+                }
+
+                if !purchaseStore.hasLifetimeUnlock {
+                    Text("鍵のついた問題は買い切り版です。無料の問題は、これからもずっと広告なしで遊べます。")
+                        .font(.footnote)
+                        .foregroundStyle(KanjiTheme.inkSecondary)
+                }
+
+                progressCard
+            }
+            .padding(16)
+        }
+    }
+
+    private func resumeCard(_ saved: SavedGame) -> some View {
+        Button {
+            select(saved.puzzle)
+        } label: {
+            KanjiCard {
+                HStack(spacing: 14) {
+                    MiniBoardView(
+                        puzzle: saved.puzzle,
+                        cellSize: saved.puzzle.columns > 10 ? 7 : 11,
+                        style: .progress(saved.state.entries)
+                    )
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("続きから")
+                            .font(.subheadline)
+                            .foregroundStyle(KanjiTheme.inkSecondary)
+                        Text("\(saved.puzzle.difficulty.japaneseTitle) ・ \(saved.puzzle.mode.japaneseTitle)")
+                            .font(.title3.bold())
+                            .foregroundStyle(KanjiTheme.ink)
+                        Text("\(saved.puzzle.solution.count)マス中 \(saved.state.entries.count)マス入力済み")
+                            .font(.subheadline)
+                            .foregroundStyle(KanjiTheme.inkSecondary)
+                    }
+                    Spacer(minLength: 0)
+                }
+                Text("続きを遊ぶ")
+                    .font(.title3.bold())
+                    .foregroundStyle(Color.white)
+                    .frame(maxWidth: .infinity, minHeight: 56)
+                    .background(
+                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                            .fill(KanjiTheme.accent)
+                    )
+                    .padding(.top, 8)
+            }
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel("続きから遊ぶ")
+    }
+
+    private func dailyCard(_ puzzle: Puzzle) -> some View {
+        KanjiCard {
+            HStack {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("今日の一問")
+                        .font(.subheadline)
+                        .foregroundStyle(KanjiTheme.inkSecondary)
+                    Text("\(puzzle.difficulty.japaneseTitle) ・ \(puzzle.rows)×\(puzzle.columns)")
+                        .font(.headline)
+                        .foregroundStyle(KanjiTheme.ink)
+                }
+                Spacer()
+                Button(accessPolicy.isUnlocked(puzzle) ? "はじめる" : "鍵つき") {
+                    select(puzzle)
+                }
+                .buttonStyle(KanjiSecondaryButtonStyle(compact: true))
+                .frame(width: 128)
+            }
+        }
+    }
+
+    private func modeTile(_ candidate: PuzzleMode) -> some View {
+        let count = catalog.puzzles.filter { $0.mode == candidate }.count
+        let done = catalog.puzzles.filter {
+            $0.mode == candidate && completedIDs.contains($0.id)
+        }.count
+        return Button {
+            mode = candidate
+        } label: {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(candidate.japaneseTitle)
+                    .font(.system(size: 22, weight: .heavy, design: .serif))
+                    .foregroundStyle(KanjiTheme.ink)
+                Text(candidate == .kanjiNankuro ? "12〜18語 ・ 定番" : "20〜24語 ・ 拡大可")
+                    .font(.footnote)
+                    .foregroundStyle(KanjiTheme.inkSecondary)
+                Text("完成 \(done)問 / \(count)問")
+                    .font(.footnote)
+                    .foregroundStyle(KanjiTheme.inkSecondary)
+            }
+            .padding(14)
+            .frame(maxWidth: .infinity, minHeight: 96, alignment: .leading)
+            .background(
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .fill(KanjiTheme.card)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .strokeBorder(
+                        mode == candidate ? KanjiTheme.accent : KanjiTheme.line,
+                        lineWidth: mode == candidate ? 3 : 1
+                    )
+            )
+        }
+        .buttonStyle(.plain)
+        .accessibilityAddTraits(mode == candidate ? [.isSelected] : [])
+    }
+
+    private func puzzleTile(_ puzzle: Puzzle, number: Int) -> some View {
+        let locked = !accessPolicy.isUnlocked(puzzle)
+        let done = completedIDs.contains(puzzle.id)
+        let inProgress = recentProgress?.puzzle.id == puzzle.id
+        let isSelected = selectedPuzzleID == puzzle.id
+        return Button {
+            select(puzzle)
+        } label: {
+            VStack(spacing: 4) {
+                if locked {
+                    Image(systemName: "lock")
+                        .foregroundStyle(KanjiTheme.inkSecondary)
+                }
+                Text(String(number))
+                    .font(.headline)
+                    .foregroundStyle(locked ? KanjiTheme.inkSecondary : KanjiTheme.ink)
+                if done {
+                    StampMark(kind: .complete, size: 24)
+                } else if inProgress {
+                    Text("途中")
+                        .font(.footnote)
+                        .foregroundStyle(KanjiTheme.accentText)
+                } else if !locked {
+                    Text("まだ")
+                        .font(.footnote)
+                        .foregroundStyle(KanjiTheme.inkSecondary)
+                }
+                Text("\(puzzle.rows)×\(puzzle.columns)")
+                    .font(.caption2)
+                    .foregroundStyle(KanjiTheme.inkSecondary)
+            }
+            .frame(maxWidth: .infinity, minHeight: 84)
+            .background(
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .fill(locked ? KanjiTheme.fill : KanjiTheme.card)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .strokeBorder(
+                        isSelected || inProgress ? KanjiTheme.accent : KanjiTheme.line,
+                        lineWidth: isSelected || inProgress ? 3 : 1
+                    )
+            )
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel(
+            "第\(number)問、\(locked ? "買い切り版" : done ? "完成" : inProgress ? "途中" : "未完成")"
+        )
+    }
+
+    /// A quiet count of days played and puzzles finished. No streak.
+    private var progressCard: some View {
+        let days = PlayStats.playedDays(
+            completionDates,
+            inMonthOf: Date(),
+            calendar: .current
+        ).count
+        return KanjiCard {
+            HStack(spacing: 14) {
+                StampMark(kind: .complete, size: 34)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("今月 \(days)日 遊びました")
+                        .font(.headline)
+                        .foregroundStyle(KanjiTheme.ink)
+                    Text("完成 \(completedIDs.count)問 ・ 記録で振り返れます")
+                        .font(.subheadline)
+                        .foregroundStyle(KanjiTheme.inkSecondary)
+                }
+            }
+        }
+    }
+
+    // MARK: Detail
+
     @ViewBuilder
-    private func puzzleRow(_ puzzle: Puzzle, title: String, subtitle: String) -> some View {
-        if accessPolicy.isUnlocked(puzzle) {
-            NavigationLink(value: puzzle.id) {
-                PuzzleRowLabel(
+    private var detail: some View {
+        if let selectedPuzzleID,
+           let puzzle = catalog[selectedPuzzleID] ?? recentProgress?.puzzleIfMatching(selectedPuzzleID) {
+            if accessPolicy.isUnlocked(puzzle) {
+                GameSessionContainerView(
                     puzzle: puzzle,
-                    title: title,
-                    subtitle: subtitle,
-                    locked: false
+                    persistence: persistence,
+                    purchaseStore: purchaseStore,
+                    onBackToList: { compactColumn = .sidebar }
                 )
+                .id(puzzle.id)
+            } else {
+                ContentUnavailableView {
+                    Label("この問題は買い切り版です", systemImage: "lock")
+                } description: {
+                    Text("無料の30問を遊んだあとも、全360問を広告なしで楽しめます。")
+                } actions: {
+                    Button(unlockButtonTitle) {
+                        onUnlockRequested(puzzle)
+                    }
+                    .buttonStyle(.borderedProminent)
+                }
             }
         } else {
-            Button {
-                onUnlockRequested(puzzle)
-            } label: {
-                PuzzleRowLabel(
-                    puzzle: puzzle,
-                    title: title,
-                    subtitle: subtitle,
-                    locked: true
-                )
-            }
-            .buttonStyle(.plain)
+            ContentUnavailableView(
+                "問題を選んでください",
+                systemImage: "square.grid.3x3"
+            )
         }
+    }
+
+    // MARK: Actions
+
+    private func select(_ puzzle: Puzzle) {
+        if accessPolicy.isUnlocked(puzzle) {
+            selectedPuzzleID = puzzle.id
+            compactColumn = .detail
+        } else {
+            onUnlockRequested(puzzle)
+        }
+    }
+
+    @MainActor
+    private func reload() async {
+        recentProgress = try? await persistence.loadMostRecentProgress()
+        let history = (try? await persistence.completionHistory()) ?? []
+        completedIDs = Set(history.map { $0.puzzle.id })
+        completionDates = history.compactMap { $0.state.completedAt }
     }
 
     private var filteredPuzzles: [Puzzle] {
@@ -158,36 +369,11 @@ public struct PlayRootView: View {
     }
 }
 
-private struct PuzzleRowLabel: View {
-    let puzzle: Puzzle
-    let title: String
-    let subtitle: String
-    let locked: Bool
-
-    var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 3) {
-                Text(title)
-                    .font(.body)
-                Text(subtitle)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
-            Spacer()
-            if locked {
-                Image(systemName: "lock")
-                    .foregroundStyle(.secondary)
-                    .accessibilityLabel("買い切り版")
-            }
-        }
-        .contentShape(Rectangle())
-    }
-}
-
 private struct GameSessionContainerView: View {
     let puzzle: Puzzle
     let persistence: GamePersistenceStore
     let purchaseStore: LifetimePurchaseStore
+    let onBackToList: () -> Void
 
     @State private var model: GameSessionViewModel?
     @State private var loadError: String?
@@ -198,7 +384,8 @@ private struct GameSessionContainerView: View {
                 GameView(
                     model: model,
                     persistence: persistence,
-                    purchaseStore: purchaseStore
+                    purchaseStore: purchaseStore,
+                    onBackToList: onBackToList
                 )
             } else if let loadError {
                 ContentUnavailableView {

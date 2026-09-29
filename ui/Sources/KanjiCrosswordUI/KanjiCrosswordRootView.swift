@@ -72,6 +72,7 @@ public struct KanjiCrosswordRootView: View {
             }
             .customizationID("kanji.tab.settings")
         }
+        .tint(KanjiTheme.accent)
         .task {
             await purchaseStore.start()
         }

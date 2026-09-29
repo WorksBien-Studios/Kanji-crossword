@@ -18,7 +18,7 @@ public struct TutorialView: View {
                     VStack(spacing: 24) {
                         tutorialHeading(
                             "1. 番号のマスをタップ",
-                            detail: "同じ番号のマスがまとめて選ばれます。"
+                            detail: "選んだマスが黄色になります。同じ番号のマスがあれば、いっしょに光ります。"
                         )
                         MiniBoard(
                             selected: selectedNumber,
@@ -32,7 +32,7 @@ public struct TutorialView: View {
                     VStack(spacing: 24) {
                         tutorialHeading(
                             "2. 漢字を選ぶ",
-                            detail: "候補の漢字をタップしてください。"
+                            detail: "下の大きな漢字をひとつ押すだけ。ドラッグは、いりません。"
                         )
                         MiniBoard(selected: true, kanji: nil) {}
                         HStack {
@@ -43,8 +43,8 @@ public struct TutorialView: View {
                                         page = 2
                                     }
                                 }
-                                .buttonStyle(.bordered)
-                                .controlSize(.large)
+                                .buttonStyle(KanjiTileButtonStyle())
+                                .frame(width: 72)
                             }
                         }
                     }
@@ -52,8 +52,8 @@ public struct TutorialView: View {
 
                     VStack(spacing: 24) {
                         tutorialHeading(
-                            "3. 同じ番号にまとめて入ります",
-                            detail: "あとは同じように盤面を埋めていくだけです。"
+                            "3. つながる熟語が完成します",
+                            detail: "間違えても、ほかの入力は消えません。解き終わっても、盤面はそのまま残ります。"
                         )
                         MiniBoard(
                             selected: true,
@@ -76,8 +76,7 @@ public struct TutorialView: View {
                         }
                     }
                 }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.large)
+                .buttonStyle(KanjiPrimaryButtonStyle())
                 .disabled(
                     (page == 0 && !selectedNumber)
                     || (page == 1 && sampleKanji == nil)
@@ -85,6 +84,7 @@ public struct TutorialView: View {
                 .padding(.horizontal)
             }
             .padding(.vertical)
+            .background(KanjiTheme.canvas)
             .navigationTitle("遊び方")
             .navigationBarTitleDisplayMode(.inline)
         }
@@ -117,8 +117,7 @@ private struct MiniBoard: View {
             }
             GridRow {
                 MiniCell(number: 1, selected: selected, kanji: kanji, action: action)
-                Rectangle()
-                    .fill(.primary)
+                Color.clear
                     .frame(width: 72, height: 72)
                     .accessibilityHidden(true)
             }
@@ -135,12 +134,12 @@ private struct MiniCell: View {
     var body: some View {
         Button(action: action) {
             ZStack {
-                Rectangle()
-                    .fill(selected ? Color.accentColor.opacity(0.16) : .clear)
-                Rectangle()
+                RoundedRectangle(cornerRadius: 8, style: .continuous)
+                    .fill(selected ? KanjiTheme.mark : KanjiTheme.card)
+                RoundedRectangle(cornerRadius: 8, style: .continuous)
                     .strokeBorder(
-                        selected ? Color.accentColor : Color.secondary.opacity(0.45),
-                        lineWidth: selected ? 3 : 1
+                        selected ? KanjiTheme.accent : KanjiTheme.line,
+                        lineWidth: selected ? 4 : 1.5
                     )
                 Text(String(number))
                     .font(.caption2)
@@ -149,7 +148,8 @@ private struct MiniCell: View {
                     .padding(4)
                 if let kanji {
                     Text(kanji)
-                        .font(.title)
+                        .font(KanjiTheme.kanjiFont(size: 36))
+                        .foregroundStyle(KanjiTheme.ink)
                 }
             }
             .frame(width: 72, height: 72)
