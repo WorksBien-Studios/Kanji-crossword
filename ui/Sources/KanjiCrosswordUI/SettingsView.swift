@@ -26,6 +26,7 @@ public struct SettingsView: View {
             interactionSection
             purchaseSection
             helpSection
+            legalSection
         }
         .navigationTitle("設定")
         .overlay {
@@ -129,6 +130,14 @@ public struct SettingsView: View {
                 showTutorial = true
             } label: {
                 Label("遊び方", systemImage: "questionmark.circle")
+            }
+        }
+    }
+
+    private var legalSection: some View {
+        Section("プライバシーと法的情報") {
+            Link(destination: KanjiPolicyLinks.privacy) {
+                Label("プライバシーポリシー", systemImage: "hand.raised")
             }
         }
     }
