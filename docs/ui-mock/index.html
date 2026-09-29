@@ -48,7 +48,7 @@ button:focus-visible{outline:3px solid var(--accent-text);outline-offset:2px}
 section.blk{margin-bottom:44px}
 .stage{position:sticky;top:16px;min-width:0}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
-.chip{font-size:13px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--ink2)}
+.chip{font-size:14px;font-weight:700;padding:5px 12px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--ink2)}
 .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 .phone-wrap{position:relative;margin-inline:auto}
 .stage-note{font-size:14px;color:var(--ink2);margin:12px 0 0;max-width:417px}
@@ -140,11 +140,9 @@ svg.i{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke
 /* board */
 .gwrap{display:flex;justify-content:center;padding:6px 0}
 .board{display:grid;gap:2px;padding:4px}
-.c{position:relative;background:var(--cell);border:1.5px solid var(--line);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;color:var(--ink);padding:8px 0 0 6px;overflow:hidden}
+.c{position:relative;background:var(--cell);border:1.5px solid var(--line);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;color:var(--ink);padding:0;overflow:hidden}
 .c .no{position:absolute;left:4px;top:2px;font-family:var(--body);font-size:12px;font-weight:700;color:var(--ink2);line-height:1}
 .c.st{background:var(--starter)}
-.c.ink{background:var(--accent);border-color:var(--accent)}
-.c.ink2{background:var(--ink2);border-color:var(--ink2)}
 .c.rel{background:var(--rel)}
 .c.same{background:var(--mark);border-color:var(--ink)}
 .c.sel{background:var(--mark);border:4px solid var(--accent)}
@@ -257,6 +255,43 @@ svg.i{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke
 .ul li{display:flex;gap:12px;align-items:flex-start;padding:10px 0;font-size:18px;line-height:1.4}
 .ul svg{flex:none;color:var(--ok);margin-top:2px}
 
+/* iPad */
+.screen.pad{font-size:18px}
+.pad .status{height:30px;padding:0 28px;align-items:center;font-size:15px}
+.pad .hind{width:210px;bottom:7px}
+.ptop{flex:none;height:64px;display:flex;justify-content:center;align-items:center;background:var(--bg)}
+.ptabs{display:flex;gap:4px;background:var(--card2);border-radius:28px;padding:4px}
+.ptab{display:flex;gap:8px;align-items:center;height:48px;padding:0 26px;border-radius:24px;font-weight:700;font-size:18px;color:var(--ink2)}
+.ptab[aria-current="page"]{background:var(--accent);color:var(--on-accent)}
+.col{max-width:680px;margin:0 auto;zoom:1.15;padding-top:6px}
+.split{flex:1;display:flex;min-height:0}
+.side{width:344px;flex:none;overflow-y:auto;scrollbar-width:none;border-right:1px solid var(--line);background:var(--bg);padding-bottom:30px}
+.detail{flex:1;min-width:0;display:flex;flex-direction:column;position:relative;background:var(--bg)}
+.gsplit{flex:1;display:flex;min-height:0}
+.gleft{flex:1;display:flex;align-items:center;justify-content:center;min-width:0}
+.gright{width:300px;flex:none;border-left:1px solid var(--line);background:var(--bar);display:flex;flex-direction:column;gap:12px;padding:14px 0 30px;overflow-y:auto;scrollbar-width:none}
+.gright .strip{margin:0 16px;min-height:0;align-items:flex-start}
+.gright .wchips{flex-wrap:wrap;overflow:visible}
+.gright .actions.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;height:auto;padding:0 16px;border:0;background:none}
+.actions.grid .act{min-height:68px;border:2px solid var(--line);border-radius:14px;background:var(--card);font-size:14px}
+.tray.big{gap:10px;padding:6px 16px 8px}
+.tray.big .tile{height:64px;font-size:34px}
+.gright .tray.big .tile{height:58px;font-size:30px}
+.pstrip .strip{margin:6px 40px 0;justify-content:center;min-height:64px}
+.pad .actions{height:76px;justify-content:center;gap:12px;padding:0 60px}
+.pad .act{font-size:15px}
+.pad .tray:not(.big){padding-inline:40px}
+.pad .donepanel{padding:16px 120px 34px}
+.btn,.seg button{white-space:nowrap}
+.side .seg button{font-size:14px;padding:0 2px}
+.side .daily b{white-space:nowrap;font-size:17px}
+.gright .donepanel{padding:0 16px;border:0;background:none}
+.pad .pbody.flexcol{padding-bottom:26px}
+.padsheet{left:50%;right:auto;width:640px;transform:translateX(-50%);bottom:40px;height:min(82%,760px);border-radius:26px}
+.pad .sheet .sfoot{padding-bottom:20px}
+.layout.wide{grid-template-columns:minmax(0,1fr)}
+.layout.wide .stage{position:static;order:-1;grid-column:1}
+.layout.wide .stage-note,.layout.wide .chips{max-width:none}
 @media (max-width:980px){
   .layout{grid-template-columns:minmax(0,1fr);gap:28px}
   .stage{position:static;order:-1}
@@ -270,7 +305,7 @@ svg.i{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke
   <header class="hero">
     <div class="kicker">漢字ナンクロ 広告なし · UI redesign</div>
     <h1>A puzzle app that looks like the paper magazine its players grew up with</h1>
-    <p>I read the app, its store research and the shipped puzzle data, worked out who plays and what makes them quit, then rebuilt the screens on the same iOS 18 shell (遊ぶ / 記録 / 設定). The phone on the right is live. Tap the board, the tiles and the tabs, or jump to any state with the chips.</p>
+    <p>I read the app, its store research and the shipped puzzle data, worked out who plays and what makes them quit, then rebuilt the screens on the same iOS 18 shell (遊ぶ / 記録 / 設定). The phone on the right is live. Tap the board, the tiles and the tabs, or jump to any state with the chips. Switch to iPad to see the one-column and two-column layouts.</p>
   </header>
 
   <div class="layout">
@@ -350,12 +385,23 @@ svg.i{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke
       </section>
 
       <section class="blk">
+        <h2>On iPad</h2>
+        <p style="color:var(--ink2)">Same three tabs, moved to iOS 18's floating bar at the top. The layout changes with the width, not the device.</p>
+        <div class="tblwrap"><table><thead><tr><th>Layout</th><th>What it does</th></tr></thead><tbody>
+          <tr><td>Portrait, 1 column</td><td>Play is a full-width workspace. The board grows to 78pt cells, the tray becomes seven large tiles across, and the puzzle list sits behind a labelled 問題一覧 button. Home, records and settings sit in a centred reading column so lines never stretch across 820pt.</td></tr>
+          <tr><td>Landscape, 2 columns</td><td>A split view. The left column holds resume, today's puzzle, difficulty and the stamp grid, or the calendar on the records tab. The board sits in the middle, with the words, actions and tiles in a right-hand panel so the hands never cover the board. In records, tapping a word lights it on the finished board.</td></tr>
+          <tr><td>Sheets</td><td>Results and unlock open as centred form sheets, not full-width slabs.</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="blk">
         <h2>Build notes</h2>
         <p style="color:var(--ink2)">Everything here stays inside the shell's rules: the same three <code>Tab</code>s, <code>NavigationStack</code>, system sheets with detents, no third-party UI. It needs a small theme layer (colour, tint and font tokens, a <code>ButtonStyle</code> for tiles and the action bar) and <code>.toolbarVisibility(.hidden, for: .tabBar)</code> on the board. This is a mock in HTML, so spacing is faithful but the iOS chrome is drawn, not rendered by UIKit. I could not open the <code>ios-18-shell</code> repo from this session, so the chrome follows how the app uses it.</p>
       </section>
     </main>
 
     <aside class="stage" aria-label="Interactive iPhone mock">
+      <div class="chips" id="devs" role="group" aria-label="Device"></div>
       <div class="chips" id="chips" role="group" aria-label="Jump to screen"></div>
       <div class="phone-wrap" id="pw">
         <div class="phone" id="phone"><div class="screen" id="screen"></div></div>
@@ -375,7 +421,7 @@ const TOTAL = Object.keys(P.solution).length;
 const spans = P.wordSpans.map(w=>({word:w.word,reading:w.reading,nums:w.cells.map(k=>P.cellNumbers[k]),cells:w.cells}));
 const STARTERS = Object.fromEntries(Object.entries(P.starterCells).map(([n,k])=>[+n,k]));
 
-const S = {tab:'play',screen:'home',sheet:null,diff:'standard',entries:{...STARTERS},sel:null,status:'active',
+const S = {dev:'phone',tab:'play',screen:'home',sheet:null,diff:'standard',entries:{...STARTERS},sel:null,status:'active',
   wrong:[],msg:null,hints:0,checks:0,hist:[],redo:[],panel:true,ts:1,hc:false,
   tog:{sound:true,haptic:true,timer:false,check:false,remind:true},day:28,recSeg:0,tut:0,word:0,unlockPending:false};
 let lastKey='';
@@ -417,7 +463,7 @@ function miniBoard(layout, cs, fn){
 function thumb(cs){
   return miniBoard(P.cellLayout,cs,(r,c)=>{
     const n=cellNo(r,c); if(!n) return {};
-    return {cls: STARTERS[n]?'ink2':(S.entries[n]?'ink':'')};
+    return {cls: STARTERS[n]?'st':(S.entries[n]?'rel':'')};
   });
 }
 
@@ -447,12 +493,12 @@ function vHome(){
   <div class="sech">問題を選ぶ</div>
   <div class="modes">
     <button class="mode" data-a="open" data-v="pick">
-      <span class="glyph">${miniBoard([['.','.','#','#'],['#','.','.','#'],['#','#','.','.'],['#','#','#','.']],14,()=>({cls:'ink'}))}</span>
+      <span class="glyph">${miniBoard([['.','.','#','#'],['#','.','.','#'],['#','#','.','.'],['#','#','#','.']],14,()=>({cls:'rel'}))}</span>
       <b>漢字ナンクロ</b><span class="sub">12〜18語 ・ 定番</span><span class="sub">完成 12問</span>
     </button>
     <button class="btn-none mode" data-a="open" data-v="pick">
-      <span class="glyph">${miniBoard([['.','.','.','#','#','#'],['#','.','#','.','.','#'],['#','.','.','.','#','#'],['#','#','#','.','.','.']],11,()=>({cls:'ink'}))}</span>
-      <b>大盤面</b><span class="sub">20〜24語 ・ 拡大可</span><span class="sub">完成 3問</span>
+      <span class="glyph">${miniBoard([['.','.','.','#','#','#'],['#','.','#','.','.','#'],['#','.','.','.','#','#'],['#','#','#','.','.','.']],11,()=>({cls:'rel'}))}</span>
+      <b>大盤面</b><span class="sub">20〜24語 ・ 拡大できる</span><span class="sub">完成 3問</span>
     </button>
   </div>
   <div class="card" style="display:flex;align-items:center;gap:14px">
@@ -487,10 +533,9 @@ function relatedNums(){
   return {words,rel};
 }
 
-function boardHTML(mode){
+function boardHTML(mode,cs=44){
   const {rel} = relatedNums();
   const wrong = new Set(S.wrong);
-  const cs = 44;
   let h = `<div class="board" style="grid-template-columns:repeat(${COLS},${cs}px)">`;
   for(let r=0;r<ROWS;r++)for(let c=0;c<COLS;c++){
     const n = cellNo(r,c);
@@ -507,7 +552,7 @@ function boardHTML(mode){
     // repeated number: every cell of the selected number gets full highlight
     if(S.sel && n===S.sel && mode!=='done'){ cls = cellsOf[n].length>1 ? 'same sel' : 'sel'; if(wrong.has(n)) cls+=' bad'; }
     const lab = `番号${n}、${e?e+'が入力済み':'空欄'}`;
-    h+=`<button class="c ${cls}" style="width:${cs}px;height:${cs}px;font-size:28px" data-a="cell" data-v="${n}" aria-label="${lab}"><span class="no">${n}</span>${e?esc(e):''}</button>`;
+    h+=`<button class="c ${cls}" style="width:${cs}px;height:${cs}px;font-size:${Math.round(cs*.64)}px" data-a="cell" data-v="${n}" aria-label="${lab}"><span class="no">${n}</span>${e?esc(e):''}</button>`;
   }
   return h+'</div>';
 }
@@ -521,22 +566,30 @@ function stripHTML(){
   return `<div class="strip"><div class="lab">番号 ${S.sel}<br>${words.length}語</div><div class="wchips">${chips}</div></div>`;
 }
 
+function actionBar(grid){
+  const dis = S.status!=='active';
+  return `<div class="actions ${grid?'grid':''}">
+    <button class="act" data-a="undo" ${dis||!S.hist.length?'disabled':''}>${ic('undo')}元に戻す</button>
+    <button class="act" data-a="redo" ${dis||!S.redo.length?'disabled':''}>${ic('redo')}やり直す</button>
+    <button class="act" data-a="hint" ${dis?'disabled':''}>${ic('bulb')}ヒント</button>
+    <button class="act" data-a="check" ${dis?'disabled':''}>${ic('check')}確認</button>
+    <button class="act" data-a="erase" ${dis||!S.sel||STARTERS[S.sel]||!S.entries[S.sel]?'disabled':''}>${ic('erase')}消す</button>
+  </div>`;
+}
+function trayHTML(cols,big){
+  const used = new Set(Object.values(S.entries)), dis=S.status!=='active';
+  return `<div class="tray ${big?'big':''}" style="grid-template-columns:repeat(${cols},1fr)">${P.traySeed.map(k=>`<button class="tile ${used.has(k)?'used':''}" data-a="tile" data-v="${k}" ${dis?'disabled':''} aria-label="${k}">${k}</button>`).join('')}</div>`;
+}
+function doneHTML(){
+  return S.panel
+   ? `<div class="donepanel"><button class="btn" data-a="sheet" data-v="results">結果を見る</button><div class="row2"><button class="btn sec sm" data-a="hidepanel">完成盤を見る</button><button class="btn sec sm" data-a="next">問題一覧へ</button></div></div>`
+   : `<div class="donepanel" style="padding-bottom:4px"><div class="row2"><button class="btn sm" data-a="sheet" data-v="results">結果を見る</button><button class="btn sec sm" data-a="next">次の問題</button></div></div>`;
+}
+function pausedHTML(){
+  return S.status==='paused'?`<div class="paused"><b>一時停止中</b><span class="sub" style="font-size:17px">盤面は隠しています。<br>用意ができたら再開してください。</span><button class="btn" style="max-width:260px" data-a="resume">再開する</button></div>`:'';
+}
 function vGame(){
   const done = S.status==='done';
-  const used = new Set(Object.values(S.entries));
-  const tray = P.traySeed.map(k=>`<button class="tile ${used.has(k)?'used':''}" data-a="tile" data-v="${k}" ${done||S.status==='paused'?'disabled':''} aria-label="${k}">${k}</button>`).join('');
-  const dis = done||S.status==='paused';
-  const bottom = done
-    ? (S.panel ? `<div class="donepanel"><button class="btn" data-a="sheet" data-v="results">結果を見る</button><div class="row2"><button class="btn sec sm" data-a="hidepanel">完成盤を見る</button><button class="btn sec sm" data-a="open" data-v="pick">問題一覧へ</button></div></div>`
-                 : `<div class="donepanel" style="padding-bottom:4px"><div class="row2"><button class="btn sm" data-a="sheet" data-v="results">結果を見る</button><button class="btn sec sm" data-a="open" data-v="pick">次の問題</button></div></div>`)
-    : `<div class="actions">
-        <button class="act" data-a="undo" ${dis||!S.hist.length?'disabled':''}>${ic('undo')}元に戻す</button>
-        <button class="act" data-a="redo" ${dis||!S.redo.length?'disabled':''}>${ic('redo')}やり直す</button>
-        <button class="act" data-a="hint" ${dis?'disabled':''}>${ic('bulb')}ヒント</button>
-        <button class="act" data-a="check" ${dis?'disabled':''}>${ic('check')}確認</button>
-        <button class="act" data-a="erase" ${dis||!S.sel||STARTERS[S.sel]||!S.entries[S.sel]?'disabled':''}>${ic('erase')}消す</button>
-      </div>
-      <div class="tray">${tray}</div>`;
   return `
   <div class="nav"><button class="nbtn" data-a="back">${ic('chev')}戻る</button>
     <div class="ntitle"><b>ふつう ・ 第7問</b><small>${filled()} / ${TOTAL} 入力</small></div>
@@ -544,11 +597,20 @@ function vGame(){
   ${stripHTML()}
   <div class="gwrap">${boardHTML(done?'done':'play')}</div>
   <div style="flex:1"></div>
-  ${bottom}
-  ${S.status==='paused'?`<div class="paused"><b>一時停止中</b><span class="sub" style="font-size:17px">盤面は隠しています。<br>用意ができたら再開してください。</span><button class="btn" style="max-width:260px" data-a="resume">再開する</button></div>`:''}`;
+  ${done?doneHTML():actionBar()+trayHTML(5)}
+  ${pausedHTML()}`;
 }
-
-function vRecords(){
+function padGame(land){
+  const done = S.status==='done';
+  const nav = `<div class="nav" style="height:60px;grid-template-columns:1fr auto 1fr">${land?'<span></span>':`<button class="nbtn" data-a="back" style="font-size:19px">${ic('chev')}問題一覧</button>`}
+    <div class="ntitle"><b style="font-size:21px">ふつう ・ 第7問</b><small style="font-size:15px">${filled()} / ${TOTAL} 入力</small></div>
+    <button class="nbtn r" style="font-size:19px" data-a="${done?'sheet':'pause'}" data-v="results">${done?'結果':'休む'}</button></div>`;
+  if(land) return `${nav}<div class="gsplit"><div class="gleft"><div class="gwrap">${boardHTML(done?'done':'play',58)}</div></div>
+    <div class="gright">${stripHTML()}${done?doneHTML():actionBar(true)+trayHTML(4,true)}</div></div>${pausedHTML()}`;
+  return `${nav}<div class="pstrip">${stripHTML()}</div><div class="gwrap" style="padding:10px 0">${boardHTML(done?'done':'play',84)}</div><div style="flex:1"></div>
+    ${done?doneHTML():actionBar()+trayHTML(7,true)}${pausedHTML()}`;
+}
+function recParts(){
   const stamped = {1:2,2:1,3:2,5:1,6:3,8:1,9:2,12:1,13:2,14:1,15:1,19:2,21:2,22:1,23:3,26:1,27:2,28:2};
   const hol = {21:'敬老の日',23:'秋分の日'};
   const dows = ['日','月','火','水','木','金','土'];
@@ -556,27 +618,35 @@ function vRecords(){
   for(let i=0;i<2;i++) cells+='<div></div>'; // 1 Sep 2026 is a Tuesday
   for(let d=1;d<=30;d++){
     const dow=(2+d-1)%7;
-    const cls=['d', dow===0||hol[d]?'sun':dow===6?'sat':'', stamped[d]?'on':'', d===29?'part today':'', S.day===d?'pick':'', d>29?'dis':'', hol[d]?'hol':''].join(' ');
+    const cls=['d', dow===0||hol[d]?'sun':dow===6?'sat':'', stamped[d]?'on':'', d===29?'part today':'', S.day===d?'pick':'', d>29?'dis':''].join(' ');
     cells+=`<button class="${cls}" data-a="day" data-v="${d}" aria-label="9月${d}日${stamped[d]?' '+stamped[d]+'問完成':''}">${d}</button>`;
   }
   const n = stamped[S.day]||0;
   const names=['ふつう 第6問','やさしい 第12問','むずかしい 第3問'];
-  const detail = n? Array.from({length:n},(_,i)=>`<button class="hrow"><div>${miniBoard(P.cellLayout,9,(r,c)=>P.cellLayout[r][c]==='#'?{}:{cls:'won'})}</div><div style="flex:1"><b>${names[(S.day+i)%3]}</b><div class="sub">ヒント ${(S.day+i)%3}回 ・ 確認 ${i}回</div></div>${ic('chevr')}</button>`).join('')
+  const list = n? Array.from({length:n},(_,i)=>`<button class="hrow" data-a="word" data-v="${(S.day+i)%spans.length}"><div>${miniBoard(P.cellLayout,9,(r,c)=>P.cellLayout[r][c]==='#'?{}:{cls:'won'})}</div><div style="flex:1"><b>${names[(S.day+i)%3]}</b><div class="sub">ヒント ${(S.day+i)%3}回 ・ 確認 ${i}回</div></div>${ic('chevr')}</button>`).join('')
     : `<div class="hrow" style="color:var(--ink2)">この日は、まだ遊んでいません。</div>`;
   const seg = `<div class="seg" role="group"><button data-a="seg" data-v="0" aria-pressed="${S.recSeg===0}">カレンダー</button><button data-a="seg" data-v="1" aria-pressed="${S.recSeg===1}">完成盤</button></div>`;
-  let body;
-  if(S.recSeg===0){
-    body = `<div class="cal"><div class="calh"><b>令和8年 9月</b><span class="sub">18日 遊びました</span></div><div class="cg">${cells}</div>
+  const cal = `<div class="cal"><div class="calh"><b>令和8年 9月</b><span class="sub">18日 遊びました</span></div><div class="cg">${cells}</div>
       <div class="legend"><span><i class="stamp"></i>完成</span><span><i class="stamp half"></i>途中</span><span><i style="width:16px;height:16px;border-radius:50%;background:var(--rel);display:block"></i>今日</span></div></div>
-      <div class="gh">9月${S.day}日${hol[S.day]?'（'+hol[S.day]+'）':''}</div><div class="group">${detail}</div>`;
-  }else{
-    const lay=D.others; const t=['9/28','9/27','9/26','9/23','9/22','9/21'];
-    body = `<div class="thumbgrid">${t.map((d,i)=>`<button class="tcard">${miniBoard(lay[i%lay.length],lay[i%lay.length].length>10?12:16,(r,c)=>({cls:'won'}))}<b>${d}</b><span>${diffs[i%4]}</span></button>`).join('')}</div>
+      <div class="gh">9月${S.day}日${hol[S.day]?'（'+hol[S.day]+'）':''}</div><div class="group">${list}</div>`;
+  const lay=D.others; const tl=['9/28','9/27','9/26','9/23','9/22','9/21'];
+  const thumbs = `<div class="thumbgrid">${tl.map((d,i)=>`<button class="tcard">${miniBoard(lay[i%lay.length],lay[i%lay.length].length>10?12:16,()=>({cls:'won'}))}<b>${d}</b><span>${diffs[i%4]}</span></button>`).join('')}</div>
       <p class="note">解いた盤面は、すべて端末に残ります。</p>`;
-  }
-  return `<div class="lt" style="padding-top:8px">記録</div>${seg}${body}<div class="bottom-pad"></div>`;
+  return {seg,cal,thumbs};
 }
-
+function vRecords(){
+  const p=recParts();
+  return `<div class="lt" style="padding-top:8px">記録</div>${p.seg}${S.recSeg===0?p.cal:p.thumbs}<div class="bottom-pad"></div>`;
+}
+function padRecDetail(){
+  const w=spans[S.word], hl=new Set(w.cells);
+  const mb=miniBoard(P.cellLayout,46,(r,c)=>{const n=cellNo(r,c);if(!n)return{};return{cls:hl.has(r+','+c)?'hl':'won',html:esc(P.solution[n])}});
+  return `<div class="nav" style="height:60px"><span></span><div class="ntitle"><b style="font-size:21px">9月${S.day}日 ・ むずかしい 第3問</b><small style="font-size:15px">完成盤と熟語</small></div><span></span></div>
+  <div style="flex:1;overflow-y:auto;padding:4px 0 20px;scrollbar-width:none"><div style="display:flex;gap:24px;align-items:center;justify-content:center;padding:6px 24px 16px;flex-wrap:wrap"><div>${mb}</div>
+  <div class="bigread" style="margin:0;flex-direction:column;align-items:flex-start;min-width:220px"><b style="font-size:54px">${w.word}</b><span style="font-size:24px">${w.reading}</span><div class="sub">押した熟語のマスが黄色になります</div></div></div>
+  <div class="stats" style="margin:0 24px 12px"><div class="stat"><small>ヒント</small><b>1回</b></div><div class="stat"><small>間違い確認</small><b>1回</b></div><div class="stat"><small>タイマー</small><b>オフ</b></div></div>
+  <div class="wgrid" style="grid-template-columns:repeat(3,1fr);margin:0 24px">${spans.map((s,i)=>`<button class="wd" aria-pressed="${i===S.word}" data-a="word" data-v="${i}"><b>${s.word}</b><small>${s.reading}</small></button>`).join('')}</div></div>`;
+}
 function sw(k,label,sub){return `<div class="grow"><div>${label}${sub?`<small>${sub}</small>`:''}</div><button class="sw" role="switch" aria-checked="${!!S.tog[k]}" aria-label="${label}" data-a="tog" data-v="${k}"></button></div>`}
 function vSettings(){
   const sizes=[['標準',1],['大きい',1.15],['特大',1.3]];
@@ -605,7 +675,7 @@ function vSheetResults(){
   });
   return `<div class="shead"><span></span><b>結果</b><button class="nbtn r" data-a="closesheet">閉じる</button></div>
   <div class="sbody">
-    <div class="stats"><div class="stat"><small>ヒント</small><b>${S.hints}回</b></div><div class="stat"><small>間違い確認</small><b>${S.checks}回</b></div><div class="stat"><small>タイマー</small><b>オフ</b></div></div>
+    <div class="stats"><div class="stat"><small>ヒント</small><b>${S.hints}回</b></div><div class="stat"><small>間違い確認</small><b>${S.checks}回</b></div><div class="stat"><small>自己ベスト</small><b style="font-size:17px">タイマー オフ</b></div></div>
     <div class="bigread"><div style="flex:none">${mb.replace(/width:30px/g,'width:22px').replace(/height:30px/g,'height:22px').replace(/repeat\((\d+),30px\)/,'repeat($1,22px)').replace(/font-size:19px/g,'font-size:14px')}</div><div><b>${w.word}</b><span>${w.reading}</span></div></div>
     <div class="gh" style="padding-top:2px">完成した熟語（${spans.length}語）。押すと盤面で確かめられます。</div>
     <div class="wgrid">${spans.map((s,i)=>`<button class="wd" aria-pressed="${i===S.word}" data-a="word" data-v="${i}"><b>${s.word}</b><small>${s.reading}</small></button>`).join('')}</div>
@@ -653,11 +723,50 @@ function sheetHTML(){
   if(!S.sheet) return '';
   const h = {results:'84%',unlock:'70%',tutorial:'74%'}[S.sheet];
   const inner = {results:vSheetResults,unlock:vSheetUnlock,tutorial:vSheetTutorial}[S.sheet]();
-  return `<div class="dim" data-a="${S.sheet==='tutorial'?'noop':'closesheet'}"></div><div class="sheet" style="height:${h}" role="dialog" aria-modal="true"><div class="grab"></div>${inner}</div>`;
+  const pad = S.dev!=='phone';
+  return `<div class="dim" data-a="${S.sheet==='tutorial'?'noop':'closesheet'}"></div><div class="sheet ${pad?'padsheet':''}" style="${pad?'':'height:'+h}" role="dialog" aria-modal="true"><div class="grab"></div>${inner}</div>`;
 }
 
 /* ---------- render ---------- */
+const DEV={phone:{w:393,h:852,b:12,r:66,rs:54},padp:{w:820,h:1180,b:18,r:54,rs:38},padl:{w:1180,h:820,b:18,r:54,rs:38}};
+function applyDevice(){
+  const d=DEV[S.dev],ph=document.getElementById('phone'),scr=document.getElementById('screen');
+  ph.style.width=(d.w+2*d.b)+'px';ph.style.height=(d.h+2*d.b)+'px';ph.style.borderRadius=d.r+'px';ph.style.padding=d.b+'px';
+  scr.style.width=d.w+'px';scr.style.height=d.h+'px';scr.style.borderRadius=d.rs+'px';
+  scr.classList.toggle('pad',S.dev!=='phone');
+  document.querySelector('.layout').classList.toggle('wide',S.dev!=='phone');
+}
+function renderPad(){
+  const scr=document.getElementById('screen'),land=S.dev==='padl';
+  const old=scr.querySelector('.pbody'); const key=S.dev+S.tab+S.screen;
+  const st=(old&&key===lastKey)?old.scrollTop:0; lastKey=key;
+  scr.dataset.hc=S.hc?'1':'0'; scr.style.setProperty('--ts',S.ts);
+  let content, flex=false;
+  if(S.tab==='play'){
+    if(land){
+      const pk=`<div class="date"><span>令和8年9月29日 火曜日</span></div><div class="lt">遊ぶ</div>
+        <button class="card resume" style="width:calc(100% - 32px);text-align:left;margin-bottom:10px" data-a="open" data-v="game"><div style="flex:none">${thumb(10)}</div><div><div class="sub">続きから</div><b style="font-size:18px">ふつう ・ 第7問</b><div class="sub">${TOTAL}マス中 ${filled()}マス</div></div></button>
+        <div class="card daily" style="padding:12px 16px"><div><div class="sub">今日の一問</div><b>やさしい ・ 8×8</b></div><button class="btn sec sm" style="width:auto;padding:0 16px" data-a="open" data-v="game">はじめる</button></div>
+        <div class="seg" role="group" aria-label="難易度">${diffs.map(d=>`<button style="font-size:15px" aria-pressed="${S.diff===d}" data-a="diff" data-v="${d}">${d}</button>`).join('')}</div>
+        <div class="pgrid" style="grid-template-columns:repeat(4,1fr)">${Array.from({length:12},(_,i)=>{const n=i+1,lock=n>8,cur=n===7;return lock?`<button class="pz lock" data-a="sheet" data-v="unlock">${ic('lock')}<span class="n">${n}</span></button>`:`<button class="pz ${cur?'cur':''}" data-a="open" data-v="game"><span class="n">${n}</span>${n<7?'<span class="stamp"></span>':cur?'<span class="st">途中</span>':'<span class="st">まだ</span>'}</button>`}).join('')}</div>
+        <p class="note">第9問から先は買い切り版です。</p>`;
+      content=`<div class="split"><aside class="side">${pk}</aside><section class="detail">${padGame(true)}</section></div>`; flex=true;
+    } else if(S.screen==='game'){ content=padGame(false); flex=true; }
+    else content=`<div class="col">${S.screen==='pick'?vPick():vHome()}</div>`;
+  } else if(S.tab==='records'){
+    if(land){const p=recParts(); content=`<div class="split"><aside class="side"><div class="lt" style="padding-top:8px">記録</div>${p.seg}${S.recSeg===0?p.cal:p.thumbs}</aside><section class="detail">${padRecDetail()}</section></div>`; flex=true}
+    else content=`<div class="col">${vRecords()}</div>`;
+  } else content=`<div class="col">${vSettings()}</div>`;
+  scr.innerHTML=`<div class="status"><span>9:41　9月29日(火)</span><span class="ic"><svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="22" height="12" rx="3.5" fill="none" stroke="currentColor" opacity=".5"/><rect x="2" y="2" width="16" height="9" rx="2" fill="currentColor"/></svg></span></div>
+    <div class="ptop"><nav class="ptabs" aria-label="タブ">${[['play','遊ぶ'],['records','記録'],['settings','設定']].map(([k,l])=>`<button class="ptab" data-a="tab" data-v="${k}" ${S.tab===k?'aria-current="page"':''}><svg width="22" height="22" viewBox="0 0 28 28">${TABI[k]}</svg>${l}</button>`).join('')}</nav></div>
+    <div class="pbody ${flex?'flexcol':''}" style="${flex?'display:flex;flex-direction:column;overflow:hidden':''}">${content}</div>
+    ${sheetHTML()}<div class="hind"></div>`;
+  const nb=scr.querySelector('.pbody'); if(nb&&st) nb.scrollTop=st;
+  syncChips();
+}
 function render(){
+  applyDevice();
+  if(S.dev!=='phone') return renderPad();
   const playing = S.tab==='play' && S.screen==='game';
   const view = S.tab==='records'?vRecords():S.tab==='settings'?vSettings():S.screen==='pick'?vPick():S.screen==='game'?vGame():vHome();
   const key=S.tab+S.screen;
@@ -757,10 +866,15 @@ let curPreset='home';
 const chipsEl=document.getElementById('chips');
 PRESETS.forEach(([id,label,note,fn])=>{
   const b=document.createElement('button');b.className='chip';b.textContent=label;b.dataset.id=id;
-  b.addEventListener('click',()=>{curPreset=id;fn();render()});
+  b.addEventListener('click',()=>{curPreset=id;fn();render();fit()});
   chipsEl.appendChild(b);
 });
+const DEVS=[['phone','iPhone'],['padp','iPad portrait · 1 column'],['padl','iPad landscape · 2 columns']];
+const devsEl=document.getElementById('devs');
+DEVS.forEach(([id,l])=>{const b=document.createElement('button');b.className='chip';b.textContent=l;b.dataset.id=id;
+  b.addEventListener('click',()=>{S.dev=id;if(id==='padp'&&S.tab==='play'&&S.screen==='home'){}render();fit()});devsEl.appendChild(b)});
 function syncChips(){
+  devsEl.querySelectorAll('.chip').forEach(b=>b.setAttribute('aria-pressed',b.dataset.id===S.dev));
   chipsEl.querySelectorAll('.chip').forEach(b=>b.setAttribute('aria-pressed',b.dataset.id===curPreset));
   const p=PRESETS.find(x=>x[0]===curPreset); document.getElementById('snote').textContent=p?p[2]:'';
 }
@@ -768,13 +882,13 @@ function syncChips(){
 /* ---------- scale phone to the space available ---------- */
 function fit(){
   const stage=document.querySelector('.stage'),pw=document.getElementById('pw'),ph=document.getElementById('phone');
+  const d=DEV[S.dev],W=d.w+2*d.b,H=d.h+2*d.b;
   const two=window.matchMedia('(min-width:981px)').matches;
-  const availW=Math.min(stage.clientWidth,440);
-  let s=Math.min(1,availW/417);
-  if(two){const chipsH=document.getElementById('chips').offsetHeight+70;s=Math.min(s,(window.innerHeight-chipsH-24)/876)}
-  s=Math.max(.5,s);
+  let s=Math.min(1,stage.clientWidth/W);
+  if(two){const off=document.getElementById('chips').offsetHeight+document.getElementById('devs').offsetHeight+80;s=Math.min(s,(window.innerHeight-off)/H)}
+  s=Math.max(.35,s);
   ph.style.transform=`scale(${s})`;
-  pw.style.width=(417*s)+'px';pw.style.height=(876*s)+'px';
+  pw.style.width=(W*s)+'px';pw.style.height=(H*s)+'px';
 }
 window.addEventListener('resize',fit);
 PRESETS[1][3](); render(); fit();
