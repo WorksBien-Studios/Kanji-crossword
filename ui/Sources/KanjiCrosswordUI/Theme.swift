@@ -75,10 +75,10 @@ struct KanjiPrimaryButtonStyle: ButtonStyle {
     var compact = false
 
     func makeBody(configuration: Configuration) -> some View {
-        Body(configuration: configuration, compact: compact)
+        StyleBody(configuration: configuration, compact: compact)
     }
 
-    private struct Body: View {
+    private struct StyleBody: View {
         let configuration: ButtonStyleConfiguration
         let compact: Bool
         @Environment(\.isEnabled) private var isEnabled
@@ -102,10 +102,10 @@ struct KanjiSecondaryButtonStyle: ButtonStyle {
     var compact = false
 
     func makeBody(configuration: Configuration) -> some View {
-        Body(configuration: configuration, compact: compact)
+        StyleBody(configuration: configuration, compact: compact)
     }
 
-    private struct Body: View {
+    private struct StyleBody: View {
         let configuration: ButtonStyleConfiguration
         let compact: Bool
         @Environment(\.isEnabled) private var isEnabled
@@ -135,10 +135,10 @@ struct KanjiTileButtonStyle: ButtonStyle {
     var height: CGFloat = 54
 
     func makeBody(configuration: Configuration) -> some View {
-        Body(configuration: configuration, used: used, height: height)
+        StyleBody(configuration: configuration, used: used, height: height)
     }
 
-    private struct Body: View {
+    private struct StyleBody: View {
         let configuration: ButtonStyleConfiguration
         let used: Bool
         let height: CGFloat
@@ -174,10 +174,10 @@ struct KanjiActionButtonStyle: ButtonStyle {
     var bordered = false
 
     func makeBody(configuration: Configuration) -> some View {
-        Body(configuration: configuration, bordered: bordered)
+        StyleBody(configuration: configuration, bordered: bordered)
     }
 
-    private struct Body: View {
+    private struct StyleBody: View {
         let configuration: ButtonStyleConfiguration
         let bordered: Bool
         @Environment(\.isEnabled) private var isEnabled
