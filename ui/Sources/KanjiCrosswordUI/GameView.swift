@@ -33,6 +33,12 @@ struct GameView: View {
     @State private var flagged: Set<Int> = []
 
     var body: some View {
+        lifecycle
+    }
+
+    // The modifier chain is split into three pieces so the type checker
+    // can resolve each one in reasonable time.
+    private var chrome: some View {
         GeometryReader { proxy in
             let wide = proxy.size.width >= 720
             ZStack {
@@ -88,6 +94,10 @@ struct GameView: View {
                 }
             }
         }
+    }
+
+    private var presented: some View {
+        chrome
         .confirmationDialog(
             "最初からやり直しますか？",
             isPresented: $showRestartConfirmation,
@@ -138,6 +148,10 @@ struct GameView: View {
         } message: {
             Text(model.errorMessage ?? "")
         }
+    }
+
+    private var lifecycle: some View {
+        presented
         .task {
             await refreshCompletionCount()
         }
