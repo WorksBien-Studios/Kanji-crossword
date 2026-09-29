@@ -192,9 +192,11 @@ Each schema-v2 puzzle record contains: `schemaVersion`, content-addressed `id`, 
 
 ### App Store listing — Japanese
 
+Canonical non-media App Store Connect package: `app-store/APP_STORE_LISTING.md`.
+
 **Name (11/30):** `漢字ナンクロ 広告なし`  
 **Subtitle (13/30):** `大きな文字でじっくり脳トレ`  
-**Keywords (94/100 UTF-8 bytes):** `シニア,頭の体操,熟語,クロスワード,語彙,暇つぶし,オフライン,パズル`
+**Keywords (92/100 UTF-8 bytes):** `シニア,頭の体操,熟語,クロスワード,語彙,暇つぶし,漢クロ,脳活,大人`
 
 **Description:**
 
@@ -221,7 +223,7 @@ Each schema-v2 puzzle record contains: `schemaVersion`, content-addressed `id`, 
 ・いつでも続きから再開
 
 【完成した盤面をゆっくり確認】
-解き終わっても画面は勝手に切り替わりません。完成した盤面を見届けてから、記録や熟語の一覧へ進めます。熟語をタップすると、読み方と短い説明を確認できます。
+解き終わっても画面は勝手に切り替わりません。完成した盤面を見届けてから、記録や熟語の一覧へ進めます。熟語をタップすると、読み方を確認できます。
 
 【広告なし。サブスクなし】
 30問を無料でお試しいただけます。気に入ったら、一度の買い切りですべての問題、難易度、記録機能を利用できます。広告、コイン、回数制限はありません。
