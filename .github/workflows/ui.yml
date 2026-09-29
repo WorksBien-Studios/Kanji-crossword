@@ -1,0 +1,33 @@
+name: UI validation
+
+on:
+  push:
+    branches:
+      - main
+      - 'feat/**'
+      - 'fix/**'
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ui-validation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ios-build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Toolchain versions
+        run: |
+          xcodebuild -version
+          swift --version
+      - name: Resolve Swift packages
+        working-directory: ui
+        run: swift package resolve
+      - name: Build UI for iOS Simulator
+        working-directory: ui
+        run: xcodebuild -scheme KanjiCrosswordUI -destination 'generic/platform=iOS Simulator' build CODE_SIGNING_ALLOWED=NO
