@@ -6,7 +6,7 @@ struct ResultsView: View {
     let puzzle: Puzzle
 
     @Environment(\.dismiss) private var dismiss
-    @State private var selectedWord: WordSpan?
+    @State private var selectedWord: SelectedWord?
 
     var body: some View {
         NavigationStack {
@@ -20,9 +20,9 @@ struct ResultsView: View {
                 }
 
                 Section("完成した熟語") {
-                    ForEach(Array(puzzle.wordSpans.enumerated()), id: \.offset) { _, span in
+                    ForEach(Array(puzzle.wordSpans.enumerated()), id: \.offset) { index, span in
                         Button {
-                            selectedWord = span
+                            selectedWord = SelectedWord(index: index, span: span)
                         } label: {
                             HStack {
                                 Text(span.word)
@@ -43,8 +43,8 @@ struct ResultsView: View {
                     }
                 }
             }
-            .sheet(item: $selectedWord) { span in
-                WordReadingSheet(span: span)
+            .sheet(item: $selectedWord) { item in
+                WordReadingSheet(span: item.span)
                     .presentationDetents([.medium])
             }
         }
@@ -57,6 +57,12 @@ struct ResultsView: View {
         formatter.zeroFormattingBehavior = .pad
         return formatter.string(from: seconds) ?? "0:00"
     }
+}
+
+private struct SelectedWord: Identifiable {
+    let index: Int
+    let span: WordSpan
+    var id: Int { index }
 }
 
 private struct WordReadingSheet: View {
@@ -79,8 +85,4 @@ private struct WordReadingSheet: View {
             }
         }
     }
-}
-
-extension WordSpan: @retroactive Identifiable {
-    public var id: String { word + "|" + reading + "|" + cells.joined(separator: ",") }
 }
