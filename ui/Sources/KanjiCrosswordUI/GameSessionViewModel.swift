@@ -10,33 +10,38 @@ public final class GameSessionViewModel: ObservableObject {
     @Published public private(set) var errorMessage: String?
 
     public let puzzle: Puzzle
+    public let preferences: AppPreferences
 
     private let session: PersistentGameSession
 
     private init(
         state: GameState,
         puzzle: Puzzle,
+        preferences: AppPreferences,
         session: PersistentGameSession
     ) {
         self.state = state
         self.puzzle = puzzle
+        self.preferences = preferences
         self.session = session
     }
 
     public static func make(
         puzzle: Puzzle,
-        timerEnabled: Bool,
+        preferences: AppPreferences,
         persistence: GamePersistenceStore
     ) async throws -> GameSessionViewModel {
         let session = try await PersistentGameSession.start(
             puzzle: puzzle,
-            timerEnabled: timerEnabled,
+            timerEnabled: preferences.timerEnabledByDefault,
             persistence: persistence
         )
         let state = await session.state
+        let savedPuzzle = await session.puzzle
         return GameSessionViewModel(
             state: state,
-            puzzle: puzzle,
+            puzzle: savedPuzzle,
+            preferences: preferences,
             session: session
         )
     }
@@ -56,5 +61,9 @@ public final class GameSessionViewModel: ObservableObject {
 
     public func clearTransientEvent() {
         lastEvent = .none
+    }
+
+    public func clearError() {
+        errorMessage = nil
     }
 }
