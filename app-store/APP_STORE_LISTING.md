@@ -211,15 +211,17 @@ The page must be publicly reachable and contain real customer-contact informatio
 
 ### Privacy Policy URL
 
-Target canonical URL:
+Canonical URL:
 
 `https://worksbienstudios.com/apps/kanji-crossword/privacy/`
 
-**Required before submission.**
+The policy source is published from the production WorksBien website repository, whose `main` branch auto-deploys to `worksbienstudios.com`.
 
-The same privacy policy must also be accessible from inside the final app, for example:
+**Final release gate:** confirm this URL returns the published policy without authentication immediately before App Store submission.
 
-**設定 → プライバシーポリシー**
+The same policy is wired inside the app at:
+
+**設定 → プライバシーと法的情報 → プライバシーポリシー**
 
 ### User Privacy Choices URL
 
@@ -593,7 +595,7 @@ The app bundles 360 validated puzzles locally. Puzzle generation does not occur 
 The bundled Japanese vocabulary/readings are derived from JMdict/EDICT, property of EDRDG, used under CC BY-SA 3.0. Only words and readings are exposed in v1; JMdict English glosses and commercial dictionary definitions are not shown. Attribution/licence information is available in the app's Licences / Third-Party Notices screen.
 
 PRIVACY
-The app has no advertising, analytics, tracking, account system, developer server, or runtime AI service. Game records and preferences are stored locally. StoreKit is used for the lifetime unlock.
+The app has no advertising, analytics, tracking, account system, developer server, or runtime AI service. Game records and preferences are stored locally. StoreKit is used for the lifetime unlock. The privacy policy is available in-app at 設定 → プライバシーと法的情報 → プライバシーポリシー and at https://worksbienstudios.com/apps/kanji-crossword/privacy/.
 
 No special hardware, account credentials, or external service setup is required to review core gameplay.
 ```
@@ -752,7 +754,7 @@ Do not add any of the following to the listing, keywords, review notes, or IAP m
 - [ ] Description entered exactly
 - [ ] Keywords entered exactly and remain <=100 bytes
 - [ ] Support URL is live
-- [ ] Privacy Policy URL is live
+- [ ] Privacy Policy URL returns the published policy on the production site immediately before submission
 - [ ] Marketing URL live or left blank
 - [ ] Copyright correct
 - [ ] Version = 1.0
@@ -766,7 +768,7 @@ Do not add any of the following to the listing, keywords, review notes, or IAP m
 - [ ] tracking = none
 - [ ] ATT not requested
 - [ ] exact final archive privacy report reviewed
-- [ ] privacy policy accessible inside Settings
+- [x] privacy policy is wired inside Settings; recheck in the final signed build
 
 ### Age rating
 
@@ -809,7 +811,7 @@ Do not add any of the following to the listing, keywords, review notes, or IAP m
 
 ### Binary-policy gates that metadata cannot fix
 
-- [ ] Settings contains in-app Privacy Policy link
+- [x] Settings contains the canonical in-app Privacy Policy link; recheck in the final signed build
 - [ ] Settings contains JMdict/EDRDG licence attribution
 - [ ] final 360-puzzle count is verified
 - [ ] 30 free puzzles are accessible without purchase
