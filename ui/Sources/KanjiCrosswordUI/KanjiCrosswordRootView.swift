@@ -1,30 +1,28 @@
 import SwiftUI
 import iOS18Shell
+import KanjiCommerce
 import KanjiGameCore
 import KanjiPersistence
 
 public struct KanjiCrosswordRootView: View {
     private let catalog: PuzzleCatalog
     private let persistence: GamePersistenceStore
-    private let accessPolicy: PuzzleAccessPolicy
-    private let onUnlockRequested: (Puzzle) -> Void
 
+    @ObservedObject private var purchaseStore: LifetimePurchaseStore
     @StateObject private var navigator = AppShellNavigator()
     @AppStorage("kanjiCrossword.tutorialCompleted") private var tutorialCompleted = false
+    @Environment(\.scenePhase) private var scenePhase
+
+    @State private var purchasePromptPuzzle: Puzzle?
 
     public init(
         catalog: PuzzleCatalog,
         persistence: GamePersistenceStore,
-        hasLifetimeUnlock: Bool,
-        onUnlockRequested: @escaping (Puzzle) -> Void
+        purchaseStore: LifetimePurchaseStore
     ) {
         self.catalog = catalog
         self.persistence = persistence
-        self.accessPolicy = PuzzleAccessPolicy(
-            catalog: catalog,
-            hasLifetimeUnlock: hasLifetimeUnlock
-        )
-        self.onUnlockRequested = onUnlockRequested
+        self._purchaseStore = ObservedObject(wrappedValue: purchaseStore)
     }
 
     public var body: some View {
@@ -37,8 +35,11 @@ public struct KanjiCrosswordRootView: View {
                 PlayRootView(
                     catalog: catalog,
                     persistence: persistence,
+                    purchaseStore: purchaseStore,
                     accessPolicy: accessPolicy,
-                    onUnlockRequested: onUnlockRequested
+                    onUnlockRequested: { puzzle in
+                        purchasePromptPuzzle = puzzle
+                    }
                 )
             }
             .customizationID("kanji.tab.play")
@@ -50,10 +51,22 @@ public struct KanjiCrosswordRootView: View {
 
             Tab("設定", systemImage: "gearshape", value: "settings") {
                 NavigationStack {
-                    SettingsView(persistence: persistence)
+                    SettingsView(
+                        persistence: persistence,
+                        purchaseStore: purchaseStore
+                    )
                 }
             }
             .customizationID("kanji.tab.settings")
+        }
+        .task {
+            await purchaseStore.start()
+        }
+        .onChange(of: scenePhase) { _, phase in
+            guard phase == .active else { return }
+            Task {
+                await purchaseStore.refresh()
+            }
         }
         .sheet(isPresented: Binding(
             get: { !tutorialCompleted },
@@ -64,5 +77,15 @@ public struct KanjiCrosswordRootView: View {
             }
             .interactiveDismissDisabled()
         }
+        .sheet(item: $purchasePromptPuzzle) { _ in
+            LifetimeUnlockView(purchaseStore: purchaseStore)
+        }
+    }
+
+    private var accessPolicy: PuzzleAccessPolicy {
+        PuzzleAccessPolicy(
+            catalog: catalog,
+            hasLifetimeUnlock: purchaseStore.hasLifetimeUnlock
+        )
     }
 }
