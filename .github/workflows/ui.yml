@@ -25,6 +25,8 @@ jobs:
         run: |
           xcodebuild -version
           swift --version
+      - name: Validate StoreKit configuration JSON
+        run: python3 -m json.tool storekit/Products.storekit > /dev/null
       - name: Resolve Swift packages
         working-directory: ui
         run: swift package resolve
