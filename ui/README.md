@@ -24,7 +24,10 @@ rather than third-party UI libraries.
 | Completion result | `sheet` + system presentation detents |
 | Stats / readings | `List`, `Form`, `LabeledContent` |
 | Settings | `Form`, `Picker`, `Toggle` |
-| Expert keyboard entry | native `TextField` in a system `Form` sheet |\n| First-launch tutorial | paged `TabView` with native interactive `Grid`/`Button` controls |
+| Expert keyboard entry | native `TextField` in a system `Form` sheet |
+| First-launch tutorial | paged `TabView` with native interactive `Grid`/`Button` controls |
+| Lifetime unlock | StoreKit 2 `Product`, native purchase sheet, `Form`, and localized `displayPrice` |
+| Restore Purchases | explicit native Settings `Button` calling `AppStore.sync()` through `KanjiCommerce` |
 | Success feedback | `sensoryFeedback` |
 | Accessibility | native controls + Dynamic Type/`@ScaledMetric` + explicit VoiceOver labels |
 | App lifecycle timing | `scenePhase` |
@@ -49,5 +52,8 @@ starter state. Interaction semantics remain a SwiftUI `Button`.
 - The UI never mutates `GameState` or SwiftData directly. All game actions go
   through `GameSessionViewModel` -> `PersistentGameSession` -> reducer +
   write-through persistence.
-- StoreKit is intentionally injected through `hasLifetimeUnlock` and
-  `onUnlockRequested`; the UI does not invent entitlement state.
+- StoreKit access comes only from the shared `LifetimePurchaseStore`.
+  Locked-puzzle taps open the native unlock sheet; completion five and later
+  shows a non-blocking result card; Settings contains explicit restore.
+- Price text always comes from StoreKit's localized `Product.displayPrice`.
+  The UI does not hard-code ¥1,000.
