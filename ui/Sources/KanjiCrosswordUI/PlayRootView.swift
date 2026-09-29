@@ -186,7 +186,7 @@ private struct GameSessionContainerView: View {
                 let preferences = try await persistence.loadPreferences()
                 model = try await GameSessionViewModel.make(
                     puzzle: puzzle,
-                    timerEnabled: preferences.timerEnabledByDefault,
+                    preferences: preferences,
                     persistence: persistence
                 )
                 loadError = nil
