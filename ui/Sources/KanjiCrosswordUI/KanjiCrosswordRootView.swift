@@ -6,13 +6,25 @@ import KanjiPersistence
 public struct KanjiCrosswordRootView: View {
     private let catalog: PuzzleCatalog
     private let persistence: GamePersistenceStore
+    private let accessPolicy: PuzzleAccessPolicy
+    private let onUnlockRequested: (Puzzle) -> Void
 
     @StateObject private var navigator = AppShellNavigator()
     @AppStorage("kanjiCrossword.tutorialCompleted") private var tutorialCompleted = false
 
-    public init(catalog: PuzzleCatalog, persistence: GamePersistenceStore) {
+    public init(
+        catalog: PuzzleCatalog,
+        persistence: GamePersistenceStore,
+        hasLifetimeUnlock: Bool,
+        onUnlockRequested: @escaping (Puzzle) -> Void
+    ) {
         self.catalog = catalog
         self.persistence = persistence
+        self.accessPolicy = PuzzleAccessPolicy(
+            catalog: catalog,
+            hasLifetimeUnlock: hasLifetimeUnlock
+        )
+        self.onUnlockRequested = onUnlockRequested
     }
 
     public var body: some View {
@@ -22,7 +34,12 @@ public struct KanjiCrosswordRootView: View {
             initialSelection: "play"
         ) {
             Tab("遊ぶ", systemImage: "square.grid.3x3", value: "play") {
-                PlayRootView(catalog: catalog, persistence: persistence)
+                PlayRootView(
+                    catalog: catalog,
+                    persistence: persistence,
+                    accessPolicy: accessPolicy,
+                    onUnlockRequested: onUnlockRequested
+                )
             }
             .customizationID("kanji.tab.play")
 
