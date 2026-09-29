@@ -10,6 +10,14 @@ struct SmokeTests {
         #expect(PuzzleMode.kanjiNankuroLarge.japaneseTitle == "大盤面")
     }
 
+    @Test("Privacy policy uses the canonical WorksBien route")
+    func privacyPolicyURL() {
+        #expect(
+            KanjiPolicyLinks.privacy.absoluteString
+                == "https://worksbienstudios.com/apps/kanji-crossword/privacy/"
+        )
+    }
+
     @Test("Japanese difficulty labels remain stable")
     func difficultyLabels() {
         #expect(PuzzleDifficulty.easy.japaneseTitle == "やさしい")

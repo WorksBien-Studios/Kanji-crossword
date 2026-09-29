@@ -27,7 +27,7 @@ This draft was audited against (a) native-Japanese phrasing, (b) 2026 App Store 
 
 ### Open items this document cannot resolve — verify before submission
 
-- **Missing binary requirement, confirmed by source audit:** §16 and the §19 checklist already require an in-app **プライバシーポリシー** link and a **ライセンス／第三者表記** (JMdict/EDRDG) screen before submission. As of 2026-09-29, neither exists anywhere in `ui/Sources/KanjiCrosswordUI` (no matches for "プライバシー", "Licen[cs]e", "third-party", or "attribution"). This is a hard App Review blocker (Guideline 5.1.1 privacy-policy linkage, and the Content Rights answer in §2 that promises an attribution screen) — it must be built before the archive is submitted, not just before this document is signed off.
+- **Missing binary requirement, confirmed by source audit:** §16 and the §19 checklist require an in-app **プライバシーポリシー** link and a **ライセンス／第三者表記** (JMdict/EDRDG) screen before submission. As of 2026-09-29 the privacy-policy link is **now wired** (PR #6, `af87aaa`: `SettingsView.swift` legalSection + `PolicyLinks.swift` + smoke test) — confirmed and reflected below. The licence/attribution screen is **still missing**: no matches for "Licen[cs]e", "third-party", or "attribution" anywhere in `ui/Sources/KanjiCrosswordUI`. This remains a hard App Review blocker (the Content Rights answer in §2 promises an attribution screen, and JMdict/EDRDG's CC BY-SA 3.0 licence requires it) — it must be built before the archive is submitted, not just before this document is signed off.
 - **Age Rating questionnaire re-verification:** Apple replaced the old age-rating system in July 2025 (new 13+/16+/18+ bands, expanded in-app-controls/capabilities/medical-wellness/violent-themes questions, and ratings that can now vary per storefront), with a compliance deadline of 2026-01-31. §7 already uses some of the new field names (e.g. "Age Assurance"), but it has not been re-checked against the live App Store Connect questionnaire as it exists today. Re-walk §7 against the current live form before submission; the expected 4+ outcome is unlikely to change, but field names/order may have.
 - **App Tags rollout:** §17 assumes App Tags are still US-only. Re-check current rollout scope in App Store Connect before assuming Japan is unaffected — this claim is over a year old relative to today's date and Apple has been expanding this feature.
 
@@ -230,15 +230,17 @@ The page must be publicly reachable and contain real customer-contact informatio
 
 ### Privacy Policy URL
 
-Target canonical URL:
+Canonical URL:
 
 `https://worksbienstudios.com/apps/kanji-crossword/privacy/`
 
-**Required before submission.**
+The policy source is published from the production WorksBien website repository, whose `main` branch auto-deploys to `worksbienstudios.com`.
 
-The same privacy policy must also be accessible from inside the final app, for example:
+**Final release gate:** confirm this URL returns the published policy without authentication immediately before App Store submission.
 
-**設定 → プライバシーポリシー**
+The same policy is wired inside the app at:
+
+**設定 → プライバシーと法的情報 → プライバシーポリシー**
 
 ### User Privacy Choices URL
 
@@ -614,7 +616,7 @@ The app bundles 360 validated puzzles locally. Puzzle generation does not occur 
 The bundled Japanese vocabulary/readings are derived from JMdict/EDICT, property of EDRDG, used under CC BY-SA 3.0. Only words and readings are exposed in v1; JMdict English glosses and commercial dictionary definitions are not shown. Attribution/licence information is available in the app's Licences / Third-Party Notices screen.
 
 PRIVACY
-The app has no advertising, analytics, tracking, account system, developer server, or runtime AI service. Game records and preferences are stored locally. StoreKit is used for the lifetime unlock.
+The app has no advertising, analytics, tracking, account system, developer server, or runtime AI service. Game records and preferences are stored locally. StoreKit is used for the lifetime unlock. The privacy policy is available in-app at 設定 → プライバシーと法的情報 → プライバシーポリシー and at https://worksbienstudios.com/apps/kanji-crossword/privacy/.
 
 No special hardware, account credentials, or external service setup is required to review core gameplay.
 ```
@@ -708,7 +710,7 @@ Before submission, Settings must expose at least:
 1. **プライバシーポリシー** → live privacy URL
 2. **ライセンス / 第三者表記** → JMdict/EDRDG CC BY-SA 3.0 attribution
 
-**Status as of 2026-09-29: neither screen exists yet.** `ui/Sources/KanjiCrosswordUI/SettingsView.swift` only has Display/Interaction/Purchase/Help sections; there is no privacy-policy link or licences/attribution view anywhere in the UI source. This is a hard blocker, not a documentation gap — do not submit until both are built and wired into 設定.
+**Status as of 2026-09-29:** item 1 (プライバシーポリシー) is now wired — `SettingsView.swift` has a `legalSection` ("プライバシーと法的情報") with a native `Link` to the canonical URL, backed by `PolicyLinks.swift` and a smoke test (see `af87aaa`, PR #6). Item 2 (ライセンス / 第三者表記, JMdict/EDRDG attribution) is **still missing** — no licences/attribution view exists anywhere in the UI source. This remains a hard blocker: the Content Rights answer in §2 promises this screen, so submitting without it risks both a Guideline 2.3 accurate-metadata mismatch and an attribution-compliance issue with JMdict/EDRDG's CC BY-SA 3.0 terms.
 
 Recommended additional links:
 
@@ -775,7 +777,7 @@ Do not add any of the following to the listing, keywords, review notes, or IAP m
 - [ ] Description entered exactly
 - [ ] Keywords entered exactly and remain <=100 bytes
 - [ ] Support URL is live
-- [ ] Privacy Policy URL is live
+- [ ] Privacy Policy URL returns the published policy on the production site immediately before submission
 - [ ] Marketing URL live or left blank
 - [ ] Copyright correct
 - [ ] Version = 1.0
@@ -789,7 +791,7 @@ Do not add any of the following to the listing, keywords, review notes, or IAP m
 - [ ] tracking = none
 - [ ] ATT not requested
 - [ ] exact final archive privacy report reviewed
-- [ ] privacy policy accessible inside Settings
+- [x] privacy policy is wired inside Settings; recheck in the final signed build
 
 ### Age rating
 
@@ -832,7 +834,7 @@ Do not add any of the following to the listing, keywords, review notes, or IAP m
 
 ### Binary-policy gates that metadata cannot fix
 
-- [ ] Settings contains in-app Privacy Policy link **(NOT YET BUILT as of 2026-09-29 — confirmed absent from `ui/Sources/KanjiCrosswordUI`)**
+- [x] Settings contains the canonical in-app Privacy Policy link (`SettingsView.swift` legalSection, verified 2026-09-29); recheck in the final signed build
 - [ ] Settings contains JMdict/EDRDG licence attribution **(NOT YET BUILT as of 2026-09-29 — confirmed absent from `ui/Sources/KanjiCrosswordUI`)**
 - [x] final 360-puzzle count is verified — confirmed in `content/puzzles-v2.json` (240 kanjiNankuro + 120 kanjiNankuroLarge = 360)
 - [ ] 30 free puzzles are accessible without purchase
