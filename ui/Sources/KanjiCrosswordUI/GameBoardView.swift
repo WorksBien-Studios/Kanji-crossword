@@ -39,11 +39,11 @@ struct GameBoardView: View {
         .simultaneousGesture(
             MagnifyGesture()
                 .updating($gestureMagnification) { value, state, _ in
-                    state = value.magnification
+                    state = Double(value.magnification)
                 }
                 .onEnded { value in
                     let zoom = clampedZoom(
-                        model.state.viewport.zoomScale * value.magnification
+                        model.state.viewport.zoomScale * Double(value.magnification)
                     )
                     var viewport = model.state.viewport
                     viewport.zoomScale = zoom
@@ -77,9 +77,9 @@ struct GameBoardView: View {
 
     private var cellDimension: CGFloat {
         baseCellSize
-            * model.preferences.textScale
-            * model.state.viewport.zoomScale
-            * gestureMagnification
+            * CGFloat(model.preferences.textScale)
+            * CGFloat(model.state.viewport.zoomScale)
+            * CGFloat(gestureMagnification)
     }
 
     private var cellStride: CGFloat {
@@ -96,8 +96,8 @@ struct GameBoardView: View {
         }
 
         let stride = baseCellSize
-            * model.preferences.textScale
-            * model.state.viewport.zoomScale
+            * CGFloat(model.preferences.textScale)
+            * CGFloat(model.state.viewport.zoomScale)
             + spacing
         let centerX = boardPadding
             + CGFloat(model.state.viewport.centerColumn) * stride
