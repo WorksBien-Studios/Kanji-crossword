@@ -1,0 +1,896 @@
+<title>漢字ナンクロ UI Mock</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Shippori+Mincho:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+/* Layout concept: analysis reads on the left, one live iPhone (iOS 18 shell chrome) sticks on the right.
+   Palette: 紙 paper, 墨 ink, 藍 indigo (actions), 山吹 highlighter yellow (selection), 朱 vermilion (stamps, errors), 松 green (solved). */
+:root{
+  --page:#EBEEEA; --bg:#F5F6F3; --card:#FFFFFF; --card2:#EDF0F2;
+  --ink:#161D2B; --ink2:#48546A; --line:#C6CDD5;
+  --accent:#1F4B7A; --accent-text:#1F4B7A; --on-accent:#FFFFFF;
+  --mark:#F7D75A; --rel:#DCE8F6; --shu:#B93A22; --shu-bg:#F8E1DB; --ok:#2A7350; --ok-bg:#DDEFE5;
+  --bar:#FAFBF9; --cell:#FFFFFF; --starter:#E3E7EB;
+  --display:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --body:"BIZ UDPGothic","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  --ts:1;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --page:#0A0E14; --bg:#10151D; --card:#19202B; --card2:#222B38;
+  --ink:#EEF1F5; --ink2:#B2BCC9; --line:#3A4557;
+  --accent:#3A73B5; --accent-text:#9DC3F2; --on-accent:#FFFFFF;
+  --mark:#7A6410; --rel:#243A57; --shu:#F08A74; --shu-bg:#4A2A24; --ok:#7CCBA1; --ok-bg:#1F3A2D;
+  --bar:#141A23; --cell:#1D2531; --starter:#2C3644; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --page:#0A0E14; --bg:#10151D; --card:#19202B; --card2:#222B38;
+  --ink:#EEF1F5; --ink2:#B2BCC9; --line:#3A4557;
+  --accent:#3A73B5; --accent-text:#9DC3F2; --on-accent:#FFFFFF;
+  --mark:#7A6410; --rel:#243A57; --shu:#F08A74; --shu-bg:#4A2A24; --ok:#7CCBA1; --ok-bg:#1F3A2D;
+  --bar:#141A23; --cell:#1D2531; --starter:#2C3644; color-scheme:dark}
+
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--page);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.7;padding-inline:20px;padding-block:32px 64px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.3;margin:0}
+h1{font-size:clamp(28px,4vw,40px);font-weight:800}
+h2{font-size:24px;font-weight:700;margin-bottom:14px}
+h3{font-size:18px;font-weight:700}
+p{margin:0 0 12px}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+button:focus-visible{outline:3px solid var(--accent-text);outline-offset:2px}
+
+.wrap{max-width:1180px;margin:0 auto}
+.hero{max-width:760px;margin-bottom:36px}
+.hero p{font-size:18px;color:var(--ink2)}
+.kicker{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-text);font-weight:700;margin-bottom:10px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 440px;gap:48px;align-items:start}
+.analysis{min-width:0}
+section.blk{margin-bottom:44px}
+.stage{position:sticky;top:16px;min-width:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.chip{font-size:14px;font-weight:700;padding:5px 12px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--ink2)}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.phone-wrap{position:relative;margin-inline:auto}
+.stage-note{font-size:14px;color:var(--ink2);margin:12px 0 0;max-width:417px}
+
+.who{display:grid;gap:0;border-top:1px solid var(--line)}
+.who>div{display:grid;grid-template-columns:150px minmax(0,1fr);gap:18px;padding:14px 0;border-bottom:1px solid var(--line)}
+.who dt{font-weight:700}
+.who dd{margin:0;color:var(--ink2)}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.two h3{margin-bottom:8px}
+.pl{list-style:none;margin:0;padding:0}
+.pl li{padding:9px 0;border-top:1px solid var(--line)}
+.pl li:last-child{border-bottom:1px solid var(--line)}
+.tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.04em;padding:0 8px;border-radius:999px;margin-left:6px;vertical-align:1px;background:var(--card2);color:var(--ink2)}
+.tag.r{background:var(--ok-bg);color:var(--ok)}
+.tblwrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px}
+th,td{text-align:left;padding:10px 12px 10px 0;border-top:1px solid var(--line);vertical-align:top}
+th{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2)}
+td:first-child{font-weight:700;white-space:nowrap}
+td:nth-child(2){color:var(--ink2)}
+.callout{border:2px solid var(--shu);background:var(--shu-bg);border-radius:14px;padding:16px 18px}
+.callout h3{margin-bottom:6px}
+.callout p:last-child{margin:0}
+
+/* ---------- iPhone ---------- */
+.phone{width:417px;height:876px;border-radius:66px;background:#0B0D11;padding:12px;box-shadow:0 0 0 2px #2A2F38 inset,0 24px 60px rgba(0,0,0,.28);transform-origin:top left;position:absolute;left:0;top:0}
+.screen{position:relative;width:393px;height:852px;border-radius:54px;overflow:hidden;background:var(--bg);color:var(--ink);display:flex;flex-direction:column;font-size:17px;line-height:1.35;user-select:none;-webkit-user-select:none}
+.status{flex:none;height:54px;display:flex;justify-content:space-between;align-items:flex-end;padding:0 30px 10px 42px;font-weight:700;font-size:16px;position:relative;z-index:5;background:var(--bg)}
+.status .ic{display:flex;gap:6px;align-items:center}
+.island{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:122px;height:35px;border-radius:20px;background:#000;z-index:9}
+.pbody{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;position:relative;scrollbar-width:none}
+.pbody::-webkit-scrollbar{display:none}
+.tabbar{flex:none;height:84px;display:flex;padding:8px 10px 0;background:var(--bar);border-top:1px solid var(--line);position:relative;z-index:4}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:13px;font-weight:700;color:var(--ink2);height:52px}
+.tab[aria-current="page"]{color:var(--accent-text)}
+.tab svg{width:28px;height:28px}
+.hind{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:140px;height:5px;border-radius:3px;background:var(--ink);opacity:.85;z-index:10}
+.bottom-pad{height:34px;flex:none}
+svg.i{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+.nav{flex:none;height:48px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 6px;background:var(--bg)}
+.nbtn{min-height:44px;padding:0 10px;display:flex;align-items:center;gap:2px;font-size:17px;font-weight:700;color:var(--accent-text)}
+.nbtn.r{justify-content:flex-end}
+.ntitle{text-align:center;line-height:1.15}
+.ntitle b{display:block;font-size:17px}
+.ntitle small{font-size:13px;color:var(--ink2)}
+.lt{padding:2px 20px 10px;font-family:var(--display);font-size:36px;font-weight:800;line-height:1.2}
+.date{padding:6px 20px 0;font-size:15px;color:var(--ink2);display:flex;justify-content:space-between;align-items:center}
+.pillbtn{min-height:44px;padding:0 14px;border-radius:22px;border:2px solid var(--accent);color:var(--accent-text);font-weight:700;font-size:15px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;margin:0 16px 14px;padding:16px}
+.card h4{margin:0;font-size:20px;font-weight:700}
+.sub{font-size:15px;color:var(--ink2)}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;height:56px;border-radius:16px;width:100%;background:var(--accent);color:var(--on-accent);font-size:20px;font-weight:700}
+.btn.sec{background:var(--card);color:var(--accent-text);border:2px solid var(--accent)}
+.btn.quiet{background:none;color:var(--accent-text);height:48px;font-size:17px}
+.btn.sm{height:48px;font-size:17px}
+.btn:disabled{opacity:.4}
+.row2{display:flex;gap:10px}
+.row2>*{flex:1}
+.resume{display:flex;gap:14px;align-items:center;margin-bottom:14px}
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 16px 14px}
+.mode{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:14px;text-align:left;display:flex;flex-direction:column;gap:4px;min-height:148px}
+.mode b{font-size:22px;font-family:var(--display);font-weight:800}
+.mode .glyph{margin-bottom:6px}
+.sech{padding:8px 20px 8px;font-size:15px;font-weight:700;color:var(--ink2)}
+.daily{display:flex;align-items:center;gap:12px;justify-content:space-between}
+.stamp{width:34px;height:34px;border-radius:50%;border:3px solid var(--shu);flex:none;position:relative}
+.stamp::after{content:"";position:absolute;inset:6px;border-radius:50%;border:3px solid var(--shu)}
+.stamp.half{border-style:dashed;opacity:.9}
+.stamp.half::after{display:none}
+.stamp.off{border-color:var(--line)}
+.stamp.off::after{display:none}
+
+.seg{display:flex;background:var(--card2);border-radius:14px;padding:3px;margin:0 16px 12px}
+.seg button{flex:1;min-height:46px;border-radius:11px;font-size:16px;font-weight:700;color:var(--ink2)}
+.seg button[aria-pressed="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 2px var(--accent) inset}
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 16px 12px}
+.pz{min-height:78px;border-radius:16px;background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:15px;font-weight:700;position:relative}
+.pz .stamp{width:26px;height:26px;border-width:3px}
+.pz .stamp::after{inset:4px;border-width:2px}
+.pz.cur{border:3px solid var(--accent)}
+.pz.lock{color:var(--ink2);background:var(--card2)}
+.pz .n{font-size:17px}
+.pz .st{font-size:13px;color:var(--ink2);font-weight:400}
+.note{margin:4px 20px 16px;font-size:14px;color:var(--ink2)}
+
+/* board */
+.gwrap{display:flex;justify-content:center;padding:6px 0}
+.board{display:grid;gap:2px;padding:4px}
+.c{position:relative;background:var(--cell);border:1.5px solid var(--line);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;color:var(--ink);padding:0;overflow:hidden}
+.c .no{position:absolute;left:4px;top:2px;font-family:var(--body);font-size:12px;font-weight:700;color:var(--ink2);line-height:1}
+.c.st{background:var(--starter)}
+.c.rel{background:var(--rel)}
+.c.same{background:var(--mark);border-color:var(--ink)}
+.c.sel{background:var(--mark);border:4px solid var(--accent)}
+.c.sel .no,.c.same .no{color:var(--ink)}
+:root[data-theme="dark"] .c.same .no,:root[data-theme="dark"] .c.sel .no{color:#fff}
+.c.bad{border:3px dashed var(--shu);background:var(--shu-bg)}
+.c.bad::after{content:"?";position:absolute;right:4px;bottom:1px;font-family:var(--body);font-size:13px;font-weight:700;color:var(--shu)}
+.c.won{background:var(--ok-bg);border-color:var(--ok)}
+.c.hl{background:var(--mark);border-color:var(--ink)}
+.void{display:block}
+.screen[data-hc="1"] .c{border-width:3px;border-color:var(--ink)}
+.screen[data-hc="1"] .c.sel{border-width:5px}
+.screen[data-hc="1"] .no{color:var(--ink)}
+
+.strip{flex:none;min-height:56px;margin:2px 16px 4px;display:flex;align-items:center;gap:10px}
+.strip .lab{font-size:14px;font-weight:700;color:var(--ink2);line-height:1.2;flex:none}
+.wchips{display:flex;gap:8px;flex-wrap:wrap}
+.wchip{display:flex;gap:2px;padding:3px;border-radius:10px;background:var(--card2)}
+.wchip i{font-style:normal;width:30px;height:36px;border-radius:6px;background:var(--cell);border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:20px}
+.wchip i.me{border:3px solid var(--accent);background:var(--mark)}
+.msg{flex:1;display:flex;align-items:center;gap:10px;background:var(--rel);border-radius:14px;padding:8px 8px 8px 12px;font-size:15px;line-height:1.35}
+.msg.ok{background:var(--ok-bg)}
+.msg.bad{background:var(--shu-bg)}
+.msg button{min-width:56px;min-height:44px;border-radius:12px;font-weight:700;color:var(--accent-text);border:2px solid var(--accent);font-size:15px}
+.actions{flex:none;display:flex;padding:0 8px;height:62px;border-top:1px solid var(--line);background:var(--bar)}
+.act{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;font-size:13px;font-weight:700;color:var(--accent-text)}
+.act:disabled{color:var(--ink2);opacity:.45}
+.act svg{width:26px;height:26px}
+.tray{flex:none;display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:10px 16px 6px;background:var(--bar)}
+.tile{height:54px;border-radius:12px;background:var(--cell);border:2px solid var(--ink2);font-family:var(--display);font-weight:800;font-size:28px;color:var(--ink);box-shadow:0 2px 0 var(--ink2);position:relative}
+.tile:active{transform:translateY(2px);box-shadow:none}
+.tile.used{opacity:.42;box-shadow:none;border-style:dashed}
+.tile:disabled{opacity:.35}
+.donepanel{flex:none;padding:14px 16px 6px;background:var(--bar);border-top:1px solid var(--line);display:flex;flex-direction:column;gap:10px}
+.paused{position:absolute;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:3;text-align:center;padding:24px}
+.paused b{font-family:var(--display);font-size:28px}
+
+/* sheet */
+.dim{position:absolute;inset:0;background:rgba(5,8,12,.45);z-index:6}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:var(--bg);border-radius:26px 26px 0 0;z-index:7;display:flex;flex-direction:column;box-shadow:0 -6px 30px rgba(0,0,0,.25)}
+.grab{width:40px;height:5px;border-radius:3px;background:var(--line);margin:8px auto 0;flex:none}
+.shead{flex:none;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:4px 6px}
+.shead b{font-family:var(--display);font-size:20px}
+.sbody{flex:1;min-height:0;overflow-y:auto;scrollbar-width:none;padding:6px 0 10px}
+.sbody::-webkit-scrollbar{display:none}
+.sfoot{flex:none;padding:10px 16px 34px;background:var(--bar);border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.stats{display:flex;gap:10px;margin:0 16px 12px}
+.stat{flex:1;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px 12px}
+.stat small{display:block;font-size:14px;color:var(--ink2)}
+.stat b{font-size:22px}
+.wgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 16px 14px}
+.wd{min-height:56px;border-radius:14px;background:var(--card);border:1px solid var(--line);padding:6px 12px;display:flex;align-items:center;justify-content:space-between;gap:6px;text-align:left}
+.wd b{font-family:var(--display);font-size:22px;font-weight:800}
+.wd small{font-size:13px;color:var(--ink2)}
+.wd[aria-pressed="true"]{border:3px solid var(--accent);background:var(--mark)}
+.wd[aria-pressed="true"] small{color:var(--ink)}
+.bigread{margin:0 16px 12px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px;display:flex;gap:14px;align-items:center}
+.bigread b{font-family:var(--display);font-size:38px;font-weight:800;line-height:1.1;display:block}
+.bigread span{font-size:19px;font-weight:700;color:var(--accent-text)}
+
+/* list groups */
+.group{margin:0 16px 18px;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.grow{min-height:56px;padding:6px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--line);font-size:calc(17px*var(--ts));width:100%;text-align:left}
+.grow:first-child{border-top:0}
+.grow small{display:block;font-size:14px;color:var(--ink2)}
+.gh{padding:4px 20px 6px;font-size:14px;font-weight:700;color:var(--ink2)}
+.sw{width:56px;height:34px;border-radius:17px;background:var(--line);position:relative;flex:none;transition:background .15s}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:28px;height:28px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.4);transition:transform .15s}
+.sw[aria-checked="true"]{background:var(--ok)}
+.sw[aria-checked="true"]::after{transform:translateX(22px)}
+.preview{margin:0 16px 12px;padding:14px;background:var(--card);border:1px solid var(--line);border-radius:18px;display:flex;gap:14px;align-items:center}
+.preview .c{width:calc(48px*var(--ts));height:calc(48px*var(--ts));font-size:calc(28px*var(--ts));flex:none}
+.preview p{margin:0;font-size:calc(17px*var(--ts));line-height:1.35}
+
+/* calendar */
+.cal{margin:0 16px 12px;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:12px 8px 10px}
+.calh{display:flex;justify-content:space-between;align-items:center;padding:0 10px 6px}
+.calh b{font-family:var(--display);font-size:21px}
+.cg{display:grid;grid-template-columns:repeat(7,1fr);row-gap:2px;text-align:center}
+.cg .dow{font-size:14px;font-weight:700;color:var(--ink2);padding:4px 0}
+.cg .dow.sun,.cg .d.sun{color:var(--shu)}
+.cg .dow.sat,.cg .d.sat{color:var(--accent-text)}
+.d{height:46px;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;position:relative;border-radius:23px}
+.d.on::before{content:"";position:absolute;width:38px;height:38px;border-radius:50%;border:3px solid var(--shu)}
+.d.on::after{content:"";position:absolute;width:26px;height:26px;border-radius:50%;border:2px solid var(--shu);opacity:.55}
+.d.part::before{content:"";position:absolute;width:38px;height:38px;border-radius:50%;border:3px dashed var(--shu)}
+.d.today{background:var(--rel)}
+.d.pick{outline:3px solid var(--accent);outline-offset:-2px}
+.d.dis{opacity:.35}
+.d.hol::after{content:"";position:absolute;bottom:2px;width:5px;height:5px;border-radius:50%;background:var(--shu);border:0;opacity:1;left:auto}
+.legend{display:flex;gap:16px;padding:8px 12px 0;font-size:13px;color:var(--ink2);flex-wrap:wrap}
+.legend span{display:flex;align-items:center;gap:6px}
+.legend .stamp{width:16px;height:16px;border-width:2px}
+.legend .stamp::after{inset:3px;border-width:2px}
+.hrow{display:flex;gap:14px;align-items:center;padding:10px 14px;border-top:1px solid var(--line);width:100%;text-align:left;min-height:64px}
+.hrow:first-child{border-top:0}
+.thumbgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 16px 14px}
+.tcard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:10px;display:flex;flex-direction:column;gap:6px;align-items:center;font-size:14px;color:var(--ink2)}
+.tcard b{color:var(--ink);font-size:16px}
+
+/* tutorial + unlock */
+.tut{padding:8px 20px 0;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px}
+.tut h4{font-family:var(--display);font-size:28px;font-weight:800;margin:0}
+.tut p{font-size:18px;margin:0;color:var(--ink2);line-height:1.5}
+.dots{display:flex;gap:8px;justify-content:center;margin:6px 0}
+.dots i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.dots i.on{background:var(--accent)}
+.price{font-family:var(--display);font-size:52px;font-weight:800;line-height:1}
+.ul{list-style:none;margin:0;padding:0}
+.ul li{display:flex;gap:12px;align-items:flex-start;padding:10px 0;font-size:18px;line-height:1.4}
+.ul svg{flex:none;color:var(--ok);margin-top:2px}
+
+/* iPad */
+.screen.pad{font-size:18px}
+.pad .status{height:30px;padding:0 28px;align-items:center;font-size:15px}
+.pad .hind{width:210px;bottom:7px}
+.ptop{flex:none;height:64px;display:flex;justify-content:center;align-items:center;background:var(--bg)}
+.ptabs{display:flex;gap:4px;background:var(--card2);border-radius:28px;padding:4px}
+.ptab{display:flex;gap:8px;align-items:center;height:48px;padding:0 26px;border-radius:24px;font-weight:700;font-size:18px;color:var(--ink2)}
+.ptab[aria-current="page"]{background:var(--accent);color:var(--on-accent)}
+.col{max-width:680px;margin:0 auto;zoom:1.15;padding-top:6px}
+.split{flex:1;display:flex;min-height:0}
+.side{width:344px;flex:none;overflow-y:auto;scrollbar-width:none;border-right:1px solid var(--line);background:var(--bg);padding-bottom:30px}
+.detail{flex:1;min-width:0;display:flex;flex-direction:column;position:relative;background:var(--bg)}
+.gsplit{flex:1;display:flex;min-height:0}
+.gleft{flex:1;display:flex;align-items:center;justify-content:center;min-width:0}
+.gright{width:300px;flex:none;border-left:1px solid var(--line);background:var(--bar);display:flex;flex-direction:column;gap:12px;padding:14px 0 30px;overflow-y:auto;scrollbar-width:none}
+.gright .strip{margin:0 16px;min-height:0;align-items:flex-start}
+.gright .wchips{flex-wrap:wrap;overflow:visible}
+.gright .actions.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;height:auto;padding:0 16px;border:0;background:none}
+.actions.grid .act{min-height:68px;border:2px solid var(--line);border-radius:14px;background:var(--card);font-size:14px}
+.tray.big{gap:10px;padding:6px 16px 8px}
+.tray.big .tile{height:64px;font-size:34px}
+.gright .tray.big .tile{height:58px;font-size:30px}
+.pstrip .strip{margin:6px 40px 0;justify-content:center;min-height:64px}
+.pad .actions{height:76px;justify-content:center;gap:12px;padding:0 60px}
+.pad .act{font-size:15px}
+.pad .tray:not(.big){padding-inline:40px}
+.pad .donepanel{padding:16px 120px 34px}
+.btn,.seg button{white-space:nowrap}
+.side .seg button{font-size:14px;padding:0 2px}
+.side .daily b{white-space:nowrap;font-size:17px}
+.gright .donepanel{padding:0 16px;border:0;background:none}
+.pad .pbody.flexcol{padding-bottom:26px}
+.padsheet{left:50%;right:auto;width:640px;transform:translateX(-50%);bottom:40px;height:min(82%,760px);border-radius:26px}
+.pad .sheet .sfoot{padding-bottom:20px}
+.layout.wide{grid-template-columns:minmax(0,1fr)}
+.layout.wide .stage{position:static;order:-1;grid-column:1}
+.layout.wide .stage-note,.layout.wide .chips{max-width:none}
+@media (max-width:980px){
+  .layout{grid-template-columns:minmax(0,1fr);gap:28px}
+  .stage{position:static;order:-1}
+  .who>div{grid-template-columns:minmax(0,1fr);gap:4px}
+  .two{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">漢字ナンクロ 広告なし · UI redesign</div>
+    <h1>A puzzle app that looks like the paper magazine its players grew up with</h1>
+    <p>I read the app, its store research and the shipped puzzle data, worked out who plays and what makes them quit, then rebuilt the screens on the same iOS 18 shell (遊ぶ / 記録 / 設定). The phone on the right is live. Tap the board, the tiles and the tabs, or jump to any state with the chips. Switch to iPad to see the one-column and two-column layouts.</p>
+  </header>
+
+  <div class="layout">
+    <main class="analysis">
+
+      <section class="blk">
+        <h2>Who plays this</h2>
+        <dl class="who" style="margin:0">
+          <div><dt>The daily solver, 60–90</dt><dd>Plays at a fixed time of day, often with reading glasses, often one-handed. Grew up on puzzle magazines and pencils. Reviews mention a 92-year-old who plays every day and a daughter playing with her mother. Text size and calm matter more here than features.</dd></div>
+          <div><dt>The brain-trainer, 40–60</dt><dd>Wants puzzles that are actually hard, a personal best and a sense of progress. Reviews ask for completion time to be scored and for harder top-end puzzles.</dd></div>
+          <div><dt>The pair</dt><dd>Couples solve together and pass the phone back and forth. The board has to read at arm's length, and one person's wrong guess must never wreck the other's progress.</dd></div>
+          <div><dt>The ad refugee</dt><dd>Loved a competitor, then left over long ads after every puzzle. One reviewer says they would pay about ¥1,000 to remove them. Another calls a rival "20% quiz, 80% advertising". Anything that smells like monetisation is a reason to leave.</dd></div>
+        </dl>
+      </section>
+
+      <section class="blk">
+        <h2>What appeals, and what doesn't</h2>
+        <p style="color:var(--ink2)">Green tags come from the store reviews quoted in the README. Grey tags are my inference from the age and habits of the audience.</p>
+        <div class="two">
+          <div>
+            <h3>Appeals</h3>
+            <ul class="pl">
+              <li>Big, high-contrast text and generous tap areas <span class="tag r">reviews</span></li>
+              <li>The finished grid staying on screen <span class="tag r">reviews</span></li>
+              <li>Everyday vocabulary and a one-tap reading for each word <span class="tag r">reviews</span></li>
+              <li>Timer only when asked for, plus a personal best <span class="tag r">reviews</span></li>
+              <li>Controls with words on them, in plain Japanese <span class="tag">inferred</span></li>
+              <li>A print-like board: ink on paper, Mincho kanji <span class="tag">inferred</span></li>
+              <li>A daily ritual: 今日の一問, the date in 令和, a stamp on the calendar <span class="tag">inferred</span></li>
+              <li>Hints that explain themselves <span class="tag">inferred</span></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Doesn't appeal</h3>
+            <ul class="pl">
+              <li>Ads, forced video, redirects to the App Store <span class="tag r">reviews</span></li>
+              <li>Small text, grey-on-grey captions <span class="tag r">reviews</span></li>
+              <li>Screens that change on their own after finishing <span class="tag r">reviews</span></li>
+              <li>A valid answer being rejected, or puzzles that are too easy <span class="tag r">reviews</span></li>
+              <li>Icon-only toolbars and the hidden ⋯ menu <span class="tag">inferred</span></li>
+              <li>Streak counters, lives, coins, confetti <span class="tag">inferred</span></li>
+              <li>Drag or swipe as the only way to do something <span class="tag">inferred</span></li>
+              <li>A sales pitch while a puzzle is open <span class="tag">inferred</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="blk">
+        <h2>What changed from the current build</h2>
+        <div class="tblwrap">
+        <table>
+          <thead><tr><th>Area</th><th>Today</th><th>In the mock</th></tr></thead>
+          <tbody>
+            <tr><td>Controls</td><td>Icon-only toolbar and a ⋯ menu hold undo, hint and check</td><td>Five labelled buttons under the board: 元に戻す, やり直す, ヒント, 確認, 消す</td></tr>
+            <tr><td>Kanji tiles</td><td>System bordered buttons, about 48pt</td><td>66×54 paper tiles in Mincho, 28px. A tile dims once its kanji is placed, so one glance shows what is left</td></tr>
+            <tr><td>Board</td><td>1px grey grid, solid black blocks</td><td>Cells are tiles on paper and empty space stays paper. Selection is a thick border plus yellow, never colour alone</td></tr>
+            <tr><td>Feedback</td><td>System alert covers the board for hints and checks</td><td>An inline banner above the board. The board is never covered</td></tr>
+            <tr><td>Home</td><td>A plain list with two segmented pickers</td><td>One primary action (resume, or today's puzzle), two mode tiles, no upsell</td></tr>
+            <tr><td>Records</td><td>List of dates</td><td>A calendar with vermilion stamps. A quiet "played N days" line replaces any streak</td></tr>
+            <tr><td>Finishing</td><td>Kept: board stays, two buttons</td><td>Same rule, plus a results sheet where tapping a word lights its cells on a mini board</td></tr>
+            <tr><td>Text size</td><td>Segmented picker with no preview</td><td>Three sizes with a live preview cell</td></tr>
+            <tr><td>Purchase</td><td>Kept: only on a locked tap, plus a card after the fifth solve</td><td>Same, with the card styled as information rather than an alert</td></tr>
+            <tr><td>Tab bar</td><td>Visible during play</td><td>Hidden during play, so the board and tiles get the space</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </section>
+
+      <section class="blk">
+        <h2>Found in the puzzle data</h2>
+        <div class="callout">
+          <h3>Only 87 of the 360 puzzles repeat a number</h3>
+          <p>In the other 273, every number sits in exactly one cell and words share cells where they cross. For those, the promised "tap a number and every matching square lights up" does nothing, and the tutorial's step 3 ("同じ番号にまとめて入ります") does not match what happens. The mock handles both cases. A repeated number lights all its cells yellow, and the words a cell belongs to appear in a strip above the board. The demo puzzle is one of the 87, so you can see both.</p>
+          <p>Decision for you: keep the mixed library and reword the tutorial, or regenerate so every puzzle is a true ナンクロ.</p>
+        </div>
+      </section>
+
+      <section class="blk">
+        <h2>On iPad</h2>
+        <p style="color:var(--ink2)">Same three tabs, moved to iOS 18's floating bar at the top. The layout changes with the width, not the device.</p>
+        <div class="tblwrap"><table><thead><tr><th>Layout</th><th>What it does</th></tr></thead><tbody>
+          <tr><td>Portrait, 1 column</td><td>Play is a full-width workspace. The board grows to 78pt cells, the tray becomes seven large tiles across, and the puzzle list sits behind a labelled 問題一覧 button. Home, records and settings sit in a centred reading column so lines never stretch across 820pt.</td></tr>
+          <tr><td>Landscape, 2 columns</td><td>A split view. The left column holds resume, today's puzzle, difficulty and the stamp grid, or the calendar on the records tab. The board sits in the middle, with the words, actions and tiles in a right-hand panel so the hands never cover the board. In records, tapping a word lights it on the finished board.</td></tr>
+          <tr><td>Sheets</td><td>Results and unlock open as centred form sheets, not full-width slabs.</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="blk">
+        <h2>Build notes</h2>
+        <p style="color:var(--ink2)">Everything here stays inside the shell's rules: the same three <code>Tab</code>s, <code>NavigationStack</code>, system sheets with detents, no third-party UI. It needs a small theme layer (colour, tint and font tokens, a <code>ButtonStyle</code> for tiles and the action bar) and <code>.toolbarVisibility(.hidden, for: .tabBar)</code> on the board. This is a mock in HTML, so spacing is faithful but the iOS chrome is drawn, not rendered by UIKit. I could not open the <code>ios-18-shell</code> repo from this session, so the chrome follows how the app uses it.</p>
+      </section>
+    </main>
+
+    <aside class="stage" aria-label="Interactive iPhone mock">
+      <div class="chips" id="devs" role="group" aria-label="Device"></div>
+      <div class="chips" id="chips" role="group" aria-label="Jump to screen"></div>
+      <div class="phone-wrap" id="pw">
+        <div class="phone" id="phone"><div class="screen" id="screen"></div></div>
+      </div>
+      <p class="stage-note" id="snote"></p>
+    </aside>
+  </div>
+</div>
+
+<script>
+const D = {"main":{"cellLayout":[[".",".","#","#","#","#","#","#"],["#",".",".","#","#","#","#","#"],["#","#",".",".","#","#","#","#"],["#","#","#",".",".","#","#","#"],["#","#","#","#",".",".","#","#"],["#","#","#","#","#",".",".","#"],["#","#","#","#","#","#",".","."],["#","#","#","#","#","#","#","."]],"cellNumbers":{"0,0":1,"0,1":2,"1,1":3,"1,2":4,"2,2":5,"2,3":6,"3,3":4,"3,4":7,"4,4":8,"4,5":9,"5,5":10,"5,6":11,"6,6":12,"6,7":7,"7,7":13},"solution":{"1":"秩","2":"序","3":"文","4":"面","5":"壁","6":"紙","7":"地","8":"方","9":"東","10":"京","11":"帰","12":"路","13":"借"},"starterCells":{"5":"壁","6":"紙","3":"文","7":"地"},"wordSpans":[{"word":"壁紙","reading":"かべがみ","cells":["2,2","2,3"]},{"word":"紙面","reading":"しめん","cells":["2,3","3,3"]},{"word":"壁面","reading":"へきめん","cells":["2,2","1,2"]},{"word":"文面","reading":"ぶんめん","cells":["1,1","1,2"]},{"word":"地面","reading":"じめん","cells":["3,4","3,3"]},{"word":"序文","reading":"じょぶん","cells":["0,1","1,1"]},{"word":"地方","reading":"ちほう","cells":["3,4","4,4"]},{"word":"東方","reading":"とうほう","cells":["4,5","4,4"]},{"word":"東京","reading":"とうきょう","cells":["4,5","5,5"]},{"word":"秩序","reading":"ちつじょ","cells":["0,0","0,1"]},{"word":"帰京","reading":"ききょう","cells":["5,6","5,5"]},{"word":"帰路","reading":"きろ","cells":["5,6","6,6"]},{"word":"路地","reading":"ろじ","cells":["6,6","6,7"]},{"word":"借地","reading":"しゃくち","cells":["7,7","6,7"]}],"traySeed":["文","東","路","借","紙","秩","面","京","帰","地","壁","方","序"],"rows":8,"columns":8},"others":[[["#","#","#","#","#","#","#","."],["#","#","#","#","#","#",".","."],["#","#","#","#","#",".",".","#"],["#","#","#","#",".",".","#","#"],["#","#","#",".",".","#","#","#"],["#","#",".",".","#","#","#","#"],["#",".",".","#","#","#","#","#"],[".",".","#","#","#","#","#","#"],[".","#","#","#","#","#","#","#"]],[[".","#","#","#","#","#","#","#","#","#"],[".",".","#","#","#","#","#","#","#","#"],["#",".",".","#","#","#","#","#","#","#"],["#","#",".",".","#","#","#","#","#","#"],["#","#","#",".",".","#","#","#","#","#"],["#","#","#","#",".",".","#","#","#","#"],["#","#","#","#","#",".",".","#","#","#"],["#","#","#","#","#","#",".",".","#","#"],["#","#","#","#","#","#","#",".",".","#"],["#","#","#","#","#","#","#","#",".","."]],[[".","#","#","#","#","#","#","#","#","#"],[".",".","#","#","#","#","#","#","#","#"],["#",".",".","#","#","#","#","#","#","#"],["#","#",".",".","#","#","#","#","#","#"],["#","#","#",".",".","#","#","#","#","#"],["#","#","#","#",".",".","#","#","#","#"],["#","#","#","#","#",".",".","#","#","#"],["#","#","#","#","#","#",".",".","#","#"],["#","#","#","#","#","#","#",".",".","#"],["#","#","#","#","#","#","#","#",".","."]],[["#","#","#","#","#","#","#","#","#","#","#",".","."],["#","#","#","#","#","#","#","#","#","#",".",".","#"],["#","#","#","#","#","#","#","#","#",".",".","#","#"],["#","#","#","#","#","#","#","#",".",".","#","#","#"],["#","#","#","#","#","#","#",".",".","#","#","#","#"],["#","#","#","#","#","#",".",".","#","#","#","#","#"],["#","#","#","#","#",".",".","#","#","#","#","#","#"],["#","#","#","#",".",".","#","#","#","#","#","#","#"],["#","#","#",".",".","#","#","#","#","#","#","#","#"],["#","#",".",".","#","#","#","#","#","#","#","#","#"],["#",".",".","#","#","#","#","#","#","#","#","#","#"],[".",".","#","#","#","#","#","#","#","#","#","#","#"],[".","#","#","#","#","#","#","#","#","#","#","#","#"]],[[".","#","#","#","#","#","#","#","#","#","#","#","#"],[".",".","#","#","#","#","#","#","#","#","#","#","#"],["#",".",".","#","#","#","#","#","#","#","#","#","#"],["#","#",".",".","#","#","#","#","#","#","#","#","#"],["#","#","#",".",".","#","#","#","#","#","#","#","#"],["#","#","#","#",".",".","#","#","#","#","#","#","#"],["#","#","#","#","#",".",".","#","#","#","#","#","#"],["#","#","#","#","#","#",".",".","#","#","#","#","#"],["#","#","#","#","#","#","#",".",".","#","#","#","#"],["#","#","#","#","#","#","#","#",".",".","#","#","#"],["#","#","#","#","#","#","#","#","#",".",".","#","#"],["#","#","#","#","#","#","#","#","#","#",".",".","#"],["#","#","#","#","#","#","#","#","#","#","#",".","."]]]};
+const P = D.main, ROWS = P.rows, COLS = P.columns;
+const cellNo = (r,c)=>P.cellNumbers[r+','+c];
+const cellsOf = {};
+Object.entries(P.cellNumbers).forEach(([k,n])=>{const [r,c]=k.split(',').map(Number);(cellsOf[n]=cellsOf[n]||[]).push([r,c])});
+const TOTAL = Object.keys(P.solution).length;
+const spans = P.wordSpans.map(w=>({word:w.word,reading:w.reading,nums:w.cells.map(k=>P.cellNumbers[k]),cells:w.cells}));
+const STARTERS = Object.fromEntries(Object.entries(P.starterCells).map(([n,k])=>[+n,k]));
+
+const S = {dev:'phone',tab:'play',screen:'home',sheet:null,diff:'standard',entries:{...STARTERS},sel:null,status:'active',
+  wrong:[],msg:null,hints:0,checks:0,hist:[],redo:[],panel:true,ts:1,hc:false,
+  tog:{sound:true,haptic:true,timer:false,check:false,remind:true},day:28,recSeg:0,tut:0,word:0,unlockPending:false};
+let lastKey='';
+
+const IC = {
+  chev:'<path d="M15 5l-7 7 7 7"/>', chevr:'<path d="M9 5l7 7-7 7"/>',
+  undo:'<path d="M9 7L4 12l5 5"/><path d="M4 12h10a6 6 0 010 12h-3" transform="translate(0,-4)"/>',
+  redo:'<path d="M15 7l5 5-5 5"/><path d="M20 12H10a6 6 0 000 12h3" transform="translate(0,-4)"/>',
+  bulb:'<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 00-3.6 10.8c.7.6 1.1 1.3 1.1 2.2h5c0-.9.4-1.6 1.1-2.2A6 6 0 0012 3z"/>',
+  check:'<circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/>',
+  erase:'<path d="M21 6H9L3 12l6 6h12z"/><path d="M14 9.5l4 5M18 9.5l-4 5"/>',
+  lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/>',
+  ok:'<path d="M5 12.5l4.5 4.5L19 7"/>'
+};
+const ic = (n,c='i')=>`<svg class="${c}" viewBox="0 0 24 24" aria-hidden="true">${IC[n]}</svg>`;
+const TABI = {
+  play:'<rect x="4" y="4" width="20" height="20" rx="4" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M4 11h20M4 17h20M11 4v20M17 4v20" stroke="currentColor" stroke-width="1.8"/>',
+  records:'<rect x="3.5" y="5" width="21" height="19" rx="4" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M3.5 11h21M9 2.5v5M19 2.5v5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="14" cy="17.5" r="3" fill="none" stroke="currentColor" stroke-width="2"/>',
+  settings:'<circle cx="14" cy="14" r="4" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="14" cy="14" r="9" fill="none" stroke="currentColor" stroke-width="4" stroke-dasharray="3.5 4.6"/>'
+};
+
+/* ---------- helpers ---------- */
+const esc = s=>String(s).replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
+const filled = ()=>Object.keys(S.entries).length;
+const isSolved = ()=>Object.keys(P.solution).every(n=>S.entries[n]===P.solution[n]);
+const diffs = ['やさしい','ふつう','むずかしい','達人'];
+const diffKey = {easy:'やさしい',standard:'ふつう',hard:'むずかしい',expert:'達人'};
+
+function miniBoard(layout, cs, fn){
+  const cols = layout[0].length;
+  let h = `<div style="display:grid;gap:${cs>16?2:1}px;grid-template-columns:repeat(${cols},${cs}px)">`;
+  layout.forEach((row,r)=>row.forEach((x,c)=>{
+    if(x==='#'){h+=`<i style="width:${cs}px;height:${cs}px"></i>`;return}
+    const o = fn?fn(r,c):{};
+    h+=`<div class="c ${o.cls||''}" style="width:${cs}px;height:${cs}px;border-radius:${cs>16?4:2}px;border-width:${cs>16?1.5:1}px;font-size:${Math.round(cs*.62)}px">${o.html||''}</div>`;
+  }));
+  return h+'</div>';
+}
+function thumb(cs){
+  return miniBoard(P.cellLayout,cs,(r,c)=>{
+    const n=cellNo(r,c); if(!n) return {};
+    return {cls: STARTERS[n]?'st':(S.entries[n]?'rel':'')};
+  });
+}
+
+/* ---------- screens ---------- */
+function hdrDate(){return `<div class="date"><span>令和8年9月29日 火曜日</span></div>`}
+
+function vHome(){
+  const n = filled();
+  return `
+  <div class="date"><span>令和8年9月29日 火曜日</span><button class="pillbtn" data-a="sheet" data-v="tutorial">遊び方</button></div>
+  <div class="lt">遊ぶ</div>
+  <div class="card">
+    <div class="resume">
+      <div style="flex:none">${thumb(11)}</div>
+      <div>
+        <div class="sub">続きから</div>
+        <h4>ふつう ・ 第7問</h4>
+        <div class="sub">${TOTAL}マス中 ${n}マス入力済み</div>
+      </div>
+    </div>
+    <button class="btn" data-a="open" data-v="game">続きを遊ぶ</button>
+  </div>
+  <div class="card daily">
+    <div><div class="sub">今日の一問</div><h4 style="font-size:19px">やさしい ・ 8×8</h4></div>
+    <button class="btn sec sm" style="width:auto;padding:0 20px" data-a="open" data-v="game">はじめる</button>
+  </div>
+  <div class="sech">問題を選ぶ</div>
+  <div class="modes">
+    <button class="mode" data-a="open" data-v="pick">
+      <span class="glyph">${miniBoard([['.','.','#','#'],['#','.','.','#'],['#','#','.','.'],['#','#','#','.']],14,()=>({cls:'rel'}))}</span>
+      <b>漢字ナンクロ</b><span class="sub">12〜18語 ・ 定番</span><span class="sub">完成 12問</span>
+    </button>
+    <button class="btn-none mode" data-a="open" data-v="pick">
+      <span class="glyph">${miniBoard([['.','.','.','#','#','#'],['#','.','#','.','.','#'],['#','.','.','.','#','#'],['#','#','#','.','.','.']],11,()=>({cls:'rel'}))}</span>
+      <b>大盤面</b><span class="sub">20〜24語 ・ 拡大できる</span><span class="sub">完成 3問</span>
+    </button>
+  </div>
+  <div class="card" style="display:flex;align-items:center;gap:14px">
+    <span class="stamp"></span>
+    <div><b style="font-size:18px">今月 18日 遊びました</b><div class="sub">完成 15問 ・ 記録で振り返れます</div></div>
+  </div>
+  <div class="bottom-pad"></div>`;
+}
+
+function vPick(){
+  const cur = 7;
+  let tiles='';
+  for(let i=1;i<=12;i++){
+    const done = i<7, lock = i>8, isCur = i===cur;
+    tiles += lock
+      ? `<button class="pz lock" data-a="sheet" data-v="unlock" aria-label="第${i}問 買い切り版">${ic('lock')}<span class="n">${i}</span></button>`
+      : `<button class="pz ${isCur?'cur':''}" data-a="open" data-v="game" aria-label="第${i}問"><span class="n">${i}</span>${done?'<span class="stamp"></span>':isCur?'<span class="st">途中</span>':'<span class="st">まだ</span>'}</button>`;
+  }
+  return `
+  <div class="nav"><button class="nbtn" data-a="back">${ic('chev')}遊ぶ</button><div class="ntitle"><b>漢字ナンクロ</b></div><span></span></div>
+  <div class="seg" role="group" aria-label="難易度">${diffs.map(d=>`<button aria-pressed="${diffs[1]===d&&S.diff==='standard'||S.diff===d}" data-a="diff" data-v="${d}">${d}</button>`).join('')}</div>
+  <p class="note">難しさは、ヒントの少なさと推理の深さで決まります。盤の大きさは、各問題に別に表示されます。</p>
+  <div class="pgrid">${tiles}</div>
+  <p class="note">第9問から先は買い切り版です。無料の問題は、これからもずっと広告なしで遊べます。</p>
+  <div class="bottom-pad"></div>`;
+}
+
+function relatedNums(){
+  if(!S.sel) return {words:[],rel:new Set()};
+  const words = spans.filter(w=>w.nums.includes(S.sel));
+  const rel = new Set(); words.forEach(w=>w.nums.forEach(n=>rel.add(n)));
+  return {words,rel};
+}
+
+function boardHTML(mode,cs=44){
+  const {rel} = relatedNums();
+  const wrong = new Set(S.wrong);
+  let h = `<div class="board" style="grid-template-columns:repeat(${COLS},${cs}px)">`;
+  for(let r=0;r<ROWS;r++)for(let c=0;c<COLS;c++){
+    const n = cellNo(r,c);
+    if(P.cellLayout[r][c]==='#'||!n){h+=`<i class="void" style="width:${cs}px;height:${cs}px"></i>`;continue}
+    const e = S.entries[n];
+    let cls='';
+    if(mode==='done') cls='won';
+    else if(S.sel===n) cls='sel';
+    else if(S.sel && cellsOf[S.sel].length>1 && S.sel===n) cls='same';
+    else if(S.sel && P.cellNumbers[r+','+c]===S.sel) cls='same';
+    else if(rel.has(n)) cls='rel';
+    if(STARTERS[n] && !cls) cls='st';
+    if(wrong.has(n)) cls='bad';
+    // repeated number: every cell of the selected number gets full highlight
+    if(S.sel && n===S.sel && mode!=='done'){ cls = cellsOf[n].length>1 ? 'same sel' : 'sel'; if(wrong.has(n)) cls+=' bad'; }
+    const lab = `番号${n}、${e?e+'が入力済み':'空欄'}`;
+    h+=`<button class="c ${cls}" style="width:${cs}px;height:${cs}px;font-size:${Math.round(cs*.64)}px" data-a="cell" data-v="${n}" aria-label="${lab}"><span class="no">${n}</span>${e?esc(e):''}</button>`;
+  }
+  return h+'</div>';
+}
+
+function stripHTML(){
+  if(S.status==='done') return `<div class="strip"><div class="msg ok">${ic('check')}<span><b>完成しました。</b><br>盤面はこのまま見られます。</span></div></div>`;
+  if(S.msg) return `<div class="strip"><div class="msg ${S.msg.k||''}"><span style="flex:1">${S.msg.t}</span><button data-a="dismiss">とじる</button></div></div>`;
+  if(!S.sel) return `<div class="strip"><span class="lab" style="font-size:16px;font-weight:400;color:var(--ink2)">マスを選ぶと、つながる熟語が出ます。</span></div>`;
+  const {words} = relatedNums();
+  const chips = words.map(w=>`<div class="wchip" aria-label="熟語 ${w.nums.map(n=>S.entries[n]||'空欄').join('')}">${w.nums.map(n=>`<i class="${n===S.sel?'me':''}">${S.entries[n]?esc(S.entries[n]):''}</i>`).join('')}</div>`).join('');
+  return `<div class="strip"><div class="lab">番号 ${S.sel}<br>${words.length}語</div><div class="wchips">${chips}</div></div>`;
+}
+
+function actionBar(grid){
+  const dis = S.status!=='active';
+  return `<div class="actions ${grid?'grid':''}">
+    <button class="act" data-a="undo" ${dis||!S.hist.length?'disabled':''}>${ic('undo')}元に戻す</button>
+    <button class="act" data-a="redo" ${dis||!S.redo.length?'disabled':''}>${ic('redo')}やり直す</button>
+    <button class="act" data-a="hint" ${dis?'disabled':''}>${ic('bulb')}ヒント</button>
+    <button class="act" data-a="check" ${dis?'disabled':''}>${ic('check')}確認</button>
+    <button class="act" data-a="erase" ${dis||!S.sel||STARTERS[S.sel]||!S.entries[S.sel]?'disabled':''}>${ic('erase')}消す</button>
+  </div>`;
+}
+function trayHTML(cols,big){
+  const used = new Set(Object.values(S.entries)), dis=S.status!=='active';
+  return `<div class="tray ${big?'big':''}" style="grid-template-columns:repeat(${cols},1fr)">${P.traySeed.map(k=>`<button class="tile ${used.has(k)?'used':''}" data-a="tile" data-v="${k}" ${dis?'disabled':''} aria-label="${k}">${k}</button>`).join('')}</div>`;
+}
+function doneHTML(){
+  return S.panel
+   ? `<div class="donepanel"><button class="btn" data-a="sheet" data-v="results">結果を見る</button><div class="row2"><button class="btn sec sm" data-a="hidepanel">完成盤を見る</button><button class="btn sec sm" data-a="next">問題一覧へ</button></div></div>`
+   : `<div class="donepanel" style="padding-bottom:4px"><div class="row2"><button class="btn sm" data-a="sheet" data-v="results">結果を見る</button><button class="btn sec sm" data-a="next">次の問題</button></div></div>`;
+}
+function pausedHTML(){
+  return S.status==='paused'?`<div class="paused"><b>一時停止中</b><span class="sub" style="font-size:17px">盤面は隠しています。<br>用意ができたら再開してください。</span><button class="btn" style="max-width:260px" data-a="resume">再開する</button></div>`:'';
+}
+function vGame(){
+  const done = S.status==='done';
+  return `
+  <div class="nav"><button class="nbtn" data-a="back">${ic('chev')}戻る</button>
+    <div class="ntitle"><b>ふつう ・ 第7問</b><small>${filled()} / ${TOTAL} 入力</small></div>
+    <button class="nbtn r" data-a="${done?'sheet':'pause'}" data-v="results">${done?'結果':'休む'}</button></div>
+  ${stripHTML()}
+  <div class="gwrap">${boardHTML(done?'done':'play')}</div>
+  <div style="flex:1"></div>
+  ${done?doneHTML():actionBar()+trayHTML(5)}
+  ${pausedHTML()}`;
+}
+function padGame(land){
+  const done = S.status==='done';
+  const nav = `<div class="nav" style="height:60px;grid-template-columns:1fr auto 1fr">${land?'<span></span>':`<button class="nbtn" data-a="back" style="font-size:19px">${ic('chev')}問題一覧</button>`}
+    <div class="ntitle"><b style="font-size:21px">ふつう ・ 第7問</b><small style="font-size:15px">${filled()} / ${TOTAL} 入力</small></div>
+    <button class="nbtn r" style="font-size:19px" data-a="${done?'sheet':'pause'}" data-v="results">${done?'結果':'休む'}</button></div>`;
+  if(land) return `${nav}<div class="gsplit"><div class="gleft"><div class="gwrap">${boardHTML(done?'done':'play',58)}</div></div>
+    <div class="gright">${stripHTML()}${done?doneHTML():actionBar(true)+trayHTML(4,true)}</div></div>${pausedHTML()}`;
+  return `${nav}<div class="pstrip">${stripHTML()}</div><div class="gwrap" style="padding:10px 0">${boardHTML(done?'done':'play',84)}</div><div style="flex:1"></div>
+    ${done?doneHTML():actionBar()+trayHTML(7,true)}${pausedHTML()}`;
+}
+function recParts(){
+  const stamped = {1:2,2:1,3:2,5:1,6:3,8:1,9:2,12:1,13:2,14:1,15:1,19:2,21:2,22:1,23:3,26:1,27:2,28:2};
+  const hol = {21:'敬老の日',23:'秋分の日'};
+  const dows = ['日','月','火','水','木','金','土'];
+  let cells = dows.map((d,i)=>`<div class="dow ${i===0?'sun':i===6?'sat':''}">${d}</div>`).join('');
+  for(let i=0;i<2;i++) cells+='<div></div>'; // 1 Sep 2026 is a Tuesday
+  for(let d=1;d<=30;d++){
+    const dow=(2+d-1)%7;
+    const cls=['d', dow===0||hol[d]?'sun':dow===6?'sat':'', stamped[d]?'on':'', d===29?'part today':'', S.day===d?'pick':'', d>29?'dis':''].join(' ');
+    cells+=`<button class="${cls}" data-a="day" data-v="${d}" aria-label="9月${d}日${stamped[d]?' '+stamped[d]+'問完成':''}">${d}</button>`;
+  }
+  const n = stamped[S.day]||0;
+  const names=['ふつう 第6問','やさしい 第12問','むずかしい 第3問'];
+  const list = n? Array.from({length:n},(_,i)=>`<button class="hrow" data-a="word" data-v="${(S.day+i)%spans.length}"><div>${miniBoard(P.cellLayout,9,(r,c)=>P.cellLayout[r][c]==='#'?{}:{cls:'won'})}</div><div style="flex:1"><b>${names[(S.day+i)%3]}</b><div class="sub">ヒント ${(S.day+i)%3}回 ・ 確認 ${i}回</div></div>${ic('chevr')}</button>`).join('')
+    : `<div class="hrow" style="color:var(--ink2)">この日は、まだ遊んでいません。</div>`;
+  const seg = `<div class="seg" role="group"><button data-a="seg" data-v="0" aria-pressed="${S.recSeg===0}">カレンダー</button><button data-a="seg" data-v="1" aria-pressed="${S.recSeg===1}">完成盤</button></div>`;
+  const cal = `<div class="cal"><div class="calh"><b>令和8年 9月</b><span class="sub">18日 遊びました</span></div><div class="cg">${cells}</div>
+      <div class="legend"><span><i class="stamp"></i>完成</span><span><i class="stamp half"></i>途中</span><span><i style="width:16px;height:16px;border-radius:50%;background:var(--rel);display:block"></i>今日</span></div></div>
+      <div class="gh">9月${S.day}日${hol[S.day]?'（'+hol[S.day]+'）':''}</div><div class="group">${list}</div>`;
+  const lay=D.others; const tl=['9/28','9/27','9/26','9/23','9/22','9/21'];
+  const thumbs = `<div class="thumbgrid">${tl.map((d,i)=>`<button class="tcard">${miniBoard(lay[i%lay.length],lay[i%lay.length].length>10?12:16,()=>({cls:'won'}))}<b>${d}</b><span>${diffs[i%4]}</span></button>`).join('')}</div>
+      <p class="note">解いた盤面は、すべて端末に残ります。</p>`;
+  return {seg,cal,thumbs};
+}
+function vRecords(){
+  const p=recParts();
+  return `<div class="lt" style="padding-top:8px">記録</div>${p.seg}${S.recSeg===0?p.cal:p.thumbs}<div class="bottom-pad"></div>`;
+}
+function padRecDetail(){
+  const w=spans[S.word], hl=new Set(w.cells);
+  const mb=miniBoard(P.cellLayout,46,(r,c)=>{const n=cellNo(r,c);if(!n)return{};return{cls:hl.has(r+','+c)?'hl':'won',html:esc(P.solution[n])}});
+  return `<div class="nav" style="height:60px"><span></span><div class="ntitle"><b style="font-size:21px">9月${S.day}日 ・ むずかしい 第3問</b><small style="font-size:15px">完成盤と熟語</small></div><span></span></div>
+  <div style="flex:1;overflow-y:auto;padding:4px 0 20px;scrollbar-width:none"><div style="display:flex;gap:24px;align-items:center;justify-content:center;padding:6px 24px 16px;flex-wrap:wrap"><div>${mb}</div>
+  <div class="bigread" style="margin:0;flex-direction:column;align-items:flex-start;min-width:220px"><b style="font-size:54px">${w.word}</b><span style="font-size:24px">${w.reading}</span><div class="sub">押した熟語のマスが黄色になります</div></div></div>
+  <div class="stats" style="margin:0 24px 12px"><div class="stat"><small>ヒント</small><b>1回</b></div><div class="stat"><small>間違い確認</small><b>1回</b></div><div class="stat"><small>タイマー</small><b>オフ</b></div></div>
+  <div class="wgrid" style="grid-template-columns:repeat(3,1fr);margin:0 24px">${spans.map((s,i)=>`<button class="wd" aria-pressed="${i===S.word}" data-a="word" data-v="${i}"><b>${s.word}</b><small>${s.reading}</small></button>`).join('')}</div></div>`;
+}
+function sw(k,label,sub){return `<div class="grow"><div>${label}${sub?`<small>${sub}</small>`:''}</div><button class="sw" role="switch" aria-checked="${!!S.tog[k]}" aria-label="${label}" data-a="tog" data-v="${k}"></button></div>`}
+function vSettings(){
+  const sizes=[['標準',1],['大きい',1.15],['特大',1.3]];
+  return `<div class="lt" style="padding-top:8px">設定</div>
+  <div class="gh">表示</div>
+  <div class="preview"><div class="c sel"><span class="no" style="font-size:calc(12px*var(--ts))">7</span>異</div><p>「特異」<br>この大きさで表示されます。</p></div>
+  <div class="seg" role="group" aria-label="文字サイズ">${sizes.map(([l,v])=>`<button data-a="ts" data-v="${v}" aria-pressed="${S.ts===v}">${l}</button>`).join('')}</div>
+  <div class="group">${sw('hc','高コントラスト','枠線を太く、色を濃くします')}</div>
+  <div class="gh">操作</div>
+  <div class="group">${sw('sound','効果音')}${sw('haptic','触覚フィードバック')}${sw('timer','タイマーを使う','オフのまま、ゆっくり遊べます')}${sw('check','間違い確認を目立たせる')}${sw('remind','毎日 9:00 にお知らせ','端末の中だけで届く通知です')}</div>
+  <div class="gh">購入</div>
+  <div class="group"><button class="grow" data-a="sheet" data-v="unlock"><div>買い切り版<small>未購入 ・ 無料の30問を遊べます</small></div>${ic('chevr')}</button><button class="grow"><div>購入を復元</div>${ic('chevr')}</button></div>
+  <div class="gh">ヘルプ</div>
+  <div class="group"><button class="grow" data-a="sheet" data-v="tutorial"><div>遊び方</div>${ic('chevr')}</button><button class="grow"><div>データを書き出す</div>${ic('chevr')}</button><button class="grow"><div>サポート</div>${ic('chevr')}</button></div>
+  <div class="gh">プライバシーと法的情報</div>
+  <div class="group"><button class="grow"><div>プライバシーポリシー<small>広告・追跡・アカウントはありません</small></div>${ic('chevr')}</button><button class="grow"><div>ライセンス・第三者表記</div>${ic('chevr')}</button></div>
+  <div class="bottom-pad"></div>`;
+}
+/* live text scale for settings rows */
+function vSheetResults(){
+  const w = spans[S.word];
+  const hlCells = new Set(w.cells);
+  const mb = miniBoard(P.cellLayout,30,(r,c)=>{
+    const n=cellNo(r,c); if(!n) return {};
+    return {cls:hlCells.has(r+','+c)?'hl':'won',html:esc(P.solution[n])};
+  });
+  return `<div class="shead"><span></span><b>結果</b><button class="nbtn r" data-a="closesheet">閉じる</button></div>
+  <div class="sbody">
+    <div class="stats"><div class="stat"><small>ヒント</small><b>${S.hints}回</b></div><div class="stat"><small>間違い確認</small><b>${S.checks}回</b></div><div class="stat"><small>自己ベスト</small><b style="font-size:17px">タイマー オフ</b></div></div>
+    <div class="bigread"><div style="flex:none">${mb.replace(/width:30px/g,'width:22px').replace(/height:30px/g,'height:22px').replace(/repeat\((\d+),30px\)/,'repeat($1,22px)').replace(/font-size:19px/g,'font-size:14px')}</div><div><b>${w.word}</b><span>${w.reading}</span></div></div>
+    <div class="gh" style="padding-top:2px">完成した熟語（${spans.length}語）。押すと盤面で確かめられます。</div>
+    <div class="wgrid">${spans.map((s,i)=>`<button class="wd" aria-pressed="${i===S.word}" data-a="word" data-v="${i}"><b>${s.word}</b><small>${s.reading}</small></button>`).join('')}</div>
+    <div class="card" style="margin-bottom:6px"><h4 style="font-size:18px">広告なしで、続きも。</h4><div class="sub" style="margin:4px 0 10px">無料版は30問までです。買い切り版なら、残りの問題もオフラインで遊べます。</div><button class="btn sec sm" data-a="sheet" data-v="unlock">くわしく見る</button></div>
+  </div>
+  <div class="sfoot"><button class="btn" data-a="next">次の問題</button><div class="row2"><button class="btn sec sm">完成盤を画像で保存</button><button class="btn sec sm" data-a="next">問題一覧へ</button></div></div>`;
+}
+function vSheetUnlock(){
+  return `<div class="shead"><span></span><b>買い切り版</b><button class="nbtn r" data-a="closesheet">あとで</button></div>
+  <div class="sbody"><div style="padding:6px 24px 0">
+    <div class="sub">一度のお支払いで、ずっと</div>
+    <div class="price">¥1,000</div>
+    <div class="sub" style="font-size:13px;margin:4px 0 8px">金額は App Store の表示に従います</div>
+    <ul class="ul">
+      <li>${ic('ok')}<span>全360問、すべてのモードと難易度</span></li>
+      <li>${ic('ok')}<span>記録、カレンダー、完成盤の保存と書き出し</span></li>
+      <li>${ic('ok')}<span>購入後は、オフラインでも遊べます</span></li>
+      <li>${ic('ok')}<span><b>広告、コイン、回数制限はありません</b></span></li>
+    </ul>
+    <p class="sub" style="margin-top:6px">無料の30問は、これからもそのまま遊べます。</p>
+  </div></div>
+  <div class="sfoot"><button class="btn">購入する</button><button class="btn quiet">購入を復元</button></div>`;
+}
+function vSheetTutorial(){
+  const steps=[
+    {h:'番号のマスを押します',p:'選んだマスが黄色になります。同じ番号があれば、そこもいっしょに光ります。',
+      art:miniBoard([['.','.','#'],['#','.','.'],['#','#','.']],54,(r,c)=>({cls:(r===1&&c===1)?'sel':'rel',html:(r===1&&c===1)?'':''}))},
+    {h:'漢字を選びます',p:'下の大きな漢字をひとつ押すだけ。ドラッグは、いりません。',
+      art:`<div style="display:grid;grid-template-columns:repeat(4,64px);gap:8px">${['地','面','紙','壁'].map((k,i)=>`<div class="tile ${i===1?'':'used'}" style="display:flex;align-items:center;justify-content:center;${i===1?'border-color:var(--accent);border-width:4px':''}">${k}</div>`).join('')}</div>`},
+    {h:'つながる熟語が完成します',p:'間違えても、ほかの入力は消えません。解き終わっても、盤面はそのまま残ります。',
+      art:miniBoard([['.','.','#'],['#','.','.'],['#','#','.']],54,(r,c)=>({cls:'won',html:[['地','面',''],['','面','紙'],['','','壁']][r][c]}))}
+  ];
+  const s=steps[S.tut];
+  return `<div class="shead"><span></span><b>はじめての方へ</b><span></span></div>
+  <div class="sbody"><div class="tut">
+    <div class="sub">${S.tut+1} / 3</div>
+    <div style="min-height:180px;display:flex;align-items:center">${s.art}</div>
+    <h4>${s.h}</h4><p>${s.p}</p>
+    <div class="dots">${steps.map((_,i)=>`<i class="${i===S.tut?'on':''}"></i>`).join('')}</div>
+  </div></div>
+  <div class="sfoot">${S.tut<2?`<button class="btn" data-a="tut" data-v="${S.tut+1}">次へ</button>`:`<button class="btn" data-a="closesheet">今すぐ始める</button>`}
+   <button class="btn quiet" data-a="${S.tut>0?'tut':'closesheet'}" data-v="${S.tut-1}">${S.tut>0?'戻る':'あとで見る'}</button></div>`;
+}
+function sheetHTML(){
+  if(!S.sheet) return '';
+  const h = {results:'84%',unlock:'70%',tutorial:'74%'}[S.sheet];
+  const inner = {results:vSheetResults,unlock:vSheetUnlock,tutorial:vSheetTutorial}[S.sheet]();
+  const pad = S.dev!=='phone';
+  return `<div class="dim" data-a="${S.sheet==='tutorial'?'noop':'closesheet'}"></div><div class="sheet ${pad?'padsheet':''}" style="${pad?'':'height:'+h}" role="dialog" aria-modal="true"><div class="grab"></div>${inner}</div>`;
+}
+
+/* ---------- render ---------- */
+const DEV={phone:{w:393,h:852,b:12,r:66,rs:54},padp:{w:820,h:1180,b:18,r:54,rs:38},padl:{w:1180,h:820,b:18,r:54,rs:38}};
+function applyDevice(){
+  const d=DEV[S.dev],ph=document.getElementById('phone'),scr=document.getElementById('screen');
+  ph.style.width=(d.w+2*d.b)+'px';ph.style.height=(d.h+2*d.b)+'px';ph.style.borderRadius=d.r+'px';ph.style.padding=d.b+'px';
+  scr.style.width=d.w+'px';scr.style.height=d.h+'px';scr.style.borderRadius=d.rs+'px';
+  scr.classList.toggle('pad',S.dev!=='phone');
+  document.querySelector('.layout').classList.toggle('wide',S.dev!=='phone');
+}
+function renderPad(){
+  const scr=document.getElementById('screen'),land=S.dev==='padl';
+  const old=scr.querySelector('.pbody'); const key=S.dev+S.tab+S.screen;
+  const st=(old&&key===lastKey)?old.scrollTop:0; lastKey=key;
+  scr.dataset.hc=S.hc?'1':'0'; scr.style.setProperty('--ts',S.ts);
+  let content, flex=false;
+  if(S.tab==='play'){
+    if(land){
+      const pk=`<div class="date"><span>令和8年9月29日 火曜日</span></div><div class="lt">遊ぶ</div>
+        <button class="card resume" style="width:calc(100% - 32px);text-align:left;margin-bottom:10px" data-a="open" data-v="game"><div style="flex:none">${thumb(10)}</div><div><div class="sub">続きから</div><b style="font-size:18px">ふつう ・ 第7問</b><div class="sub">${TOTAL}マス中 ${filled()}マス</div></div></button>
+        <div class="card daily" style="padding:12px 16px"><div><div class="sub">今日の一問</div><b>やさしい ・ 8×8</b></div><button class="btn sec sm" style="width:auto;padding:0 16px" data-a="open" data-v="game">はじめる</button></div>
+        <div class="seg" role="group" aria-label="難易度">${diffs.map(d=>`<button style="font-size:15px" aria-pressed="${S.diff===d}" data-a="diff" data-v="${d}">${d}</button>`).join('')}</div>
+        <div class="pgrid" style="grid-template-columns:repeat(4,1fr)">${Array.from({length:12},(_,i)=>{const n=i+1,lock=n>8,cur=n===7;return lock?`<button class="pz lock" data-a="sheet" data-v="unlock">${ic('lock')}<span class="n">${n}</span></button>`:`<button class="pz ${cur?'cur':''}" data-a="open" data-v="game"><span class="n">${n}</span>${n<7?'<span class="stamp"></span>':cur?'<span class="st">途中</span>':'<span class="st">まだ</span>'}</button>`}).join('')}</div>
+        <p class="note">第9問から先は買い切り版です。</p>`;
+      content=`<div class="split"><aside class="side">${pk}</aside><section class="detail">${padGame(true)}</section></div>`; flex=true;
+    } else if(S.screen==='game'){ content=padGame(false); flex=true; }
+    else content=`<div class="col">${S.screen==='pick'?vPick():vHome()}</div>`;
+  } else if(S.tab==='records'){
+    if(land){const p=recParts(); content=`<div class="split"><aside class="side"><div class="lt" style="padding-top:8px">記録</div>${p.seg}${S.recSeg===0?p.cal:p.thumbs}</aside><section class="detail">${padRecDetail()}</section></div>`; flex=true}
+    else content=`<div class="col">${vRecords()}</div>`;
+  } else content=`<div class="col">${vSettings()}</div>`;
+  scr.innerHTML=`<div class="status"><span>9:41　9月29日(火)</span><span class="ic"><svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="22" height="12" rx="3.5" fill="none" stroke="currentColor" opacity=".5"/><rect x="2" y="2" width="16" height="9" rx="2" fill="currentColor"/></svg></span></div>
+    <div class="ptop"><nav class="ptabs" aria-label="タブ">${[['play','遊ぶ'],['records','記録'],['settings','設定']].map(([k,l])=>`<button class="ptab" data-a="tab" data-v="${k}" ${S.tab===k?'aria-current="page"':''}><svg width="22" height="22" viewBox="0 0 28 28">${TABI[k]}</svg>${l}</button>`).join('')}</nav></div>
+    <div class="pbody ${flex?'flexcol':''}" style="${flex?'display:flex;flex-direction:column;overflow:hidden':''}">${content}</div>
+    ${sheetHTML()}<div class="hind"></div>`;
+  const nb=scr.querySelector('.pbody'); if(nb&&st) nb.scrollTop=st;
+  syncChips();
+}
+function render(){
+  applyDevice();
+  if(S.dev!=='phone') return renderPad();
+  const playing = S.tab==='play' && S.screen==='game';
+  const view = S.tab==='records'?vRecords():S.tab==='settings'?vSettings():S.screen==='pick'?vPick():S.screen==='game'?vGame():vHome();
+  const key=S.tab+S.screen;
+  const scr=document.getElementById('screen');
+  const old=scr.querySelector('.pbody');
+  const st = (old&&key===lastKey)?old.scrollTop:0;
+  lastKey=key;
+  scr.dataset.hc = S.hc?'1':'0';
+  scr.style.setProperty('--ts',S.ts);
+  const gameLayout = playing;
+  scr.innerHTML = `
+    <div class="island"></div>
+    <div class="status"><span>9:41</span><span class="ic">
+      <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+      <svg width="17" height="12" viewBox="0 0 17 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 4.2a11 11 0 0115 0M3.6 7a7.3 7.3 0 019.8 0"/><circle cx="8.5" cy="10" r="1.2" fill="currentColor" stroke="none"/></svg>
+      <svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="22" height="12" rx="3.5" fill="none" stroke="currentColor" opacity=".5"/><rect x="2" y="2" width="16" height="9" rx="2" fill="currentColor"/><path d="M24.5 4.5v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".5"/></svg></span></div>
+    <div class="pbody" ${gameLayout?'style="display:flex;flex-direction:column;overflow:hidden"':''}>${view}${gameLayout?'<div class="bottom-pad"></div>':''}</div>
+    ${playing?'':`<nav class="tabbar" aria-label="タブ">${[['play','遊ぶ'],['records','記録'],['settings','設定']].map(([k,l])=>`<button class="tab" data-a="tab" data-v="${k}" ${S.tab===k?'aria-current="page"':''}><svg viewBox="0 0 28 28">${TABI[k]}</svg>${l}</button>`).join('')}</nav>`}
+    ${sheetHTML()}
+    <div class="hind"></div>`;
+  const nb=scr.querySelector('.pbody'); if(nb&&st) nb.scrollTop=st;
+  syncChips();
+}
+
+/* ---------- state changes ---------- */
+function pushHist(){S.hist.push({...S.entries});S.redo=[]}
+function setEntry(n,k){
+  pushHist(); S.entries[n]=k; S.wrong=S.wrong.filter(x=>x!==+n);
+  if(isSolved()){S.status='done';S.sel=null;S.msg=null;S.panel=true}
+}
+const actions = {
+  noop(){},
+  tab(v){S.tab=v;S.sheet=null;if(v==='play'&&S.screen==='game'&&false)S.screen='home';},
+  open(v){S.screen=v;S.tab='play';S.sheet=null},
+  back(){S.screen=S.screen==='game'?'pick':'home'},
+  diff(v){S.diff=v},
+  cell(v){if(S.status!=='active')return;S.sel=+v;S.msg=null},
+  tile(v){
+    if(S.status!=='active'||!S.sel)return;
+    if(STARTERS[S.sel]){S.msg={t:'この番号は、最初から入っています。',k:''};return}
+    setEntry(S.sel,v);
+  },
+  undo(){if(!S.hist.length)return;S.redo.push({...S.entries});S.entries=S.hist.pop();S.wrong=[]},
+  redo(){if(!S.redo.length)return;S.hist.push({...S.entries});S.entries=S.redo.pop()},
+  erase(){if(S.sel&&!STARTERS[S.sel]&&S.entries[S.sel]){pushHist();delete S.entries[S.sel];S.wrong=S.wrong.filter(x=>x!==S.sel)}},
+  hint(){
+    const order = S.sel&&!S.entries[S.sel]?[S.sel]:[];
+    Object.keys(P.solution).map(Number).forEach(n=>{if(!S.entries[n]||S.entries[n]!==P.solution[n])order.push(n)});
+    const n = order[0]; if(!n)return;
+    const w = spans.find(x=>x.nums.includes(n)&&x.nums.some(m=>m!==n&&S.entries[m]===P.solution[m]))||spans.find(x=>x.nums.includes(n));
+    const other = w.nums.find(m=>m!==n);
+    S.hints++; setEntry(n,P.solution[n]); if(S.status==='active')S.sel=n;
+    S.msg={t:`「${esc(P.solution[other]||'')}」とつながる熟語「${w.word}」から、番号${n}は「${P.solution[n]}」です。`,k:''};
+  },
+  check(){
+    S.checks++;
+    S.wrong = Object.keys(S.entries).map(Number).filter(n=>S.entries[n]!==P.solution[n]);
+    S.msg = S.wrong.length ? {t:`見直す番号: ${S.wrong.join('、')}。点線のマスです。入力は消していません。`,k:'bad'} : {t:'間違いはありません。今の入力はすべて合っています。',k:'ok'};
+  },
+  dismiss(){S.msg=null;S.wrong=[]},
+  pause(){S.status='paused'},
+  resume(){S.status='active'},
+  hidepanel(){S.panel=false},
+  sheet(v){S.sheet=v;if(v==='tutorial')S.tut=0},
+  closesheet(){S.sheet=null},
+  word(v){S.word=+v},
+  next(){S.sheet=null;S.screen='pick';S.tab='play'},
+  tog(v){if(v==='hc'){S.hc=!S.hc}else S.tog[v]=!S.tog[v]},
+  ts(v){S.ts=+v},
+  day(v){S.day=+v},
+  seg(v){S.recSeg=+v},
+  tut(v){S.tut=Math.max(0,Math.min(2,+v))}
+};
+document.getElementById('screen').addEventListener('click',e=>{
+  const t=e.target.closest('[data-a]'); if(!t)return;
+  const a=t.dataset.a, v=t.dataset.v;
+  if(a==='sheet'&&t.dataset.a==='sheet'&&v==='results'&&S.status!=='done'){}
+  if(actions[a]){actions[a](v);render()}
+});
+
+/* ---------- presets & chips ---------- */
+function reset(){
+  Object.assign(S,{entries:{...STARTERS,1:'秩',2:'序',9:'東',10:'京',12:'帰'},sel:4,status:'active',wrong:[],msg:null,hints:0,checks:0,hist:[],redo:[],panel:true,sheet:null,word:0,tut:0});
+}
+const PRESETS = [
+  ['start','Onboarding','A three-step tutorial, shown once. Copy is honest about how words connect.',()=>{reset();S.tab='play';S.screen='home';S.sheet='tutorial'}],
+  ['home','Home','One main action, today\'s date in 令和, calm stats. No purchase prompt.',()=>{reset();S.tab='play';S.screen='home'}],
+  ['pick','Pick a puzzle','Big stamp tiles instead of a list. Locked puzzles stay quiet.',()=>{reset();S.tab='play';S.screen='pick'}],
+  ['play','Playing','番号4 (面) appears in two cells, so both light up. The strip shows the words it joins. Try 確認: 番号12 is wrong.',()=>{reset();S.tab='play';S.screen='game'}],
+  ['done','Solved','The board stays. Two labelled choices, no auto-advance, no confetti.',()=>{reset();S.entries={...P.solution};S.sel=null;S.status='done';S.tab='play';S.screen='game'}],
+  ['results','Results','Tap any word to see its reading and its cells on a mini board.',()=>{reset();S.entries={...P.solution};S.sel=null;S.status='done';S.hints=1;S.checks=1;S.tab='play';S.screen='game';S.sheet='results'}],
+  ['rec','Records','A stamp calendar. "Played 18 days" instead of a streak.',()=>{reset();S.tab='records';S.screen='home';S.recSeg=0}],
+  ['set','Settings','Text size shows a live preview. Try 特大 and 高コントラスト.',()=>{reset();S.tab='settings';S.screen='home'}],
+  ['unlock','Unlock','Only appears when a locked puzzle is tapped. Price and what you get, nothing else.',()=>{reset();S.tab='play';S.screen='pick';S.sheet='unlock'}]
+];
+let curPreset='home';
+const chipsEl=document.getElementById('chips');
+PRESETS.forEach(([id,label,note,fn])=>{
+  const b=document.createElement('button');b.className='chip';b.textContent=label;b.dataset.id=id;
+  b.addEventListener('click',()=>{curPreset=id;fn();render();fit()});
+  chipsEl.appendChild(b);
+});
+const DEVS=[['phone','iPhone'],['padp','iPad portrait · 1 column'],['padl','iPad landscape · 2 columns']];
+const devsEl=document.getElementById('devs');
+DEVS.forEach(([id,l])=>{const b=document.createElement('button');b.className='chip';b.textContent=l;b.dataset.id=id;
+  b.addEventListener('click',()=>{S.dev=id;if(id==='padp'&&S.tab==='play'&&S.screen==='home'){}render();fit()});devsEl.appendChild(b)});
+function syncChips(){
+  devsEl.querySelectorAll('.chip').forEach(b=>b.setAttribute('aria-pressed',b.dataset.id===S.dev));
+  chipsEl.querySelectorAll('.chip').forEach(b=>b.setAttribute('aria-pressed',b.dataset.id===curPreset));
+  const p=PRESETS.find(x=>x[0]===curPreset); document.getElementById('snote').textContent=p?p[2]:'';
+}
+
+/* ---------- scale phone to the space available ---------- */
+function fit(){
+  const stage=document.querySelector('.stage'),pw=document.getElementById('pw'),ph=document.getElementById('phone');
+  const d=DEV[S.dev],W=d.w+2*d.b,H=d.h+2*d.b;
+  const two=window.matchMedia('(min-width:981px)').matches;
+  let s=Math.min(1,stage.clientWidth/W);
+  if(two){const off=document.getElementById('chips').offsetHeight+document.getElementById('devs').offsetHeight+80;s=Math.min(s,(window.innerHeight-off)/H)}
+  s=Math.max(.35,s);
+  ph.style.transform=`scale(${s})`;
+  pw.style.width=(W*s)+'px';pw.style.height=(H*s)+'px';
+}
+window.addEventListener('resize',fit);
+PRESETS[1][3](); render(); fit();
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
+</script>

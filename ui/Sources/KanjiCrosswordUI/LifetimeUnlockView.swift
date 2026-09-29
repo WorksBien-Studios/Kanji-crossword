@@ -14,13 +14,17 @@ public struct LifetimeUnlockView: View {
             Form {
                 Section {
                     VStack(alignment: .leading, spacing: 12) {
-                        Label("全360問を広告なしで", systemImage: "square.grid.3x3")
-                        Label("サブスクリプションなし", systemImage: "calendar.badge.checkmark")
+                        Label("全360問、すべてのモードと難易度", systemImage: "square.grid.3x3")
+                        Label("記録、カレンダー、完成盤の保存と書き出し", systemImage: "calendar")
                         Label("購入後はオフラインでも遊べます", systemImage: "wifi.slash")
+                        Label("広告、コイン、回数制限はありません", systemImage: "checkmark.seal")
+                            .fontWeight(.bold)
                     }
                     .font(.body)
                 } header: {
-                    Text("買い切り版")
+                    Text("一度のお支払いで、ずっと")
+                } footer: {
+                    Text("無料の30問は、これからもそのまま遊べます。")
                 }
 
                 Section {
@@ -52,6 +56,8 @@ public struct LifetimeUnlockView: View {
                     Text("「購入を復元」は、以前の購入が表示されない場合にのみ使用してください。Apple IDの確認が表示されることがあります。")
                 }
             }
+            .scrollContentBackground(.hidden)
+            .background(KanjiTheme.canvas)
             .navigationTitle("全問題を解放")
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
