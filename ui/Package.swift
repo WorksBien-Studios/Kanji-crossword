@@ -23,14 +23,16 @@ let package = Package(
             dependencies: [
                 .product(name: "iOS18Shell", package: "ios-18-shell"),
                 .product(name: "KanjiGameCore", package: "runtime"),
-                .product(name: "KanjiPersistence", package: "runtime")
+                .product(name: "KanjiPersistence", package: "runtime"),
+                .product(name: "KanjiCommerce", package: "runtime")
             ]
         ),
         .testTarget(
             name: "KanjiCrosswordUITests",
             dependencies: [
                 "KanjiCrosswordUI",
-                .product(name: "KanjiGameCore", package: "runtime")
+                .product(name: "KanjiGameCore", package: "runtime"),
+                .product(name: "KanjiCommerce", package: "runtime")
             ]
         )
     ]
