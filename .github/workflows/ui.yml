@@ -33,3 +33,10 @@ jobs:
       - name: Build UI for iOS Simulator
         working-directory: ui
         run: xcodebuild -scheme KanjiCrosswordUI -destination 'generic/platform=iOS Simulator' build CODE_SIGNING_ALLOWED=NO
+      - name: Run UI tests on iOS Simulator
+        working-directory: ui
+        run: |
+          UDID=$(xcrun simctl list devices available iPhone | grep -Eo '[0-9A-F]{8}-([0-9A-F]{4}-){3}[0-9A-F]{12}' | head -1)
+          test -n "$UDID" || { echo "No available iPhone simulator"; exit 1; }
+          echo "Testing on simulator $UDID"
+          xcodebuild -scheme KanjiCrosswordUI -destination "id=$UDID" test CODE_SIGNING_ALLOWED=NO
