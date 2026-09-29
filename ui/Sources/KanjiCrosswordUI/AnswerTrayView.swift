@@ -5,8 +5,8 @@ struct AnswerTrayView: View {
     @ObservedObject var model: GameSessionViewModel
 
     private var columns: [GridItem] {
-        let minimum = 48 * model.preferences.textScale
-        let maximum = 72 * model.preferences.textScale
+        let minimum = 48 * CGFloat(model.preferences.textScale)
+        let maximum = 72 * CGFloat(model.preferences.textScale)
         return [
             GridItem(.adaptive(minimum: minimum, maximum: maximum), spacing: 8)
         ]
