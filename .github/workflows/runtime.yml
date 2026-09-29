@@ -1,0 +1,40 @@
+name: Runtime validation
+
+on:
+  push:
+    branches:
+      - main
+      - 'fix/**'
+      - 'feat/**'
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: runtime-validation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  core-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Swift version
+        run: swift --version
+      - name: Run pure Swift runtime tests
+        run: swift test --package-path runtime
+      - name: Decode and validate shipped 360-puzzle library
+        run: swift run --package-path runtime KanjiContentCheck content/puzzles-v2.json
+
+  apple-persistence:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Toolchain versions
+        run: |
+          xcodebuild -version
+          swift --version
+      - name: Run SwiftData runtime tests
+        run: swift test --package-path runtime
