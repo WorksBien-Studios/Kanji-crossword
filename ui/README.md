@@ -29,6 +29,7 @@ rather than third-party UI libraries.
 | Lifetime unlock | StoreKit 2 `Product`, native purchase sheet, `Form`, and localized `displayPrice` |
 | Restore Purchases | explicit native Settings `Button` calling `AppStore.sync()` through `KanjiCommerce` |
 | Privacy policy | native `Link` in Settings to `https://worksbienstudios.com/apps/kanji-crossword/privacy/` |
+| Licences / third-party notices | `LicensesView` (`Form`/`Section`) reachable via `NavigationLink` in Settings; JMdict/EDRDG CC BY-SA 3.0 attribution |
 | Success feedback | `sensoryFeedback` |
 | Accessibility | native controls + Dynamic Type/`@ScaledMetric` + explicit VoiceOver labels |
 | App lifecycle timing | `scenePhase` |
@@ -67,3 +68,5 @@ The canonical privacy policy is:
 `https://worksbienstudios.com/apps/kanji-crossword/privacy/`
 
 The URL is defined once in `PolicyLinks.swift` and surfaced in Settings with a native SwiftUI `Link` so the in-app policy and App Store Connect URL cannot drift.
+
+The JMdict/EDRDG attribution required by `engine/data/ATTRIBUTION.md` and the app's Content Rights declaration is surfaced the same way: `LicensesView` reads the same `PolicyLinks.swift` URLs (`jmdictProject`, `ccBySa30`) and is reachable from Settings via 設定 → プライバシーと法的情報 → ライセンス・第三者表記.

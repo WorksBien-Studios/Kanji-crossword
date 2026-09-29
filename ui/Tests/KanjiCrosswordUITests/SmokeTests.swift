@@ -18,6 +18,17 @@ struct SmokeTests {
         )
     }
 
+    @Test("JMdict/EDRDG attribution links stay locked to the licensed sources")
+    func attributionLinks() {
+        #expect(
+            KanjiPolicyLinks.jmdictProject.absoluteString == "http://www.edrdg.org/"
+        )
+        #expect(
+            KanjiPolicyLinks.ccBySa30.absoluteString
+                == "https://creativecommons.org/licenses/by-sa/3.0/"
+        )
+    }
+
     @Test("Japanese difficulty labels remain stable")
     func difficultyLabels() {
         #expect(PuzzleDifficulty.easy.japaneseTitle == "やさしい")
