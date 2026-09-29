@@ -3,6 +3,7 @@ import KanjiGameCore
 
 struct GameView: View {
     @ObservedObject var model: GameSessionViewModel
+    @Environment(\.scenePhase) private var scenePhase
 
     @State private var showRestartConfirmation = false
     @State private var showResults = false
@@ -38,12 +39,29 @@ struct GameView: View {
                     }
                     .disabled(model.state.redoStack.isEmpty)
 
+                    if model.preferences.checkMistakesByDefault {
+                        Button("間違いを確認", systemImage: "checkmark.circle") {
+                            model.send(.checkMistakes)
+                        }
+                    }
+
                     Menu("その他", systemImage: "ellipsis.circle") {
                         Button("ヒント", systemImage: "lightbulb") {
                             model.send(.requestHint)
                         }
-                        Button("間違いを確認", systemImage: "checkmark.circle") {
-                            model.send(.checkMistakes)
+                        if !model.preferences.checkMistakesByDefault {
+                            Button("間違いを確認", systemImage: "checkmark.circle") {
+                                model.send(.checkMistakes)
+                            }
+                        }
+                        if model.state.status == .active {
+                            Button("一時停止", systemImage: "pause") {
+                                model.send(.pause)
+                            }
+                        } else if model.state.status == .paused {
+                            Button("再開", systemImage: "play") {
+                                model.send(.resume)
+                            }
                         }
                         if model.state.status == .completed {
                             Button("結果を見る", systemImage: "chart.bar") {
@@ -91,18 +109,36 @@ struct GameView: View {
                 "保存できません",
                 isPresented: Binding(
                     get: { model.errorMessage != nil },
-                    set: { _ in }
+                    set: { if !$0 { model.clearError() } }
                 )
             ) {
-                Button("OK") {}
+                Button("OK") {
+                    model.clearError()
+                }
             } message: {
                 Text(model.errorMessage ?? "")
             }
             .onChange(of: model.lastEvent) { _, event in
                 consume(event)
             }
+            .onChange(of: scenePhase) { _, phase in
+                switch phase {
+                case .active:
+                    if model.state.status == .paused {
+                        model.send(.resume)
+                    }
+                case .inactive, .background:
+                    if model.state.status == .active {
+                        model.send(.pause)
+                    }
+                @unknown default:
+                    break
+                }
+            }
             .sensoryFeedback(.success, trigger: model.state.status) { old, new in
-                old != .completed && new == .completed
+                model.preferences.hapticsEnabled
+                    && old != .completed
+                    && new == .completed
             }
     }
 
