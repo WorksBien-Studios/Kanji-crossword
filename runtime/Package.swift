@@ -10,6 +10,7 @@ let package = Package(
     products: [
         .library(name: "KanjiGameCore", targets: ["KanjiGameCore"]),
         .library(name: "KanjiPersistence", targets: ["KanjiPersistence"]),
+        .library(name: "KanjiCommerce", targets: ["KanjiCommerce"]),
         .executable(name: "KanjiContentCheck", targets: ["KanjiContentCheck"])
     ],
     targets: [
@@ -18,6 +19,7 @@ let package = Package(
             name: "KanjiPersistence",
             dependencies: ["KanjiGameCore"]
         ),
+        .target(name: "KanjiCommerce"),
         .executableTarget(
             name: "KanjiContentCheck",
             dependencies: ["KanjiGameCore"]
@@ -29,6 +31,10 @@ let package = Package(
         .testTarget(
             name: "KanjiPersistenceTests",
             dependencies: ["KanjiGameCore", "KanjiPersistence"]
+        ),
+        .testTarget(
+            name: "KanjiCommerceTests",
+            dependencies: ["KanjiCommerce"]
         )
     ]
 )
