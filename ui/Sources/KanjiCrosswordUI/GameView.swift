@@ -1,15 +1,23 @@
 import SwiftUI
+import KanjiCommerce
 import KanjiGameCore
+import KanjiPersistence
 
 struct GameView: View {
     @ObservedObject var model: GameSessionViewModel
+    let persistence: GamePersistenceStore
+    @ObservedObject var purchaseStore: LifetimePurchaseStore
+
     @Environment(\.scenePhase) private var scenePhase
 
     @State private var showRestartConfirmation = false
     @State private var showResults = false
     @State private var showCompletionActions = true
     @State private var showKeyboardEntry = false
+    @State private var showUnlockSheet = false
+    @State private var pendingUnlockAfterResults = false
     @State private var pausedForSceneTransition = false
+    @State private var completionCount = 0
     @State private var feedbackTitle: String?
     @State private var feedbackMessage: String?
 
@@ -141,8 +149,17 @@ struct GameView: View {
             Text("現在の入力は消えます。")
         }
         .sheet(isPresented: $showResults) {
-            ResultsView(state: model.state, puzzle: model.puzzle)
-                .presentationDetents([.medium, .large])
+            ResultsView(
+                state: model.state,
+                puzzle: model.puzzle,
+                showUnlockCard: completionCount >= 5 && !purchaseStore.hasLifetimeUnlock,
+                localizedPrice: purchaseStore.localizedPrice,
+                onUnlockRequested: {
+                    pendingUnlockAfterResults = true
+                    showResults = false
+                }
+            )
+            .presentationDetents([.medium, .large])
         }
         .sheet(isPresented: $showKeyboardEntry) {
             KeyboardEntrySheet(allowedKanji: Set(model.puzzle.traySeed)) { kanji in
@@ -150,6 +167,9 @@ struct GameView: View {
                 showKeyboardEntry = false
             }
             .presentationDetents([.medium])
+        }
+        .sheet(isPresented: $showUnlockSheet) {
+            LifetimeUnlockView(purchaseStore: purchaseStore)
         }
         .alert(
             feedbackTitle ?? "",
@@ -176,6 +196,15 @@ struct GameView: View {
             }
         } message: {
             Text(model.errorMessage ?? "")
+        }
+        .task {
+            await refreshCompletionCount()
+        }
+        .onChange(of: showResults) { _, isPresented in
+            if !isPresented && pendingUnlockAfterResults {
+                pendingUnlockAfterResults = false
+                showUnlockSheet = true
+            }
         }
         .onChange(of: model.lastEvent) { _, event in
             consume(event)
@@ -212,8 +241,12 @@ struct GameView: View {
 
     private func consume(_ event: GameEvent) {
         switch event {
-        case .none, .completed:
+        case .none:
             break
+        case .completed:
+            Task {
+                await refreshCompletionCount()
+            }
         case .mistakes(let numbers):
             feedbackTitle = numbers.isEmpty ? "間違いはありません" : "確認しました"
             feedbackMessage = numbers.isEmpty
@@ -231,6 +264,11 @@ struct GameView: View {
             }
         }
         model.clearTransientEvent()
+    }
+
+    @MainActor
+    private func refreshCompletionCount() async {
+        completionCount = (try? await persistence.completionHistory().count) ?? 0
     }
 }
 

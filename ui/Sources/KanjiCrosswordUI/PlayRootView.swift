@@ -1,10 +1,12 @@
 import SwiftUI
+import KanjiCommerce
 import KanjiGameCore
 import KanjiPersistence
 
 public struct PlayRootView: View {
     private let catalog: PuzzleCatalog
     private let persistence: GamePersistenceStore
+    private let purchaseStore: LifetimePurchaseStore
     private let accessPolicy: PuzzleAccessPolicy
     private let onUnlockRequested: (Puzzle) -> Void
 
@@ -16,11 +18,13 @@ public struct PlayRootView: View {
     public init(
         catalog: PuzzleCatalog,
         persistence: GamePersistenceStore,
+        purchaseStore: LifetimePurchaseStore,
         accessPolicy: PuzzleAccessPolicy,
         onUnlockRequested: @escaping (Puzzle) -> Void
     ) {
         self.catalog = catalog
         self.persistence = persistence
+        self.purchaseStore = purchaseStore
         self.accessPolicy = accessPolicy
         self.onUnlockRequested = onUnlockRequested
     }
@@ -79,7 +83,8 @@ public struct PlayRootView: View {
                 if accessPolicy.isUnlocked(puzzle) {
                     GameSessionContainerView(
                         puzzle: puzzle,
-                        persistence: persistence
+                        persistence: persistence,
+                        purchaseStore: purchaseStore
                     )
                     .id(puzzle.id)
                 } else {
@@ -88,7 +93,7 @@ public struct PlayRootView: View {
                     } description: {
                         Text("無料の30問を遊んだあとも、全360問を広告なしで楽しめます。")
                     } actions: {
-                        Button("買い切り版を見る") {
+                        Button(unlockButtonTitle) {
                             onUnlockRequested(puzzle)
                         }
                         .buttonStyle(.borderedProminent)
@@ -144,6 +149,13 @@ public struct PlayRootView: View {
         let day = Calendar.current.ordinality(of: .day, in: .era, for: Date()) ?? 0
         return catalog.puzzles[day % catalog.puzzles.count]
     }
+
+    private var unlockButtonTitle: String {
+        if let price = purchaseStore.localizedPrice {
+            return "買い切り版を見る（\(price)）"
+        }
+        return "買い切り版を見る"
+    }
 }
 
 private struct PuzzleRowLabel: View {
@@ -175,6 +187,7 @@ private struct PuzzleRowLabel: View {
 private struct GameSessionContainerView: View {
     let puzzle: Puzzle
     let persistence: GamePersistenceStore
+    let purchaseStore: LifetimePurchaseStore
 
     @State private var model: GameSessionViewModel?
     @State private var loadError: String?
@@ -182,7 +195,11 @@ private struct GameSessionContainerView: View {
     var body: some View {
         Group {
             if let model {
-                GameView(model: model)
+                GameView(
+                    model: model,
+                    persistence: persistence,
+                    purchaseStore: purchaseStore
+                )
             } else if let loadError {
                 ContentUnavailableView {
                     Label("問題を開けません", systemImage: "exclamationmark.triangle")

@@ -4,9 +4,26 @@ import KanjiGameCore
 struct ResultsView: View {
     let state: GameState
     let puzzle: Puzzle
+    let showUnlockCard: Bool
+    let localizedPrice: String?
+    let onUnlockRequested: (() -> Void)?
 
     @Environment(\.dismiss) private var dismiss
     @State private var selectedWord: SelectedWord?
+
+    init(
+        state: GameState,
+        puzzle: Puzzle,
+        showUnlockCard: Bool = false,
+        localizedPrice: String? = nil,
+        onUnlockRequested: (() -> Void)? = nil
+    ) {
+        self.state = state
+        self.puzzle = puzzle
+        self.showUnlockCard = showUnlockCard
+        self.localizedPrice = localizedPrice
+        self.onUnlockRequested = onUnlockRequested
+    }
 
     var body: some View {
         NavigationStack {
@@ -17,6 +34,32 @@ struct ResultsView: View {
                     }
                     LabeledContent("ヒント", value: "\(state.hintsUsed)回")
                     LabeledContent("確認", value: "\(state.checksUsed)回")
+                }
+
+                if showUnlockCard, let onUnlockRequested {
+                    Section {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("このまま広告なしで全360問")
+                                .font(.headline)
+                            Text("無料版は30問まで。買い切り版なら残りの問題もオフラインで遊べます。")
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+
+                            Button {
+                                onUnlockRequested()
+                            } label: {
+                                HStack {
+                                    Text("全問題を解放")
+                                    Spacer()
+                                    if let localizedPrice {
+                                        Text(localizedPrice)
+                                    }
+                                }
+                            }
+                            .buttonStyle(.borderedProminent)
+                        }
+                        .padding(.vertical, 4)
+                    }
                 }
 
                 Section("完成した熟語") {
