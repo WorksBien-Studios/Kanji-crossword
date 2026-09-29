@@ -99,4 +99,45 @@ struct DesignLogicTests {
         let date = calendar.date(from: DateComponents(year: 2026, month: 9, day: 29, hour: 12))!
         #expect(JapaneseDateText.eraDate(date, timeZone: tokyo) == "令和8年9月29日 火曜日")
     }
+
+    private func makePuzzle(id: String) -> Puzzle {
+        let base = self.puzzle
+        return Puzzle(
+            schemaVersion: base.schemaVersion,
+            mode: base.mode,
+            difficulty: base.difficulty,
+            difficultyScore: base.difficultyScore,
+            difficultyMetrics: base.difficultyMetrics,
+            rows: base.rows,
+            columns: base.columns,
+            cellLayout: base.cellLayout,
+            cellNumbers: base.cellNumbers,
+            solution: base.solution,
+            starterCells: base.starterCells,
+            wordSpans: base.wordSpans,
+            editorialStatus: base.editorialStatus,
+            editorialNotes: base.editorialNotes,
+            sourceNotes: base.sourceNotes,
+            id: id,
+            traySeed: base.traySeed,
+            validationDigest: base.validationDigest
+        )
+    }
+
+    @Test("Next puzzle skips ineligible ones and wraps around")
+    func nextPuzzle() {
+        let list = ["a", "b", "c", "d"].map { makePuzzle(id: $0) }
+        let skipB = PuzzleSequence.next(after: "a", in: list) { $0.id != "b" }
+        #expect(skipB?.id == "c")
+        let wrapped = PuzzleSequence.next(after: "d", in: list) { $0.id == "a" }
+        #expect(wrapped?.id == "a")
+    }
+
+    @Test("Next puzzle is nil when nothing else is eligible or the id is unknown")
+    func nextPuzzleNone() {
+        let list = ["a", "b"].map { makePuzzle(id: $0) }
+        #expect(PuzzleSequence.next(after: "a", in: list) { _ in false } == nil)
+        #expect(PuzzleSequence.next(after: "a", in: list) { $0.id == "a" } == nil)
+        #expect(PuzzleSequence.next(after: "zzz", in: list) { _ in true } == nil)
+    }
 }

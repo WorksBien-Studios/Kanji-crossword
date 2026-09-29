@@ -105,3 +105,17 @@ enum JapaneseDateText {
         return formatter.string(from: date)
     }
 }
+
+enum PuzzleSequence {
+    /// The next puzzle after `id` in `list`, wrapping around at the end, that
+    /// satisfies `isEligible`. The puzzle `id` itself is never returned.
+    static func next(
+        after id: String,
+        in list: [Puzzle],
+        where isEligible: (Puzzle) -> Bool
+    ) -> Puzzle? {
+        guard let index = list.firstIndex(where: { $0.id == id }) else { return nil }
+        let following = Array(list[(index + 1)...]) + Array(list[..<index])
+        return following.first(where: isEligible)
+    }
+}
