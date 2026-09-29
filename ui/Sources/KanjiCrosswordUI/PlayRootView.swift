@@ -309,7 +309,8 @@ public struct PlayRootView: View {
                     puzzle: puzzle,
                     persistence: persistence,
                     purchaseStore: purchaseStore,
-                    onBackToList: { compactColumn = .sidebar }
+                    onBackToList: { compactColumn = .sidebar },
+                    onNextPuzzle: nextPuzzleAction(after: puzzle)
                 )
                 .id(puzzle.id)
             } else {
@@ -333,6 +334,21 @@ public struct PlayRootView: View {
     }
 
     // MARK: Actions
+
+    /// Offers the next unfinished, unlocked puzzle in the same mode and
+    /// difficulty. Returns nil when there is none, so the button is hidden.
+    private func nextPuzzleAction(after puzzle: Puzzle) -> (() -> Void)? {
+        let list = catalog.puzzles(mode: puzzle.mode, difficulty: puzzle.difficulty)
+        guard let next = PuzzleSequence.next(
+            after: puzzle.id,
+            in: list,
+            where: { accessPolicy.isUnlocked($0) && !completedIDs.contains($0.id) }
+        ) else { return nil }
+        return {
+            selectedPuzzleID = next.id
+            compactColumn = .detail
+        }
+    }
 
     private func select(_ puzzle: Puzzle) {
         if accessPolicy.isUnlocked(puzzle) {
@@ -374,6 +390,7 @@ private struct GameSessionContainerView: View {
     let persistence: GamePersistenceStore
     let purchaseStore: LifetimePurchaseStore
     let onBackToList: () -> Void
+    let onNextPuzzle: (() -> Void)?
 
     @State private var model: GameSessionViewModel?
     @State private var loadError: String?
@@ -385,7 +402,8 @@ private struct GameSessionContainerView: View {
                     model: model,
                     persistence: persistence,
                     purchaseStore: purchaseStore,
-                    onBackToList: onBackToList
+                    onBackToList: onBackToList,
+                    onNextPuzzle: onNextPuzzle
                 )
             } else if let loadError {
                 ContentUnavailableView {

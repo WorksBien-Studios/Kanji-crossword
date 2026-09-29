@@ -17,6 +17,7 @@ struct GameView: View {
     let persistence: GamePersistenceStore
     @ObservedObject var purchaseStore: LifetimePurchaseStore
     var onBackToList: () -> Void = {}
+    var onNextPuzzle: (() -> Void)?
 
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
@@ -260,7 +261,8 @@ struct GameView: View {
                 showActions: showCompletionActions,
                 viewBoard: { showCompletionActions = false },
                 viewResults: { showResults = true },
-                backToList: onBackToList
+                backToList: onBackToList,
+                nextPuzzle: onNextPuzzle
             )
             .background(gridActions ? Color.clear : KanjiTheme.bar)
         }
@@ -635,6 +637,7 @@ private struct CompletionPanel: View {
     let viewBoard: () -> Void
     let viewResults: () -> Void
     let backToList: () -> Void
+    let nextPuzzle: (() -> Void)?
 
     var body: some View {
         VStack(spacing: 10) {
@@ -644,17 +647,25 @@ private struct CompletionPanel: View {
                 HStack(spacing: 10) {
                     Button("完成盤を見る", action: viewBoard)
                         .buttonStyle(KanjiSecondaryButtonStyle(compact: true))
-                    Button("問題一覧へ", action: backToList)
-                        .buttonStyle(KanjiSecondaryButtonStyle(compact: true))
+                    if let nextPuzzle {
+                        Button("次の問題", action: nextPuzzle)
+                            .buttonStyle(KanjiSecondaryButtonStyle(compact: true))
+                    }
                 }
             } else {
                 HStack(spacing: 10) {
                     Button("結果を見る", action: viewResults)
                         .buttonStyle(KanjiPrimaryButtonStyle(compact: true))
-                    Button("問題一覧へ", action: backToList)
-                        .buttonStyle(KanjiSecondaryButtonStyle(compact: true))
+                    if let nextPuzzle {
+                        Button("次の問題", action: nextPuzzle)
+                            .buttonStyle(KanjiSecondaryButtonStyle(compact: true))
+                    }
                 }
             }
+            Button("問題一覧へ", action: backToList)
+                .font(.body.bold())
+                .foregroundStyle(KanjiTheme.accentText)
+                .frame(minHeight: 44)
         }
         .padding(16)
         .frame(maxWidth: .infinity)
