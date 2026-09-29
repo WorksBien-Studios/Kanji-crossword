@@ -30,11 +30,19 @@ public struct PlayRootView: View {
             List(selection: $selectedPuzzleID) {
                 if let recentProgress {
                     Section("続きから") {
-                        puzzleRow(recentProgress.puzzle, subtitle: "途中の問題")
+                        puzzleRow(
+                            recentProgress.puzzle,
+                            title: "続きから",
+                            subtitle: "途中の問題"
+                        )
                     }
                 } else if let dailyPuzzle {
                     Section("今日の一問") {
-                        puzzleRow(dailyPuzzle, subtitle: dailyPuzzle.difficulty.japaneseTitle)
+                        puzzleRow(
+                            dailyPuzzle,
+                            title: "今日の一問",
+                            subtitle: dailyPuzzle.difficulty.japaneseTitle
+                        )
                     }
                 }
 
@@ -55,9 +63,10 @@ public struct PlayRootView: View {
                 }
 
                 Section("問題") {
-                    ForEach(filteredPuzzles) { puzzle in
+                    ForEach(Array(filteredPuzzles.enumerated()), id: \.element.id) { index, puzzle in
                         puzzleRow(
                             puzzle,
+                            title: "第\(index + 1)問",
                             subtitle: "\(puzzle.rows)×\(puzzle.columns)"
                         )
                     }
@@ -101,11 +110,12 @@ public struct PlayRootView: View {
     }
 
     @ViewBuilder
-    private func puzzleRow(_ puzzle: Puzzle, subtitle: String) -> some View {
+    private func puzzleRow(_ puzzle: Puzzle, title: String, subtitle: String) -> some View {
         if accessPolicy.isUnlocked(puzzle) {
             NavigationLink(value: puzzle.id) {
                 PuzzleRowLabel(
                     puzzle: puzzle,
+                    title: title,
                     subtitle: subtitle,
                     locked: false
                 )
@@ -116,6 +126,7 @@ public struct PlayRootView: View {
             } label: {
                 PuzzleRowLabel(
                     puzzle: puzzle,
+                    title: title,
                     subtitle: subtitle,
                     locked: true
                 )
@@ -137,13 +148,14 @@ public struct PlayRootView: View {
 
 private struct PuzzleRowLabel: View {
     let puzzle: Puzzle
+    let title: String
     let subtitle: String
     let locked: Bool
 
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 3) {
-                Text(puzzle.mode.japaneseTitle)
+                Text(title)
                     .font(.body)
                 Text(subtitle)
                     .font(.caption)
