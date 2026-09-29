@@ -65,6 +65,7 @@ public struct TutorialView: View {
                     .tag(2)
                 }
                 .tabViewStyle(.page(indexDisplayMode: .automatic))
+                .scrollDisabled(true)
 
                 Button(page == 2 ? "今すぐ始める" : "次へ") {
                     if page == 2 {
