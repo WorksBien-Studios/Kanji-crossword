@@ -4,9 +4,13 @@ import KanjiGameCore
 struct AnswerTrayView: View {
     @ObservedObject var model: GameSessionViewModel
 
-    private let columns = [
-        GridItem(.adaptive(minimum: 48, maximum: 72), spacing: 8)
-    ]
+    private var columns: [GridItem] {
+        let minimum = 48 * model.preferences.textScale
+        let maximum = 72 * model.preferences.textScale
+        return [
+            GridItem(.adaptive(minimum: minimum, maximum: maximum), spacing: 8)
+        ]
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -27,6 +31,7 @@ struct AnswerTrayView: View {
                     }
                     .buttonStyle(.bordered)
                     .controlSize(.large)
+                    .font(.body.weight(.medium))
                     .disabled(model.state.selectedNumber == nil)
                     .accessibilityLabel("漢字 \(kanji) を入力")
                 }
