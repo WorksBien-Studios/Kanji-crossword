@@ -139,6 +139,12 @@ public struct SettingsView: View {
             Link(destination: KanjiPolicyLinks.privacy) {
                 Label("プライバシーポリシー", systemImage: "hand.raised")
             }
+
+            NavigationLink {
+                LicensesView()
+            } label: {
+                Label("ライセンス・第三者表記", systemImage: "doc.text")
+            }
         }
     }
 

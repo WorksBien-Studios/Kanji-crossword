@@ -27,7 +27,7 @@ This draft was audited against (a) native-Japanese phrasing, (b) 2026 App Store 
 
 ### Open items this document cannot resolve — verify before submission
 
-- **Missing binary requirement, confirmed by source audit:** §16 and the §19 checklist require an in-app **プライバシーポリシー** link and a **ライセンス／第三者表記** (JMdict/EDRDG) screen before submission. As of 2026-09-29 the privacy-policy link is **now wired** (PR #6, `af87aaa`: `SettingsView.swift` legalSection + `PolicyLinks.swift` + smoke test) — confirmed and reflected below. The licence/attribution screen is **still missing**: no matches for "Licen[cs]e", "third-party", or "attribution" anywhere in `ui/Sources/KanjiCrosswordUI`. This remains a hard App Review blocker (the Content Rights answer in §2 promises an attribution screen, and JMdict/EDRDG's CC BY-SA 3.0 licence requires it) — it must be built before the archive is submitted, not just before this document is signed off.
+- **Missing binary requirement, confirmed by source audit — now resolved:** §16 and the §19 checklist require an in-app **プライバシーポリシー** link and a **ライセンス／第三者表記** (JMdict/EDRDG) screen before submission. The privacy-policy link was wired in PR #6 (`af87aaa`). The licence/attribution screen was wired in this update: `LicensesView.swift` (new), reachable from 設定 → プライバシーと法的情報 → ライセンス・第三者表記, citing EDRDG and CC BY-SA 3.0 with links defined once in `PolicyLinks.swift` and locked by a smoke test in `SmokeTests.swift`. Both binary-policy gates in §16/§19 are now met in source; still confirm both screens on the final signed archive before submission.
 - **Age Rating questionnaire re-verification:** Apple replaced the old age-rating system in July 2025 (new 13+/16+/18+ bands, expanded in-app-controls/capabilities/medical-wellness/violent-themes questions, and ratings that can now vary per storefront), with a compliance deadline of 2026-01-31. §7 already uses some of the new field names (e.g. "Age Assurance"), but it has not been re-checked against the live App Store Connect questionnaire as it exists today. Re-walk §7 against the current live form before submission; the expected 4+ outcome is unlikely to change, but field names/order may have.
 - **App Tags rollout:** §17 assumes App Tags are still US-only. Re-check current rollout scope in App Store Connect before assuming Japan is unaffected — this claim is over a year old relative to today's date and Apple has been expanding this feature.
 
@@ -710,7 +710,7 @@ Before submission, Settings must expose at least:
 1. **プライバシーポリシー** → live privacy URL
 2. **ライセンス / 第三者表記** → JMdict/EDRDG CC BY-SA 3.0 attribution
 
-**Status as of 2026-09-29:** item 1 (プライバシーポリシー) is now wired — `SettingsView.swift` has a `legalSection` ("プライバシーと法的情報") with a native `Link` to the canonical URL, backed by `PolicyLinks.swift` and a smoke test (see `af87aaa`, PR #6). Item 2 (ライセンス / 第三者表記, JMdict/EDRDG attribution) is **still missing** — no licences/attribution view exists anywhere in the UI source. This remains a hard blocker: the Content Rights answer in §2 promises this screen, so submitting without it risks both a Guideline 2.3 accurate-metadata mismatch and an attribution-compliance issue with JMdict/EDRDG's CC BY-SA 3.0 terms.
+**Status as of 2026-09-29:** both items are now wired. Item 1 (プライバシーポリシー) — `SettingsView.swift` has a `legalSection` ("プライバシーと法的情報") with a native `Link` to the canonical URL, backed by `PolicyLinks.swift` and a smoke test (see `af87aaa`, PR #6). Item 2 (ライセンス / 第三者表記, JMdict/EDRDG attribution) — `LicensesView.swift` is reachable from the same Settings section via `NavigationLink`, cites EDRDG and CC BY-SA 3.0 with links from `PolicyLinks.swift`, and is covered by its own smoke test. Both should still be spot-checked on the final signed build before submission.
 
 Recommended additional links:
 
@@ -835,7 +835,7 @@ Do not add any of the following to the listing, keywords, review notes, or IAP m
 ### Binary-policy gates that metadata cannot fix
 
 - [x] Settings contains the canonical in-app Privacy Policy link (`SettingsView.swift` legalSection, verified 2026-09-29); recheck in the final signed build
-- [ ] Settings contains JMdict/EDRDG licence attribution **(NOT YET BUILT as of 2026-09-29 — confirmed absent from `ui/Sources/KanjiCrosswordUI`)**
+- [x] Settings contains JMdict/EDRDG licence attribution (`LicensesView.swift`, wired 2026-09-29); recheck in the final signed build
 - [x] final 360-puzzle count is verified — confirmed in `content/puzzles-v2.json` (240 kanjiNankuro + 120 kanjiNankuroLarge = 360)
 - [ ] 30 free puzzles are accessible without purchase
 - [ ] locked puzzles clearly open the IAP
