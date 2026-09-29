@@ -8,13 +8,26 @@ public struct KanjiCrosswordRootView: View {
     private let catalog: PuzzleCatalog
     private let persistence: GamePersistenceStore
 
-    @ObservedObject private var purchaseStore: LifetimePurchaseStore
+    @StateObject private var purchaseStore: LifetimePurchaseStore
     @StateObject private var navigator = AppShellNavigator()
     @AppStorage("kanjiCrossword.tutorialCompleted") private var tutorialCompleted = false
     @Environment(\.scenePhase) private var scenePhase
 
     @State private var purchasePromptPuzzle: Puzzle?
 
+    @MainActor
+    public init(
+        catalog: PuzzleCatalog,
+        persistence: GamePersistenceStore
+    ) {
+        self.catalog = catalog
+        self.persistence = persistence
+        self._purchaseStore = StateObject(
+            wrappedValue: LifetimePurchaseStore()
+        )
+    }
+
+    @MainActor
     public init(
         catalog: PuzzleCatalog,
         persistence: GamePersistenceStore,
@@ -22,7 +35,7 @@ public struct KanjiCrosswordRootView: View {
     ) {
         self.catalog = catalog
         self.persistence = persistence
-        self._purchaseStore = ObservedObject(wrappedValue: purchaseStore)
+        self._purchaseStore = StateObject(wrappedValue: purchaseStore)
     }
 
     public var body: some View {
