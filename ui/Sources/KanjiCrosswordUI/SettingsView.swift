@@ -97,9 +97,11 @@ public struct SettingsView: View {
     }
 
     private var interactionSection: some View {
-        Section("操作") {
+        Section {
             Toggle("触覚フィードバック", isOn: hapticsBinding)
             Toggle("タイマーを毎回使う", isOn: timerBinding)
+        } header: {
+            Text("操作")
         } footer: {
             Text("間違い確認は、盤面を勝手に変えず、必要なときだけ操作バーから実行できます。")
         }
