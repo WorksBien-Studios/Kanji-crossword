@@ -29,6 +29,8 @@ jobs:
         run: python3 -m json.tool storekit/Products.storekit > /dev/null
       - name: Validate app icon sources
         run: python3 scripts/validate_app_icon.py
+      - name: Generate app icon slots
+        run: sh scripts/generate_app_icons.sh
       - name: Resolve Swift packages
         working-directory: ui
         run: swift package resolve
