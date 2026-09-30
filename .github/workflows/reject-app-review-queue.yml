@@ -78,11 +78,21 @@ jobs:
             out
           end
 
+          def review_submission_path(app_id, states)
+            query = URI.encode_www_form({
+              'filter[app]' => app_id,
+              'filter[platform]' => 'IOS',
+              'filter[state]' => states.join(','),
+              'limit' => '50'
+            })
+            "/v1/reviewSubmissions?#{query}"
+          end
+
           active_states = %w[WAITING_FOR_REVIEW IN_REVIEW]
           apps = get_all('/v1/apps?limit=200', token)
           puts "Found #{apps.length} apps in account. Gym app #{gym_app_id} will be kept in review."
 
-          rejected = []
+          canceled = []
           kept = []
           skipped = []
 
@@ -94,26 +104,30 @@ jobs:
               next
             end
 
-            versions = get_all("/v1/apps/#{app_id}/appStoreVersions?limit=20", token)
-            versions.each do |version|
-              state = version.dig('attributes', 'appStoreState')
-              next unless active_states.include?(state)
+            submissions = get_all(review_submission_path(app_id, active_states), token)
+            if submissions.empty?
+              skipped << "#{name}: no active iOS review submission"
+              next
+            end
 
-              version_id = version.fetch('id')
-              sub = request('Get', "/v1/appStoreVersions/#{version_id}/appStoreVersionSubmission", token)
-              submission_id = sub.dig('data', 'id')
-
-              if submission_id
-                puts "Rejecting #{name} app=#{app_id} version=#{version_id} state=#{state} submission=#{submission_id}"
-                request('Delete', "/v1/appStoreVersionSubmissions/#{submission_id}", token)
-                rejected << "#{name} (#{state})"
-              else
-                skipped << "#{name} #{state}: no submission relationship found"
-              end
+            submissions.each do |submission|
+              submission_id = submission.fetch('id')
+              state = submission.dig('attributes', 'state')
+              body = {
+                data: {
+                  type: 'reviewSubmissions',
+                  id: submission_id,
+                  attributes: { canceled: true }
+                }
+              }
+              puts "Canceling #{name} app=#{app_id} reviewSubmission=#{submission_id} state=#{state}"
+              updated = request('Patch', "/v1/reviewSubmissions/#{submission_id}", token, body)
+              new_state = updated.dig('data', 'attributes', 'state') || 'updated'
+              canceled << "#{name} (#{state} -> #{new_state})"
             end
           end
 
           puts "Kept gym app(s): #{kept.join(', ')}"
-          puts "Rejected submissions: #{rejected.empty? ? 'none' : rejected.join(' | ')}"
+          puts "Canceled submissions: #{canceled.empty? ? 'none' : canceled.join(' | ')}"
           puts "Skipped: #{skipped.empty? ? 'none' : skipped.join(' | ')}"
           RUBY
