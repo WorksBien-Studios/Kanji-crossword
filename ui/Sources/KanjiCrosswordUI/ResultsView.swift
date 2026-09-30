@@ -4,6 +4,7 @@ import KanjiGameCore
 struct ResultsView: View {
     let state: GameState
     let puzzle: Puzzle
+    let personalBest: TimeInterval?
     let showUnlockCard: Bool
     let localizedPrice: String?
     let onUnlockRequested: (() -> Void)?
@@ -14,12 +15,14 @@ struct ResultsView: View {
     init(
         state: GameState,
         puzzle: Puzzle,
+        personalBest: TimeInterval? = nil,
         showUnlockCard: Bool = false,
         localizedPrice: String? = nil,
         onUnlockRequested: (() -> Void)? = nil
     ) {
         self.state = state
         self.puzzle = puzzle
+        self.personalBest = personalBest
         self.showUnlockCard = showUnlockCard
         self.localizedPrice = localizedPrice
         self.onUnlockRequested = onUnlockRequested
@@ -30,6 +33,10 @@ struct ResultsView: View {
             ScrollView {
                 VStack(spacing: 14) {
                     statsRow
+                    Label("完成盤は「記録」に保存されました", systemImage: "checkmark.circle")
+                        .font(.subheadline)
+                        .foregroundStyle(KanjiTheme.inkSecondary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     if let span = selectedSpan {
                         reviewCard(span)
                     }
@@ -64,13 +71,26 @@ struct ResultsView: View {
     // MARK: Sections
 
     private var statsRow: some View {
-        HStack(spacing: 10) {
+        LazyVGrid(
+            columns: [GridItem(.adaptive(minimum: 120), spacing: 10)],
+            spacing: 10
+        ) {
             if state.timerEnabled {
                 stat("時間", durationText(state.elapsedBeforeCurrentRun))
+                if let effectivePersonalBest {
+                    stat("自己ベスト", durationText(effectivePersonalBest))
+                }
             }
+            stat("修正", "\(ResultMetrics.correctionCount(state: state, puzzle: puzzle))回")
             stat("ヒント", "\(state.hintsUsed)回")
             stat("間違い確認", "\(state.checksUsed)回")
         }
+    }
+
+    private var effectivePersonalBest: TimeInterval? {
+        guard state.timerEnabled, state.elapsedBeforeCurrentRun > 0 else { return nil }
+        guard let personalBest else { return state.elapsedBeforeCurrentRun }
+        return min(personalBest, state.elapsedBeforeCurrentRun)
     }
 
     private func stat(_ title: String, _ value: String) -> some View {

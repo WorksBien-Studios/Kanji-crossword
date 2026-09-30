@@ -98,10 +98,10 @@ public struct SettingsView: View {
 
     private var interactionSection: some View {
         Section("操作") {
-            Toggle("効果音", isOn: soundBinding)
             Toggle("触覚フィードバック", isOn: hapticsBinding)
             Toggle("タイマーを毎回使う", isOn: timerBinding)
-            Toggle("間違い確認を毎回使う", isOn: checkBinding)
+        } footer: {
+            Text("間違い確認は、盤面を勝手に変えず、必要なときだけ操作バーから実行できます。")
         }
     }
 
@@ -207,20 +207,12 @@ public struct SettingsView: View {
         binding(\.highContrast)
     }
 
-    private var soundBinding: Binding<Bool> {
-        binding(\.soundEnabled)
-    }
-
     private var hapticsBinding: Binding<Bool> {
         binding(\.hapticsEnabled)
     }
 
     private var timerBinding: Binding<Bool> {
         binding(\.timerEnabledByDefault)
-    }
-
-    private var checkBinding: Binding<Bool> {
-        binding(\.checkMistakesByDefault)
     }
 
     @MainActor
