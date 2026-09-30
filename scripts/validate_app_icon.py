@@ -82,6 +82,7 @@ def validate_png(
     expected_height: int,
     *,
     allow_opaque_alpha: bool = False,
+    allow_alpha: bool = False,
     require_kanji_palette: bool = False,
 ) -> bytes:
     data = path.read_bytes()
@@ -146,11 +147,12 @@ def validate_png(
         raise ValidationError(
             f"{path}: expected {expected_width}x{expected_height}, got {width}x{height}"
         )
-    allowed_color_types = {2, 6} if allow_opaque_alpha else {2}
+    allowed_color_types = {2, 6} if allow_opaque_alpha or allow_alpha else {2}
     if bit_depth != 8 or color_type not in allowed_color_types:
         raise ValidationError(
             f"{path}: expected opaque 8-bit "
-            f"{'RGB or RGBA' if allow_opaque_alpha else 'RGB'}, got bit depth "
+            f"{'RGB or RGBA' if allow_opaque_alpha or allow_alpha else 'RGB'}, "
+            f"got bit depth "
             f"{bit_depth}, color type {color_type}"
         )
     if (compression, filtering, interlace) != (0, 0, 0):
@@ -170,30 +172,36 @@ def validate_png(
         )
 
     rows = reconstruct_rows(path, raster, width, height, bytes_per_pixel)
-    if color_type == 6 and any(
+    if color_type == 6 and not allow_alpha and any(
         alpha != 255 for row in rows for alpha in row[3::4]
     ):
         raise ValidationError(f"{path}: compiled icon contains non-opaque pixels")
 
     if require_kanji_palette:
-        pixels = (
-            tuple(row[index : index + 3])
-            for row in rows
-            for index in range(0, len(row), bytes_per_pixel)
-        )
         counts = {"dark": 0, "ivory": 0, "vermilion": 0}
-        total = width * height
-        for red, green, blue in pixels:
-            counts["dark"] += max(red, green, blue) < 65
-            counts["ivory"] += (
-                min(red, green, blue) > 180
-                and max(red, green, blue) - min(red, green, blue) < 70
-            )
-            counts["vermilion"] += (
-                red > 140 and red > green * 1.45 and red > blue * 1.35
-            )
+        visible_pixels = 0
+        for row in rows:
+            for index in range(0, len(row), bytes_per_pixel):
+                if bytes_per_pixel == 4 and row[index + 3] < 128:
+                    continue
+                red, green, blue = row[index : index + 3]
+                visible_pixels += 1
+                counts["dark"] += max(red, green, blue) < 65
+                counts["ivory"] += (
+                    min(red, green, blue) > 180
+                    and max(red, green, blue) - min(red, green, blue) < 70
+                )
+                counts["vermilion"] += (
+                    red > 140 and red > green * 1.45 and red > blue * 1.35
+                )
 
-        shares = {name: count / total for name, count in counts.items()}
+        total = width * height
+        if visible_pixels < total * 0.50:
+            raise ValidationError(
+                f"{path}: only {visible_pixels / total:.1%} of the processed icon "
+                "is visible"
+            )
+        shares = {name: count / visible_pixels for name, count in counts.items()}
         minimums = {"dark": 0.20, "ivory": 0.15, "vermilion": 0.08}
         missing = [
             name for name, minimum in minimums.items() if shares[name] < minimum
@@ -237,6 +245,11 @@ def parse_args() -> argparse.Namespace:
         help="Permit RGBA only when every alpha value is 255",
     )
     parser.add_argument(
+        "--allow-alpha",
+        action="store_true",
+        help="Permit RGBA transparency (for Apple's masked display asset only)",
+    )
+    parser.add_argument(
         "--require-kanji-palette",
         action="store_true",
         help="Require the dark, ivory, and vermilion signature of the app icon",
@@ -255,6 +268,7 @@ def main() -> int:
                 args.width,
                 args.height,
                 allow_opaque_alpha=args.allow_opaque_alpha,
+                allow_alpha=args.allow_alpha,
                 require_kanji_palette=args.require_kanji_palette,
             )
             digest = hashlib.sha256(data).hexdigest()

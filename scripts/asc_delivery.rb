@@ -114,7 +114,7 @@ validation_output, validation_error, validation_status = Open3.capture3(
   "--png", processed_icon,
   "--width", icon_width.to_s,
   "--height", icon_height.to_s,
-  "--allow-opaque-alpha",
+  "--allow-alpha",
   "--require-kanji-palette"
 )
 puts validation_output unless validation_output.empty?
@@ -167,6 +167,7 @@ puts JSON.generate({
   listing_attachment: "verified",
   processed_icon: "verified",
   processed_icon_type: icon_attributes.fetch("iconType", "unspecified"),
+  processed_icon_masked: icon_attributes.fetch("masked", false),
   processed_icon_width: icon_width,
   processed_icon_height: icon_height
 })
