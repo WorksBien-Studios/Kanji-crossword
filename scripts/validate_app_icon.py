@@ -82,6 +82,7 @@ def validate_png(
     expected_height: int,
     *,
     allow_opaque_alpha: bool = False,
+    require_kanji_palette: bool = False,
 ) -> bytes:
     data = path.read_bytes()
     if not data.startswith(PNG_SIGNATURE):
@@ -174,6 +175,42 @@ def validate_png(
     ):
         raise ValidationError(f"{path}: compiled icon contains non-opaque pixels")
 
+    if require_kanji_palette:
+        pixels = (
+            tuple(row[index : index + 3])
+            for row in rows
+            for index in range(0, len(row), bytes_per_pixel)
+        )
+        counts = {"dark": 0, "ivory": 0, "vermilion": 0}
+        total = width * height
+        for red, green, blue in pixels:
+            counts["dark"] += max(red, green, blue) < 65
+            counts["ivory"] += (
+                min(red, green, blue) > 180
+                and max(red, green, blue) - min(red, green, blue) < 70
+            )
+            counts["vermilion"] += (
+                red > 140 and red > green * 1.45 and red > blue * 1.35
+            )
+
+        shares = {name: count / total for name, count in counts.items()}
+        minimums = {"dark": 0.20, "ivory": 0.15, "vermilion": 0.08}
+        missing = [
+            name for name, minimum in minimums.items() if shares[name] < minimum
+        ]
+        if missing:
+            details = ", ".join(
+                f"{name}={shares[name]:.1%}" for name in counts
+            )
+            raise ValidationError(
+                f"{path}: processed icon does not match the Kanji Crossword "
+                f"palette ({details}); missing {', '.join(missing)}"
+            )
+        print(
+            "Kanji palette present: "
+            + ", ".join(f"{name}={shares[name]:.1%}" for name in counts)
+        )
+
     return data
 
 
@@ -199,6 +236,11 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Permit RGBA only when every alpha value is 255",
     )
+    parser.add_argument(
+        "--require-kanji-palette",
+        action="store_true",
+        help="Require the dark, ivory, and vermilion signature of the app icon",
+    )
     return parser.parse_args()
 
 
@@ -213,6 +255,7 @@ def main() -> int:
                 args.width,
                 args.height,
                 allow_opaque_alpha=args.allow_opaque_alpha,
+                require_kanji_palette=args.require_kanji_palette,
             )
             digest = hashlib.sha256(data).hexdigest()
             print(

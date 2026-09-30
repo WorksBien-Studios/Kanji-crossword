@@ -3,6 +3,7 @@
 require "json"
 require "net/http"
 require "open3"
+require "tmpdir"
 require "uri"
 
 API = "https://api.appstoreconnect.apple.com"
@@ -48,6 +49,26 @@ def json_get(path)
   JSON.parse(body)
 end
 
+def download(url, destination, redirects: 5)
+  abort "Processed icon URL must use HTTPS." unless url.start_with?("https://")
+  uri = URI.parse(url)
+  response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
+    http.request(Net::HTTP::Get.new(uri))
+  end
+
+  case response
+  when Net::HTTPSuccess
+    File.binwrite(destination, response.body)
+  when Net::HTTPRedirection
+    abort "Too many redirects while downloading processed icon." if redirects.zero?
+    location = response["location"]
+    abort "Processed icon redirect omitted its destination." unless location
+    download(URI.join(url, location).to_s, destination, redirects: redirects - 1)
+  else
+    abort "Processed icon download failed with HTTP #{response.code}."
+  end
+end
+
 app = json_get("/v1/apps/#{APP_ID}")
 actual_bundle = app.fetch("data").fetch("attributes").fetch("bundleId")
 abort "Mapped app bundle mismatch." unless actual_bundle == BUNDLE_ID
@@ -70,6 +91,34 @@ build = nil
 end
 abort "Build #{BUILD_NUMBER} did not finish processing within 30 minutes." unless build
 build_id = build.fetch("id")
+
+icons = json_get("/v1/builds/#{build_id}/icons").fetch("data")
+icon = icons.find { |item| item.dig("attributes", "iconType") == "APP_STORE" }
+icon ||= icons.find { |item| item.dig("attributes", "iconAsset") }
+abort "Apple did not expose a processed icon for build #{BUILD_NUMBER}." unless icon
+
+icon_attributes = icon.fetch("attributes")
+asset = icon_attributes.fetch("iconAsset")
+icon_width = asset.fetch("width")
+icon_height = asset.fetch("height")
+icon_url = asset.fetch("templateUrl")
+  .gsub("{w}", icon_width.to_s)
+  .gsub("{h}", icon_height.to_s)
+  .gsub("{f}", "png")
+processed_icon = File.join(Dir.tmpdir, "kanji-crossword-processed-icon.png")
+download(icon_url, processed_icon)
+
+validator = File.expand_path("validate_app_icon.py", __dir__)
+validation_output, validation_error, validation_status = Open3.capture3(
+  "python3", validator,
+  "--png", processed_icon,
+  "--width", icon_width.to_s,
+  "--height", icon_height.to_s,
+  "--allow-opaque-alpha",
+  "--require-kanji-palette"
+)
+puts validation_output unless validation_output.empty?
+abort "Apple-processed icon validation failed: #{validation_error}" unless validation_status.success?
 
 group = json_get("/v1/betaGroups/#{BETA_GROUP_ID}").fetch("data")
 group_attributes = group.fetch("attributes")
@@ -115,5 +164,9 @@ puts JSON.generate({
   listing_version_id: version_id,
   beta_delivery: "verified",
   beta_delivery_mode: automatic_internal_group ? "automatic-internal" : "explicit-assignment",
-  listing_attachment: "verified"
+  listing_attachment: "verified",
+  processed_icon: "verified",
+  processed_icon_type: icon_attributes.fetch("iconType", "unspecified"),
+  processed_icon_width: icon_width,
+  processed_icon_height: icon_height
 })
