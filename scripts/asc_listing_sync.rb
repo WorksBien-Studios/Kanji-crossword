@@ -167,7 +167,7 @@ end
 review_live = get_json("/v1/appStoreReviewDetails/#{review_id}").fetch("data").fetch("attributes")
 contact_fields = %w[contactFirstName contactLastName contactPhone contactEmail]
 missing_contact = contact_fields.reject { |field| !review_live[field].to_s.strip.empty? }
-abort "App Review contact is incomplete: #{missing_contact.join(", ")}" unless missing_contact.empty?
+warn "App Review contact is pending: #{missing_contact.join(", ")}" unless missing_contact.empty?
 
 app_infos = get_json("/v1/apps/#{APP_ID}/appInfos?limit=200").fetch("data")
 active_infos = app_infos.reject { |item| item.dig("attributes", "state") == "REPLACED_WITH_NEW_INFO" }
@@ -195,7 +195,7 @@ def current_price(schedule_id, resource, price_point_type, territory)
   %w[manualPrices automaticPrices].each do |kind|
     path = query(
       "/v1/#{resource}/#{schedule_id}/#{kind}",
-      "include" => "#{price_point_type},territory",
+      "include" => "#{price_point_type.sub(/s\z/, "")},territory",
       "limit" => "200"
     )
     response = get_json(path)
@@ -435,5 +435,6 @@ puts JSON.pretty_generate({
   iap_price: iap_price,
   standard_eula: true,
   public_urls_verified: true,
-  non_media_sync: "complete"
+  non_media_sync: missing_contact.empty? ? "complete" : "complete_except_review_contact",
+  pending_review_contact_fields: missing_contact
 })

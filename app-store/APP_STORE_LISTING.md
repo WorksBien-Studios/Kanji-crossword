@@ -1,6 +1,6 @@
 # App Store Connect Listing — 漢字ナンクロ 広告なし
 
-Status: **submission-ready draft, media excluded**  
+Status: **BLOCKED for submission; non-media metadata uploaded**
 Prepared: 2026-09-30  
 Last native-Japanese / ASO / Apple-compliance audit: 2026-09-30  
 Launch storefront: **Japan only**  
@@ -20,8 +20,8 @@ The final binary and live legal/support URLs must still be checked against this 
 This draft was audited against (a) native-Japanese phrasing, (b) 2026 App Store ASO/SEO best practice, and (c) current Apple App Review Guidelines and App Store Connect requirements, cross-checked against the actual `runtime`/`ui`/`engine` source. Changes made directly in this document:
 
 - **Native-Japanese fix:** §3 Description had a doubled-particle error ("〜から続きから再開"). Corrected.
-- **ASO fix — Subtitle underused:** the Subtitle field is the second most heavily weighted search-ranking surface after the Name, and 2026 ASO benchmarks show top-performing Games subtitles use ~27/30 characters; this draft only used 13/30. Expanded to add `漢字クロスワード` / `パズル` (both validated high-volume terms used by competing apps and previously confined to the invisible Keywords field). See §2/§3/§4.
-- **ASO fix — Keywords field reshuffled:** removed `クロスワード` from Keywords (now covered, more effectively, by the Subtitle) and used the freed byte budget to add `読み方` and `初心者`, then filled the remaining headroom with `難読`, bringing the field to exactly 100/100 bytes. See §3/§4.
+- **Subtitle:** describes readability and the kanji crossword format; 25/30 characters. Apple does not publish field-ranking weights or a preferred filled-character count.
+- **Keywords:** replaced the difficult-reading/brain-activity filler terms with verified offline-play intent; 95/100 UTF-8 bytes. No private search-volume figures are available.
 - **Apple-compliance fix — inaccurate IAP claim:** the IAP Description and IAP review notes stated the lifetime purchase unlocks "記録機能" (history/stats). The `記録` tab in `ui/Sources/KanjiCrosswordUI/KanjiCrosswordRootView.swift` is **not gated** by `purchaseStore.hasLifetimeUnlock` — it is available to every user regardless of purchase state. Claiming the IAP unlocks an already-free feature risks a Guideline 2.3.1 (Accurate Metadata) rejection and a misleading-purchase complaint. Corrected the IAP Description and review notes to only claim what the purchase actually gates (the puzzle set). See §10. If the intent was for history to be a paid feature, that must be fixed in code, not in this document.
 - **App Name / Subtitle left deliberately short where it matters:** the Name was **not** expanded to use its full 30-character budget. Apple's Guideline 2.3.7 wants the Name field to be the app's actual name, not a keyword string; the Subtitle is the correct field for extra keyword reach, and that is where the added budget went instead.
 - **EULA made explicit:** the product description now includes Apple's Standard EULA URL, while App Store Connect remains configured to use Apple's Standard Licensed Application End User License Agreement. No conflicting custom EULA is used.
@@ -32,8 +32,8 @@ This draft was audited against (a) native-Japanese phrasing, (b) 2026 App Store 
 ### Open items this document cannot resolve — verify before submission
 
 - **Missing binary requirement, confirmed by source audit — now resolved:** §16 and the §19 checklist require an in-app **プライバシーポリシー** link and a **ライセンス／第三者表記** (JMdict/EDRDG) screen before submission. The privacy-policy link was wired in PR #6 (`af87aaa`). The licence/attribution screen was wired in this update: `LicensesView.swift` (new), reachable from 設定 → プライバシーと法的情報 → ライセンス・第三者表記, citing EDRDG and CC BY-SA 3.0 with links defined once in `PolicyLinks.swift` and locked by a smoke test in `SmokeTests.swift`. Both binary-policy gates in §16/§19 are now met in source; still confirm both screens on the final signed archive before submission.
-- **Age Rating questionnaire re-verification:** Apple replaced the old age-rating system in July 2025 (new 13+/16+/18+ bands, expanded in-app-controls/capabilities/medical-wellness/violent-themes questions, and ratings that can now vary per storefront), with a compliance deadline of 2026-01-31. §7 already uses some of the new field names (e.g. "Age Assurance"), but it has not been re-checked against the live App Store Connect questionnaire as it exists today. Re-walk §7 against the current live form before submission; the expected 4+ outcome is unlikely to change, but field names/order may have.
-- **App Tags rollout:** §17 assumes App Tags are still US-only. Re-check current rollout scope in App Store Connect before assuming Japan is unaffected — this claim is over a year old relative to today's date and Apple has been expanding this feature.
+- **Age rating verified on 2026-09-30:** all questionnaire answers were saved through the current API schema; App Store Connect returns `FOUR_PLUS` (4+).
+- **App Tags:** optional discoverability tooling; no unverified rollout claim is made.
 
 ---
 
@@ -50,7 +50,7 @@ This draft was audited against (a) native-Japanese phrasing, (b) 2026 App Store 
 
 ### Name rationale
 
-`漢字ナンクロ` is the highest-intent exact category phrase and is already used by Japanese customers searching for this format. `広告なし` states the principal product difference without using another developer's brand, an unverifiable superlative, or a price.
+`漢字ナンクロ` is the direct category phrase and is already used by Japanese customers searching for this format. `広告なし` states the principal product difference without using another developer's brand, an unverifiable superlative, or a price.
 
 Apple limit: 30 characters.  
 Current name: 11 characters.
@@ -70,7 +70,7 @@ Current name: 11 characters.
 Apple limit: 30 characters.  
 Current subtitle: 25 characters.
 
-The subtitle covers the senior/readability use case and the high-intent `脳トレ` search phrase, plus `漢字クロスワード` / `パズル` — validated high-volume terms competing apps carry in their own titles/subtitles (see §4) — without duplicating the app name and without exceeding the limit. This uses 25 of 30 characters, in line with the ~27/30 median for top-performing Games subtitles, versus 13/30 in the previous draft.
+The subtitle describes readability and the kanji-crossword puzzle format in 25/30 characters. These phrases are observed in current Japanese App Store listings; no search-volume or ranking-weight estimate is asserted.
 
 ### Category and subcategories
 
@@ -182,13 +182,18 @@ This copy intentionally states the free boundary and one-time-purchase model wit
 結果では、ヒントや確認の使用回数、修正回数、タイマーを使った場合の所要時間と自己ベスト、完成した熟語と読み方を確認できます。
 
 【30問無料・その後は買い切り】
-最初の30問は無料で遊べます。残りの問題は、アプリ内の買い切り購入で解放できます。サブスクリプションやコイン、回数券はありません。
+30問は無料で遊べます。残りの問題は、アプリ内の買い切り購入で解放できます。サブスクリプションやコイン、回数券はありません。
 購入済みの場合は「購入を復元」から復元できます。
 
 収録問題は端末内に保存されているため、購入後もオフラインで遊べます。
 毎日の頭の体操や暇つぶしに、落ち着いて楽しめる漢字パズルをどうぞ。
 
-利用規約（Apple標準EULA）:
+アプリの画面と問題は日本語です。購入・購入の復元にはインターネット接続が必要です。記録機能は無料版でも利用できます。
+
+プライバシーポリシー：
+https://worksbienstudios.com/apps/kanji-crossword/privacy/
+
+利用規約（Apple標準EULA）：
 https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
@@ -204,17 +209,17 @@ Notes:
 Enter exactly:
 
 ```
-シニア,頭の体操,熟語,語彙,暇つぶし,漢クロ,脳活,大人,読み方,初心者,難読
+シニア,頭の体操,熟語,語彙,暇つぶし,漢クロ,読み方,初心者,オフライン
 ```
 
-UTF-8 size: **100 bytes / 100-byte limit** (exact fit — recount bytes before editing this field again).
+UTF-8 size: **95 bytes / 100-byte limit**.
 
 ASO rationale:
 
 - Name already covers `漢字`, `ナンクロ`, and `広告なし`.
 - Subtitle already covers `大きな文字`, `脳トレ`, `漢字クロスワード`, and `パズル` — so `クロスワード` was removed from this field to avoid wasting bytes on a term the Subtitle now indexes more heavily.
 - Categories already cover word/puzzle intent.
-- Freed bytes were spent on `読み方` (kanji-reading search intent, matches the app's actual reading-only content) and `初心者` (beginner-friendly positioning, matches the Description's "初めての方も自分のペースで楽しめます"), then `難読` filled the remaining headroom to reach the exact 100-byte cap.
+- `読み方` and `初心者` match readings and the interactive tutorial; `オフライン` matches bundled offline puzzles. Removed `難読` because the app does not establish a dedicated difficult-reading feature.
 - Do not add competitor app names, developer names, trademarks, irrelevant popular terms, or pricing keywords.
 
 ### Marketing URL
@@ -277,7 +282,7 @@ Not applicable to the first App Store version. Leave absent.
 
 ## 4. ASO / SEO strategy locked for launch
 
-Current high-volume Japanese listings repeatedly use search language around:
+Current observed Japanese listings repeatedly use search language around:
 
 - 漢字ナンクロ
 - クロスワード
@@ -288,13 +293,13 @@ Current high-volume Japanese listings repeatedly use search language around:
 - 大人
 - 熟語
 
-The metadata deliberately spreads these terms across the indexed fields instead of repeating them:
+The metadata deliberately spreads these terms across the metadata fields with minimal unnecessary repetition:
 
 | Indexed surface | Search intent covered |
 |---|---|
 | Name | 漢字ナンクロ, 広告なし |
 | Subtitle | 大きな文字, 脳トレ, 漢字クロスワード, パズル |
-| Keywords | シニア, 頭の体操, 熟語, 語彙, 暇つぶし, 漢クロ, 脳活, 大人, 読み方, 初心者, 難読 |
+| Keywords | シニア, 頭の体操, 熟語, 語彙, 暇つぶし, 漢クロ, 読み方, 初心者, オフライン |
 | Primary category | Games relevance |
 | Primary subcategory | Word-game relevance |
 | Secondary subcategory | Puzzle relevance |
@@ -572,6 +577,8 @@ To reach the purchase UI:
 4. 設定 also contains 購入を復元.
 
 The app verifies StoreKit 2 transactions, handles pending/cancelled/failed states, listens for transaction updates, and removes paid access after a verified revocation/refund.
+
+日本語：無料版では30問が遊べます。非消耗型の一度きりの購入で残りの問題が解放され、全360問が利用可能になります。「記録」は無料版でも利用できます。鍵の付いた問題、または「設定」の購入欄から購入画面へ進めます。「設定 → 購入を復元」で復元できます。
 ```
 
 The IAP App Review screenshot is media and is intentionally outside the scope of this document.
@@ -629,6 +636,9 @@ PRIVACY
 The app has no advertising, analytics, tracking, account system, developer server, or runtime AI service. Game records and preferences are stored locally. StoreKit is used for the lifetime unlock. The privacy policy is available in-app at 設定 → プライバシーと法的情報 → プライバシーポリシー and at https://worksbienstudios.com/apps/kanji-crossword/privacy/.
 
 No special hardware, account credentials, or external service setup is required to review core gameplay.
+
+日本語の審査手順：
+初回の遊び方を終え、「遊ぶ」から問題を選択してください。30問は無料です。鍵の付いた問題、または「設定」の購入欄から「全問題を解放」を開けます。表示価格はStoreKitから取得します。非消耗型の買い切りで全360問が利用可能になります。「記録」は無料版でも利用できます。「設定 → 購入を復元」から購入を復元できます。アカウント、広告、サブスクリプション、外部決済はありません。問題は端末内に収録されています。購入・復元にはネットワーク接続が必要です。設定からプライバシーポリシーと第三者ライセンスにアクセスできます。
 ```
 
 ### Review attachment
@@ -697,17 +707,7 @@ Do not enable unused capabilities in App Store Connect or the final app entitlem
 
 ## 15. Notifications
 
-If the optional local reminder ships:
-
-- use **local notifications only**;
-- no push-notification server;
-- notification permission is optional;
-- denying notifications must not restrict gameplay;
-- wording must not imply that new server-delivered puzzles arrive daily.
-
-The bundled `今日の一問` rotates locally through the finite 360-puzzle library.
-
-If reminders are not present in the final binary, make no notification-related claim in metadata.
+No notification permission, reminders, or push service are implemented in this release. Do not claim daily reminders or newly delivered daily puzzles.
 
 ---
 
@@ -733,13 +733,7 @@ The app must not require the user to accept a privacy policy merely to play.
 
 ## 17. App Tags
 
-Apple currently generates/selects tags from metadata and allows developers to deselect irrelevant tags in supported storefronts.
-
-The app is Japan-only at launch, while App Tags are currently surfaced to users in the United States. Therefore:
-
-- do not expand to the U.S. merely for tags;
-- if tags appear in App Store Connect, keep only tags that accurately match the actual game;
-- deselect any tag implying education certification, medical benefit, multiplayer, gambling, live content, or other unsupported functionality.
+Tags are optional discoverability tooling. Review any Apple-generated tags in the offered storefront when available. No unverified rollout or search-ranking claim is made.
 
 ---
 
