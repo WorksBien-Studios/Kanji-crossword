@@ -21,7 +21,7 @@ concurrency:
 jobs:
   metadata:
     name: Upload text listing
-    uses: WorksBien-Studios/.github/.github/workflows/ios-app-store.yml@fe6bcf297e03155966d734196cc4f1c2fb81a238
+    uses: WorksBien-Studios/.github/.github/workflows/ios-app-store.yml@7e23743949730a4ff8641b013d639d66f5364b64
     with:
       validated_sha: ${{ github.sha }}
       operation: upload_listing
