@@ -1,0 +1,30 @@
+name: Cleanup Old TestFlight
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/cleanup-old-testflight.yml"
+      - "scripts/asc_cleanup_old_testflight.rb"
+      - "scripts/asc_jwt.rb"
+
+permissions:
+  contents: read
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+      ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+      ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+      OLD_ASC_APP_ID: "6817388023"
+      OLD_BETA_GROUP_ID: "2825fdbf-298d-4065-8d14-119d600cab79"
+      STALE_TESTER_EMAILS: "lrodeveloperr@gmail.com,lateef.razaqoyetolat@gmail.com"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove stale testers and builds from removed App Store app
+        run: ruby scripts/asc_cleanup_old_testflight.rb
