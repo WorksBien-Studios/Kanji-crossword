@@ -22,6 +22,7 @@ jobs:
     with:
       validated_sha: ${{ github.sha }}
       prepare_script: scripts/generate_app_icons.sh
+      minimum_build_number: 6
     secrets:
       ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
       ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
