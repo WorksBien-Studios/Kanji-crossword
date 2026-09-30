@@ -4,6 +4,33 @@ Append-preserving evidence from every TestFlight GitHub session. Search by repos
 
 Confidence meanings: `observed` is one session, `verified` is a successful run proving a specific path or repair, and `generalized` is repeated successful evidence suitable across repositories.
 
+## TS-3E84BBF2F1 — WorksBien-Studios/Kanji-crossword — success
+<!-- testflight-session-json: {"archive_seconds":0.0,"artifact_downloads":0,"assistant_tool_calls":8,"baseline_run":"https://github.com/WorksBien-Studios/Kanji-crossword/actions/runs/36715323325","beta_delivery":"already-assigned","commit_sha":"15df400bda948764c6055572aa61b7dab888ec0a","confidence":"verified","credential_alias":"worksbien-org-admin","credential_route":"verified","delivery_seconds":18.0,"dependency_seconds":0.0,"export_seconds":0.0,"failure_signature":"","fallback_reason":"","first_recorded":"2026-09-30T13:05:32+00:00","human_interventions":0,"id":"TS-3E84BBF2F1","issue_id":"TF-59472541FF","lane":"full","listing_attachment":"attached","listing_version":"1.0","log_downloads":0,"macos_minutes":0.0,"next_action":"No delivery action required; build 1 is available to Internal QA and attached to version 1.0.","notes":"The accepted upload occurred in baseline run 36715323325; repair run 36718704996 used Ubuntu only and skipped archive/upload.","outcome":"success","preflight_seconds":0.0,"processing_outcome":"processed","processing_seconds":0.0,"productivity_minutes_lost":0.0,"queue_seconds":0.0,"recorded_at":"2026-09-30T13:05:32+00:00","release_contract":"established","repo":"WorksBien-Studios/Kanji-crossword","rerun_count":0,"reusable_rule":"For isInternalGroup plus hasAccessToAllBuilds, verify group access and skip manual beta-group assignment.","run_url":"https://github.com/WorksBien-Studios/Kanji-crossword/actions/runs/36718704996","session_key":"","stages":"upload,processing,delivery,listing-attachment","status_checks":2,"strategy":"Accepted build 1 plus delivery-only repair; automatic internal group verification; exact listing attachment and read-back","total_seconds":28.0,"upload_outcome":"accepted","upload_seconds":0.0,"verify_seconds":0.0,"what_worked":"The previously accepted build 1 remained processed; organization credentials resolved; Internal QA automatic access was verified; version 1.0 attachment was verified without rebuilding or re-uploading.","workflow":"Kanji Crossword TestFlight","workflow_dispatches":1,"xcode_version":"26.6"} -->
+
+- Recorded: 2026-09-30T13:05:32+00:00
+- Workflow / run: `Kanji Crossword TestFlight` / https://github.com/WorksBien-Studios/Kanji-crossword/actions/runs/36718704996
+- Commit / Xcode: `15df400bda948764c6055572aa61b7dab888ec0a` / `26.6`
+- Credential route: `worksbien-org-admin` / `verified`
+- Lane / baseline: `full` / https://github.com/WorksBien-Studios/Kanji-crossword/actions/runs/36715323325
+- Release contract / fallback: `established` / None
+- Outcome / confidence: `success` / `verified`
+- Upload / processing: `accepted` / `processed`
+- Beta delivery / listing attachment: `already-assigned` / `attached`
+- Listing version: `1.0`
+- Stages reached: upload,processing,delivery,listing-attachment
+- macOS minutes / total seconds: 0.0 / 28.0
+- Phase seconds: queue=0.0, preflight=0.0, dependencies=0.0, archive=0.0, export=0.0, verify=0.0, upload=0.0, processing=0.0, delivery=18.0
+- Productivity minutes lost: 0.0
+- Human interventions / reruns: 0 / 0
+- Assistant calls / status checks / dispatches: 8 / 2 / 1
+- Log downloads / artifact downloads: 0 / 0
+- Strategy: Accepted build 1 plus delivery-only repair; automatic internal group verification; exact listing attachment and read-back
+- What worked: The previously accepted build 1 remained processed; organization credentials resolved; Internal QA automatic access was verified; version 1.0 attachment was verified without rebuilding or re-uploading.
+- Failure signature / linked issue: None / TF-59472541FF
+- Reusable rule: For isInternalGroup plus hasAccessToAllBuilds, verify group access and skip manual beta-group assignment.
+- Next action: No delivery action required; build 1 is available to Internal QA and attached to version 1.0.
+- Notes: The accepted upload occurred in baseline run 36715323325; repair run 36718704996 used Ubuntu only and skipped archive/upload.
+
 ## TS-DD6EB1571B — WorksBien-Studios/Kanji-crossword — partial
 <!-- testflight-session-json: {"archive_seconds":0.0,"artifact_downloads":0,"assistant_tool_calls":10,"baseline_run":"","beta_delivery":"failed","commit_sha":"a63333ffd15c1fc0c1743da9dca3b67961290daf","confidence":"observed","credential_alias":"worksbien-org-admin","credential_route":"verified","delivery_seconds":0.0,"dependency_seconds":0.0,"export_seconds":0.0,"failure_signature":"automatic-internal-group-rejects-manual-build-assignment","fallback_reason":"","first_recorded":"2026-09-30T12:48:08+00:00","human_interventions":0,"id":"TS-DD6EB1571B","issue_id":"TF-59472541FF","lane":"full","listing_attachment":"failed","listing_version":"1.0","log_downloads":0,"macos_minutes":3.47,"next_action":"Run the delivery-only repair lane against existing build 1 after merging the automatic-internal-group fix.","notes":"Do not rebuild or re-upload; preserve the accepted build.","outcome":"partial","preflight_seconds":6.0,"processing_outcome":"processed","processing_seconds":98.0,"productivity_minutes_lost":0.0,"queue_seconds":0.0,"recorded_at":"2026-09-30T12:48:33+00:00","release_contract":"established","repo":"WorksBien-Studios/Kanji-crossword","rerun_count":0,"reusable_rule":"","run_url":"https://github.com/WorksBien-Studios/Kanji-crossword/actions/runs/36715323325","session_key":"","stages":"preflight,archive,export,verify,upload,processing,delivery","status_checks":5,"strategy":"Exact-SHA CI; organization-route preflight; one archive; one export; one accepted upload; cheap delivery stage","total_seconds":324.0,"upload_outcome":"accepted","upload_seconds":0.0,"verify_seconds":0.0,"what_worked":"Correct organization key, exact app route, signing, archive, export, verification, upload, and Apple processing all succeeded on the first attempt.","workflow":"Kanji Crossword TestFlight","workflow_dispatches":1,"xcode_version":"26.6"} -->
 
