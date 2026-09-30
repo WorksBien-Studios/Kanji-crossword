@@ -2,6 +2,11 @@ name: Kanji Crossword TestFlight
 
 on:
   push:
+    branches:
+      - main
+    paths:
+      - ".github/testflight-dispatch.txt"
+      - ".github/workflows/testflight.yml"
     tags:
       - "testflight-v*"
   workflow_dispatch:
