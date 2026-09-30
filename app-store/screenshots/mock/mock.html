@@ -119,12 +119,35 @@ body,html{width:auto;height:auto}
   border-radius:26px;padding:4px;gap:2px;z-index:6;font-size:17px;font-weight:600}
 .tabs span{padding:10px 26px;border-radius:22px;color:var(--ink2);display:flex;gap:8px;align-items:center}
 .tabs span.on{background:#fff;color:var(--accentText);box-shadow:0 1px 3px rgba(0,0,0,.15)}
-.sheet.pad{left:166px;right:166px;top:250px;bottom:auto;border-radius:26px;padding-top:56px}
+.sheet.pad{left:246px;right:246px;top:150px;bottom:auto;border-radius:26px;padding-top:56px}
 .sheet.pad .res{position:relative;top:0}
 .sheet.pad .nav{position:absolute;top:0;left:0;right:0}
-.sheet.pad .stats{grid-template-columns:repeat(5,1fr)}
-.sheet.pad .words{grid-template-columns:repeat(4,1fr)}
+.sheet.pad .words{grid-template-columns:repeat(3,1fr)}
 .sheet.pad .hrow{display:flex;gap:18px;align-items:center}
+
+/* iPad sidebar (PlayRootView.sidebar) */
+.side{position:absolute;left:0;top:0;width:340px;height:100%;background:var(--canvas);overflow:hidden}
+.side .lt{position:absolute;left:16px;font-size:34px;font-weight:700;letter-spacing:.01em}
+.side .go{position:absolute;right:16px;color:var(--accentText);font-weight:700;font-size:17px}
+.side .in{position:absolute;left:0;width:340px;padding:0 16px;display:flex;flex-direction:column;gap:14px}
+.side .sub{font-size:15px;color:var(--ink2)} .side .subb{font-size:15px;font-weight:700;color:var(--ink2);margin-top:4px}
+.side .fn{font-size:13px;color:var(--ink2)}
+.kc{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.pmini{display:grid;gap:1px}.pmini i{width:11px;height:11px;border-radius:2px;border:1px solid var(--line);background:var(--card)}
+.pmini i.s{background:var(--ink2)}.pmini i.f{background:var(--accent)}.pmini i.e{border:none;background:none}
+.mtile{flex:1;min-height:96px;border-radius:20px;background:var(--card);border:1px solid var(--line);padding:14px;display:flex;flex-direction:column;gap:4px}
+.mtile.on{border:3px solid var(--accent);padding:12px}
+.mtile b{font-size:22px;font-weight:900}.mtile span{font-size:13px;color:var(--ink2)}
+.seg{display:flex;background:rgba(118,118,128,.12);border-radius:9px;padding:2px;height:44px}
+.seg span{flex:1;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:500;border-radius:7px}
+.seg span.on{background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.18);font-weight:600}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.pt{min-height:84px;border-radius:16px;background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.pt.sel,.pt.prog{border:3px solid var(--accent)}
+.pt b{font-size:17px;font-weight:600}.pt span{font-size:13px;color:var(--ink2)}.pt em{font-style:normal;font-size:11px;color:var(--ink2)}
+.stamp{width:24px;height:24px;border-radius:50%;border:2.6px solid var(--stamp);position:relative}
+.stamp:after{content:"";position:absolute;inset:4px;border-radius:50%;border:1.7px solid rgba(185,58,34,.7)}
+.pane{position:absolute;top:0;overflow:visible}
 </style>
 </head>
 <body>
@@ -138,7 +161,7 @@ const PAD = qs.get('d') === 'ipad';
 const D = PAD
   ? {W:1032,H:1376,status:24,nav:50,top:0,bottomInset:20,cols:8,tile:64,act:72,pad:10,bezel:16,radius:40,capFont:58,capTop:64,avail:1090,capW:1032}
   : {W:440,H:956,status:59,nav:44,top:0,bottomInset:34,cols:6,tile:50,act:60,pad:6,bezel:12,radius:56,capFont:31,capTop:34,avail:770,capW:440};
-const STAGE = {w:D.W, h:D.H};
+const PX = PAD ? 340 : 0, PW = D.W - PX;   // detail pane: PlayLayout.make(paneSize:) is given PW, not the screen width
 const sol = P.solution, starters = P.starterCells;
 const numAt = {}; // "r,c" -> n
 for (const [k,v] of Object.entries(P.cellNumbers)) numAt[k]=v;
@@ -163,6 +186,7 @@ const icon = {
   check:'<svg width="24" height="22" viewBox="0 0 24 22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="11" r="9"/><path d="m7.500 11.500 3 3 6-6.500"/></svg>',
   del:'<svg width="26" height="22" viewBox="0 0 26 22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h13a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H9L2.500 11z"/><path d="m12.500 7.500 7 7M19.500 7.500l-7 7"/></svg>',
   more:'<svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13" cy="13" r="11"/><circle cx="8" cy="13" r="1.300" fill="currentColor" stroke="none"/><circle cx="13" cy="13" r="1.300" fill="currentColor" stroke="none"/><circle cx="18" cy="13" r="1.300" fill="currentColor" stroke="none"/></svg>',
+  side:'<svg width="26" height="22" viewBox="0 0 26 22" fill="none" stroke="currentColor" stroke-width="2"><rect x="1.500" y="1.500" width="23" height="19" rx="4"/><path d="M9.500 2v18"/></svg>',
   ok:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#2A7350"/><path d="m6.800 12.300 3.700 3.700 6.800-7.500" stroke="#fff" stroke-width="2.400" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   okline:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m7.500 12.500 3 3 6-6.500" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   chev:'<svg width="12" height="20" viewBox="0 0 12 20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2 2 10l8 8"/></svg>',
@@ -176,7 +200,7 @@ const statusBar = () => `<div class="status ${PAD?"pad":""}"><span>9:41</span><s
 /* ---- board (fit rules from BoardFit: spacing 2, padding 6 on iPhone) ---- */
 function boardHTML(top, height) {
   const pad = D.pad, sp = 2;
-  const size = Math.min(84, Math.max(40, Math.min((D.W-2*pad-sp*(P.columns-1))/P.columns, (height-2*pad-sp*(P.rows-1))/P.rows)));
+  const size = Math.min(84, Math.max(40, Math.min((PW-2*pad-sp*(P.columns-1))/P.columns, (height-2*pad-sp*(P.rows-1))/P.rows)));
   const related = new Set();
   if (S.selected) for (const w of wordsOf(S.selected)) numsOf(w).forEach(n => related.add(n));
   if (S.selected) related.delete(S.selected);
@@ -199,6 +223,40 @@ function boardHTML(top, height) {
 
 const chip = span => `<div class="chip">${numsOf(span).map(n =>
   `<div class="slot serif ${n===S.selected?'sel':''}">${S.entries[n]||''}</div>`).join('')}</div>`;
+
+function sidebarHTML(navTop) {
+  const done = S.status==='completed' ? 4 : 3;
+  const filled = Object.keys(S.entries).length;
+  let mini = '';
+  for (let r=0;r<P.rows;r++) for (let c=0;c<P.columns;c++) {
+    const n = numAt[`${r},${c}`];
+    mini += !n ? '<i class="e"></i>' : `<i class="${starters[n]?'s':(S.entries[n]?'f':'')}"></i>`;
+  }
+  const resume = S.status==='active' ? `<div class="kc"><div style="display:flex;gap:14px;align-items:center">
+      <div class="pmini" style="grid-template-columns:repeat(${P.columns},11px)">${mini}</div>
+      <div><div class="sub">続きから</div><div style="font-size:20px;font-weight:700">やさしい ・ 漢字ナンクロ</div>
+      <div class="sub">${Object.keys(sol).length}マス中 ${filled}マス入力済み</div></div></div>
+      <div class="btn p" style="margin-top:8px">続きを遊ぶ</div></div>` : '';
+  const SEL = 52;   // this puzzle is #52 of the 55 やさしい 漢字ナンクロ puzzles
+  const tiles = Array.from({length:15},(_,i)=>i+1).map(n => {
+    const d = n<=3, prog = S.status==='active' && n===SEL;
+    return `<div class="pt ${prog?'prog':''}"><b>${n}</b>${d?'<div class="stamp"></div>':(prog?'<span style="color:var(--accentText)">途中</span>':'<span>未完成</span>')}<em>10×10</em></div>`;
+  }).join('');
+  return `<div class="side"><div class="go" style="top:${navTop+12}px">遊び方</div>
+    <div class="lt" style="top:${navTop+44}px">遊ぶ</div>
+    <div class="in" style="top:${navTop+44+56}px">
+      <div class="sub">令和8年9月30日 水曜日</div>${resume}
+      <div class="kc"><div style="display:flex;align-items:center;justify-content:space-between">
+        <div><div class="sub">今日の一問</div><div style="font-size:17px;font-weight:600">ふつう ・ 10×10</div></div>
+        <div class="btn s" style="width:128px">はじめる</div></div></div>
+      <div class="subb">問題を選ぶ</div>
+      <div style="display:flex;gap:12px">
+        <div class="mtile on"><b class="serif">漢字ナンクロ</b><span>12〜18語 ・ 定番</span><span>完成 ${done}問 / 240問</span></div>
+        <div class="mtile"><b class="serif">大盤面</b><span>20〜24語 ・ 拡大可</span><span>完成 0問 / 120問</span></div></div>
+      <div class="seg"><span class="on">やさしい</span><span>ふつう</span><span>むずかしい</span><span>達人</span></div>
+      <div class="fn">難しさは、ヒントの少なさと推理の深さで決まります。盤面の大きさは、各問題に表示されています。</div>
+      <div class="pgrid">${tiles}</div></div></div>`;
+}
 
 function playScreen() {
   const active = S.status==='active';
@@ -227,10 +285,10 @@ function playScreen() {
   const stripTop = navTop+D.nav;
   const boardTop = stripTop+56, boardH = D.H - boardTop - bottomH;
   const tabs = PAD ? `<div class="tabs"><span class="on">遊ぶ</span><span>記録</span><span>設定</span></div>` : '';
-  return `${statusBar()}${tabs}
-    <div class="nav" style="top:${navTop}px"><div class="back">${icon.chev}</div><div class="t">${{easy:'やさしい'}[P.difficulty]}</div>
+  return `${PAD?sidebarHTML(navTop):''}${statusBar()}${tabs}<div class="pane" style="left:${PX}px;width:${PW}px;height:${D.H}px;${PAD?'border-left:1px solid var(--line);background:var(--canvas)':''}">
+    <div class="nav" style="top:${navTop}px"><div class="back">${PAD?icon.side:icon.chev}</div><div class="t">${{easy:'やさしい'}[P.difficulty]}</div>
       <div class="trail">${active?'<span>休む</span>':''}${icon.more}</div></div>
-    <div class="strip" style="top:${stripTop}px">${strip}</div>${boardHTML(boardTop, boardH)}${bottom}<div class="home"></div>`;
+    <div class="strip" style="top:${stripTop}px">${strip}</div>${boardHTML(boardTop, boardH)}${bottom}</div><div class="home"></div>`;
 }
 
 function resultsSheet() {
@@ -247,7 +305,7 @@ function resultsSheet() {
     <div class="res">
       <div class="stats">${stat('時間','0:07:18')}${stat('自己ベスト','0:07:18')}${stat('修正','1回')}${stat('ヒント','0回')}${stat('間違い確認','1回')}</div>
       <div class="saved">${icon.okline}<span>完成盤は「記録」に保存されました</span></div>
-      <div class="kcard"><div class="${PAD?'hrow':''}">
+      <div class="kcard"><div>
         <div class="mini" style="grid-template-columns:repeat(${P.columns},26px)">${mini}</div>
         <div><div class="word44 serif">${span.word}</div><div class="read">${span.reading}</div>
         <div class="hint" style="margin-top:4px">タップした熟語のマスが黄色になります。</div></div>

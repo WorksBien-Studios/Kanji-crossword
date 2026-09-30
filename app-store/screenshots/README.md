@@ -7,7 +7,7 @@ Two sets, same three captions from the top-level README ("Screenshot captions"):
 
 Mocks, not device captures: drawn from the real bundled puzzle `nankuro-v2-81dbdb7e0f43672a75fa`
 (やさしい, 8x8) using the app's theme tokens, PlayLayout numbers (iPhone: 6-column tray, 50pt tiles;
-iPad: 8-column tray, 64pt tiles, 84pt squares) and Japanese strings. Replace with simulator/device
+iPad 13" portrait: NavigationSplitView with the 340pt puzzle-list sidebar, so the board pane is 692pt wide -> 82pt squares, 8-column tray of 64pt tiles; results appear as a 540pt iPad sheet) and Japanese strings. Replace with simulator/device
 captures before submission.
 
 | File | Caption | Scenario |
