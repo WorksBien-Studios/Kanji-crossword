@@ -1,19 +1,29 @@
 # TestFlight issue ledger
 
-No TestFlight session has run for this app yet.
+Record every failed, cancelled, degraded, or unexpectedly expensive TestFlight run. A `fixed` entry must cite a later successful verifying run.
 
-## Provisioning pending
+## TF-59472541FF — automatic-internal-group-rejects-manual-build-assignment
+<!-- testflight-issue-json: {"first_observed":"2026-09-30T12:48:07+00:00","fix":"Pending verification: detect isInternalGroup plus hasAccessToAllBuilds, skip the invalid POST, verify automatic group access, then attach the existing build.","id":"TF-59472541FF","last_updated":"2026-09-30T12:48:07+00:00","minutes_wasted":0.0,"notes":"","prevention":"Inspect beta-group distribution attributes before choosing automatic or explicit assignment.","productivity_minutes_lost":0.0,"repo":"WorksBien-Studios/Kanji-crossword","root_cause":"The mapped Internal QA group has automatic access to all builds; the helper attempted a manual beta-group relationship POST before listing attachment.","runs":["https://github.com/WorksBien-Studios/Kanji-crossword/actions/runs/36715323325"],"signature":"automatic-internal-group-rejects-manual-build-assignment","stage":"processing","status":"open","symptom":"Apple accepted and processed the build, then returned HTTP 422 when the delivery helper manually assigned it to an automatic internal group.","verified_run":"","workflow":"Kanji Crossword TestFlight","xcode_version":"26.6"} -->
 
 - Status: `open`
-- Stage: `preflight`
-- Signature: `credential-route-missing`
-- Resolved: Explicit bundle ID `com.gooduse.kanjicrossword`, App Store Connect app record `6817388023`, internal beta group `Internal QA` (`2825fdbf-298d-4065-8d14-119d600cab79`), and one internal tester are created and mapped.
-- Symptom: The App Store Connect API credential route is not configured (the app project `app/KanjiCrossword.xcodeproj` and shared scheme `KanjiCrossword` now exist).
-- Prevention: The workflow is fail-closed and performs these checks on Linux before allocating macOS.
-- Next action: Fill `asc_key_id`/`asc_issuer_id` in the app map, configure the App Store Connect secrets and repository variables, then switch the map state to `ready`.
+- Repository / workflow: `WorksBien-Studios/Kanji-crossword` / `Kanji Crossword TestFlight`
+- Xcode / stage: `26.6` / `processing`
+- First observed: 2026-09-30T12:48:07+00:00
+- Last updated: 2026-09-30T12:48:07+00:00
+- Occurrences: 1
+- Runner minutes wasted: 0.0
+- Productivity minutes lost: 0.0
+- Runs:
+  - https://github.com/WorksBien-Studios/Kanji-crossword/actions/runs/36715323325
 
-## Tester target
+**Symptom:** Apple accepted and processed the build, then returned HTTP 422 when the delivery helper manually assigned it to an automatic internal group.
 
-- Status: `resolved`
-- `Internal QA` contains both designated internal tester accounts.
-- The delivery helper assigns the exact processed build to that group and attaches the same build to the editable App Store version for later review without re-signing.
+**Root cause:** The mapped Internal QA group has automatic access to all builds; the helper attempted a manual beta-group relationship POST before listing attachment.
+
+**Fix:** Pending verification: detect isInternalGroup plus hasAccessToAllBuilds, skip the invalid POST, verify automatic group access, then attach the existing build.
+
+**Verified by:** Not yet verified
+
+**Prevention:** Inspect beta-group distribution attributes before choosing automatic or explicit assignment.
+
+**Notes:** None
