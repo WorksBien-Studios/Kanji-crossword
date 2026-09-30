@@ -20,7 +20,7 @@ jobs:
   testflight:
     uses: WorksBien-Studios/.github/.github/workflows/ios-testflight.yml@main
     with:
-      validated_sha: ${{ github.sha }}
+      validated_sha: 24d5d10115a15d174cf76107bc57c639b648b0bb
       prepare_script: scripts/generate_app_icons.sh
       minimum_build_number: 6
     secrets:
