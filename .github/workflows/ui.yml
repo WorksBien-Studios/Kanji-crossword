@@ -27,6 +27,8 @@ jobs:
           swift --version
       - name: Validate StoreKit configuration JSON
         run: python3 -m json.tool storekit/Products.storekit > /dev/null
+      - name: Validate app icon sources
+        run: python3 scripts/validate_app_icon.py
       - name: Resolve Swift packages
         working-directory: ui
         run: swift package resolve
@@ -37,6 +39,38 @@ jobs:
         run: |
           xcodebuild -resolvePackageDependencies -project app/KanjiCrossword.xcodeproj -scheme KanjiCrossword
           xcodebuild -project app/KanjiCrossword.xcodeproj -scheme KanjiCrossword -destination 'generic/platform=iOS Simulator' build CODE_SIGNING_ALLOWED=NO
+      - name: Validate compiled iPhone and iPad icons
+        run: |
+          set -euo pipefail
+
+          derived_data="$HOME/Library/Developer/Xcode/DerivedData"
+          iphone_icon=$(find "$derived_data" -type f -path '*/KanjiCrossword.app/AppIcon60x60@2x.png' -print -quit)
+          ipad_icon=$(find "$derived_data" -type f -path '*/KanjiCrossword.app/AppIcon76x76@2x~ipad.png' -print -quit)
+
+          test -n "$iphone_icon" || { echo "Compiled iPhone icon not found" >&2; exit 1; }
+          test -n "$ipad_icon" || { echo "Compiled iPad icon not found" >&2; exit 1; }
+
+          validate_compiled_icon() {
+            local label="$1"
+            local icon="$2"
+            local expected_size="$3"
+            local width height decoded
+
+            width=$(sips -g pixelWidth "$icon" | awk '/pixelWidth:/{print $2}')
+            height=$(sips -g pixelHeight "$icon" | awk '/pixelHeight:/{print $2}')
+            test "$width" = "$expected_size" && test "$height" = "$expected_size" || {
+              echo "$label icon is ${width}x${height}; expected ${expected_size}x${expected_size}" >&2
+              exit 1
+            }
+
+            decoded="$RUNNER_TEMP/${label}-icon-decoded.png"
+            sips -s format png "$icon" --out "$decoded" > /dev/null
+            python3 scripts/validate_app_icon.py \
+              --png "$decoded" --width "$expected_size" --height "$expected_size"
+          }
+
+          validate_compiled_icon iphone "$iphone_icon" 120
+          validate_compiled_icon ipad "$ipad_icon" 152
       - name: Run UI tests on iOS Simulator
         working-directory: ui
         run: |
