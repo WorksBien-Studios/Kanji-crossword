@@ -84,11 +84,8 @@ struct PersistenceTests {
         let expected = AppPreferences(
             textScale: 1.4,
             highContrast: true,
-            soundEnabled: false,
             hapticsEnabled: true,
-            timerEnabledByDefault: true,
-            checkMistakesByDefault: true,
-            reminderEnabled: false
+            timerEnabledByDefault: true
         )
         try await store.savePreferences(expected)
         #expect(try await store.loadPreferences() == expected)
