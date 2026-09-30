@@ -79,7 +79,7 @@ private struct PreviewHost<Content: View>: View {
     }
 }
 
-private struct PlayScreenPreview: View {
+struct PlayScreenPreview: View {
     let persistence: GamePersistenceStore
 
     @StateObject private var purchaseStore: LifetimePurchaseStore
@@ -116,7 +116,7 @@ private struct PlayScreenPreview: View {
 /// A catalog of twelve 大盤面 puzzles and a store holding one in-progress game
 /// (ten squares filled, number 1 selected), so the list shows its 続きから card.
 @MainActor
-private struct PreviewSeed {
+struct PreviewSeed {
     let catalog: PuzzleCatalog
     let persistence: GamePersistenceStore
 
