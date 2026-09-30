@@ -236,6 +236,16 @@ Canonical non-media App Store Connect package: `app-store/APP_STORE_LISTING.md`.
 2. **タップだけで、同じ番号をまとめて入力。**
 3. **完成盤も熟語も、あとからゆっくり確認。**
 
+**Screenshots to upload:** the finalised images for these captions are in [`app-store/screenshots/`](app-store/screenshots/README.md). Upload exactly these, in this order, as the App Store screenshots:
+
+| Order | Caption | iPhone 6.9" (1320×2868) | iPad 13" (2064×2752) |
+|---|---|---|---|
+| 1 | 広告なし。大きな文字でじっくり。 | `app-store/screenshots/iphone-6.9/01-large-text-no-ads.png` | `app-store/screenshots/ipad-13/01-large-text-no-ads.png` |
+| 2 | タップだけで、同じ番号をまとめて入力。 | `app-store/screenshots/iphone-6.9/02-tap-fills-same-number.png` | `app-store/screenshots/ipad-13/02-tap-fills-same-number.png` |
+| 3 | 完成盤も熟語も、あとからゆっくり確認。 | `app-store/screenshots/iphone-6.9/03-completed-board-and-words.png` | `app-store/screenshots/ipad-13/03-completed-board-and-words.png` |
+
+These are generated mocks built from the app code (see the screenshots README). `screenshots` in `app-store/LISTING_MANIFEST.json` is still empty and `upload_screenshots` is still `false`, so nothing is uploaded until that is changed deliberately.
+
 ### Draft status
 
 **DRAFT_READY.** The product, flow, monetization hypothesis, metadata and technology are coherent. Before submission, the final binary must prove the 360-puzzle count, exhaustive release validation, accurately labelled editorial status, no-data/no-ad claims, StoreKit lifecycle behavior, authentic screenshots, support/privacy URLs and final App Store Connect values.
