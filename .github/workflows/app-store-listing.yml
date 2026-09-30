@@ -36,6 +36,7 @@ jobs:
   non-media:
     name: Sync non-media compliance and commerce
     needs: metadata
+    if: ${{ always() }}
     runs-on: ubuntu-latest
     timeout-minutes: 25
     env:

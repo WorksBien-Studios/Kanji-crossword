@@ -173,6 +173,88 @@ app_infos = get_json("/v1/apps/#{APP_ID}/appInfos?limit=200").fetch("data")
 active_infos = app_infos.reject { |item| item.dig("attributes", "state") == "REPLACED_WITH_NEW_INFO" }
 abort "Expected exactly one active App Info record; found #{active_infos.length}." unless active_infos.length == 1
 app_info_id = active_infos.first.fetch("id")
+
+locale_aliases = {
+  "ja-JP" => "ja",
+  "en" => "en-US",
+  "es" => "es-ES",
+  "fr" => "fr-FR",
+  "de" => "de-DE",
+  "ko-KR" => "ko",
+  "pt" => "pt-BR",
+  "nb-NO" => "no"
+}
+
+def sync_localization(collection_path, create_path, type, parent_name, parent_type, parent_id, declared_locale, api_locale, attributes)
+  existing = get_json(collection_path).fetch("data")
+  localized = existing.find do |item|
+    locale = item.dig("attributes", "locale")
+    locale == declared_locale || locale == api_locale
+  end
+  if localized
+    patch_resource(
+      "/v1/#{type}/#{localized.fetch("id")}",
+      type,
+      localized.fetch("id"),
+      attributes
+    )
+  else
+    request(:post, create_path, body: {
+      data: {
+        type: type,
+        attributes: attributes.merge(locale: api_locale),
+        relationships: {
+          parent_name => { data: { type: parent_type, id: parent_id } }
+        }
+      }
+    })
+  end
+end
+
+synced_locales = []
+MANIFEST.fetch("locales").each do |item|
+  declared_locale = item.fetch("locale")
+  api_locale = locale_aliases.fetch(declared_locale, declared_locale)
+  keywords = item.fetch("keywords", [])
+  keywords = keywords.join(",") if keywords.is_a?(Array)
+
+  sync_localization(
+    "/v1/appInfos/#{app_info_id}/appInfoLocalizations?limit=200",
+    "/v1/appInfoLocalizations",
+    "appInfoLocalizations",
+    :appInfo,
+    "appInfos",
+    app_info_id,
+    declared_locale,
+    api_locale,
+    {
+      name: item.fetch("name"),
+      subtitle: item.fetch("subtitle"),
+      privacyPolicyUrl: item.fetch("privacy_url")
+    }
+  )
+
+  sync_localization(
+    "/v1/appStoreVersions/#{version_id}/appStoreVersionLocalizations?limit=200",
+    "/v1/appStoreVersionLocalizations",
+    "appStoreVersionLocalizations",
+    :appStoreVersion,
+    "appStoreVersions",
+    version_id,
+    declared_locale,
+    api_locale,
+    {
+      description: item.fetch("description"),
+      keywords: keywords,
+      marketingUrl: item.fetch("marketing_url"),
+      promotionalText: item.fetch("promotional_text"),
+      supportUrl: item.fetch("support_url")
+    }.compact
+  )
+
+  synced_locales << api_locale
+end
+
 rating = get_json("/v1/appInfos/#{app_info_id}/ageRatingDeclaration", allow_missing: true)
 abort "Age rating declaration is unavailable." unless rating["data"]
 rating_id = rating["data"].fetch("id")
@@ -433,6 +515,7 @@ puts JSON.pretty_generate({
   iap_id: iap_id,
   iap_product_id: iap_manifest.fetch("product_id"),
   iap_price: iap_price,
+  synced_listing_locales: synced_locales,
   standard_eula: true,
   public_urls_verified: true,
   non_media_sync: missing_contact.empty? ? "complete" : "complete_except_review_contact",
