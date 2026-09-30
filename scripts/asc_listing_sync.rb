@@ -295,6 +295,8 @@ def current_price(schedule_id, resource, price_point_type, territory)
 end
 
 def ensure_app_price(app_id, territory, target)
+  return if BigDecimal(target) == BigDecimal("0")
+
   schedule = get_json("/v1/apps/#{app_id}/appPriceSchedule", allow_missing: true)
   if schedule["data"]
     amount = current_price(schedule["data"]["id"], "appPriceSchedules", "appPricePoints", territory)
