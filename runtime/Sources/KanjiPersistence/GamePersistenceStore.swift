@@ -29,28 +29,19 @@ public struct CompletedGame: Sendable, Identifiable {
 public struct AppPreferences: Codable, Equatable, Sendable {
     public var textScale: Double
     public var highContrast: Bool
-    public var soundEnabled: Bool
     public var hapticsEnabled: Bool
     public var timerEnabledByDefault: Bool
-    public var checkMistakesByDefault: Bool
-    public var reminderEnabled: Bool
 
     public init(
         textScale: Double = 1,
         highContrast: Bool = false,
-        soundEnabled: Bool = true,
         hapticsEnabled: Bool = true,
-        timerEnabledByDefault: Bool = false,
-        checkMistakesByDefault: Bool = false,
-        reminderEnabled: Bool = false
+        timerEnabledByDefault: Bool = false
     ) {
         self.textScale = textScale
         self.highContrast = highContrast
-        self.soundEnabled = soundEnabled
         self.hapticsEnabled = hapticsEnabled
         self.timerEnabledByDefault = timerEnabledByDefault
-        self.checkMistakesByDefault = checkMistakesByDefault
-        self.reminderEnabled = reminderEnabled
     }
 }
 
@@ -174,11 +165,8 @@ public actor GamePersistenceStore {
         return AppPreferences(
             textScale: record.textScale,
             highContrast: record.highContrast,
-            soundEnabled: record.soundEnabled,
             hapticsEnabled: record.hapticsEnabled,
-            timerEnabledByDefault: record.timerEnabledByDefault,
-            checkMistakesByDefault: record.checkMistakesByDefault,
-            reminderEnabled: record.reminderEnabled
+            timerEnabledByDefault: record.timerEnabledByDefault
         )
     }
 
@@ -198,11 +186,8 @@ public actor GamePersistenceStore {
 
         record.textScale = min(max(preferences.textScale, 0.8), 2.0)
         record.highContrast = preferences.highContrast
-        record.soundEnabled = preferences.soundEnabled
         record.hapticsEnabled = preferences.hapticsEnabled
         record.timerEnabledByDefault = preferences.timerEnabledByDefault
-        record.checkMistakesByDefault = preferences.checkMistakesByDefault
-        record.reminderEnabled = preferences.reminderEnabled
         record.updatedAt = now
         do {
             try commitPendingChanges()

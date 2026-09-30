@@ -32,7 +32,14 @@ public struct HistoryRootView: View {
             .navigationTitle("記録")
         } detail: {
             if let game = selectedGame {
-                ResultsView(state: game.state, puzzle: game.puzzle)
+                ResultsView(
+                    state: game.state,
+                    puzzle: game.puzzle,
+                    personalBest: ResultMetrics.personalBest(
+                        puzzleID: game.puzzle.id,
+                        states: history.map(\.state)
+                    )
+                )
                     .id(game.id)
             } else if let loadError {
                 ContentUnavailableView {

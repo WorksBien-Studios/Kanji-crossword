@@ -30,6 +30,7 @@ struct GameView: View {
     @State private var pendingUnlockAfterResults = false
     @State private var pausedForSceneTransition = false
     @State private var completionCount = 0
+    @State private var personalBest: TimeInterval?
     @State private var banner: GameBanner?
     @State private var flagged: Set<Int> = []
 
@@ -118,6 +119,7 @@ struct GameView: View {
             ResultsView(
                 state: model.state,
                 puzzle: model.puzzle,
+                personalBest: personalBest,
                 showUnlockCard: completionCount >= 5 && !purchaseStore.hasLifetimeUnlock,
                 localizedPrice: purchaseStore.localizedPrice,
                 onUnlockRequested: {
@@ -356,7 +358,12 @@ struct GameView: View {
 
     @MainActor
     private func refreshCompletionCount() async {
-        completionCount = (try? await persistence.completionHistory().count) ?? 0
+        let history = (try? await persistence.completionHistory()) ?? []
+        completionCount = history.count
+        personalBest = ResultMetrics.personalBest(
+            puzzleID: model.puzzle.id,
+            states: history.map(\.state)
+        )
     }
 }
 

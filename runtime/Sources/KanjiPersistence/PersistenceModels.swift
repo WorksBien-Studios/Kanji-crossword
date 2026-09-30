@@ -56,32 +56,23 @@ public final class AppPreferencesRecord {
     @Attribute(.unique) public var singletonKey: String
     public var textScale: Double
     public var highContrast: Bool
-    public var soundEnabled: Bool
     public var hapticsEnabled: Bool
     public var timerEnabledByDefault: Bool
-    public var checkMistakesByDefault: Bool
-    public var reminderEnabled: Bool
     public var updatedAt: Date
 
     public init(
         singletonKey: String = "preferences",
         textScale: Double = 1,
         highContrast: Bool = false,
-        soundEnabled: Bool = true,
         hapticsEnabled: Bool = true,
         timerEnabledByDefault: Bool = false,
-        checkMistakesByDefault: Bool = false,
-        reminderEnabled: Bool = false,
         updatedAt: Date = Date()
     ) {
         self.singletonKey = singletonKey
         self.textScale = textScale
         self.highContrast = highContrast
-        self.soundEnabled = soundEnabled
         self.hapticsEnabled = hapticsEnabled
         self.timerEnabledByDefault = timerEnabledByDefault
-        self.checkMistakesByDefault = checkMistakesByDefault
-        self.reminderEnabled = reminderEnabled
         self.updatedAt = updatedAt
     }
 }
