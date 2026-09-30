@@ -100,8 +100,8 @@ public struct SettingsView: View {
         Section("操作") {
             Toggle("効果音", isOn: soundBinding)
             Toggle("触覚フィードバック", isOn: hapticsBinding)
-            Toggle("タイマーを標準で使う", isOn: timerBinding)
-            Toggle("間違い確認を使いやすく表示", isOn: checkBinding)
+            Toggle("タイマーを毎回使う", isOn: timerBinding)
+            Toggle("間違い確認を毎回使う", isOn: checkBinding)
         }
     }
 
@@ -129,7 +129,7 @@ public struct SettingsView: View {
         } header: {
             Text("購入")
         } footer: {
-            Text("購入の復元は、以前の買い切り購入が表示されない場合に使用してください。")
+            Text("以前に購入したのに反映されていない場合は、「購入を復元」をお使いください。")
         }
     }
 

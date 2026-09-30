@@ -41,9 +41,9 @@ starter state. Interaction semantics remain a SwiftUI `Button`.
 ## Visual design
 
 The look is a paper puzzle magazine: ink on paper, Mincho kanji, indigo actions,
-a highlighter-yellow selection and vermilion stamps. It is derived from the
-audience analysis in `docs/ui-mock/index.html`, which is also the visual
-reference for these screens.
+a highlighter-yellow selection and vermilion stamps. The audience analysis is
+in the repository `README.md`. The visual reference is the running SwiftUI
+itself: `LayoutPreviews.swift` previews the real screens on iPhone and iPad.
 
 | File | Role |
 |---|---|

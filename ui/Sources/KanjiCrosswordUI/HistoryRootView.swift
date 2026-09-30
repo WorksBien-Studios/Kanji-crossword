@@ -80,7 +80,7 @@ public struct HistoryRootView: View {
                         Text(JapaneseDateText.eraMonth(monthAnchor))
                             .font(.system(size: 21, weight: .bold, design: .serif))
                             .foregroundStyle(KanjiTheme.ink)
-                        Text("\(played.count)日 遊びました")
+                        Text("この月は\(played.count)日遊びました")
                             .font(.footnote)
                             .foregroundStyle(KanjiTheme.inkSecondary)
                     }

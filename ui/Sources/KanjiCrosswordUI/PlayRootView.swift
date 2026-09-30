@@ -146,7 +146,7 @@ public struct PlayRootView: View {
                 .pickerStyle(.segmented)
                 .controlSize(.large)
 
-                Text("難しさは、ヒントの少なさと推理の深さで決まります。盤の大きさは、各問題に別に表示されます。")
+                Text("難しさは、ヒントの少なさと推理の深さで決まります。盤面の大きさは、各問題に表示されています。")
                     .font(.footnote)
                     .foregroundStyle(KanjiTheme.inkSecondary)
 
@@ -299,7 +299,7 @@ public struct PlayRootView: View {
                         .font(.footnote)
                         .foregroundStyle(KanjiTheme.accentText)
                 } else if !locked {
-                    Text("まだ")
+                    Text("未完成")
                         .font(.footnote)
                         .foregroundStyle(KanjiTheme.inkSecondary)
                 }
@@ -337,7 +337,7 @@ public struct PlayRootView: View {
             HStack(spacing: 14) {
                 StampMark(kind: .complete, size: 34)
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("今月 \(days)日 遊びました")
+                    Text("今月は\(days)日遊びました")
                         .font(.headline)
                         .foregroundStyle(KanjiTheme.ink)
                     Text("完成 \(completedIDs.count)問 ・ 記録で振り返れます")
@@ -370,7 +370,7 @@ public struct PlayRootView: View {
                 ContentUnavailableView {
                     Label("この問題は買い切り版です", systemImage: "lock")
                 } description: {
-                    Text("無料の30問を遊んだあとも、全360問を広告なしで楽しめます。")
+                    Text("買い切り版にすると、全360問を広告なしで楽しめます。")
                 } actions: {
                     Button(unlockButtonTitle) {
                         onUnlockRequested(puzzle)

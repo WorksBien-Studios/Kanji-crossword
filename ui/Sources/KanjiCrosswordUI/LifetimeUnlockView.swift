@@ -15,7 +15,6 @@ public struct LifetimeUnlockView: View {
                 Section {
                     VStack(alignment: .leading, spacing: 12) {
                         Label("全360問、すべてのモードと難易度", systemImage: "square.grid.3x3")
-                        Label("記録、カレンダー、完成盤の保存と書き出し", systemImage: "calendar")
                         Label("購入後はオフラインでも遊べます", systemImage: "wifi.slash")
                         Label("広告、コイン、回数制限はありません", systemImage: "checkmark.seal")
                             .fontWeight(.bold)
@@ -53,7 +52,7 @@ public struct LifetimeUnlockView: View {
                     }
                     .disabled(purchaseStore.isWorking)
                 } footer: {
-                    Text("「購入を復元」は、以前の購入が表示されない場合にのみ使用してください。Apple IDの確認が表示されることがあります。")
+                    Text("以前に購入したのに反映されていない場合は、「購入を復元」をお使いください。Apple IDの確認が表示されることがあります。")
                 }
             }
             .scrollContentBackground(.hidden)
@@ -129,7 +128,7 @@ public struct LifetimeUnlockView: View {
             ContentUnavailableView {
                 Label("価格を取得できません", systemImage: "wifi.exclamationmark")
             } actions: {
-                Button("もう一度確認") {
+                Button("もう一度試す") {
                     Task {
                         await purchaseStore.retryProduct()
                     }

@@ -286,7 +286,7 @@ struct GameView: View {
         VStack(spacing: 16) {
             Text("一時停止中")
                 .font(.system(size: 28, weight: .bold, design: .serif))
-            Text("盤面は隠しています。用意ができたら再開してください。")
+            Text("盤面は隠れています。準備ができたら再開してください。")
                 .foregroundStyle(KanjiTheme.inkSecondary)
                 .multilineTextAlignment(.center)
             Button("再開する") {
@@ -328,8 +328,8 @@ struct GameView: View {
             } else {
                 banner = GameBanner(
                     kind: .warning,
-                    text: "見直す番号: " + numbers.map(String.init).joined(separator: "、")
-                        + "。点線のマスです。入力は消していません。"
+                    text: "見直したい番号：" + numbers.map(String.init).joined(separator: "、")
+                        + "。点線のマスを確認してください。入力は消していません。"
                 )
             }
         case .hint(let hint):
@@ -347,7 +347,7 @@ struct GameView: View {
             case .validatedUniqueSolution:
                 banner = GameBanner(
                     kind: .info,
-                    text: "唯一の解から、番号\(hint.number)は「\(hint.kanji)」です。"
+                    text: "答えは一つに決まるため、番号\(hint.number)は「\(hint.kanji)」です。"
                 )
             }
         }
@@ -385,7 +385,7 @@ struct GameStripView: View {
             } else if let selected = model.state.selectedNumber {
                 wordStrip(selected: selected)
             } else {
-                Text("マスを選ぶと、つながる熟語が出ます。")
+                Text("マスをタップすると、つながる熟語が表示されます。")
                     .font(.body)
                     .foregroundStyle(KanjiTheme.inkSecondary)
                     .frame(maxWidth: .infinity, alignment: .leading)
