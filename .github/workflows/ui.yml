@@ -33,6 +33,10 @@ jobs:
       - name: Build UI for iOS Simulator
         working-directory: ui
         run: xcodebuild -scheme KanjiCrosswordUI -destination 'generic/platform=iOS Simulator' build CODE_SIGNING_ALLOWED=NO
+      - name: Build app target for iOS Simulator
+        run: |
+          xcodebuild -resolvePackageDependencies -project app/KanjiCrossword.xcodeproj -scheme KanjiCrossword
+          xcodebuild -project app/KanjiCrossword.xcodeproj -scheme KanjiCrossword -destination 'generic/platform=iOS Simulator' build CODE_SIGNING_ALLOWED=NO
       - name: Run UI tests on iOS Simulator
         working-directory: ui
         run: |

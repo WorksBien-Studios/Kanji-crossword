@@ -17,7 +17,7 @@ App Store Connect, not embedded into the production UI.
 ## Local Xcode testing
 
 `Products.storekit` contains the matching non-consumable for local development.
-When the Xcode app target exists, select it in:
+The shared `KanjiCrossword` scheme already points at it; to change it, use:
 
 `Scheme > Edit Scheme > Run > Options > StoreKit Configuration`
 
