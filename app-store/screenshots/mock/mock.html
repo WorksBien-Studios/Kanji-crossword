@@ -21,16 +21,17 @@
   --stampTint:#F8E1DB; --success:#2A7350; --successTint:#DDEFE5;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{width:440px;height:956px;overflow:hidden;background:var(--canvas);
+html,body{overflow:hidden;background:var(--canvas);
   font-family:-apple-system,"SF Pro Text","Noto Sans JP",sans-serif;color:var(--ink);
   -webkit-font-smoothing:antialiased}
 .serif{font-family:"Hiragino Mincho ProN","Noto Serif JP",serif;font-weight:700}
-#app{position:relative;width:440px;height:956px;background:var(--canvas);overflow:hidden}
+#app{background:var(--canvas)}
 svg{display:block}
 
 /* status bar / nav bar / home indicator */
 .status{position:absolute;top:0;left:0;right:0;height:59px;display:flex;justify-content:space-between;
   align-items:center;padding:8px 34px 0 46px;font-weight:600;font-size:17px;z-index:5}
+.status.pad{height:24px;padding:4px 30px 0 30px;font-size:15px}
 .status .r{display:flex;gap:6px;align-items:center}
 .home{position:absolute;bottom:8px;left:50%;margin-left:-70px;width:140px;height:5px;border-radius:3px;background:#000;z-index:20}
 .nav{position:absolute;top:59px;left:0;right:0;height:44px;display:flex;align-items:center;justify-content:center;
@@ -59,13 +60,13 @@ svg{display:block}
 .cell.selected{background:var(--mark);border:4px solid var(--accent)}
 .cell.solved{background:var(--successTint);border-color:var(--success)}
 
-.bottom{position:absolute;left:0;right:0;bottom:0;background:var(--bar);padding-top:4px;padding-bottom:34px}
+.bottom{position:absolute;left:0;right:0;bottom:0;background:var(--bar);padding-top:4px;padding-bottom:var(--binset)}
 .actions{display:grid;grid-template-columns:repeat(5,1fr);padding:0 8px}
-.act{height:60px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+.act{height:var(--act);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
   color:var(--accentText);font-size:13px;font-weight:700}
 .act.off{opacity:.4}
-.tray{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;padding:8px 16px}
-.tile{height:50px;border-radius:12px;background:var(--card);border:2px solid var(--ink2);font-size:26px;
+.tray{display:grid;grid-template-columns:repeat(var(--cols),1fr);gap:8px;padding:8px 16px}
+.tile{height:var(--tile);border-radius:12px;background:var(--card);border:2px solid var(--ink2);font-size:calc(var(--tile)*.52);
   display:flex;align-items:center;justify-content:center;color:var(--ink)}
 .tile.used{border-style:dashed;opacity:.45}
 .tile.off{opacity:.35}
@@ -104,13 +105,40 @@ svg{display:block}
 .w b{font-size:22px;font-weight:900}
 .w span{font-size:13px;color:var(--ink2)}
 .w.sel{background:var(--mark);border:3px solid var(--accent)}
+
+/* store composition */
+body,html{width:auto;height:auto}
+#stage{position:relative;overflow:hidden;background:linear-gradient(180deg,#FBF7EA 0%,#EAF0F7 100%)}
+#stage:before{content:"";position:absolute;right:-90px;top:-90px;width:300px;height:300px;border-radius:50%;
+  border:14px solid rgba(185,58,34,.16);box-shadow:inset 0 0 0 10px rgba(185,58,34,.10)}
+.cap{position:absolute;left:0;right:0;text-align:center;font-weight:700;color:var(--ink);letter-spacing:.02em;line-height:1.28}
+.cap mark{background:linear-gradient(transparent 58%,var(--mark) 58%);color:inherit;padding:0 .08em}
+#dev{position:absolute;background:#0e1116;transform-origin:top left;box-shadow:0 30px 60px rgba(22,29,43,.35)}
+#app{border-radius:inherit;overflow:hidden}
+.tabs{position:absolute;left:50%;transform:translateX(-50%);top:30px;display:flex;background:rgba(237,240,242,.95);
+  border-radius:26px;padding:4px;gap:2px;z-index:6;font-size:17px;font-weight:600}
+.tabs span{padding:10px 26px;border-radius:22px;color:var(--ink2);display:flex;gap:8px;align-items:center}
+.tabs span.on{background:#fff;color:var(--accentText);box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.sheet.pad{left:166px;right:166px;top:250px;bottom:auto;border-radius:26px;padding-top:56px}
+.sheet.pad .res{position:relative;top:0}
+.sheet.pad .nav{position:absolute;top:0;left:0;right:0}
+.sheet.pad .stats{grid-template-columns:repeat(5,1fr)}
+.sheet.pad .words{grid-template-columns:repeat(4,1fr)}
+.sheet.pad .hrow{display:flex;gap:18px;align-items:center}
 </style>
 </head>
 <body>
-<div id="app"></div>
+<div id="stage"><div class="cap" id="cap"></div><div id="dev"><div id="app"></div></div></div>
 <script>
 const P = window.PUZZLE;
-const q = new URLSearchParams(location.search).get('s') || '1';
+const qs = new URLSearchParams(location.search);
+const q = qs.get('s') || '1';
+const PAD = qs.get('d') === 'ipad';
+/* device config: iPhone 6.9" = 440x956pt @3x, iPad 13" = 1032x1376pt @2x (PlayLayout.make rules) */
+const D = PAD
+  ? {W:1032,H:1376,status:24,nav:50,top:0,bottomInset:20,cols:8,tile:64,act:72,pad:10,bezel:16,radius:40,capFont:58,capTop:64,avail:1090,capW:1032}
+  : {W:440,H:956,status:59,nav:44,top:0,bottomInset:34,cols:6,tile:50,act:60,pad:6,bezel:12,radius:56,capFont:31,capTop:34,avail:770,capW:440};
+const STAGE = {w:D.W, h:D.H};
 const sol = P.solution, starters = P.starterCells;
 const numAt = {}; // "r,c" -> n
 for (const [k,v] of Object.entries(P.cellNumbers)) numAt[k]=v;
@@ -139,7 +167,7 @@ const icon = {
   okline:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m7.500 12.500 3 3 6-6.500" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   chev:'<svg width="12" height="20" viewBox="0 0 12 20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2 2 10l8 8"/></svg>',
 };
-const statusBar = () => `<div class="status"><span>9:41</span><span class="r">
+const statusBar = () => `<div class="status ${PAD?"pad":""}"><span>9:41</span><span class="r">
   <svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx=".8"/><rect x="5" y="5.500" width="3" height="6.500" rx=".8"/><rect x="10" y="3" width="3" height="9" rx=".8"/><rect x="15" y="0" width="3" height="12" rx=".8"/></svg>
   <svg width="17" height="12" viewBox="0 0 17 12" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round"><path d="M1.500 4.200a10 10 0 0 1 14 0M4 7a6.500 6.500 0 0 1 9 0"/><circle cx="8.500" cy="10" r="1.300" fill="#000" stroke="none"/></svg>
   <svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.500" fill="none" stroke="#000" opacity=".4"/><rect x="2" y="2" width="20" height="9" rx="2.300"/><rect x="25" y="4.500" width="1.800" height="4" rx=".9" opacity=".4"/></svg>
@@ -147,8 +175,8 @@ const statusBar = () => `<div class="status"><span>9:41</span><span class="r">
 
 /* ---- board (fit rules from BoardFit: spacing 2, padding 6 on iPhone) ---- */
 function boardHTML(top, height) {
-  const pad = 6, sp = 2;
-  const size = Math.min(84, Math.max(40, Math.min((440-2*pad-sp*(P.columns-1))/P.columns, (height-2*pad-sp*(P.rows-1))/P.rows)));
+  const pad = D.pad, sp = 2;
+  const size = Math.min(84, Math.max(40, Math.min((D.W-2*pad-sp*(P.columns-1))/P.columns, (height-2*pad-sp*(P.rows-1))/P.rows)));
   const related = new Set();
   if (S.selected) for (const w of wordsOf(S.selected)) numsOf(w).forEach(n => related.add(n));
   if (S.selected) related.delete(S.selected);
@@ -192,13 +220,17 @@ function playScreen() {
       <div style="display:flex;gap:10px;width:100%"><div class="btn s">完成盤を見る</div><div class="btn s">次の問題</div></div>
       <div class="link">問題一覧へ</div></div></div>`;
   }
-  const bottomH = active ? 4+60+ (Math.ceil(P.traySeed.length/6)*50 + (Math.ceil(P.traySeed.length/6)-1)*8 + 16) + 34
-                         : 16+56+10+48+10+44+16+34;
-  const boardTop = 103+56, boardH = 956 - boardTop - bottomH;
-  return `${statusBar()}
-    <div class="nav"><div class="back">${icon.chev}</div><div class="t">${{easy:'やさしい'}[P.difficulty]}</div>
+  const rows = Math.ceil(P.traySeed.length/D.cols);
+  const bottomH = active ? 4+D.act+(rows*D.tile+(rows-1)*8+16)+D.bottomInset
+                         : 16+56+10+48+10+44+16+D.bottomInset;
+  const navTop = PAD ? D.status+58 : D.status;
+  const stripTop = navTop+D.nav;
+  const boardTop = stripTop+56, boardH = D.H - boardTop - bottomH;
+  const tabs = PAD ? `<div class="tabs"><span class="on">遊ぶ</span><span>記録</span><span>設定</span></div>` : '';
+  return `${statusBar()}${tabs}
+    <div class="nav" style="top:${navTop}px"><div class="back">${icon.chev}</div><div class="t">${{easy:'やさしい'}[P.difficulty]}</div>
       <div class="trail">${active?'<span>休む</span>':''}${icon.more}</div></div>
-    <div class="strip">${strip}</div>${boardHTML(boardTop, boardH)}${bottom}<div class="home"></div>`;
+    <div class="strip" style="top:${stripTop}px">${strip}</div>${boardHTML(boardTop, boardH)}${bottom}<div class="home"></div>`;
 }
 
 function resultsSheet() {
@@ -210,22 +242,42 @@ function resultsSheet() {
     mini += n ? `<div class="mc serif ${hl.has(`${r},${c}`)?'hl':''}">${sol[n]}</div>` : `<div class="mc e"></div>`;
   }
   const stat = (a,b) => `<div class="stat"><div class="a">${a}</div><div class="b">${b}</div></div>`;
-  return `<div class="scrim"></div><div class="sheet">
+  return `<div class="scrim"></div><div class="sheet ${PAD?'pad':''}">
     <div class="nav"><div class="t">結果</div><div class="trail"><span>閉じる</span></div></div>
     <div class="res">
       <div class="stats">${stat('時間','0:07:18')}${stat('自己ベスト','0:07:18')}${stat('修正','1回')}${stat('ヒント','0回')}${stat('間違い確認','1回')}</div>
       <div class="saved">${icon.okline}<span>完成盤は「記録」に保存されました</span></div>
-      <div class="kcard">
+      <div class="kcard"><div class="${PAD?'hrow':''}">
         <div class="mini" style="grid-template-columns:repeat(${P.columns},26px)">${mini}</div>
         <div><div class="word44 serif">${span.word}</div><div class="read">${span.reading}</div>
         <div class="hint" style="margin-top:4px">タップした熟語のマスが黄色になります。</div></div>
-      </div>
+      </div></div>
       <div><div class="sec">完成した熟語（${P.wordSpans.length}語）</div>
         <div class="words">${P.wordSpans.map(w=>`<div class="w ${w.word===S.word?'sel':''}"><b class="serif">${w.word}</b><span>${w.reading}</span></div>`).join('')}</div></div>
     </div></div>`;
 }
 
-document.getElementById('app').innerHTML = playScreen() + (S.status==='completed' ? resultsSheet() : '');
+const CAPS = {
+  1: '広告なし。<br><mark>大きな文字</mark>でじっくり。',
+  2: 'タップだけで、<br><mark>同じ番号</mark>をまとめて入力。',
+  3: '完成盤も<mark>熟語</mark>も、<br>あとからゆっくり確認。',
+};
+const app = document.getElementById('app');
+app.style.cssText = `position:relative;width:${D.W}px;height:${D.H}px;`;
+app.style.setProperty('--cols', D.cols); app.style.setProperty('--tile', D.tile+'px');
+app.style.setProperty('--act', D.act+'px'); app.style.setProperty('--binset', D.bottomInset+'px');
+app.innerHTML = playScreen() + (S.status==='completed' ? resultsSheet() : '');
+if (PAD) app.querySelector('.home').style.bottom = '7px';
+
+const stage = document.getElementById('stage');
+stage.style.cssText = `width:${D.W}px;height:${D.H}px`;
+const cap = document.getElementById('cap');
+cap.innerHTML = CAPS[q]; cap.style.cssText = `top:${D.capTop}px;font-size:${D.capFont}px`;
+const dev = document.getElementById('dev');
+const scale = D.avail / (D.H + 2*D.bezel);
+dev.style.cssText = `width:${D.W+2*D.bezel}px;height:${D.H+2*D.bezel}px;padding:${D.bezel}px;border-radius:${D.radius+D.bezel}px;
+  left:${(D.W - (D.W+2*D.bezel)*scale)/2}px;top:${D.H - D.avail - (PAD?44:28)}px;transform:scale(${scale})`;
+app.style.borderRadius = D.radius+'px';
 </script>
 </body>
 </html>
