@@ -1,0 +1,7 @@
+/* Mincho-style serif for kanji (iOS uses Hiragino Mincho via .serif design) and a JP sans for UI text.
+   Needs `npm i @fontsource/noto-serif-jp @fontsource/noto-sans-jp` (node_modules next to this file). */
+@import url("node_modules/@fontsource/noto-serif-jp/700.css");
+@import url("node_modules/@fontsource/noto-serif-jp/900.css");
+@import url("node_modules/@fontsource/noto-sans-jp/400.css");
+@import url("node_modules/@fontsource/noto-sans-jp/500.css");
+@import url("node_modules/@fontsource/noto-sans-jp/700.css");
