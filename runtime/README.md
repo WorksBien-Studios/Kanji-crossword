@@ -22,7 +22,7 @@ This Swift package is the production runtime boundary for the iOS/iPadOS 18 app.
 
 ## Commerce invariants
 
-- Product ID: `com.gooduse.kanjicrossword.pro.lifetime`.
+- Product ID: `com.gooduse.kanjicrossword.jp.pro.lifetime`.
 - Product type: one non-consumable lifetime unlock.
 - The UI never hard-codes a currency price; it displays `Product.displayPrice`.
 - A pending, cancelled, failed, unknown, or unverified purchase never grants paid access.

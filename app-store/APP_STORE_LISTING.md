@@ -7,7 +7,7 @@ Launch storefront: **Japan only**
 Platforms: **iPhone + iPad**  
 Minimum OS: **iOS/iPadOS 18.0**  
 Business model: **Free download + one non-consumable lifetime unlock**  
-StoreKit product ID: `com.gooduse.kanjicrossword.pro.lifetime`
+StoreKit product ID: `com.gooduse.kanjicrossword.jp.pro.lifetime`
 
 This document is the source of truth for App Store Connect fields that do **not** relate to screenshots, previews, icons, or other media.
 
@@ -44,8 +44,8 @@ This draft was audited against (a) native-Japanese phrasing, (b) 2026 App Store 
 | Platforms | **iOS** |
 | Name | **漢字ナンクロ 広告なし** |
 | Primary language | **Japanese** |
-| Bundle ID | **com.gooduse.kanjicrossword** |
-| SKU | **GOODUSE-KANJI-CROSSWORD-IOS-JP** |
+| Bundle ID | **com.gooduse.kanjicrossword.jp** |
+| SKU | **GOODUSE-KANJI-CROSSWORD-IOS-JP-RESET1** |
 | User Access | **Full Access** unless account administration requires otherwise |
 
 ### Name rationale
@@ -510,7 +510,7 @@ Create exactly one IAP.
 |---|---|
 | Type | **Non-Consumable** |
 | Reference Name | **Kanji Crossword Lifetime Unlock** |
-| Product ID | **com.gooduse.kanjicrossword.pro.lifetime** |
+| Product ID | **com.gooduse.kanjicrossword.jp.pro.lifetime** |
 
 The product ID is immutable after creation. It must exactly match the production StoreKit code.
 
@@ -566,7 +566,7 @@ Do not promote the IAP on the App Store product page for v1. This avoids a separ
 This is the app's only paid product. It is a non-consumable lifetime unlock.
 
 Product ID:
-com.gooduse.kanjicrossword.pro.lifetime
+com.gooduse.kanjicrossword.jp.pro.lifetime
 
 The app is free to download and includes 30 complete puzzles at no charge. The lifetime unlock enables the remaining bundled puzzles for a total of 360 accessible puzzles. Local history/statistics (the 記録 tab) are available to all users regardless of purchase state and are not part of what the IAP unlocks. There is no subscription, consumable currency, advertising, external payment method, account, or server entitlement.
 
@@ -621,7 +621,7 @@ REVIEW PATH
 - The same purchase screen is available from 設定 → 全問題を解放.
 - Restore Purchases is available from 設定 → 購入を復元.
 - The only IAP is the non-consumable:
-  com.gooduse.kanjicrossword.pro.lifetime
+  com.gooduse.kanjicrossword.jp.pro.lifetime
 - There are no subscriptions, consumable currencies, advertisements, external payment links, accounts, or backend services.
 
 GAMEPLAY

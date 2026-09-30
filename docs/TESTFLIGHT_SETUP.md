@@ -1,25 +1,25 @@
 # Kanji Crossword — TestFlight wiring
 
-Status: `PROVISIONING_PENDING`
+Status: `READY`
 
-The minimal App Store Connect record, explicit bundle ID, and internal TestFlight group now exist. The Account Holder is in `Internal QA`; no build has been uploaded and no App Store listing copy has been entered. The repository contains a fail-closed TestFlight pipeline: cheap Linux preflight, one macOS archive/export/upload, then cheap Linux delivery of the exact processed build to the mapped group and attachment to the matching editable App Store version. It never submits for App Review.
+The minimal App Store Connect record, explicit bundle ID, and internal TestFlight group now exist. The Account Holder is in `Internal QA`; build 2 has been uploaded and the App Store listing copy is prepared. The repository contains a fail-closed TestFlight pipeline: cheap Linux preflight, one macOS archive/export/upload, then cheap Linux delivery of the exact processed build to the mapped group and attachment to the matching editable App Store version. It never submits for App Review.
 
 ## Locked identity
 
 - Repository: `lrodeveloperr/Kanji-crossword`
 - App Store name: `漢字ナンクロ 広告なし`
-- App Store Connect app ID: `6817388023`
-- Bundle ID: `com.gooduse.kanjicrossword`
+- App Store Connect app ID: `6817887911`
+- Bundle ID: `com.gooduse.kanjicrossword.jp`
 - Apple team: `49SQ3XQ68Q`
 - Internal beta group: `Internal QA`
-- Beta group resource ID: `2825fdbf-298d-4065-8d14-119d600cab79`
+- Beta group resource ID: `e080441a-0ae2-4376-9878-75e891deff7c`
 - Signing style: automatic
 - Export method: App Store Connect
 - Distribution certificate: Apple Distribution
 - Platform: `IOS`
 - Marketing version: `1.0`
 - Primary App Store language: Japanese
-- SKU: `GOODUSE-KANJI-CROSSWORD-IOS-JP`
+- SKU: `GOODUSE-KANJI-CROSSWORD-IOS-JP-RESET1`
 
 ## Deliberate blockers
 

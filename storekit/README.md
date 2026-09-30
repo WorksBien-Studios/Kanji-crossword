@@ -6,7 +6,7 @@ Create exactly one In-App Purchase in App Store Connect:
 
 - Type: **Non-Consumable**
 - Reference name: **Kanji Crossword Lifetime Unlock**
-- Product ID: **com.gooduse.kanjicrossword.pro.lifetime**
+- Product ID: **com.gooduse.kanjicrossword.jp.pro.lifetime**
 - Japan launch price hypothesis: **¥1,000**
 - Japanese display name: **全問題を買い切りで解放**
 - Japanese description: **全360問を一度の購入ですべて解放**

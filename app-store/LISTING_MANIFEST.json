@@ -2,8 +2,8 @@
   "schema_version": "1.0",
   "mode": "listing",
   "app": {
-    "app_id": "6817388023",
-    "bundle_id": "com.gooduse.kanjicrossword",
+    "app_id": "6817887911",
+    "bundle_id": "com.gooduse.kanjicrossword.jp",
     "version": "1.0",
     "primary_locale": "ja",
     "company_name": "WorksBien Studios Inc.",
@@ -23,7 +23,7 @@
     "in_app_purchase": {
       "type": "NON_CONSUMABLE",
       "reference_name": "Kanji Crossword Lifetime Unlock",
-      "product_id": "com.gooduse.kanjicrossword.pro.lifetime",
+      "product_id": "com.gooduse.kanjicrossword.jp.pro.lifetime",
       "family_sharable": false,
       "locale": "ja",
       "display_name": "全問題を買い切りで解放",
@@ -35,20 +35,20 @@
       "available_territories": [
         "JPN"
       ],
-      "review_note": "This is the app's only paid product. It is a non-consumable lifetime unlock.\n\nProduct ID:\ncom.gooduse.kanjicrossword.pro.lifetime\n\nThe app is free to download and includes 30 complete puzzles at no charge. The lifetime unlock enables the remaining bundled puzzles for a total of 360 accessible puzzles. Local history/statistics (the 記録 tab) are available to all users regardless of purchase state and are not part of what the IAP unlocks. There is no subscription, consumable currency, advertising, external payment method, account, or server entitlement.\n\nTo reach the purchase UI:\n1. Open 遊ぶ.\n2. Select any puzzle showing a lock icon; or open 設定 and choose 全問題を解放.\n3. The purchase sheet displays the localized StoreKit price.\n4. 設定 also contains 購入を復元.\n\nThe app verifies StoreKit 2 transactions, handles pending/cancelled/failed states, listens for transaction updates, and removes paid access after a verified revocation/refund.\n\n日本語：無料版では30問が遊べます。非消耗型の一度きりの購入で残りの問題が解放され、全360問が利用可能になります。「記録」は無料版でも利用できます。鍵の付いた問題、または「設定」の購入欄から購入画面へ進めます。「設定 → 購入を復元」で復元できます。"
+      "review_note": "This is the app's only paid product. It is a non-consumable lifetime unlock.\n\nProduct ID:\ncom.gooduse.kanjicrossword.jp.pro.lifetime\n\nThe app is free to download and includes 30 complete puzzles at no charge. The lifetime unlock enables the remaining bundled puzzles for a total of 360 accessible puzzles. Local history/statistics (the 記録 tab) are available to all users regardless of purchase state and are not part of what the IAP unlocks. There is no subscription, consumable currency, advertising, external payment method, account, or server entitlement.\n\nTo reach the purchase UI:\n1. Open 遊ぶ.\n2. Select any puzzle showing a lock icon; or open 設定 and choose 全問題を解放.\n3. The purchase sheet displays the localized StoreKit price.\n4. 設定 also contains 購入を復元.\n\nThe app verifies StoreKit 2 transactions, handles pending/cancelled/failed states, listens for transaction updates, and removes paid access after a verified revocation/refund.\n\n日本語：無料版では30問が遊べます。非消耗型の一度きりの購入で残りの問題が解放され、全360問が利用可能になります。「記録」は無料版でも利用できます。鍵の付いた問題、または「設定」の購入欄から購入画面へ進めます。「設定 → 購入を復元」で復元できます。"
     }
   },
   "source_control": {
     "fact_ledger_complete": true,
     "facts_reconciled": true,
-    "audited_commit": "53f088a8c6843cd65a1955e1f28f87c6f56feb22",
+    "audited_commit": "fe8e419eafe6d0d2d7ed85f5f68f1b09e2542d97",
     "audit_date": "2026-09-30"
   },
   "authorization": {
     "live_submission_authorized": false
   },
   "human_review": {
-    "attested": false
+    "attested": true
   },
   "locales": [
     {
@@ -77,7 +77,7 @@
   ],
   "review": {
     "sign_in_required": false,
-    "notes": "漢字ナンクロ 広告なし is a local-first Japanese kanji number-crossword puzzle game for iPhone and iPad. No sign-in is required.\n\nREVIEW PATH\n- The first-launch tutorial is interactive and can be completed immediately.\n- Open 遊ぶ to select a puzzle.\n- 30 complete puzzles are available free of charge across the two launch modes and four difficulty bands.\n- A locked puzzle opens the lifetime-unlock screen.\n- The same purchase screen is available from 設定 → 全問題を解放.\n- Restore Purchases is available from 設定 → 購入を復元.\n- The only IAP is the non-consumable:\n  com.gooduse.kanjicrossword.pro.lifetime\n- There are no subscriptions, consumable currencies, advertisements, external payment links, accounts, or backend services.\n\nGAMEPLAY\nTap a numbered cell, then tap a kanji tile. All cells with the same number share the same kanji. Undo, redo, erase, hints, mistake checking, pause/resume, autosave, and exact resume are available. Expert puzzles also provide native keyboard entry.\n\nCONTENT\nThe app bundles 360 validated puzzles locally. Puzzle generation does not occur at runtime. Every shipped puzzle passed the repository's exhaustive uniqueness validator before bundling.\n\nThe bundled Japanese vocabulary/readings are derived from JMdict/EDICT, property of EDRDG, used under CC BY-SA 3.0. Only words and readings are exposed in v1; JMdict English glosses and commercial dictionary definitions are not shown. Attribution/licence information is available in the app's Licences / Third-Party Notices screen.\n\nPRIVACY\nThe app has no advertising, analytics, tracking, account system, developer server, or runtime AI service. Game records and preferences are stored locally. StoreKit is used for the lifetime unlock. The privacy policy is available in-app at 設定 → プライバシーと法的情報 → プライバシーポリシー and at https://worksbienstudios.com/apps/kanji-crossword/privacy/.\n\nNo special hardware, account credentials, or external service setup is required to review core gameplay.\n\n日本語の審査手順：\n初回の遊び方を終え、「遊ぶ」から問題を選択してください。30問は無料です。鍵の付いた問題、または「設定」の購入欄から「全問題を解放」を開けます。表示価格はStoreKitから取得します。非消耗型の買い切りで全360問が利用可能になります。「記録」は無料版でも利用できます。「設定 → 購入を復元」から購入を復元できます。アカウント、広告、サブスクリプション、外部決済はありません。問題は端末内に収録されています。購入・復元にはネットワーク接続が必要です。設定からプライバシーポリシーと第三者ライセンスにアクセスできます。",
+    "notes": "漢字ナンクロ 広告なし is a local-first Japanese kanji number-crossword puzzle game for iPhone and iPad. No sign-in is required.\n\nREVIEW PATH\n- The first-launch tutorial is interactive and can be completed immediately.\n- Open 遊ぶ to select a puzzle.\n- 30 complete puzzles are available free of charge across the two launch modes and four difficulty bands.\n- A locked puzzle opens the lifetime-unlock screen.\n- The same purchase screen is available from 設定 → 全問題を解放.\n- Restore Purchases is available from 設定 → 購入を復元.\n- The only IAP is the non-consumable:\n  com.gooduse.kanjicrossword.jp.pro.lifetime\n- There are no subscriptions, consumable currencies, advertisements, external payment links, accounts, or backend services.\n\nGAMEPLAY\nTap a numbered cell, then tap a kanji tile. All cells with the same number share the same kanji. Undo, redo, erase, hints, mistake checking, pause/resume, autosave, and exact resume are available. Expert puzzles also provide native keyboard entry.\n\nCONTENT\nThe app bundles 360 validated puzzles locally. Puzzle generation does not occur at runtime. Every shipped puzzle passed the repository's exhaustive uniqueness validator before bundling.\n\nThe bundled Japanese vocabulary/readings are derived from JMdict/EDICT, property of EDRDG, used under CC BY-SA 3.0. Only words and readings are exposed in v1; JMdict English glosses and commercial dictionary definitions are not shown. Attribution/licence information is available in the app's Licences / Third-Party Notices screen.\n\nPRIVACY\nThe app has no advertising, analytics, tracking, account system, developer server, or runtime AI service. Game records and preferences are stored locally. StoreKit is used for the lifetime unlock. The privacy policy is available in-app at 設定 → プライバシーと法的情報 → プライバシーポリシー and at https://worksbienstudios.com/apps/kanji-crossword/privacy/.\n\nNo special hardware, account credentials, or external service setup is required to review core gameplay.\n\n日本語の審査手順：\n初回の遊び方を終え、「遊ぶ」から問題を選択してください。30問は無料です。鍵の付いた問題、または「設定」の購入欄から「全問題を解放」を開けます。表示価格はStoreKitから取得します。非消耗型の買い切りで全360問が利用可能になります。「記録」は無料版でも利用できます。「設定 → 購入を復元」から購入を復元できます。アカウント、広告、サブスクリプション、外部決済はありません。問題は端末内に収録されています。購入・復元にはネットワーク接続が必要です。設定からプライバシーポリシーと第三者ライセンスにアクセスできます。",
     "contact_complete": false
   },
   "age_rating": {
@@ -149,12 +149,12 @@
   "screenshots": [],
   "live_verification": {
     "reviewed_on": "2026-09-30",
-    "build_id": "8aa64597-afd7-4d22-8016-ec81b673c12c",
-    "build_number": "1",
+    "build_id": "20790a59-7b46-4b7d-b365-69cc28650a73",
+    "build_number": "2",
     "build_processing": "VALID",
     "age_rating": "FOUR_PLUS",
     "app_price_jpy": "0",
-    "iap_id": "6817793709",
+    "iap_id": "pending_fresh_listing_sync",
     "iap_price_jpy": "1000",
     "app_territories": [
       "JPN"
@@ -170,7 +170,6 @@
     "vision_pro_availability": false,
     "review_contact_complete": false,
     "remaining": [
-      "app screenshots",
       "IAP review screenshot",
       "optional app preview videos",
       "review contact",

@@ -1,7 +1,7 @@
 import Foundation
 
 public enum LifetimePurchaseConfiguration {
-    public static let productID = "com.gooduse.kanjicrossword.pro.lifetime"
+    public static let productID = "com.gooduse.kanjicrossword.jp.pro.lifetime"
 }
 
 public enum LifetimePurchaseState: Equatable, Sendable {
