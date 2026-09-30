@@ -1,0 +1,65 @@
+name: Kanji Crossword App Store listing
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "app-store/LISTING_MANIFEST.json"
+      - ".github/workflows/app-store-listing.yml"
+      - "scripts/asc_listing_sync.rb"
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: kanji-crossword-app-store-listing
+  cancel-in-progress: false
+
+jobs:
+  metadata:
+    name: Upload text listing
+    uses: WorksBien-Studios/.github/.github/workflows/ios-app-store.yml@fe6bcf297e03155966d734196cc4f1c2fb81a238
+    with:
+      validated_sha: ${{ github.sha }}
+      operation: upload_listing
+      manifest_path: app-store/LISTING_MANIFEST.json
+      upload_screenshots: false
+      confirm_submission: false
+    secrets:
+      ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+      ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+      ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+
+  non-media:
+    name: Sync non-media compliance and commerce
+    needs: metadata
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+      ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+      ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+      ASC_APP_ID: "6817388023"
+      IOS_BUNDLE_ID: "com.gooduse.kanjicrossword"
+      MANIFEST_PATH: app-store/LISTING_MANIFEST.json
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+
+      - name: Verify exact listing commit
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "${{ github.sha }}"
+
+      - name: Sync and verify App Store Connect non-media fields
+        run: |
+          set -euo pipefail
+          key_path="$RUNNER_TEMP/AuthKey_${ASC_KEY_ID}.p8"
+          umask 077
+          printf '%s' "$ASC_PRIVATE_KEY" > "$key_path"
+          chmod 600 "$key_path"
+          ASC_KEY_PATH="$key_path" ruby scripts/asc_listing_sync.rb

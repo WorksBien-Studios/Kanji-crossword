@@ -1,8 +1,8 @@
 # App Store Connect Listing — 漢字ナンクロ 広告なし
 
 Status: **submission-ready draft, media excluded**  
-Prepared: 2026-09-28  
-Last native-Japanese / ASO / Apple-compliance audit: 2026-09-29  
+Prepared: 2026-09-30  
+Last native-Japanese / ASO / Apple-compliance audit: 2026-09-30  
 Launch storefront: **Japan only**  
 Platforms: **iPhone + iPad**  
 Minimum OS: **iOS/iPadOS 18.0**  
@@ -15,7 +15,7 @@ The final binary and live legal/support URLs must still be checked against this 
 
 ---
 
-## 0. Audit findings (2026-09-29)
+## 0. Audit findings (2026-09-30)
 
 This draft was audited against (a) native-Japanese phrasing, (b) 2026 App Store ASO/SEO best practice, and (c) current Apple App Review Guidelines and App Store Connect requirements, cross-checked against the actual `runtime`/`ui`/`engine` source. Changes made directly in this document:
 
@@ -24,6 +24,10 @@ This draft was audited against (a) native-Japanese phrasing, (b) 2026 App Store 
 - **ASO fix — Keywords field reshuffled:** removed `クロスワード` from Keywords (now covered, more effectively, by the Subtitle) and used the freed byte budget to add `読み方` and `初心者`, then filled the remaining headroom with `難読`, bringing the field to exactly 100/100 bytes. See §3/§4.
 - **Apple-compliance fix — inaccurate IAP claim:** the IAP Description and IAP review notes stated the lifetime purchase unlocks "記録機能" (history/stats). The `記録` tab in `ui/Sources/KanjiCrosswordUI/KanjiCrosswordRootView.swift` is **not gated** by `purchaseStore.hasLifetimeUnlock` — it is available to every user regardless of purchase state. Claiming the IAP unlocks an already-free feature risks a Guideline 2.3.1 (Accurate Metadata) rejection and a misleading-purchase complaint. Corrected the IAP Description and review notes to only claim what the purchase actually gates (the puzzle set). See §10. If the intent was for history to be a paid feature, that must be fixed in code, not in this document.
 - **App Name / Subtitle left deliberately short where it matters:** the Name was **not** expanded to use its full 30-character budget. Apple's Guideline 2.3.7 wants the Name field to be the app's actual name, not a keyword string; the Subtitle is the correct field for extra keyword reach, and that is where the added budget went instead.
+- **EULA made explicit:** the product description now includes Apple's Standard EULA URL, while App Store Connect remains configured to use Apple's Standard Licensed Application End User License Agreement. No conflicting custom EULA is used.
+- **Category mapping corrected:** App Store Connect uses one Games category plus game subcategories. The intended mapping is Primary Category **Games**, Primary Subcategory **Word**, and Secondary Subcategory **Puzzle**.
+- **Website consistency fixed:** the canonical Japanese marketing, support, and privacy pages use the same app name, free boundary, 360-puzzle count, lifetime-purchase model, local-only storage position, and Apple Standard EULA.
+- **StoreKit metadata aligned:** the local StoreKit product description now exactly matches the App Store Connect IAP description.
 
 ### Open items this document cannot resolve — verify before submission
 
@@ -68,13 +72,11 @@ Current subtitle: 25 characters.
 
 The subtitle covers the senior/readability use case and the high-intent `脳トレ` search phrase, plus `漢字クロスワード` / `パズル` — validated high-volume terms competing apps carry in their own titles/subtitles (see §4) — without duplicating the app name and without exceeding the limit. This uses 25 of 30 characters, in line with the ~27/30 median for top-performing Games subtitles, versus 13/30 in the previous draft.
 
-### Primary category
+### Category and subcategories
 
-**Games → Word**
-
-### Secondary category
-
-**Games → Puzzle**
+- **Primary Category:** Games
+- **Primary Subcategory:** Word
+- **Secondary Subcategory:** Puzzle
 
 Do not select Education as the primary category. The app is fundamentally a puzzle game; vocabulary review is a secondary benefit.
 
@@ -97,6 +99,10 @@ Before submission, the final app must expose an easily reachable **Licences / Th
 Select:
 
 **Apple's Standard Licensed Application End User License Agreement**
+
+The public listing description also includes the canonical Standard EULA URL:
+
+`https://www.apple.com/legal/internet-services/itunes/dev/stdeula/`
 
 Do **not** add a custom EULA for v1.
 
@@ -181,6 +187,9 @@ This copy intentionally states the free boundary and one-time-purchase model wit
 
 収録問題は端末内に保存されているため、購入後もオフラインで遊べます。
 毎日の頭の体操や暇つぶしに、落ち着いて楽しめる漢字パズルをどうぞ。
+
+利用規約（Apple標準EULA）:
+https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 ```
 
 Notes:
@@ -286,8 +295,9 @@ The metadata deliberately spreads these terms across the indexed fields instead 
 | Name | 漢字ナンクロ, 広告なし |
 | Subtitle | 大きな文字, 脳トレ, 漢字クロスワード, パズル |
 | Keywords | シニア, 頭の体操, 熟語, 語彙, 暇つぶし, 漢クロ, 脳活, 大人, 読み方, 初心者, 難読 |
-| Primary category | Word-game relevance |
-| Secondary category | Puzzle relevance |
+| Primary category | Games relevance |
+| Primary subcategory | Word-game relevance |
+| Secondary subcategory | Puzzle relevance |
 | Description / web search | Natural Japanese descriptions of 漢字ナンクロ, 漢字クロスワード, 熟語, オフライン, 買い切り |
 
 Apple states that App Store search considers text relevance from the title, subtitle, keywords, and primary category, along with user behaviour. The description is also used for web-engine search results after release, so it is written naturally for people first rather than as a keyword block.
@@ -763,11 +773,13 @@ Do not add any of the following to the listing, keywords, review notes, or IAP m
 - [ ] Name = 漢字ナンクロ 広告なし
 - [ ] Bundle ID matches final Xcode target
 - [ ] SKU locked
-- [ ] Primary category = Games → Word
-- [ ] Secondary category = Games → Puzzle
+- [ ] Primary category = Games
+- [ ] Primary subcategory = Word
+- [ ] Secondary subcategory = Puzzle
 - [ ] Made for Kids = No
 - [ ] Content Rights = Yes, rights secured
-- [ ] Standard Apple EULA
+- [ ] Standard Apple EULA selected; no custom EULA
+- [ ] Apple Standard EULA URL included in the product description
 - [ ] Regulated Medical Device = No
 
 ### Version metadata
@@ -776,9 +788,9 @@ Do not add any of the following to the listing, keywords, review notes, or IAP m
 - [ ] Promotional text entered exactly
 - [ ] Description entered exactly
 - [ ] Keywords entered exactly and remain <=100 bytes
-- [ ] Support URL is live
+- [ ] Support URL is live at https://worksbienstudios.com/apps/kanji-crossword/support/
 - [ ] Privacy Policy URL returns the published policy on the production site immediately before submission
-- [ ] Marketing URL live or left blank
+- [ ] Marketing URL is live at https://worksbienstudios.com/apps/kanji-crossword/
 - [ ] Copyright correct
 - [ ] Version = 1.0
 - [ ] App download price = Free

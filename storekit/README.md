@@ -9,7 +9,7 @@ Create exactly one In-App Purchase in App Store Connect:
 - Product ID: **com.gooduse.kanjicrossword.pro.lifetime**
 - Japan launch price hypothesis: **¥1,000**
 - Japanese display name: **全問題を買い切りで解放**
-- Japanese description: **全360問を広告なしで遊べる買い切り版です。**
+- Japanese description: **全360問を一度の購入ですべて解放**
 
 The app displays the App Store's localized live price; ¥1,000 is configured in
 App Store Connect, not embedded into the production UI.

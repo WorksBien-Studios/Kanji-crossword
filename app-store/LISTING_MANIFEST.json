@@ -1,0 +1,138 @@
+{
+  "schema_version": "1.0",
+  "mode": "listing",
+  "app": {
+    "app_id": "6817388023",
+    "bundle_id": "com.gooduse.kanjicrossword",
+    "version": "1.0",
+    "primary_locale": "ja",
+    "company_name": "WorksBien Studios Inc.",
+    "primary_category": "Games",
+    "primary_first_sub_category": "Games Word",
+    "primary_second_sub_category": "Games Puzzle",
+    "content_rights_declaration": "USES_THIRD_PARTY_CONTENT",
+    "release_type": "AFTER_APPROVAL",
+    "standard_eula_url": "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/",
+    "storefronts": [
+      "JPN"
+    ],
+    "download_price": {
+      "territory": "JPN",
+      "customer_price": "0"
+    },
+    "in_app_purchase": {
+      "type": "NON_CONSUMABLE",
+      "reference_name": "Kanji Crossword Lifetime Unlock",
+      "product_id": "com.gooduse.kanjicrossword.pro.lifetime",
+      "family_sharable": false,
+      "locale": "ja",
+      "display_name": "全問題を買い切りで解放",
+      "description": "全360問を一度の購入ですべて解放",
+      "price": {
+        "territory": "JPN",
+        "customer_price": "1000"
+      },
+      "available_territories": [
+        "JPN"
+      ],
+      "review_note": "The app is free to download with 30 complete puzzles. This non-consumable lifetime purchase unlocks the remaining bundled puzzles, for 360 accessible puzzles in total. It does not unlock the history tab, which is free for all users. Purchase: 遊ぶ → locked puzzle, or 設定 → 全問題を解放. Restore: 設定 → 購入を復元. No subscription, currency, advertising, external payment, account, or server entitlement."
+    }
+  },
+  "source_control": {
+    "fact_ledger_complete": true,
+    "facts_reconciled": true,
+    "audited_commit": "53f088a8c6843cd65a1955e1f28f87c6f56feb22",
+    "audit_date": "2026-09-30"
+  },
+  "authorization": {
+    "live_submission_authorized": false
+  },
+  "human_review": {
+    "attested": false
+  },
+  "locales": [
+    {
+      "locale": "ja-JP",
+      "claims_supported": true,
+      "name": "漢字ナンクロ 広告なし",
+      "subtitle": "大きな文字でじっくり脳トレ・漢字クロスワードパズル",
+      "promotional_text": "広告なし・サブスクなし。大きな文字でじっくり楽しめる漢字ナンクロ。30問を無料で試して、気に入ったら買い切りで全360問を解放。オフラインでも遊べます。",
+      "description": "広告に邪魔されず、大きな文字でじっくり解ける漢字ナンクロです。\n\n同じ番号のマスには同じ漢字が入ります。番号を選び、候補の漢字をタップするだけ。漢字ナンクロや漢字クロスワードが好きな方はもちろん、初めての方も自分のペースで楽しめます。\n\n【広告なしで集中】\n・広告表示なし\n・トラッキングなし\n・アカウント登録なし\n・通信なしでも遊べるオフライン設計\n\n【全360問・4段階の難易度】\n・漢字ナンクロ 240問\n・じっくり解ける大盤面 120問\n・やさしい／ふつう／むずかしい／達人\n・盤面サイズではなく、解き方の難しさに合わせた難易度\n\n【見やすく、操作しやすい】\n・大きな文字と広いタップ範囲\n・同じ番号のマスをまとめて強調\n・ピンチ操作で拡大・縮小\n・高コントラスト表示\n・iPhone／iPad対応\n\n【途中でやめても安心】\n・一手ごとの自動保存\n・回数制限のない「元に戻す」「やり直す」\n・消去、ヒント、間違い確認\n・同じ盤面位置から続きを再開\n\n【完成後もゆっくり確認】\n解き終わっても完成盤は勝手に消えません。完成した盤面を確認してから結果へ進めます。\n結果では、ヒントや確認の使用回数、修正回数、タイマーを使った場合の所要時間と自己ベスト、完成した熟語と読み方を確認できます。\n\n【30問無料・その後は買い切り】\n最初の30問は無料で遊べます。残りの問題は、アプリ内の買い切り購入で解放できます。サブスクリプションやコイン、回数券はありません。\n購入済みの場合は「購入を復元」から復元できます。\n\n収録問題は端末内に保存されているため、購入後もオフラインで遊べます。\n毎日の頭の体操や暇つぶしに、落ち着いて楽しめる漢字パズルをどうぞ。\n\n利用規約（Apple標準EULA）:\nhttps://www.apple.com/legal/internet-services/itunes/dev/stdeula/",
+      "keywords": [
+        "シニア",
+        "頭の体操",
+        "熟語",
+        "語彙",
+        "暇つぶし",
+        "漢クロ",
+        "脳活",
+        "大人",
+        "読み方",
+        "初心者",
+        "難読"
+      ],
+      "support_url": "https://worksbienstudios.com/apps/kanji-crossword/support/",
+      "marketing_url": "https://worksbienstudios.com/apps/kanji-crossword/",
+      "privacy_url": "https://worksbienstudios.com/apps/kanji-crossword/privacy/"
+    }
+  ],
+  "review": {
+    "sign_in_required": false,
+    "notes": "漢字ナンクロ 広告なし is a local-first Japanese kanji number-crossword puzzle game for iPhone and iPad. No sign-in is required.\n\nREVIEW PATH\n- The first-launch tutorial is interactive and can be completed immediately.\n- Open 遊ぶ to select a puzzle.\n- 30 complete puzzles are available free of charge across the two launch modes and four difficulty bands.\n- A locked puzzle opens the lifetime-unlock screen.\n- The same purchase screen is available from 設定 → 全問題を解放.\n- Restore Purchases is available from 設定 → 購入を復元.\n- The only IAP is the non-consumable com.gooduse.kanjicrossword.pro.lifetime.\n- There are no subscriptions, consumable currencies, advertisements, external payment links, accounts, or backend services.\n\nGAMEPLAY\nTap a numbered cell, then tap a kanji tile. All cells with the same number share the same kanji. Undo, redo, erase, hints, mistake checking, pause/resume, autosave, and exact resume are available. Expert puzzles also provide native keyboard entry.\n\nCONTENT\nThe app bundles 360 validated puzzles locally. Puzzle generation does not occur at runtime. Every shipped puzzle passed the repository's exhaustive uniqueness validator before bundling.\n\nThe bundled Japanese vocabulary/readings are derived from JMdict/EDICT, property of EDRDG, used under CC BY-SA 3.0. Only words and readings are exposed in v1; JMdict English glosses and commercial dictionary definitions are not shown. Attribution/licence information is available in the app's Licences / Third-Party Notices screen.\n\nPRIVACY AND TERMS\nThe app has no advertising, analytics, tracking, account system, developer server, or runtime AI service. Game records and preferences are stored locally. StoreKit is used for the lifetime unlock.\nPrivacy Policy: https://worksbienstudios.com/apps/kanji-crossword/privacy/\nTerms of Use (Apple Standard EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/\n\nNo special hardware, account credentials, or external service setup is required to review core gameplay.",
+    "contact_complete": false
+  },
+  "age_rating": {
+    "advertising": false,
+    "alcoholTobaccoOrDrugUseOrReferences": "NONE",
+    "contests": "NONE",
+    "gambling": false,
+    "gamblingSimulated": "NONE",
+    "gunsOrOtherWeapons": "NONE",
+    "healthOrWellnessTopics": false,
+    "lootBox": false,
+    "medicalOrTreatmentInformation": "NONE",
+    "messagingAndChat": false,
+    "parentalControls": false,
+    "profanityOrCrudeHumor": "NONE",
+    "ageAssurance": false,
+    "sexualContentGraphicAndNudity": "NONE",
+    "sexualContentOrNudity": "NONE",
+    "socialMedia": false,
+    "socialMediaAgeRestricted": false,
+    "horrorOrFearThemes": "NONE",
+    "matureOrSuggestiveThemes": "NONE",
+    "unrestrictedWebAccess": false,
+    "userGeneratedContent": false,
+    "violenceCartoonOrFantasy": "NONE",
+    "violenceRealisticProlongedGraphicOrSadistic": "NONE",
+    "violenceRealistic": "NONE",
+    "ageRatingOverrideV2": "NONE",
+    "koreaAgeRatingOverride": "NONE"
+  },
+  "privacy": {
+    "data_collected": false,
+    "tracking": false,
+    "privacy_choices_url": null
+  },
+  "compliance_controls": {
+    "claims_match_binary": {
+      "status": "pass"
+    },
+    "privacy_manifest_reconciled": {
+      "status": "pass"
+    },
+    "policy_urls_match": {
+      "status": "pass"
+    },
+    "standard_eula": {
+      "status": "pass"
+    },
+    "third_party_rights_attributed": {
+      "status": "pass"
+    },
+    "screenshots_authentic_current": {
+      "status": "pending_media"
+    }
+  },
+  "screenshots": []
+}
