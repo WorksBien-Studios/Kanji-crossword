@@ -1,0 +1,5 @@
+Trigger TestFlight after fresh listing sync.
+Fresh ASC app: 6817887911
+Fresh bundle: com.gooduse.kanjicrossword.jp
+Fresh IAP: com.gooduse.kanjicrossword.jp.pro.lifetime
+Triggered: 2026-09-30T20:32:00Z
