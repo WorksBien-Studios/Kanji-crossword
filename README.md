@@ -49,7 +49,7 @@ No ads. Large, readable kanji puzzles you can enjoy at your own pace.
 - Regionally narrow, obsolete, violent, or unnatural vocabulary excluded unless clearly labelled in Expert mode.
 - Difficulty based on a solver score: number of forced moves, branching choices, word familiarity, and provided starter letters.
 - V1 word review ships verified readings only. Explanations may be added later only from original, separately reviewed copy or properly licensed open data; never copy commercial dictionary definitions.
-- Local-first storage with optional native iCloud backup and complete progress export.
+- Local-first storage with native device backup where enabled.
 - Offline daily puzzle generated from a bundled, versioned puzzle set—no server dependency.
 
 ### Content and quality engine
@@ -78,7 +78,7 @@ One competitor is praised for restrained advertising and a curated set of 255 pu
 
 - Free: 30 complete puzzles spanning all launch modes and four difficulties, with no advertising.
 - Lifetime unlock: **¥1,000** Japan price hypothesis, implemented as one non-consumable purchase and displayed in-app using StoreKit's localized live price.
-- Lifetime includes the full launch library, all modes, history, statistics, backup, and export.
+- Lifetime includes the full launch library and all modes. History and statistics remain available to free users.
 - Future themed puzzle packs can be separate permanent purchases only if they contain substantial newly reviewed content.
 - After the fifth completion, show only a non-blocking unlock card on the result screen. Present the purchase sheet when the player deliberately opens a locked puzzle. Never interrupt an active puzzle.
 
@@ -136,8 +136,8 @@ The earlier working name **漢字ナンクロ やさしい版** is rejected. It 
 6. **Recover safely:** every move autosaves. Provide unlimited undo/redo, erase, pause and a deliberate `最初から` action with confirmation. A mistaken move never destroys unrelated progress.
 7. **Help without punishment:** hints reveal one logically justified placement and explain why. Hints are unlimited but counted in the result. `間違いを確認` is user-triggered and never silently changes the board.
 8. **Finish without losing the moment:** on completion, freeze the completed board, add a quiet haptic and show `完成盤を見る` / `結果を見る`. Never replace the board automatically.
-9. **Results:** show time only when the timer was enabled, hints, checks, personal best and every completed word. A word opens its verified reading; definitions are deferred until separately editorially verified.
-10. **Continue:** offer `次の問題`, `完成盤を保存`, and `問題一覧へ`. Archive the completed grid permanently in the offline history calendar.
+9. **Results:** show time only when the timer was enabled, corrections, hints, checks, personal best and every completed word. A word opens its verified reading; definitions are deferred until separately editorially verified.
+10. **Continue:** automatically archive the completed grid in the offline history calendar, then offer `次の問題` and `問題一覧へ` without requiring a separate save step.
 11. **Purchase:** after the fifth free completion, add a non-blocking unlock card to results. The actual purchase sheet appears only after an explicit unlock action or selection of a locked puzzle. Include Restore Purchases and the StoreKit-localized price.
 
 ### Navigation and screen structure
@@ -145,7 +145,7 @@ The earlier working name **漢字ナンクロ やさしい版** is rejected. It 
 - iPhone: iOS 18 `TabView` with **遊ぶ / 記録 / 設定**.
 - iPad: the same tabs; **遊ぶ** and **記録** use `NavigationSplitView` so the puzzle list/history stays in the sidebar and the board/result appears in detail.
 - Active play is a focused workspace. The board, kanji tray and essential controls stay on one screen; secondary settings live in a sheet.
-- `設定` contains text size, contrast, sound, haptics, timer default, mistake-check preference, local notification, export, Restore Purchases, privacy, support and licences.
+- `設定` contains text size, contrast, haptics, timer default, Restore Purchases, privacy and licences. Mistake checking remains a deliberate in-game action. Reminders and manual export are deferred from v1.
 
 ### Content allocation
 
@@ -178,10 +178,10 @@ The 30-puzzle free set must sample both launch modes and every difficulty band. 
 | Content | Bundled, versioned `puzzles-v2.json` plus SHA-256 manifest; schema-v2 content-addressed IDs; no runtime generation or server fetch |
 | UI | SwiftUI, iOS 18 `TabView`, `NavigationSplitView`, native sheets/alerts, `LazyVGrid`/`Grid` board with zoomable two-axis scrolling and semantic cell accessibility |
 | State | Reducer-style immutable `GameState` and explicit actions; UI observes a single game session store |
-| Persistence | SwiftData for progress, history, preferences and saved immutable puzzle snapshots; system device backup where enabled plus manual JSON export through the share sheet |
+| Persistence | SwiftData for progress, history, preferences and saved immutable puzzle snapshots; system device backup where enabled |
 | Commerce | StoreKit 2 non-consumable lifetime unlock, verified transactions, current entitlements, a verified offline entitlement snapshot, restore path and StoreKit test configuration |
-| Notifications | Local `UNUserNotificationCenter` reminder only; no push server |
-| Platform features | `sensoryFeedback`, Dynamic Type, VoiceOver, high contrast, system share sheet and CryptoKit SHA-256 |
+| Notifications | Not used in v1; no notification permission or push server |
+| Platform features | `sensoryFeedback`, Dynamic Type, VoiceOver, high contrast and CryptoKit SHA-256 |
 | Testing | Swift Testing for engine/property tests; XCUITest for tutorial, autosave/resume, completion, purchase/restore and iPhone/iPad navigation; CI on Linux for the pure engine and current stable Xcode on macOS for app builds |
 
 Do not use SpriteKit, a third-party game engine, a database server, ad SDKs, analytics SDKs or Foundation Models at runtime. The interaction is grid-and-text based; native SwiftUI is simpler, more accessible and sufficient.
