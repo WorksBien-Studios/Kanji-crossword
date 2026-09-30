@@ -5,6 +5,12 @@ on:
     tags:
       - "testflight-v*"
   workflow_dispatch:
+    inputs:
+      existing_build_number:
+        description: Existing processed build to deliver/attach without rebuilding
+        required: false
+        type: string
+        default: ""
 
 permissions:
   actions: read
@@ -13,6 +19,7 @@ permissions:
 
 jobs:
   testflight:
+    if: ${{ inputs.existing_build_number == '' }}
     uses: WorksBien-Studios/.github/.github/workflows/ios-testflight.yml@d7874aef0f95e6fe04defcca26d0a101b7cc3243
     with:
       validated_sha: ${{ github.sha }}
@@ -20,3 +27,51 @@ jobs:
       ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
       ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
       ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+
+  delivery-repair:
+    name: Deliver and attach existing build
+    if: ${{ inputs.existing_build_number != '' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+      ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+      ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+      EXPECTED_ASC_KEY_ID: ${{ vars.ASC_EXPECTED_KEY_ID }}
+      EXPECTED_ASC_ISSUER_ID: ${{ vars.ASC_EXPECTED_ISSUER_ID }}
+      BUILD_NUMBER: ${{ inputs.existing_build_number }}
+    steps:
+      - name: Check out delivery repair
+        uses: actions/checkout@v4
+
+      - name: Verify mapped organization credential route
+        run: |
+          set -euo pipefail
+          [[ "$BUILD_NUMBER" =~ ^[1-9][0-9]*$ ]]
+          [[ -n "$ASC_KEY_ID" && -n "$ASC_ISSUER_ID" && -n "$ASC_PRIVATE_KEY" ]]
+          python3 - <<'PY'
+          import json, os, pathlib
+          data = json.loads(pathlib.Path('.github/testflight-app-map.json').read_text())
+          if data.get('state') != 'ready': raise SystemExit('TestFlight map is not release-ready.')
+          if data['repository'] != os.environ['GITHUB_REPOSITORY']: raise SystemExit('Repository does not match app map.')
+          if os.environ['ASC_KEY_ID'] != data['asc_key_id'] or os.environ['ASC_KEY_ID'] != os.environ['EXPECTED_ASC_KEY_ID']: raise SystemExit('Mapped key ID mismatch.')
+          if os.environ['ASC_ISSUER_ID'] != data['asc_issuer_id'] or os.environ['ASC_ISSUER_ID'] != os.environ['EXPECTED_ASC_ISSUER_ID']: raise SystemExit('Mapped issuer ID mismatch.')
+          values = {
+              'ASC_APP_ID': data['asc_app_id'],
+              'BETA_GROUP_ID': data['beta_group_id'],
+              'IOS_BUNDLE_ID': data['bundle_id'],
+              'LISTING_PLATFORM': data['listing_platform'],
+              'MARKETING_VERSION': data['marketing_version'],
+          }
+          with open(os.environ['GITHUB_ENV'], 'a') as output:
+              for key, value in values.items(): output.write(f'{key}={value}\n')
+          PY
+
+      - name: Deliver and attach exact existing build
+        run: |
+          set -euo pipefail
+          key_path="$RUNNER_TEMP/AuthKey_${ASC_KEY_ID}.p8"
+          umask 077
+          printf '%s' "$ASC_PRIVATE_KEY" > "$key_path"
+          chmod 600 "$key_path"
+          ASC_KEY_PATH="$key_path" ruby scripts/asc_delivery.rb

@@ -71,8 +71,19 @@ end
 abort "Build #{BUILD_NUMBER} did not finish processing within 30 minutes." unless build
 build_id = build.fetch("id")
 
-relationship = { data: [{ type: "builds", id: build_id }] }
-request(:post, "/v1/betaGroups/#{BETA_GROUP_ID}/relationships/builds", body: relationship, allow: [409])
+group = json_get("/v1/betaGroups/#{BETA_GROUP_ID}").fetch("data")
+group_attributes = group.fetch("attributes")
+group_app = json_get("/v1/betaGroups/#{BETA_GROUP_ID}/app").fetch("data")
+abort "Mapped beta group belongs to a different app." unless group_app.fetch("id") == APP_ID
+
+automatic_internal_group =
+  group_attributes.fetch("isInternalGroup", false) &&
+  group_attributes.fetch("hasAccessToAllBuilds", false)
+
+unless automatic_internal_group
+  relationship = { data: [{ type: "builds", id: build_id }] }
+  request(:post, "/v1/betaGroups/#{BETA_GROUP_ID}/relationships/builds", body: relationship, allow: [409])
+end
 
 query = URI.encode_www_form("filter[platform]" => PLATFORM, "filter[versionString]" => VERSION, "limit" => "20")
 versions = json_get("/v1/apps/#{APP_ID}/appStoreVersions?#{query}").fetch("data")
@@ -81,8 +92,16 @@ abort "Expected one editable #{PLATFORM} version #{VERSION}; found #{editable.le
 version_id = editable.first.fetch("id")
 request(:patch, "/v1/appStoreVersions/#{version_id}/relationships/build", body: { data: { type: "builds", id: build_id } })
 
-group_builds = json_get("/v1/betaGroups/#{BETA_GROUP_ID}/relationships/builds?limit=200").fetch("data")
-abort "Build was not assigned to the mapped beta group." unless group_builds.any? { |item| item.fetch("id") == build_id }
+group_has_build = false
+6.times do |attempt|
+  group_builds = json_get("/v1/betaGroups/#{BETA_GROUP_ID}/relationships/builds?limit=200").fetch("data")
+  if group_builds.any? { |item| item.fetch("id") == build_id }
+    group_has_build = true
+    break
+  end
+  sleep 10 unless attempt == 5
+end
+abort "Build was not available to the mapped beta group." unless group_has_build
 attached = json_get("/v1/appStoreVersions/#{version_id}/relationships/build").fetch("data")
 abort "Build was not attached to the matching listing version." unless attached && attached.fetch("id") == build_id
 
@@ -95,5 +114,6 @@ puts JSON.generate({
   beta_group_id: BETA_GROUP_ID,
   listing_version_id: version_id,
   beta_delivery: "verified",
+  beta_delivery_mode: automatic_internal_group ? "automatic-internal" : "explicit-assignment",
   listing_attachment: "verified"
 })
