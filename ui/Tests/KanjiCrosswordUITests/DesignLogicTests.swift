@@ -140,4 +140,36 @@ struct DesignLogicTests {
         #expect(PuzzleSequence.next(after: "a", in: list) { $0.id == "a" } == nil)
         #expect(PuzzleSequence.next(after: "zzz", in: list) { _ in true } == nil)
     }
+
+    @Test("Correction count includes only wrong-to-right replacements")
+    func correctionCount() {
+        var state = GameState(puzzle: puzzle, timerEnabled: false)
+        state.undoStack = [
+            MoveRecord(number: 2, previousKanji: nil, newKanji: "語"),
+            MoveRecord(number: 2, previousKanji: "語", newKanji: "日"),
+            MoveRecord(number: 2, previousKanji: "日", newKanji: "本")
+        ]
+        #expect(ResultMetrics.correctionCount(state: state, puzzle: puzzle) == 1)
+    }
+
+    @Test("Personal best uses completed timed attempts of the same puzzle")
+    func personalBest() {
+        func completed(id: String, seconds: TimeInterval, timed: Bool = true) -> GameState {
+            let candidate = makePuzzle(id: id)
+            var state = GameState(puzzle: candidate, timerEnabled: timed)
+            state.status = .completed
+            state.elapsedBeforeCurrentRun = seconds
+            state.completedAt = Date()
+            state.timerRunningSince = nil
+            return state
+        }
+
+        let states = [
+            completed(id: "a", seconds: 95),
+            completed(id: "a", seconds: 70),
+            completed(id: "a", seconds: 40, timed: false),
+            completed(id: "b", seconds: 10)
+        ]
+        #expect(ResultMetrics.personalBest(puzzleID: "a", states: states) == 70)
+    }
 }
