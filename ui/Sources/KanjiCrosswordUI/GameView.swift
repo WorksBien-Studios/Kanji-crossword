@@ -41,12 +41,13 @@ struct GameView: View {
     // can resolve each one in reasonable time.
     private var chrome: some View {
         GeometryReader { proxy in
-            let wide = proxy.size.width >= 720
+            let layout = PlayLayout.make(paneSize: proxy.size)
             ZStack {
-                if wide {
-                    wideLayout
-                } else {
-                    compactLayout
+                switch layout.mode {
+                case .sideBySide:
+                    wideLayout(layout)
+                case .stacked:
+                    compactLayout(layout)
                 }
 
                 if model.state.status == .paused {
@@ -197,24 +198,32 @@ struct GameView: View {
 
     // MARK: Layouts
 
-    /// iPhone and narrow panes: strip, board, then actions and tiles.
-    private var compactLayout: some View {
+    /// iPhone and iPad one column: strip, board, then actions and tiles.
+    private func compactLayout(_ layout: PlayLayout) -> some View {
         VStack(spacing: 0) {
             GameStripView(
                 model: model,
                 banner: banner,
                 onDismissBanner: dismissBanner
             )
-            GameBoardView(model: model, flagged: flagged)
-            bottomPanel(trayColumns: 5, gridActions: false)
+            GameBoardView(
+                model: model,
+                flagged: flagged,
+                boardPadding: layout.boardPadding
+            )
+            bottomPanel(layout, gridActions: false)
         }
     }
 
-    /// iPad and wide panes: the board in the middle and a side panel holding
+    /// iPad two column and landscape: the board beside a side panel holding
     /// the words, actions and tiles so hands never cover the board.
-    private var wideLayout: some View {
+    private func wideLayout(_ layout: PlayLayout) -> some View {
         HStack(spacing: 0) {
-            GameBoardView(model: model, flagged: flagged)
+            GameBoardView(
+                model: model,
+                flagged: flagged,
+                boardPadding: layout.boardPadding
+            )
             Divider()
             ScrollView {
                 VStack(spacing: 12) {
@@ -224,17 +233,17 @@ struct GameView: View {
                         onDismissBanner: dismissBanner,
                         wrapsChips: true
                     )
-                    bottomPanel(trayColumns: 4, gridActions: true)
+                    bottomPanel(layout, gridActions: true)
                 }
                 .padding(.vertical, 14)
             }
-            .frame(width: 320)
+            .frame(width: PlayLayout.sidePanelWidth)
             .background(KanjiTheme.bar)
         }
     }
 
     @ViewBuilder
-    private func bottomPanel(trayColumns: Int, gridActions: Bool) -> some View {
+    private func bottomPanel(_ layout: PlayLayout, gridActions: Bool) -> some View {
         switch model.state.status {
         case .active:
             VStack(spacing: 4) {
@@ -242,9 +251,14 @@ struct GameView: View {
                     model: model,
                     grid: gridActions,
                     onHint: { model.send(.requestHint) },
-                    onCheck: { model.send(.checkMistakes) }
+                    onCheck: { model.send(.checkMistakes) },
+                    minHeight: layout.actionHeight
                 )
-                AnswerTrayView(model: model, columnCount: trayColumns)
+                AnswerTrayView(
+                    model: model,
+                    columnCount: layout.trayColumns,
+                    tileHeight: layout.tileHeight
+                )
             }
             .padding(.top, gridActions ? 0 : 4)
             .background(gridActions ? Color.clear : KanjiTheme.bar)
@@ -272,7 +286,7 @@ struct GameView: View {
         VStack(spacing: 16) {
             Text("一時停止中")
                 .font(.system(size: 28, weight: .bold, design: .serif))
-            Text("盤面は隠しています。用意ができたら再開してください。")
+            Text("盤面は隠れています。準備ができたら再開してください。")
                 .foregroundStyle(KanjiTheme.inkSecondary)
                 .multilineTextAlignment(.center)
             Button("再開する") {
@@ -314,8 +328,8 @@ struct GameView: View {
             } else {
                 banner = GameBanner(
                     kind: .warning,
-                    text: "見直す番号: " + numbers.map(String.init).joined(separator: "、")
-                        + "。点線のマスです。入力は消していません。"
+                    text: "見直したい番号：" + numbers.map(String.init).joined(separator: "、")
+                        + "。点線のマスを確認してください。入力は消していません。"
                 )
             }
         case .hint(let hint):
@@ -333,7 +347,7 @@ struct GameView: View {
             case .validatedUniqueSolution:
                 banner = GameBanner(
                     kind: .info,
-                    text: "唯一の解から、番号\(hint.number)は「\(hint.kanji)」です。"
+                    text: "答えは一つに決まるため、番号\(hint.number)は「\(hint.kanji)」です。"
                 )
             }
         }
@@ -371,7 +385,7 @@ struct GameStripView: View {
             } else if let selected = model.state.selectedNumber {
                 wordStrip(selected: selected)
             } else {
-                Text("マスを選ぶと、つながる熟語が出ます。")
+                Text("マスをタップすると、つながる熟語が表示されます。")
                     .font(.body)
                     .foregroundStyle(KanjiTheme.inkSecondary)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -569,6 +583,7 @@ struct GameActionBar: View {
     let grid: Bool
     let onHint: () -> Void
     let onCheck: () -> Void
+    var minHeight: CGFloat = 60
 
     var body: some View {
         let active = model.state.status == .active
@@ -610,7 +625,7 @@ struct GameActionBar: View {
             }
             .disabled(!canErase)
         }
-        .buttonStyle(KanjiActionButtonStyle(bordered: grid))
+        .buttonStyle(KanjiActionButtonStyle(bordered: grid, minHeight: minHeight))
 
         items
             .padding(.horizontal, grid ? 16 : 8)

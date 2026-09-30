@@ -6,10 +6,11 @@ import KanjiGameCore
 struct AnswerTrayView: View {
     @ObservedObject var model: GameSessionViewModel
     var columnCount = 5
+    var tileHeight: CGFloat = 54
 
     var body: some View {
         let used = Set(model.state.entries.values)
-        let height = 54 * CGFloat(model.preferences.textScale)
+        let height = tileHeight * CGFloat(model.preferences.textScale)
 
         LazyVGrid(
             columns: Array(

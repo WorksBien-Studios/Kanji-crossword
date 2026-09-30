@@ -128,7 +128,7 @@ struct ResultsView: View {
             Text(span.reading)
                 .font(.title3.bold())
                 .foregroundStyle(KanjiTheme.accentText)
-            Text("押した熟語のマスが黄色になります。")
+            Text("タップした熟語のマスが黄色になります。")
                 .font(.footnote)
                 .foregroundStyle(KanjiTheme.inkSecondary)
         }
@@ -183,10 +183,10 @@ struct ResultsView: View {
     private func unlockCard(_ onUnlockRequested: @escaping () -> Void) -> some View {
         KanjiCard {
             VStack(alignment: .leading, spacing: 8) {
-                Text("広告なしで、続きも。")
+                Text("続きも、広告なしで。")
                     .font(.headline)
                     .foregroundStyle(KanjiTheme.ink)
-                Text("無料版は30問までです。買い切り版なら、残りの問題もオフラインで遊べます。")
+                Text("無料で遊べるのは30問までです。買い切り版なら、残りの問題もすべて遊べます。")
                     .font(.subheadline)
                     .foregroundStyle(KanjiTheme.inkSecondary)
                 Button {

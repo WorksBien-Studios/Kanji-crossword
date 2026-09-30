@@ -32,7 +32,7 @@ public struct TutorialView: View {
                     VStack(spacing: 24) {
                         tutorialHeading(
                             "2. 漢字を選ぶ",
-                            detail: "下の大きな漢字をひとつ押すだけ。ドラッグは、いりません。"
+                            detail: "下の大きな漢字をタップするだけ。ドラッグは不要です。"
                         )
                         MiniBoard(selected: true, kanji: nil) {}
                         HStack {
