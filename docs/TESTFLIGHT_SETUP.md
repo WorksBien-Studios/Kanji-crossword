@@ -26,10 +26,10 @@ The minimal App Store Connect record, explicit bundle ID, and internal TestFligh
 The workflow cannot allocate a paid macOS runner until `.github/testflight-app-map.json` has `state: ready` and contains:
 
 1. the exact non-secret API key ID and issuer ID;
-2. the committed Xcode project/workspace path and type;
-3. the shared app scheme.
+2. ~~the committed Xcode project/workspace path and type;~~ done: `app/KanjiCrossword.xcodeproj`;
+3. ~~the shared app scheme;~~ done: `KanjiCrossword`.
 
-The release workflow is locked to automatic signing with Apple Distribution export. It does not use ad-hoc signing or mutable provisioning-profile names. This repository currently has package-level iOS code but no committed distributable app project/workspace and shared app scheme, so the blocker is intentional.
+The release workflow is locked to automatic signing with Apple Distribution export. It does not use ad-hoc signing or mutable provisioning-profile names. The app project (`app/KanjiCrossword.xcodeproj`, regenerable with `scripts/generate_xcodeproj.rb`) is committed; the remaining blocker is the App Store Connect credential route.
 
 ## GitHub Actions credentials
 

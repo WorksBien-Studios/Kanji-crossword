@@ -1,0 +1,371 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02A63B516B31293597B110AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 984CB752C0C87C267097BD14 /* Foundation.framework */; };
+		105923FD0B803C20D97D7C65 /* puzzles-v2.json in Resources */ = {isa = PBXBuildFile; fileRef = 724C70D6C2DD3238852E5208 /* puzzles-v2.json */; };
+		181F69C48A2587D3317F58E2 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = CB7CF4052D4431D8B7618D5E /* PrivacyInfo.xcprivacy */; };
+		320A1F76D27F6495F270B90F /* KanjiCrosswordUI in Frameworks */ = {isa = PBXBuildFile; productRef = 427401F65EDA6EF8E6531089 /* KanjiCrosswordUI */; };
+		D739AD26EDFB0812251D6F9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A32BA494E279442867F4B062 /* Assets.xcassets */; };
+		EE105DCCD5F56051312341D3 /* KanjiCrosswordApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2D7B3A614B093CD67FF23F /* KanjiCrosswordApp.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		724C70D6C2DD3238852E5208 /* puzzles-v2.json */ = {isa = PBXFileReference; includeInIndex = 1; name = "puzzles-v2.json"; path = "../content/puzzles-v2.json"; sourceTree = "<group>"; };
+		86373A850A1571B4DB6967B0 /* KanjiCrossword.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KanjiCrossword.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		984CB752C0C87C267097BD14 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		A32BA494E279442867F4B062 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ADF70E55A046F6771AA0C188 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB7CF4052D4431D8B7618D5E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		DB2D7B3A614B093CD67FF23F /* KanjiCrosswordApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KanjiCrosswordApp.swift; sourceTree = "<group>"; };
+		EB6D0E181D930F5A7E55D45A /* Products.storekit */ = {isa = PBXFileReference; includeInIndex = 1; name = Products.storekit; path = ../storekit/Products.storekit; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2725814CC6EC782B8A457350 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02A63B516B31293597B110AC /* Foundation.framework in Frameworks */,
+				320A1F76D27F6495F270B90F /* KanjiCrosswordUI in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		681C6645407A409E53BC9DC1 = {
+			isa = PBXGroup;
+			children = (
+				AD22AAD27DDBD085D04685C5 /* Products */,
+				C7A46C099B34CE82EE57DCF0 /* Frameworks */,
+				A91A28AE5E983B3BE0B81653 /* KanjiCrossword */,
+				724C70D6C2DD3238852E5208 /* puzzles-v2.json */,
+				EB6D0E181D930F5A7E55D45A /* Products.storekit */,
+			);
+			sourceTree = "<group>";
+		};
+		A91A28AE5E983B3BE0B81653 /* KanjiCrossword */ = {
+			isa = PBXGroup;
+			children = (
+				DB2D7B3A614B093CD67FF23F /* KanjiCrosswordApp.swift */,
+				A32BA494E279442867F4B062 /* Assets.xcassets */,
+				CB7CF4052D4431D8B7618D5E /* PrivacyInfo.xcprivacy */,
+				ADF70E55A046F6771AA0C188 /* Info.plist */,
+			);
+			name = KanjiCrossword;
+			path = KanjiCrossword;
+			sourceTree = "<group>";
+		};
+		AD22AAD27DDBD085D04685C5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				86373A850A1571B4DB6967B0 /* KanjiCrossword.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C7A46C099B34CE82EE57DCF0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D8E12AF57F3379ED3DE5EC42 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D8E12AF57F3379ED3DE5EC42 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				984CB752C0C87C267097BD14 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9DAFDCC94D3716D3F78E1A3A /* KanjiCrossword */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8928455D021F7B7B3B95F5E4 /* Build configuration list for PBXNativeTarget "KanjiCrossword" */;
+			buildPhases = (
+				59DC7ACD1C973B94626B0B33 /* Sources */,
+				2725814CC6EC782B8A457350 /* Frameworks */,
+				F8E5D09BE8394C591FC096BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KanjiCrossword;
+			packageProductDependencies = (
+				427401F65EDA6EF8E6531089 /* KanjiCrosswordUI */,
+			);
+			productName = KanjiCrossword;
+			productReference = 86373A850A1571B4DB6967B0 /* KanjiCrossword.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6F458FB2C0BE8A252218901E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+			};
+			buildConfigurationList = CBB2CE95C1D4505B1E7CB9AD /* Build configuration list for PBXProject "KanjiCrossword" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = ja;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				ja,
+				en,
+				Base,
+			);
+			mainGroup = 681C6645407A409E53BC9DC1;
+			minimizedProjectReferenceProxies = 0;
+			packageReferences = (
+				6F3FAFD29EDF87C24FDA0485 /* XCLocalSwiftPackageReference "ui" */,
+			);
+			preferredProjectObjectVersion = 100;
+			productRefGroup = AD22AAD27DDBD085D04685C5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9DAFDCC94D3716D3F78E1A3A /* KanjiCrossword */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F8E5D09BE8394C591FC096BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D739AD26EDFB0812251D6F9F /* Assets.xcassets in Resources */,
+				181F69C48A2587D3317F58E2 /* PrivacyInfo.xcprivacy in Resources */,
+				105923FD0B803C20D97D7C65 /* puzzles-v2.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		59DC7ACD1C973B94626B0B33 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE105DCCD5F56051312341D3 /* KanjiCrosswordApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1428D76CB3DD8E90109D3095 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		28FF5F1FEA2E36307D4B6333 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		CBBB571B80F740DDBDB671BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 49SQ3XQ68Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KanjiCrossword/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gooduse.kanjicrossword;
+				PRODUCT_NAME = KanjiCrossword;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FCE14BDE1D3E83470CF3A0C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 49SQ3XQ68Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KanjiCrossword/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gooduse.kanjicrossword;
+				PRODUCT_NAME = KanjiCrossword;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8928455D021F7B7B3B95F5E4 /* Build configuration list for PBXNativeTarget "KanjiCrossword" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FCE14BDE1D3E83470CF3A0C7 /* Release */,
+				CBBB571B80F740DDBDB671BA /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CBB2CE95C1D4505B1E7CB9AD /* Build configuration list for PBXProject "KanjiCrossword" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1428D76CB3DD8E90109D3095 /* Debug */,
+				28FF5F1FEA2E36307D4B6333 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		6F3FAFD29EDF87C24FDA0485 /* XCLocalSwiftPackageReference "ui" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../ui;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		427401F65EDA6EF8E6531089 /* KanjiCrosswordUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6F3FAFD29EDF87C24FDA0485 /* XCLocalSwiftPackageReference "ui" */;
+			productName = KanjiCrosswordUI;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 6F458FB2C0BE8A252218901E /* Project object */;
+}
