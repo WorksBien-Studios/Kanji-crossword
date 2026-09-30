@@ -94,17 +94,14 @@ jobs:
               next
             end
 
-            versions = get_all("/v1/apps/#{app_id}/appStoreVersions?limit=20&include=appStoreVersionSubmission", token)
+            versions = get_all("/v1/apps/#{app_id}/appStoreVersions?limit=20", token)
             versions.each do |version|
               state = version.dig('attributes', 'appStoreState')
               next unless active_states.include?(state)
 
               version_id = version.fetch('id')
-              submission_id = version.dig('relationships', 'appStoreVersionSubmission', 'data', 'id')
-              unless submission_id
-                sub = request('Get', "/v1/appStoreVersions/#{version_id}/appStoreVersionSubmission", token)
-                submission_id = sub.dig('data', 'id')
-              end
+              sub = request('Get', "/v1/appStoreVersions/#{version_id}/appStoreVersionSubmission", token)
+              submission_id = sub.dig('data', 'id')
 
               if submission_id
                 puts "Rejecting #{name} app=#{app_id} version=#{version_id} state=#{state} submission=#{submission_id}"
