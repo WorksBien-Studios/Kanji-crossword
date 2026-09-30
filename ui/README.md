@@ -67,6 +67,32 @@ Rules that came out of the analysis:
 - The tab bar is hidden while playing on compact width.
 - The records tab is a stamp calendar. It shows days played, never a streak.
 
+## Device layouts
+
+Layout is pure Swift in `PlayLayout.swift` and is locked by
+`PlayLayoutTests`. Cell sizes are the same `BoardFit` rule the board uses at
+runtime, so the numbers below are checked, not drawn.
+
+| Device (pt) | Layout | Cell | Tray | Actions |
+|---|---|---|---|---|
+| iPhone 393 × 852 | one column, tab bar hidden while playing | 40 | 6 × 50 | 5 × 60 |
+| iPad mini 744 × 1133 upright | **one column**: list, then board over actions and tray | 73 | 8 × 64 | 5 × 72 |
+| iPad 11-inch 1194 × 834 landscape | **two column**: 340 sidebar, board, 320 panel | 55 | 4 × 54 | 3 × 2 × 60 |
+
+- Below 800pt a regular-width iPad uses a `NavigationStack` (list, then board)
+  with the list held to a 640pt readable width. From 800pt it uses
+  `NavigationSplitView` with a 340pt sidebar.
+- The side panel appears only when the pane is at least 760pt wide **and**
+  landscape. Upright panes stack, so the board is never squeezed by a panel.
+- All 23 answer tiles stay visible (used ones dashed). Six 50pt tiles per row
+  on iPhone keep the tray at 240pt so the board holds its 40pt floor.
+- Board padding is 6pt on iPhone and 10pt on iPad.
+- The iOS 18 iPad floating top tab bar (50pt) is part of the vertical budget.
+
+`LayoutPreviews.swift` (DEBUG) renders the real screens: three full-app
+previews (choose iPhone 16, iPad mini upright, iPad Pro 11-inch landscape in
+the canvas footer) and three play-screen previews at exact pane sizes.
+
 ## Design rules
 
 - No third-party UI dependency is introduced.

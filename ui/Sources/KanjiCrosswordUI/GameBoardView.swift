@@ -5,6 +5,8 @@ struct GameBoardView: View {
     @ObservedObject var model: GameSessionViewModel
     /// Numbers the player asked to have checked and that are still wrong.
     var flagged: Set<Int> = []
+    /// 6pt on iPhone so nine columns fit at 40pt; 10pt on iPad.
+    var boardPadding: CGFloat = 10
 
     @ScaledMetric(relativeTo: .body) private var baseScale: CGFloat = 1
     @GestureState private var gestureMagnification = 1.0
@@ -12,8 +14,7 @@ struct GameBoardView: View {
     @State private var didRestoreViewport = false
     @State private var fitCellSize: CGFloat = 46
 
-    private let spacing: CGFloat = 2
-    private let boardPadding: CGFloat = 10
+    private let spacing = BoardFit.spacing
 
     var body: some View {
         let insights = BoardInsights(puzzle: model.puzzle)
@@ -117,11 +118,12 @@ struct GameBoardView: View {
 
     private func fittedCellSize(for containerSize: CGSize) -> CGFloat {
         guard containerSize.width > 0, containerSize.height > 0 else { return fitCellSize }
-        let columns = CGFloat(max(model.puzzle.columns, 1))
-        let rows = CGFloat(max(model.puzzle.rows, 1))
-        let byWidth = (containerSize.width - 2 * boardPadding - spacing * (columns - 1)) / columns
-        let byHeight = (containerSize.height - 2 * boardPadding - spacing * (rows - 1)) / rows
-        return min(max(min(byWidth, byHeight), 40), 84)
+        return BoardFit.cellSize(
+            container: containerSize,
+            columns: model.puzzle.columns,
+            rows: model.puzzle.rows,
+            padding: boardPadding
+        )
     }
 
     private func restoreViewportIfNeeded(containerSize: CGSize, fitted: CGFloat) {

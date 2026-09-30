@@ -172,21 +172,23 @@ struct KanjiTileButtonStyle: ButtonStyle {
 /// Icon over a text label. The label is always visible: no icon-only controls.
 struct KanjiActionButtonStyle: ButtonStyle {
     var bordered = false
+    var minHeight: CGFloat = 60
 
     func makeBody(configuration: Configuration) -> some View {
-        StyleBody(configuration: configuration, bordered: bordered)
+        StyleBody(configuration: configuration, bordered: bordered, minHeight: minHeight)
     }
 
     private struct StyleBody: View {
         let configuration: ButtonStyleConfiguration
         let bordered: Bool
+        let minHeight: CGFloat
         @Environment(\.isEnabled) private var isEnabled
 
         var body: some View {
             configuration.label
                 .font(.footnote.bold())
                 .foregroundStyle(KanjiTheme.accentText)
-                .frame(maxWidth: .infinity, minHeight: 60)
+                .frame(maxWidth: .infinity, minHeight: minHeight)
                 .background(
                     RoundedRectangle(cornerRadius: 14, style: .continuous)
                         .fill(bordered ? KanjiTheme.card : Color.clear)

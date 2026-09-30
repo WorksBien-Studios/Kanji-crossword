@@ -20,6 +20,17 @@ public struct PlayRootView: View {
     @State private var completedIDs: Set<String> = []
     @State private var completionDates: [Date] = []
     @State private var showTutorial = false
+    @State private var paneWidth: CGFloat = 0
+    @State private var oneColumnDetailShown = false
+
+    /// A regular-width iPad narrower than 800pt (iPad mini upright) shows the
+    /// puzzle list and the board as two full-width steps. Wider panes get the
+    /// split view, where the list stays in a 340pt sidebar.
+    private var usesOneColumn: Bool {
+        horizontalSizeClass == .regular
+            && paneWidth > 0
+            && paneWidth < PlayLayout.oneColumnMaxWidth
+    }
 
     public init(
         catalog: PuzzleCatalog,
@@ -36,20 +47,17 @@ public struct PlayRootView: View {
     }
 
     public var body: some View {
-        NavigationSplitView(preferredCompactColumn: $compactColumn) {
-            sidebar
-                .navigationTitle("遊ぶ")
-                .background(KanjiTheme.canvas)
-                .toolbar {
-                    ToolbarItem(placement: .primaryAction) {
-                        Button("遊び方") {
-                            showTutorial = true
-                        }
-                        .fontWeight(.bold)
-                    }
-                }
-        } detail: {
-            detail
+        Group {
+            if usesOneColumn {
+                oneColumn
+            } else {
+                splitView
+            }
+        }
+        .onGeometryChange(for: CGFloat.self) { proxy in
+            proxy.size.width
+        } action: { width in
+            paneWidth = width
         }
         .task {
             await reload()
@@ -67,6 +75,40 @@ public struct PlayRootView: View {
                 showTutorial = false
             }
         }
+    }
+
+    // MARK: Containers
+
+    private var splitView: some View {
+        NavigationSplitView(preferredCompactColumn: $compactColumn) {
+            listPane
+                .navigationSplitViewColumnWidth(min: 320, ideal: 340, max: 380)
+        } detail: {
+            detail
+        }
+    }
+
+    private var oneColumn: some View {
+        NavigationStack {
+            listPane
+                .navigationDestination(isPresented: $oneColumnDetailShown) {
+                    detail
+                }
+        }
+    }
+
+    private var listPane: some View {
+        sidebar
+            .navigationTitle("遊ぶ")
+            .background(KanjiTheme.canvas)
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button("遊び方") {
+                        showTutorial = true
+                    }
+                    .fontWeight(.bold)
+                }
+            }
     }
 
     // MARK: Sidebar
@@ -109,7 +151,9 @@ public struct PlayRootView: View {
                     .foregroundStyle(KanjiTheme.inkSecondary)
 
                 LazyVGrid(
-                    columns: [GridItem(.adaptive(minimum: 76), spacing: 10)],
+                    columns: [
+                        GridItem(.adaptive(minimum: usesOneColumn ? 84 : 76), spacing: 10)
+                    ],
                     spacing: 10
                 ) {
                     ForEach(Array(filteredPuzzles.enumerated()), id: \.element.id) { index, puzzle in
@@ -126,6 +170,12 @@ public struct PlayRootView: View {
                 progressCard
             }
             .padding(16)
+            .frame(
+                maxWidth: usesOneColumn
+                    ? PlayLayout.readableListWidth + 32
+                    : .infinity
+            )
+            .frame(maxWidth: .infinity)
         }
     }
 
@@ -309,7 +359,10 @@ public struct PlayRootView: View {
                     puzzle: puzzle,
                     persistence: persistence,
                     purchaseStore: purchaseStore,
-                    onBackToList: { compactColumn = .sidebar },
+                    onBackToList: {
+                        compactColumn = .sidebar
+                        oneColumnDetailShown = false
+                    },
                     onNextPuzzle: nextPuzzleAction(after: puzzle)
                 )
                 .id(puzzle.id)
@@ -347,6 +400,7 @@ public struct PlayRootView: View {
         return {
             selectedPuzzleID = next.id
             compactColumn = .detail
+            oneColumnDetailShown = true
         }
     }
 
@@ -354,6 +408,7 @@ public struct PlayRootView: View {
         if accessPolicy.isUnlocked(puzzle) {
             selectedPuzzleID = puzzle.id
             compactColumn = .detail
+            oneColumnDetailShown = true
         } else {
             onUnlockRequested(puzzle)
         }
