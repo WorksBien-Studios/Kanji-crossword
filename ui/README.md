@@ -114,6 +114,12 @@ the canvas footer) and three play-screen previews at exact pane sizes.
   shows a non-blocking result card; Settings contains explicit restore.
 - Price text always comes from StoreKit's localized `Product.displayPrice`.
   The UI does not hard-code ¥1,000.
+- Settings expose only active behavior: text size, contrast, completion haptics
+  and the timer default. Mistake checking stays explicit in the action bar;
+  sound, reminders and manual export are intentionally outside v1.
+- Completed boards are archived automatically. Results show corrections and a
+  per-puzzle personal best for timed attempts, so saving never depends on an
+  extra button.
 
 
 ## Policy links
