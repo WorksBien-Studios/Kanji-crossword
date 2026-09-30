@@ -66,7 +66,8 @@ jobs:
             decoded="$RUNNER_TEMP/${label}-icon-decoded.png"
             sips -s format png "$icon" --out "$decoded" > /dev/null
             python3 scripts/validate_app_icon.py \
-              --png "$decoded" --width "$expected_size" --height "$expected_size"
+              --png "$decoded" --width "$expected_size" --height "$expected_size" \
+              --allow-opaque-alpha
           }
 
           validate_compiled_icon iphone "$iphone_icon" 120

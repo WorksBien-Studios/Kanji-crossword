@@ -24,7 +24,65 @@ class ValidationError(ValueError):
     pass
 
 
-def validate_png(path: Path, expected_width: int, expected_height: int) -> bytes:
+def paeth_predictor(left: int, above: int, upper_left: int) -> int:
+    prediction = left + above - upper_left
+    left_distance = abs(prediction - left)
+    above_distance = abs(prediction - above)
+    upper_left_distance = abs(prediction - upper_left)
+    if left_distance <= above_distance and left_distance <= upper_left_distance:
+        return left
+    if above_distance <= upper_left_distance:
+        return above
+    return upper_left
+
+
+def reconstruct_rows(
+    path: Path, raster: bytes, width: int, height: int, bytes_per_pixel: int
+) -> list[bytearray]:
+    pixel_bytes = width * bytes_per_pixel
+    row_size = 1 + pixel_bytes
+    rows: list[bytearray] = []
+
+    for row_index in range(height):
+        start = row_index * row_size
+        filter_type = raster[start]
+        if filter_type not in range(5):
+            raise ValidationError(
+                f"{path}: invalid PNG filter on row {row_index}"
+            )
+
+        encoded = raster[start + 1 : start + row_size]
+        previous = rows[-1] if rows else bytearray(pixel_bytes)
+        decoded = bytearray(pixel_bytes)
+        for index, value in enumerate(encoded):
+            left = decoded[index - bytes_per_pixel] if index >= bytes_per_pixel else 0
+            above = previous[index]
+            upper_left = (
+                previous[index - bytes_per_pixel] if index >= bytes_per_pixel else 0
+            )
+            if filter_type == 0:
+                predictor = 0
+            elif filter_type == 1:
+                predictor = left
+            elif filter_type == 2:
+                predictor = above
+            elif filter_type == 3:
+                predictor = (left + above) // 2
+            else:
+                predictor = paeth_predictor(left, above, upper_left)
+            decoded[index] = (value + predictor) & 0xFF
+        rows.append(decoded)
+
+    return rows
+
+
+def validate_png(
+    path: Path,
+    expected_width: int,
+    expected_height: int,
+    *,
+    allow_opaque_alpha: bool = False,
+) -> bytes:
     data = path.read_bytes()
     if not data.startswith(PNG_SIGNATURE):
         raise ValidationError(f"{path}: invalid PNG signature")
@@ -87,10 +145,12 @@ def validate_png(path: Path, expected_width: int, expected_height: int) -> bytes
         raise ValidationError(
             f"{path}: expected {expected_width}x{expected_height}, got {width}x{height}"
         )
-    if (bit_depth, color_type) != (8, 2):
+    allowed_color_types = {2, 6} if allow_opaque_alpha else {2}
+    if bit_depth != 8 or color_type not in allowed_color_types:
         raise ValidationError(
-            f"{path}: expected opaque 8-bit RGB, got bit depth {bit_depth}, "
-            f"color type {color_type}"
+            f"{path}: expected opaque 8-bit "
+            f"{'RGB or RGBA' if allow_opaque_alpha else 'RGB'}, got bit depth "
+            f"{bit_depth}, color type {color_type}"
         )
     if (compression, filtering, interlace) != (0, 0, 0):
         raise ValidationError(f"{path}: unsupported PNG encoding")
@@ -100,20 +160,19 @@ def validate_png(path: Path, expected_width: int, expected_height: int) -> bytes
     except zlib.error as error:
         raise ValidationError(f"{path}: corrupt IDAT stream: {error}") from error
 
-    row_size = 1 + width * 3
+    bytes_per_pixel = 3 if color_type == 2 else 4
+    row_size = 1 + width * bytes_per_pixel
     expected_size = height * row_size
     if len(raster) != expected_size:
         raise ValidationError(
             f"{path}: decoded raster is {len(raster)} bytes; expected {expected_size}"
         )
 
-    invalid_filters = [
-        row for row in range(height) if raster[row * row_size] not in range(5)
-    ]
-    if invalid_filters:
-        raise ValidationError(
-            f"{path}: invalid PNG filter on row {invalid_filters[0]}"
-        )
+    rows = reconstruct_rows(path, raster, width, height, bytes_per_pixel)
+    if color_type == 6 and any(
+        alpha != 255 for row in rows for alpha in row[3::4]
+    ):
+        raise ValidationError(f"{path}: compiled icon contains non-opaque pixels")
 
     return data
 
@@ -135,6 +194,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--png", type=Path, help="Validate one decoded PNG")
     parser.add_argument("--width", type=int)
     parser.add_argument("--height", type=int)
+    parser.add_argument(
+        "--allow-opaque-alpha",
+        action="store_true",
+        help="Permit RGBA only when every alpha value is 255",
+    )
     return parser.parse_args()
 
 
@@ -144,7 +208,12 @@ def main() -> int:
         if args.png:
             if args.width is None or args.height is None:
                 raise ValidationError("--png requires --width and --height")
-            data = validate_png(args.png, args.width, args.height)
+            data = validate_png(
+                args.png,
+                args.width,
+                args.height,
+                allow_opaque_alpha=args.allow_opaque_alpha,
+            )
             digest = hashlib.sha256(data).hexdigest()
             print(
                 f"Validated {args.png}: {args.width}x{args.height} opaque RGB; "
