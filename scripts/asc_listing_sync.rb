@@ -142,31 +142,27 @@ review_attributes = {
   demoAccountPassword: nil,
   notes: MANIFEST.dig("review", "notes")
 }
+contact_fields = %w[contactFirstName contactLastName contactPhone contactEmail]
 if review["data"]
   review_id = review["data"].fetch("id")
-  patch_resource(
-    "/v1/appStoreReviewDetails/#{review_id}",
-    "appStoreReviewDetails",
-    review_id,
-    review_attributes
-  )
+  review_live = get_json("/v1/appStoreReviewDetails/#{review_id}").fetch("data").fetch("attributes")
+  missing_contact = contact_fields.reject { |field| !review_live[field].to_s.strip.empty? }
+  if missing_contact.empty?
+    patch_resource(
+      "/v1/appStoreReviewDetails/#{review_id}",
+      "appStoreReviewDetails",
+      review_id,
+      review_attributes
+    )
+    review_live = get_json("/v1/appStoreReviewDetails/#{review_id}").fetch("data").fetch("attributes")
+  else
+    warn "App Review detail sync skipped until contact is present: #{missing_contact.join(", ")}"
+  end
 else
-  _code, body = request(:post, "/v1/appStoreReviewDetails", body: {
-    data: {
-      type: "appStoreReviewDetails",
-      attributes: review_attributes,
-      relationships: {
-        appStoreVersion: {
-          data: { type: "appStoreVersions", id: version_id }
-        }
-      }
-    }
-  })
-  review_id = JSON.parse(body).fetch("data").fetch("id")
+  review_id = nil
+  missing_contact = contact_fields
+  warn "App Review detail sync skipped until contact is present: #{missing_contact.join(", ")}"
 end
-review_live = get_json("/v1/appStoreReviewDetails/#{review_id}").fetch("data").fetch("attributes")
-contact_fields = %w[contactFirstName contactLastName contactPhone contactEmail]
-missing_contact = contact_fields.reject { |field| !review_live[field].to_s.strip.empty? }
 warn "App Review contact is pending: #{missing_contact.join(", ")}" unless missing_contact.empty?
 
 app_infos = get_json("/v1/apps/#{APP_ID}/appInfos?limit=200").fetch("data")
