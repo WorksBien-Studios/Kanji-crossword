@@ -5,6 +5,13 @@ name: UI screenshots
 # docs/ui-screenshots on the branch that was dispatched.
 on:
   workflow_dispatch:
+  # Temporary: lets the branch render itself before this file exists on main.
+  push:
+    branches:
+      - ccr-7d3d7076-qv9m4m
+    paths:
+      - 'ui/**'
+      - '.github/workflows/ui-screenshots.yml'
 
 permissions:
   contents: write
