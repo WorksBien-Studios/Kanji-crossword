@@ -1,7 +1,9 @@
 import * as THREE from 'three';
 import type { Puzzle } from '../data';
 import { Stage } from './stage';
-import { computeLayout, type Layout } from './layout';
+import { PARALLAX, readSafeInsets } from './fit';
+import { bestMode } from './modes';
+import { computeLayout, contentBox, type Layout, type Mode } from './layout';
 import { cachedSlab, clearGeoCache, makePiece, type Piece, type PressInfo } from './pieces';
 import { disposeObject, glossy, shade } from './geo';
 import { ARROW_BACK, ARROW_FACE, BUTTON_COLORS, GOLD, IVORY, JADE, JADE_DARK, SEL_EMISSIVE, VERMILION } from './theme';
@@ -23,6 +25,7 @@ export interface ViewState {
 }
 
 const DIM = 0.34;
+const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
 const BTN_NAMES = ['undo', 'hint', 'next'] as const;
 
 function arrowShape(hw: number, hl: number, sw: number, sl: number): THREE.Shape {
@@ -59,7 +62,9 @@ export class GameView {
   private ty = 0;
   private overlayShown = false;
   private reduceMotion = false;
-  private builtAspect = 0;
+  private mode: Mode = 'portrait';
+  private offR = 0;
+  private offC = 0;
 
   constructor(private stage: Stage, private onPress: (p: PressInfo) => void) {
     stage.world.add(this.built);
@@ -79,26 +84,29 @@ export class GameView {
   build(puzzle: Puzzle): void {
     this.clear();
     this.puzzle = puzzle;
-    const L = (this.layout = computeLayout(puzzle.rows, puzzle.cols, puzzle.tray.length, window.innerWidth / Math.max(1, window.innerHeight)));
-    this.builtAspect = window.innerWidth / Math.max(1, window.innerHeight);
-    this.stage.setExtent(L.top, L.bottom);
+    // Always lay out a full 5x5 board so every puzzle has identical dimensions and the camera never moves.
+    this.mode = bestMode(window.innerWidth, window.innerHeight, readSafeInsets(), this.mode);
+    const L = (this.layout = computeLayout(Math.max(5, puzzle.rows), Math.max(5, puzzle.cols), puzzle.tray.length, this.mode));
+    this.offR = (L.rows - puzzle.rows) / 2;
+    this.offC = (L.cols - puzzle.cols) / 2;
+    this.stage.setContent(contentBox(L));
     this.kanjiToN.clear();
     puzzle.solution.forEach((k, n) => { if (n > 0) this.kanjiToN.set(k, n); });
 
-    const slab = (w: number, h: number, y: number) => {
+    const slab = (w: number, h: number, x: number, y: number) => {
       const m = new THREE.Mesh(cachedSlab(w, h, 0.4, 0.1, 0.05), glossy(JADE, 0.22));
-      m.position.set(0, y, -0.2);
+      m.position.set(x, y, -0.2);
       this.built.add(m);
     };
-    slab(L.boardSlabW, L.boardSlabH, 0);
-    slab(L.traySlabW, L.traySlabH, L.trayY);
+    slab(L.boardSlabW, L.boardSlabH, L.boardX, 0);
+    slab(L.traySlabW, L.traySlabH, L.trayX, L.trayY);
 
     // Board: open cells are tiles; block cells are dark jade tiles with no label, like the mockup.
     for (let r = 0; r < puzzle.rows; r++) {
       for (let c = 0; c < puzzle.cols; c++) {
         if (puzzle.open[r][c]) continue;
         const b = makePiece({
-          x: L.tileX(c), y: L.tileY(r), w: L.tile, h: L.tile, radius: L.radius, bevel: L.bevel,
+          x: L.tileX(c + this.offC), y: L.tileY(r + this.offR), w: L.tile, h: L.tile, radius: L.radius, bevel: L.bevel,
           backT: L.backT, faceT: L.faceT, faceColor: JADE_DARK, backColor: JADE, labelPx: 16,
           sinkDepth: 0, info: null, labelFit: 1, faceRough: 0.2,
         });
@@ -114,7 +122,7 @@ export class GameView {
         const n = puzzle.num[r][c];
         if (!n) continue;
         const p = makePiece({
-          x: L.tileX(c), y: L.tileY(r), w: L.tile, h: L.tile, radius: L.radius, bevel: L.bevel,
+          x: L.tileX(c + this.offC), y: L.tileY(r + this.offR), w: L.tile, h: L.tile, radius: L.radius, bevel: L.bevel,
           backT: L.backT, faceT: L.faceT, faceColor: IVORY, backColor: JADE, labelPx: 128,
           sinkDepth: 0.06, info: { kind: 'tile', n, r, c }, labelFit: 1,
         });
@@ -196,11 +204,11 @@ export class GameView {
     this.arrow.add(back, face);
   }
 
-  /** Rebuilds when the screen shape changes enough (rotation, window resize) to need a new layout. */
+  /** Switches between the one-column and two-column arrangement when the screen shape favours the other. */
   relayoutIfNeeded(): void {
     if (!this.puzzle) return;
-    const aspect = window.innerWidth / Math.max(1, window.innerHeight);
-    if (Math.abs(aspect - this.builtAspect) > 0.04) this.build(this.puzzle);
+    const next = bestMode(window.innerWidth, window.innerHeight, readSafeInsets(), this.mode);
+    if (next !== this.mode) this.build(this.puzzle);
   }
 
   // ---- state -> visuals -----------------------------------------------------------------
@@ -296,9 +304,9 @@ export class GameView {
       return p;
     };
     const rr = 0.22 * (L.key / 1.12);
-    mk(0, L.rowYs[0], wide, L.key, IVORY, JADE, base, null, rr, (x, w, h) => paint.paintStat(x, w, h, 'clock', paint.formatTime(r.seconds)));
-    mk(0, L.rowYs[1], wide, L.key, IVORY, JADE, base + 160, null, rr, (x, w, h) => paint.paintStat(x, w, h, 'hint', String(r.hintsUsed)));
-    const play = mk(0, L.btn.y, 4.4, 1.04, VERMILION, shade(VERMILION, 0.82).getHex(), base + 320, { kind: 'over', name: 'next' }, 0.3, (x, w, h) => paint.paintPlay(x, w, h));
+    mk(L.trayX, L.rowYs[0], wide, L.key, IVORY, JADE, base, null, rr, (x, w, h) => paint.paintStat(x, w, h, 'clock', paint.formatTime(r.seconds)));
+    mk(L.trayX, L.rowYs[1], wide, L.key, IVORY, JADE, base + 160, null, rr, (x, w, h) => paint.paintStat(x, w, h, 'hint', String(r.hintsUsed)));
+    const play = mk(L.btnX, L.btn.y, 4.4, 1.04, VERMILION, shade(VERMILION, 0.82).getHex(), base + 320, { kind: 'over', name: 'next' }, 0.3, (x, w, h) => paint.paintPlay(x, w, h));
     play.pulse = true;
   }
 
@@ -348,8 +356,8 @@ export class GameView {
 
   private pointerMove(e: PointerEvent): void {
     const rc = this.stage.canvas.getBoundingClientRect();
-    this.ty = ((e.clientX - rc.left) / rc.width - 0.5) * 0.46;
-    this.tx = ((e.clientY - rc.top) / rc.height - 0.5) * 0.34;
+    this.ty = clamp((e.clientX - rc.left) / rc.width - 0.5, -0.5, 0.5) * PARALLAX.y;
+    this.tx = clamp((e.clientY - rc.top) / rc.height - 0.5, -0.5, 0.5) * PARALLAX.x;
     this.stage.canvas.style.cursor = this.pick(e) ? 'pointer' : 'default';
   }
 
@@ -362,7 +370,7 @@ export class GameView {
 
   tick(ts: number): void {
     const w = this.stage.world;
-    const sway = this.reduceMotion ? 0 : Math.sin(ts / 2000) * 0.03;
+    const sway = this.reduceMotion ? 0 : Math.sin(ts / 2000) * PARALLAX.sway;
     w.rotation.x += (this.tx + sway - w.rotation.x) * 0.08;
     w.rotation.y += (this.ty - w.rotation.y) * 0.08;
 

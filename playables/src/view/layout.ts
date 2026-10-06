@@ -1,3 +1,5 @@
+export type Mode = 'portrait' | 'landscape';
+
 export interface KeySlot {
   x: number;
   y: number;
@@ -38,26 +40,28 @@ export interface Layout {
   btn: { y: number; size: number; xs: number[] };
   top: number;
   bottom: number;
+  mode: Mode;
+  boardX: number;
+  trayX: number;
+  btnX: number;
+  /** Half of the full width of everything drawn. */
+  halfWidth: number;
 }
 
-/** Aim for three tray rows so the board gets the height; a mockup-sized tray (8 keys) uses four columns. */
-/** Jade margin around the tiles on a slab. Kept slim so tiles can use the screen width. */
-export const SLAB_PAD = 0.3;
+/** Jade margin around the tiles on a slab. */
+export const SLAB_PAD = 0.45;
 
+/** Four columns for up to 8 kanji (the approved tray); more kanji spread over wider rows. */
 export function trayColumns(n: number): number {
-  if (n <= 8) return 4;
-  return Math.min(8, Math.max(5, Math.ceil(n / 3)));
+  return n <= 8 ? 4 : Math.min(8, Math.max(5, Math.ceil(n / 3)));
 }
 
-/** World units of width we can rely on. The camera never frames less than 7 units of width, and about 14 units of height. */
-export function usableWidth(aspect: number): number {
-  return Math.max(7.0, 14.2 * aspect) * 0.955;
-}
-
-export function computeLayout(rows: number, cols: number, keyCount: number, aspect = 0.46): Layout {
-  const maxW = usableWidth(aspect);
-  const bev = 0.05;
-  const pitch = Math.min(1.1, (maxW - SLAB_PAD - 2 * bev) / (cols - 1 + 0.9), (6.8 - 0.55) / (rows - 1 + 0.9));
+/**
+ * All sizes are in world units and do not depend on the screen: the camera (view/fit.ts) does the
+ * scaling. A 5x5 board uses the approved 1.1 pitch; the tray uses the approved 1.4 key pitch.
+ */
+export function computeLayout(rows: number, cols: number, keyCount: number, mode: Mode = 'portrait'): Layout {
+  const pitch = rows <= 5 && cols <= 5 ? 1.1 : Math.min(1.1, 5.3 / cols, 5.9 / rows);
   const s = pitch / 1.1;
   const tile = 0.9 * s;
   const bevel = 0.05 * Math.max(s, 0.55);
@@ -82,11 +86,47 @@ export function computeLayout(rows: number, cols: number, keyCount: number, aspe
 
   const trayCols = trayColumns(keyCount);
   const trayRows = Math.ceil(keyCount / trayCols);
-  const keyPitch = Math.min(1.4, (maxW - SLAB_PAD) / (trayCols - 1 + 0.8));
+  const keyPitch = trayCols <= 4 ? 1.4 : Math.min(1.4, 5.8 / trayCols);
   const key = keyPitch * 0.8;
   const traySlabW = (trayCols - 1) * keyPitch + key + SLAB_PAD;
   const traySlabH = (trayRows - 1) * keyPitch + key + SLAB_PAD;
-  const trayY = -(slabHalf + 0.35) - traySlabH / 2;
+  const btnSize = 1.04 * 0.92;
+  const hudW = 5.4;
+  const playW = 4.4;
+  const btnXs = [-1.9, 0, 1.9];
+  const btnRowW = 2 * 1.9 + btnSize + 0.2;
+  const leftBottom = -(slabHalf + 0.05);
+  let trayY: number;
+  let btnY: number;
+  let top: number;
+  let bottom: number;
+  let boardX = 0;
+  let trayX = 0;
+  let halfWidth: number;
+  if (mode === 'portrait') {
+    // One column: top bar, board, tray, buttons.
+    trayY = -(slabHalf + 0.35) - traySlabH / 2;
+    btnY = trayY - traySlabH / 2 - 0.05 - 0.4 - 1.04 / 2;
+    top = hudTop;
+    bottom = btnY - 1.04 / 2 - 0.1;
+    halfWidth = Math.max(boardSlabW, traySlabW, hudW + 0.1, btnRowW, playW + 0.2) / 2 + 0.1;
+  } else {
+    // Two columns for wide screens: top bar and board on the left, tray and buttons on the right.
+    const leftW = Math.max(boardSlabW, hudW + 0.1);
+    const rightW = Math.max(traySlabW, btnRowW, playW + 0.2);
+    const gap = 1.0;
+    const total = leftW + gap + rightW;
+    boardX = -total / 2 + leftW / 2;
+    trayX = total / 2 - rightW / 2;
+    const yc = (hudTop + leftBottom) / 2;
+    const rightH = traySlabH + 0.05 + 0.4 + 1.04;
+    const rightTop = yc + rightH / 2;
+    trayY = rightTop - traySlabH / 2;
+    btnY = trayY - traySlabH / 2 - 0.05 - 0.4 - 1.04 / 2;
+    top = Math.max(hudTop, rightTop + 0.05);
+    bottom = Math.min(leftBottom, btnY - 1.04 / 2 - 0.1);
+    halfWidth = total / 2 + 0.1;
+  }
 
   const rowYs: number[] = [];
   for (let r = 0; r < trayRows; r++) rowYs.push(trayY + ((trayRows - 1) / 2 - r) * keyPitch);
@@ -94,20 +134,30 @@ export function computeLayout(rows: number, cols: number, keyCount: number, aspe
   for (let i = 0; i < keyCount; i++) {
     const r = Math.floor(i / trayCols);
     const inRow = Math.min(trayCols, keyCount - r * trayCols);
-    keySlots.push({ x: (i - r * trayCols - (inRow - 1) / 2) * keyPitch, y: rowYs[r] });
+    keySlots.push({ x: trayX + (i - r * trayCols - (inRow - 1) / 2) * keyPitch, y: rowYs[r] });
   }
+  const hudShift = boardX;
+  const hudShifted = {
+    y: hud.y,
+    h: hud.h,
+    time: { x: hud.time.x + hudShift, w: hud.time.w },
+    left: { x: hud.left.x + hudShift, w: hud.left.w },
+    reset: { x: hud.reset.x + hudShift, w: hud.reset.w },
+  };
 
-  const btnSize = 1.04 * 0.92;
-  const btnY = trayY - traySlabH / 2 - 0.05 - 0.4 - 1.04 / 2;
   return {
     rows, cols, pitch, s, tile, bevel, radius: 0.16 * s, backT, faceT, lift: 0.22 * depthScale,
     boardSlabW, boardSlabH,
-    tileX: (c) => (c - (cols - 1) / 2) * pitch,
+    tileX: (c) => boardX + (c - (cols - 1) / 2) * pitch,
     tileY: (r) => ((rows - 1) / 2 - r) * pitch,
-    hud, trayCols, trayRows, keyPitch, key, keyBackT: 0.16 * Math.max(key / 1.12, 0.6), keyFaceT: 0.24 * Math.max(key / 1.12, 0.6),
+    hud: hudShifted, trayCols, trayRows, keyPitch, key, keyBackT: 0.16 * Math.max(key / 1.12, 0.6), keyFaceT: 0.24 * Math.max(key / 1.12, 0.6),
     traySlabW, traySlabH, trayY, keySlots, rowYs,
-    btn: { y: btnY, size: btnSize, xs: [-1.9, 0, 1.9] },
-    top: hudTop,
-    bottom: btnY - 1.04 / 2 - 0.1,
+    btn: { y: btnY, size: btnSize, xs: btnXs.map((x) => trayX + x) },
+    top, bottom, mode, boardX, trayX, btnX: trayX, halfWidth,
   };
+}
+
+/** Bounding box of everything the layout draws, for the camera fit. Includes bevels and shadows. */
+export function contentBox(L: Layout): { halfWidth: number; top: number; bottom: number } {
+  return { halfWidth: L.halfWidth, top: L.top + 0.1, bottom: L.bottom - 0.1 };
 }

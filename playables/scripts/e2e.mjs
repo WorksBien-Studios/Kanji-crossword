@@ -17,7 +17,8 @@ const browser = await chromium.launch({ executablePath: chrome, args: ['--use-gl
 let failed = 0;
 const check = (name, ok, extra = '') => { console.log(`${ok ? 'PASS' : 'FAIL'}  ${name} ${extra}`); if (!ok) failed++; };
 
-const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+async function flow(label, viewport, expectMode) {
+const page = await browser.newPage({ viewport });
 const errors = [];
 page.on('pageerror', (e) => errors.push(e.message));
 await page.goto(`http://localhost:${port}/`);
@@ -40,36 +41,40 @@ const state = () => page.evaluate(() => { const a = window.__game, s = a.viewSta
 const tap = async (sel) => { const p = await screenOf(sel); await page.mouse.click(p.x, p.y); await page.waitForTimeout(250); };
 
 let s = await state();
-check('starts in tutorial step 1', s.tut === 1 && !!s.cell);
+check(`[${label}] starts in tutorial step 1`, s.tut === 1 && !!s.cell);
+const fonts = await page.evaluate(() => [...document.fonts].map((f) => `${f.family}:${f.status}`));
+check(`[${label}] bundled fonts loaded`, fonts.includes('Shippori Mincho:loaded') && fonts.includes('Figtree:loaded'), fonts.join(','));
+const mode = await page.evaluate(() => window.__game.view.layout.mode);
+check(`[${label}] arrangement is ${expectMode}`, mode === expectMode, mode);
 const startFilled = s.filled;
 
 // Wrong targets are ignored during the tutorial.
 await tap({ kind: 'key', kanji: s.kanji });
-check('key ignored in step 1', (await state()).tut === 1);
+check(`[${label}] key ignored in step 1`, (await state()).tut === 1);
 
 await tap({ kind: 'tile', ...s.cell });
 s = await state();
-check('tapping the highlighted tile advances to step 2', s.tut === 2 && s.sel !== null);
+check(`[${label}] tapping the highlighted tile advances to step 2`, s.tut === 2 && s.sel !== null);
 const wrongKey = await page.evaluate((k) => window.__game.view.keys.find((x) => x.kanji !== k && x.info).kanji, s.kanji);
 await tap({ kind: 'key', kanji: wrongKey });
-check('wrong key ignored in step 2', (await state()).tut === 2);
+check(`[${label}] wrong key ignored in step 2`, (await state()).tut === 2);
 await tap({ kind: 'key', kanji: s.kanji });
 s = await state();
-check('tapping the highlighted key fills the slot and ends the tutorial', s.tut === 0 && s.filled === startFilled + 1);
+check(`[${label}] tapping the highlighted key fills the slot and ends the tutorial`, s.tut === 0 && s.filled === startFilled + 1);
 
 // Normal play: select a tile, wrong key does not fill, hint fills, undo restores.
 const open = await page.evaluate(() => { const g = window.__game.game; const n = g.nextOpen(0); const p = g.puzzle; for (let r = 0; r < p.rows; r++) for (let c = 0; c < p.cols; c++) if (p.num[r][c] === n) return { n, r, c, kanji: p.solution[n] }; });
 await tap({ kind: 'tile', r: open.r, c: open.c });
-check('tap selects a tile', (await state()).sel === open.n);
+check(`[${label}] tap selects a tile`, (await state()).sel === open.n);
 const wrong2 = await page.evaluate((k) => window.__game.view.keys.find((x) => x.kanji !== k && !window.__game.game.isFilled(window.__game.view.kanjiToN.get(x.kanji))).kanji, open.kanji);
 const before = (await state()).filled;
 await tap({ kind: 'key', kanji: wrong2 });
-check('wrong kanji is rejected', (await state()).filled === before);
+check(`[${label}] wrong kanji is rejected`, (await state()).filled === before);
 await tap({ kind: 'btn', name: 'hint' });
 s = await state();
-check('hint fills a slot and costs one hint', s.filled === before + 1 && s.hints === 1);
+check(`[${label}] hint fills a slot and costs one hint`, s.filled === before + 1 && s.hints === 1);
 await tap({ kind: 'btn', name: 'undo' });
-check('undo takes the slot back', (await state()).filled === before);
+check(`[${label}] undo takes the slot back`, (await state()).filled === before);
 
 // Solve the rest by tapping, then check the completion flow.
 for (let guard = 0; guard < 40; guard++) {
@@ -79,17 +84,25 @@ for (let guard = 0; guard < 40; guard++) {
   await tap({ kind: 'key', kanji: t.kanji });
 }
 s = await state();
-check('puzzle completes by tapping', s.rem === 0);
+check(`[${label}] puzzle completes by tapping`, s.rem === 0);
 await page.waitForTimeout(5200);
 s = await state();
-check('result appears after the ripple', s.result);
+check(`[${label}] result appears after the ripple`, s.result);
 const oldId = s.id;
 await tap({ kind: 'over' });
 await page.waitForTimeout(500);
 s = await state();
-check('play bar loads a new puzzle', !s.result && s.id !== oldId && s.rem > 0);
-check('new puzzle is not the tutorial', s.tut === 0);
-check('no page errors', errors.length === 0, errors.slice(0, 2).join(' | '));
+check(`[${label}] play bar loads a new puzzle`, !s.result && s.id !== oldId && s.rem > 0);
+check(`[${label}] new puzzle is not the tutorial`, s.tut === 0);
+check(`[${label}] no page errors`, errors.length === 0, errors.slice(0, 2).join(' | '));
+
+await page.close();
+}
+
+await flow('phone portrait 390x844', { width: 390, height: 844 }, 'portrait');
+await flow('phone landscape 844x390', { width: 844, height: 390 }, 'landscape');
+await flow('laptop 1280x720', { width: 1280, height: 720 }, 'landscape');
+await flow('small phone 320x568', { width: 320, height: 568 }, 'portrait');
 
 await browser.close();
 server.kill();

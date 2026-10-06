@@ -11,5 +11,6 @@ export const NUM_COLOR = '#d6402b';
 export const BUTTON_COLORS = [0x2f8f86, 0xe0a02e, 0xd6402b];
 export const ARROW_FACE = 0xd6402b;
 export const ARROW_BACK = 0xf3ead6;
+// The first family is bundled (src/fonts.ts); the rest only matter if a glyph is ever missing.
 export const KANJI_FONT = '"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho","Noto Serif JP","Noto Serif CJK JP",serif';
 export const UI_FONT = 'Figtree, system-ui, sans-serif';

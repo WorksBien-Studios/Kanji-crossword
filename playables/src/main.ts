@@ -1,6 +1,7 @@
 import { App } from './app';
 import { loadSave } from './save';
 import { sdk } from './sdk';
+import { loadFonts } from './fonts';
 import { Stage } from './view/stage';
 import { GameView } from './view/gameView';
 
@@ -16,7 +17,7 @@ async function boot(): Promise<void> {
   sdk.firstFrameReady();
 
   const params = new URLSearchParams(location.search);
-  const save = await loadSave();
+  const [save] = await Promise.all([loadSave(), loadFonts()]);
   if (params.get('tut') === '0') save.tutorialDone = true;
   app = new App(view, save);
   const forced = params.has('p') ? Number(params.get('p')) : undefined;
@@ -24,7 +25,10 @@ async function boot(): Promise<void> {
   if (params.get('done') === '1') app.debugFill(0);
   if (params.get('almost') === '1') app.debugFill(1);
 
-  window.addEventListener('resize', () => { stage.resize(); view.relayoutIfNeeded(); });
+  const refit = () => { view.relayoutIfNeeded(); stage.resize(); };
+  window.addEventListener('resize', refit);
+  window.addEventListener('orientationchange', () => setTimeout(refit, 120));
+  window.visualViewport?.addEventListener('resize', refit);
   sdk.onPause(() => app!.pause());
   sdk.onResume(() => app!.resume());
   const loop = (ts: number) => {

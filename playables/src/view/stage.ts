@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { CONTENT_Z_MAX, CONTENT_Z_MIN, FOV, makeFitInput, fitCamera, readSafeInsets, type ContentBox, type FitResult } from './fit';
 
 // The approved mockup was tuned on an older Three.js that did not convert colours between colour
 // spaces and used legacy light units. Keep that behaviour so the look carries over unchanged.
@@ -34,17 +35,24 @@ function terrazzoTexture(): THREE.CanvasTexture {
     const rad = 3 + Math.pow(r(), 2.2) * 24;
     const n = 5 + Math.floor(r() * 3);
     x.fillStyle = cols[Math.floor(r() * cols.length)];
-    x.beginPath();
+    const pts: [number, number][] = [];
     for (let k = 0; k < n; k++) {
       const a = (k / n) * 6.283 + r() * 0.6;
       const rr = rad * (0.65 + r() * 0.5);
-      const px = cx + Math.cos(a) * rr;
-      const py = cy + Math.sin(a) * rr;
-      if (k) x.lineTo(px, py);
-      else x.moveTo(px, py);
+      pts.push([Math.cos(a) * rr, Math.sin(a) * rr]);
     }
-    x.closePath();
-    x.fill();
+    // Draw wrapped copies near an edge so the texture tiles without seams.
+    for (const dx of [-1024, 0, 1024]) {
+      for (const dy of [-1024, 0, 1024]) {
+        const ox = cx + dx;
+        const oy = cy + dy;
+        if (ox < -rad * 2 || ox > 1024 + rad * 2 || oy < -rad * 2 || oy > 1024 + rad * 2) continue;
+        x.beginPath();
+        pts.forEach(([px, py], k) => (k ? x.lineTo(ox + px, oy + py) : x.moveTo(ox + px, oy + py)));
+        x.closePath();
+        x.fill();
+      }
+    }
   }
   for (let i = 0; i < 5000; i++) {
     x.fillStyle = `rgba(60,60,60,${0.05 + r() * 0.1})`;
@@ -78,7 +86,7 @@ function sheenTexture(): THREE.CanvasTexture {
 }
 
 export const TABLE_Z = -0.27;
-const FOV = 30;
+const MAX_DEVICE_PIXELS = 3_200_000;
 const TAN = Math.tan((FOV * Math.PI) / 360);
 
 export class Stage {
@@ -91,7 +99,8 @@ export class Stage {
   private tex: THREE.CanvasTexture;
   private bigShadow: THREE.Mesh;
   private tw = 8;
-  private extent = { top: 7, bottom: -7 };
+  private content: ContentBox = { halfWidth: 3, top: 7, bottom: -7, zMin: CONTENT_Z_MIN, zMax: CONTENT_Z_MAX };
+  fit: FitResult | null = null;
   /** Pixels per world unit at the board plane; used for tap-size reasoning and tests. */
   ppu = 50;
 
@@ -152,11 +161,11 @@ export class Stage {
     this.world.add(this.bigShadow);
   }
 
-  /** Tells the stage how much vertical room the layout needs, then refits the camera. */
-  setExtent(top: number, bottom: number): void {
-    this.extent = { top, bottom };
-    this.bigShadow.position.y = (top + bottom) / 2;
-    this.bigShadow.scale.set(1, (top - bottom + 2.5) / 15.5, 1);
+  /** Tells the stage how much room the layout needs, then refits the camera. */
+  setContent(c: { halfWidth: number; top: number; bottom: number }): void {
+    this.content = { ...c, zMin: CONTENT_Z_MIN, zMax: CONTENT_Z_MAX };
+    this.bigShadow.position.y = (c.top + c.bottom) / 2;
+    this.bigShadow.scale.set((c.halfWidth * 2 + 3.5) / 9.4, (c.top - c.bottom + 2.5) / 15.5, 1);
     this.resize();
   }
 
@@ -164,23 +173,26 @@ export class Stage {
     const w = window.innerWidth;
     const h = window.innerHeight;
     if (!w || !h) return;
+    // Cap the pixel count so very large or very dense screens stay smooth.
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+    while (w * h * dpr * dpr > MAX_DEVICE_PIXELS && dpr > 1) dpr = Math.max(1, dpr - 0.25);
+    this.renderer.setPixelRatio(dpr);
     this.renderer.setSize(w, h, false);
     this.camera.aspect = w / h;
-    const { top, bottom } = this.extent;
-    const pad = 16;
-    const contentH = top - bottom + 0.9;
-    const vis = (contentH * h) / (h - pad);
-    const d = Math.max(vis / (2 * TAN), 7.0 / (2 * TAN * this.camera.aspect));
-    this.camera.position.set(0, 0, d);
+
+    const fit = fitCamera(makeFitInput(w, h, readSafeInsets(), this.content));
+    this.fit = fit;
+    this.camera.position.set(0, 0, fit.distance);
     this.camera.updateProjectionMatrix();
-    this.ppu = h / (2 * TAN * d);
-    this.world.position.y = pad / 2 / this.ppu - (top + bottom) / 2;
-    const vh = 2 * TAN * (d + 0.3);
-    const pw = Math.max(vh * this.camera.aspect * 1.5, 10);
-    const ph = vh * 1.5;
-    this.table.scale.set(pw, ph, 1);
-    this.table.position.y = -this.world.position.y;
-    this.tex.repeat.set(pw / this.tw, ph / this.tw);
+    this.ppu = fit.ppu;
+    this.world.position.y = fit.worldY;
+
+    // The table must cover the whole screen at any tilt, so make it generously large.
+    const vh = 2 * TAN * (fit.distance + 0.3);
+    const size = Math.max(vh * this.camera.aspect, vh) * 1.7 + Math.abs(fit.worldY) * 2;
+    this.table.scale.set(size, size, 1);
+    this.table.position.y = -fit.worldY;
+    this.tex.repeat.set(size / this.tw, size / this.tw);
   }
 
   render(): void {

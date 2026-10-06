@@ -41,7 +41,39 @@ TRAY_SIZES = (7, 8)
 MAX_WORD_USES = 2
 OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "content", "compact", "puzzles-compact.json")
 
-W2, W3 = WORDS_BY_LEN[2], WORDS_BY_LEN[3]
+# Stricter than the main release, for a casual game aimed at a global YouTube audience. Every unique
+# word that appeared in an earlier draft of this library was read and these were removed. Excluded
+# words are still used by the uniqueness check (a player who knows one of them must not find a
+# second valid answer), they are just never shipped on a board.
+COMPACT_EXCLUDE = frozenset(
+    # war, military, weapons
+    "戦車 戦域 戦地 戦中 戦後 戦前 戦勝 戦線 戦法 戦力 戦列 海戦 合戦 激戦 決戦 抗戦 実戦 休戦 内戦 反戦 連戦 "
+    "基地 軍医 軍部 従軍 進撃 直撃 兵隊 海兵隊 機動 大隊 中隊 大将 中将 弾道 陸海 防衛 防衛庁 反乱 動乱 "
+    # death, serious illness, bodies
+    "命日 最期 末期 末期的 検視 悪性 発作 遺言 余命 重体 重態 重度 老人性 老女 子宮 産科 生理 下半身 "
+    # crime and wrongdoing
+    "手口 親分 検挙 送検 脱税 非行 談合 黒幕 中傷 破産 "
+    # sexual, vulgar, discriminatory or derogatory
+    "性的 異性 悪女 下品 下等 差別 無差別 人種 "
+    # religion
+    "教会 大社 大師 法師 法王 旧約 修道 本山 老子 黒衣 "
+    # politics, government bodies, territory
+    "共産 安保 国体 国対 挙党 一党 同党 国士 国権 強権 総統 人民 領土 領海 領内 極東 東宮 対中 対日 国務 国務省 "
+    # gambling, speculation, alcohol
+    "競馬 競馬場 投機 先物 下戸 "
+    # names, places and awkward or incomplete forms
+    "御前 面白 千代 二見 野中 川口 木場 中原 目白 水口 高見 国人 金石".split()
+)
+
+W2 = [w for w in WORDS_BY_LEN[2] if w not in COMPACT_EXCLUDE]
+W3 = [w for w in WORDS_BY_LEN[3] if w not in COMPACT_EXCLUDE]
+ALL_W2, ALL_W3 = WORDS_BY_LEN[2], WORDS_BY_LEN[3]
+EDITORIAL_STATUS = "automated_and_ai_review_pending_owner_approval"
+EDITORIAL_NOTES = (
+    "JMdict common-word filtering, then a stricter word-by-word AI-assisted review of every shipped "
+    "word for war, death, sexual, discriminatory, religious, political, criminal and gambling "
+    "content, plus names and awkward forms. Not reviewed by the project owner or a native editor."
+)
 BY_CHAR = collections.defaultdict(list)
 for _w in W2 + W3:
     for _ch in set(_w):
@@ -123,8 +155,9 @@ def grow_cluster(rng, size):
 
 
 def verify_unique(slots, cell_to_num, starters, tray):
-    r2 = [w for w in W2 if set(w) <= tray]
-    r3 = [w for w in W3 if set(w) <= tray]
+    # Check against the whole common-word list, including words we refuse to ship.
+    r2 = [w for w in ALL_W2 if set(w) <= tray]
+    r3 = [w for w in ALL_W3 if set(w) <= tray]
     solutions = Solver(slots, {2: r2, 3: r3}).count_with_numbering(cell_to_num, starters, cap=2, forbid_repeat=False)
     return len(solutions) == 1, solutions
 
@@ -132,8 +165,8 @@ def verify_unique(slots, cell_to_num, starters, tray):
 def build_record(fill, slots):
     cell_to_num, num_to_kanji = numbering_for(fill)
     tray = set(fill.values())
-    r2 = [w for w in W2 if set(w) <= tray]
-    r3 = [w for w in W3 if set(w) <= tray]
+    r2 = [w for w in ALL_W2 if set(w) <= tray]
+    r3 = [w for w in ALL_W3 if set(w) <= tray]
     solver = Solver(slots, {2: r2, 3: r3})
     starters = solver.greedy_starters(cell_to_num, num_to_kanji, attempts=6, seed=1)
     if starters is None:
@@ -152,6 +185,8 @@ def build_record(fill, slots):
     records = [("".join(fill[c] for c in run), run) for run in slots]
     record = _base_record(fill, records, cell_to_num, num_to_kanji, starters, r2)
     record["mode"] = MODE
+    record["editorialStatus"] = EDITORIAL_STATUS
+    record["editorialNotes"] = EDITORIAL_NOTES
     record["id"] = content_id(record)
     shuffled = list(num_to_kanji.values())
     random.Random(record["id"]).shuffle(shuffled)
@@ -256,6 +291,8 @@ def validate(records):
         rid = rec.get("id", "?")
         if rec["mode"] != MODE:
             errors.append(f"{rid}: wrong mode")
+        if rec.get("editorialStatus") != EDITORIAL_STATUS:
+            errors.append(f"{rid}: editorial status must be {EDITORIAL_STATUS}")
         if rid in seen_ids:
             errors.append(f"{rid}: duplicate id")
         seen_ids.add(rid)
@@ -303,6 +340,8 @@ def validate(records):
             if len(word) not in (2, 3) or word not in READING or span["reading"] != READING[word]:
                 errors.append(f"{rid}: unverified word or reading: {word}")
             uses[word] += 1
+            if word in COMPACT_EXCLUDE:
+                errors.append(f"{rid}: excluded word shipped: {word}")
         tray = set(rec["solution"].values())
         starters = {int(n): k for n, k in rec["starterCells"].items()}
         ok, solutions = verify_unique(slots, cell_to_num, starters, tray)

@@ -28,7 +28,7 @@ const browser = await chromium.launch({
   args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist', '--no-sandbox'],
 });
 
-const sizes = { phone: { width: 390, height: 844 }, wide: { width: 1280, height: 720 } };
+const sizes = { phone: { width: 390, height: 844 }, landscape: { width: 844, height: 390 }, laptop: { width: 1280, height: 720 }, small: { width: 320, height: 568 } };
 const shots = [
   { name: 'tutorial-1', query: '', wait: 1800 },
   { name: 'board', query: '?tut=0&p=40', wait: 1800 },
@@ -36,8 +36,8 @@ const shots = [
 ];
 for (const [sizeName, viewport] of Object.entries(sizes)) {
   for (const s of shots) {
-    if (sizeName === 'wide' && s.name !== 'board') continue;
-    const page = await browser.newPage({ viewport, deviceScaleFactor: sizeName === 'phone' ? 2 : 1 });
+    if (sizeName !== 'phone' && s.name === 'tutorial-1') continue;
+    const page = await browser.newPage({ viewport, deviceScaleFactor: sizeName === 'phone' || sizeName === 'small' ? 2 : 1 });
     const logs = [];
     page.on('console', (m) => { if (m.type() === 'error' || m.type() === 'warning') logs.push(m.text()); });
     page.on('pageerror', (e) => logs.push('pageerror: ' + e.message));
