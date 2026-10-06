@@ -4,9 +4,10 @@ A 3D kanji number-crossword for YouTube Playables: glossy mahjong-style tiles, a
 a terrazzo table, one screen, no sound, and difficulty that adapts instead of being chosen.
 The visual design was approved as an interactive mockup; this folder is the real project.
 
-Uses a compact puzzle library, `../content/mini/puzzles-mini.json`, built by
-`../engine/mini_pipeline.py` (240 puzzles, 7-10 kanji, boards from 4x5 to 6x5). The main
-360-puzzle release and the iOS app are untouched.
+Uses a compact puzzle library, `../content/compact/puzzles-compact.json`, built by
+`../engine/compact_pipeline.py`: dense 5x5 boards of 2- and 3-kanji words, 16-17 cells, 7-8
+distinct kanji (repeated kanji share a number, as in the mockup), 246 puzzles, each proven
+uniquely solvable. The main 360-puzzle release and the iOS app are untouched.
 
 ## Run it
 
@@ -44,10 +45,8 @@ completion (time, hints, play bar), no stars, no sound, no menus.
 
 ## Known gaps and open decisions
 
-1. **Board shape differs from the mockup.** The mockup board was a dense 5x5 grid. The compact
-   puzzles are short staircase chains (8-10 cells in a 4x5 to 6x5 area), so the board is sparser
-   than the mockup but tiles, tray (4x2 keys for 8 kanji) and buttons are at the mockup's scale.
-   The earlier build used the main 10x10 library and its tiles were only ~29 px.
+1. **Board matches the mockup.** Dense 5x5 board, 4x2 tray, same tile, key and button sizes. An
+   earlier build used the main library's 10x10 sparse boards and tiles were only ~29 px.
 2. **The compact words have had automated checks only.** They use the main release's vocabulary
    filters and exhaustive uniqueness check, but the new word combinations have not had editorial
    review.
@@ -62,4 +61,4 @@ completion (time, hints, play bar), no stars, no sound, no menus.
 6. **Colour pipeline.** Three.js colour management is switched off on purpose so the new build
    matches the mockup's look (see the comment in `src/view/stage.ts`).
 7. **Performance not measured on real phones.** Only checked in headless Chromium with software
-   rendering. Bundle is about 674 KB (171 KB gzipped) including the puzzle data.
+   rendering. Bundle is about 688 KB (174 KB gzipped) including the puzzle data.

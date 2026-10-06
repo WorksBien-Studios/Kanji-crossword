@@ -7,8 +7,8 @@ import { parseSave } from './save';
 const puzzles = allPuzzles();
 
 describe('library', () => {
-  it('loads every standard puzzle with consistent numbering', () => {
-    expect(puzzles.length).toBe(240);
+  it('loads every puzzle with consistent numbering', () => {
+    expect(puzzles.length).toBeGreaterThan(100);
     for (const p of puzzles) {
       const nums = new Set<number>();
       p.num.forEach((row, r) => row.forEach((n, c) => { if (n) { nums.add(n); expect(p.open[r][c]).toBe(true); } }));

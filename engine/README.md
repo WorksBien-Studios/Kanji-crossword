@@ -69,8 +69,12 @@ green on the exact branch head. The workflow regenerates the library, exhaustive
 validates every puzzle and runs the corruption/regression tests before committing
 canonical content.
 
-## Compact puzzles (`mini_pipeline.py`)
+## Compact 5x5 puzzles (`compact_pipeline.py`)
 
-`python3 engine/mini_pipeline.py` writes `content/mini/puzzles-mini.json`; `--check` validates
-the committed file. It never writes `content/puzzles-v2.json`, so the main release pipeline and
-its 360-puzzle gate are unaffected.
+`python3 engine/compact_pipeline.py` writes `content/compact/puzzles-compact.json` (dense 5x5
+boards, 7-8 kanji, repeated kanji share a number). Candidates are generated on all CPU cores,
+each verified unique, then a varied set is picked. `--check` validates the committed file and
+`--count N --seconds S` runs a quick experiment to a temp file. The raw solver accepts a slot
+that is fully fixed by crossings without checking it is a word, so the pipeline re-checks every
+slot against the vocabulary. It never writes `content/puzzles-v2.json`, so the main release
+pipeline and its 360-puzzle gate are unaffected.

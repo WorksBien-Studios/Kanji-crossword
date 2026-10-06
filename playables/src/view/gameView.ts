@@ -4,7 +4,7 @@ import { Stage } from './stage';
 import { computeLayout, type Layout } from './layout';
 import { cachedSlab, clearGeoCache, makePiece, type Piece, type PressInfo } from './pieces';
 import { disposeObject, glossy, shade } from './geo';
-import { ARROW_BACK, ARROW_FACE, BUTTON_COLORS, GOLD, IVORY, JADE, SEL_EMISSIVE, VERMILION } from './theme';
+import { ARROW_BACK, ARROW_FACE, BUTTON_COLORS, GOLD, IVORY, JADE, JADE_DARK, SEL_EMISSIVE, VERMILION } from './theme';
 import * as paint from './paint';
 
 export interface ViewState {
@@ -93,7 +93,22 @@ export class GameView {
     slab(L.boardSlabW, L.boardSlabH, 0);
     slab(L.traySlabW, L.traySlabH, L.trayY);
 
-    // Board tiles: only the open cells; blocks are simply the bare slab.
+    // Board: open cells are tiles; block cells are dark jade tiles with no label, like the mockup.
+    for (let r = 0; r < puzzle.rows; r++) {
+      for (let c = 0; c < puzzle.cols; c++) {
+        if (puzzle.open[r][c]) continue;
+        const b = makePiece({
+          x: L.tileX(c), y: L.tileY(r), w: L.tile, h: L.tile, radius: L.radius, bevel: L.bevel,
+          backT: L.backT, faceT: L.faceT, faceColor: JADE_DARK, backColor: JADE, labelPx: 16,
+          sinkDepth: 0, info: null, labelFit: 1, faceRough: 0.2,
+        });
+        b.lab.mesh.visible = false;
+        b.shadow.visible = false;
+        this.built.add(b.group);
+      }
+    }
+
+    // Board tiles: open cells.
     for (let r = 0; r < puzzle.rows; r++) {
       for (let c = 0; c < puzzle.cols; c++) {
         const n = puzzle.num[r][c];
