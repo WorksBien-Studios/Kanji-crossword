@@ -1,15 +1,16 @@
-// Compacts the validated puzzle library (../content/puzzles-v2.json) into the shape the game loads.
-// Only the standard-size mode is bundled for now; the 13x13 "large" mode is left out (see README).
+// Compacts the compact puzzle library (../content/mini/puzzles-mini.json, built by engine/mini_pipeline.py)
+// into the shape the game loads. The 10x10 library in content/puzzles-v2.json is not used here: its boards
+// are too large for a casual phone game.
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const here = dirname(fileURLToPath(import.meta.url));
-const src = resolve(here, '../../content/puzzles-v2.json');
+const src = resolve(here, '../../content/mini/puzzles-mini.json');
 const out = resolve(here, '../src/generated/puzzles.json');
 
 const all = JSON.parse(readFileSync(src, 'utf8'));
-const MODES = new Set(['kanjiNankuro']);
+const MODES = new Set(['kanjiNankuroMini']);
 const puzzles = all
   .filter((p) => MODES.has(p.mode))
   .map((p) => {

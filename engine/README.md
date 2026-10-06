@@ -68,3 +68,9 @@ Do not merge generated-content changes unless the Engine validation workflow is
 green on the exact branch head. The workflow regenerates the library, exhaustively
 validates every puzzle and runs the corruption/regression tests before committing
 canonical content.
+
+## Compact puzzles (`mini_pipeline.py`)
+
+`python3 engine/mini_pipeline.py` writes `content/mini/puzzles-mini.json`; `--check` validates
+the committed file. It never writes `content/puzzles-v2.json`, so the main release pipeline and
+its 360-puzzle gate are unaffected.

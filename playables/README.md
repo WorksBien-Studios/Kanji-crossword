@@ -4,8 +4,9 @@ A 3D kanji number-crossword for YouTube Playables: glossy mahjong-style tiles, a
 a terrazzo table, one screen, no sound, and difficulty that adapts instead of being chosen.
 The visual design was approved as an interactive mockup; this folder is the real project.
 
-Uses the validated puzzle library in `../content/` (built by `../engine/`). Nothing in the iOS app
-or the Python engine was changed.
+Uses a compact puzzle library, `../content/mini/puzzles-mini.json`, built by
+`../engine/mini_pipeline.py` (240 puzzles, 7-10 kanji, boards from 4x5 to 6x5). The main
+360-puzzle release and the iOS app are untouched.
 
 ## Run it
 
@@ -43,14 +44,13 @@ completion (time, hints, play bar), no stars, no sound, no menus.
 
 ## Known gaps and open decisions
 
-1. **Real puzzles do not look like the mockup board.** The mockup used a dense 5x5 board with
-   8 kanji. The library's standard puzzles are diagonal chains: a 10x10 grid with about 19 open
-   cells, and 17-19 kanji in the tray. The layout now spends the screen width on the board and
-   uses a 3-row tray, which makes board tiles about 29 px on a 390x844 phone (keys about 42 px).
-   That is close to the ceiling for a 10-column board; a 7x7 puzzle reaches about 40 px. Bigger
-   needs smaller puzzles from the engine, or a zoomable board that pans to the selection.
-2. **Large mode (13x13, up to 25 kanji) is not bundled.** `scripts/build-puzzles.mjs` only keeps
-   `kanjiNankuro` (240 puzzles).
+1. **Board shape differs from the mockup.** The mockup board was a dense 5x5 grid. The compact
+   puzzles are short staircase chains (8-10 cells in a 4x5 to 6x5 area), so the board is sparser
+   than the mockup but tiles, tray (4x2 keys for 8 kanji) and buttons are at the mockup's scale.
+   The earlier build used the main 10x10 library and its tiles were only ~29 px.
+2. **The compact words have had automated checks only.** They use the main release's vocabulary
+   filters and exhaustive uniqueness check, but the new word combinations have not had editorial
+   review.
 3. **No bundled kanji font.** The mockup loaded Shippori Mincho from Google Fonts; here the
    canvas falls back to the device's Japanese serif font, so glyph shapes vary by device. A
    subset font covering the library's kanji needs to be added.
@@ -62,4 +62,4 @@ completion (time, hints, play bar), no stars, no sound, no menus.
 6. **Colour pipeline.** Three.js colour management is switched off on purpose so the new build
    matches the mockup's look (see the comment in `src/view/stage.ts`).
 7. **Performance not measured on real phones.** Only checked in headless Chromium with software
-   rendering. Bundle is about 758 KB (188 KB gzipped) including the puzzle data.
+   rendering. Bundle is about 674 KB (171 KB gzipped) including the puzzle data.
