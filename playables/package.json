@@ -1,0 +1,28 @@
+{
+  "name": "kanji-tiles-playable",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Kanji Tiles: 3D kanji number-crossword for YouTube Playables",
+  "scripts": {
+    "puzzles": "node scripts/build-puzzles.mjs",
+    "predev": "node scripts/build-puzzles.mjs",
+    "dev": "vite",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "prebuild": "node scripts/build-puzzles.mjs",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "shot": "node scripts/screenshot.mjs"
+  },
+  "dependencies": {
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "@types/three": "^0.186.0",
+    "playwright-core": "^1.63.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.3",
+    "vitest": "^5.0.3"
+  }
+}
