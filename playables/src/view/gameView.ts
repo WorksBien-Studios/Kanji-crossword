@@ -59,6 +59,7 @@ export class GameView {
   private ty = 0;
   private overlayShown = false;
   private reduceMotion = false;
+  private builtAspect = 0;
 
   constructor(private stage: Stage, private onPress: (p: PressInfo) => void) {
     stage.world.add(this.built);
@@ -78,7 +79,8 @@ export class GameView {
   build(puzzle: Puzzle): void {
     this.clear();
     this.puzzle = puzzle;
-    const L = (this.layout = computeLayout(puzzle.rows, puzzle.cols, puzzle.tray.length));
+    const L = (this.layout = computeLayout(puzzle.rows, puzzle.cols, puzzle.tray.length, window.innerWidth / Math.max(1, window.innerHeight)));
+    this.builtAspect = window.innerWidth / Math.max(1, window.innerHeight);
     this.stage.setExtent(L.top, L.bottom);
     this.kanjiToN.clear();
     puzzle.solution.forEach((k, n) => { if (n > 0) this.kanjiToN.set(k, n); });
@@ -177,6 +179,13 @@ export class GameView {
     const face = new THREE.Mesh(geo(0.16), glossy(ARROW_FACE, 0.28));
     face.position.z = 0.12;
     this.arrow.add(back, face);
+  }
+
+  /** Rebuilds when the screen shape changes enough (rotation, window resize) to need a new layout. */
+  relayoutIfNeeded(): void {
+    if (!this.puzzle) return;
+    const aspect = window.innerWidth / Math.max(1, window.innerHeight);
+    if (Math.abs(aspect - this.builtAspect) > 0.04) this.build(this.puzzle);
   }
 
   // ---- state -> visuals -----------------------------------------------------------------

@@ -40,23 +40,32 @@ export interface Layout {
   bottom: number;
 }
 
+/** Aim for three tray rows so the board gets the height; a mockup-sized tray (8 keys) uses four columns. */
+/** Jade margin around the tiles on a slab. Kept slim so tiles can use the screen width. */
+export const SLAB_PAD = 0.3;
+
 export function trayColumns(n: number): number {
   if (n <= 8) return 4;
-  if (n <= 20) return 5;
-  if (n <= 24) return 6;
-  return 7;
+  return Math.min(8, Math.max(5, Math.ceil(n / 3)));
 }
 
-export function computeLayout(rows: number, cols: number, keyCount: number): Layout {
-  const pitch = Math.min(1.1, 5.3 / cols, 5.9 / rows);
+/** World units of width we can rely on. The camera never frames less than 7 units of width, and about 14 units of height. */
+export function usableWidth(aspect: number): number {
+  return Math.max(7.0, 14.2 * aspect) * 0.955;
+}
+
+export function computeLayout(rows: number, cols: number, keyCount: number, aspect = 0.46): Layout {
+  const maxW = usableWidth(aspect);
+  const bev = 0.05;
+  const pitch = Math.min(1.1, (maxW - SLAB_PAD - 2 * bev) / (cols - 1 + 0.9), (6.8 - 0.55) / (rows - 1 + 0.9));
   const s = pitch / 1.1;
   const tile = 0.9 * s;
   const bevel = 0.05 * Math.max(s, 0.55);
   const depthScale = Math.max(s, 0.6);
   const backT = 0.12 * depthScale;
   const faceT = 0.16 * depthScale;
-  const boardSlabW = (cols - 1) * pitch + tile + 2 * bevel + 0.45;
-  const boardSlabH = (rows - 1) * pitch + tile + 2 * bevel + 0.45;
+  const boardSlabW = (cols - 1) * pitch + tile + 2 * bevel + SLAB_PAD;
+  const boardSlabH = (rows - 1) * pitch + tile + 2 * bevel + SLAB_PAD;
   const slabHalf = boardSlabH / 2 + 0.05;
 
   const hudH = 0.9;
@@ -73,10 +82,10 @@ export function computeLayout(rows: number, cols: number, keyCount: number): Lay
 
   const trayCols = trayColumns(keyCount);
   const trayRows = Math.ceil(keyCount / trayCols);
-  const keyPitch = Math.min(1.4, 5.8 / trayCols);
+  const keyPitch = Math.min(1.4, (maxW - SLAB_PAD) / (trayCols - 1 + 0.8));
   const key = keyPitch * 0.8;
-  const traySlabW = (trayCols - 1) * keyPitch + key + 0.45;
-  const traySlabH = (trayRows - 1) * keyPitch + key + 0.45;
+  const traySlabW = (trayCols - 1) * keyPitch + key + SLAB_PAD;
+  const traySlabH = (trayRows - 1) * keyPitch + key + SLAB_PAD;
   const trayY = -(slabHalf + 0.35) - traySlabH / 2;
 
   const rowYs: number[] = [];

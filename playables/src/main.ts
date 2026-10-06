@@ -24,7 +24,7 @@ async function boot(): Promise<void> {
   if (params.get('done') === '1') app.debugFill(0);
   if (params.get('almost') === '1') app.debugFill(1);
 
-  window.addEventListener('resize', () => stage.resize());
+  window.addEventListener('resize', () => { stage.resize(); view.relayoutIfNeeded(); });
   sdk.onPause(() => app!.pause());
   sdk.onResume(() => app!.resume());
   const loop = (ts: number) => {

@@ -45,8 +45,10 @@ completion (time, hints, play bar), no stars, no sound, no menus.
 
 1. **Real puzzles do not look like the mockup board.** The mockup used a dense 5x5 board with
    8 kanji. The library's standard puzzles are diagonal chains: a 10x10 grid with about 19 open
-   cells, and 17-19 kanji in the tray. Tiles end up about half the mockup size. Options: accept
-   it, regenerate smaller puzzles with the engine, or change the board presentation.
+   cells, and 17-19 kanji in the tray. The layout now spends the screen width on the board and
+   uses a 3-row tray, which makes board tiles about 29 px on a 390x844 phone (keys about 42 px).
+   That is close to the ceiling for a 10-column board; a 7x7 puzzle reaches about 40 px. Bigger
+   needs smaller puzzles from the engine, or a zoomable board that pans to the selection.
 2. **Large mode (13x13, up to 25 kanji) is not bundled.** `scripts/build-puzzles.mjs` only keeps
    `kanjiNankuro` (240 puzzles).
 3. **No bundled kanji font.** The mockup loaded Shippori Mincho from Google Fonts; here the
